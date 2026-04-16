@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Map Room</title>
+  <meta name="description" content="A lifelong board game library, curated for one family. Game library, quick-start rules, and scouting reports.">
+  <link rel="stylesheet" href="css/ludo.css">
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="scouting.html">Scouting</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="compass-wrap">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+      <!-- Outer rings -->
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#C4922B" stroke-width="0.8" opacity="0.25"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#C4922B" stroke-width="0.4" opacity="0.15"/>
+      <!-- Degree marks -->
+      <g stroke="#C4922B" stroke-width="0.5" opacity="0.2">
+        <line x1="100" y1="8" x2="100" y2="18"/>
+        <line x1="100" y1="182" x2="100" y2="192"/>
+        <line x1="8" y1="100" x2="18" y2="100"/>
+        <line x1="182" y1="100" x2="192" y2="100"/>
+        <line x1="35" y1="35" x2="42" y2="42"/>
+        <line x1="165" y1="35" x2="158" y2="42"/>
+        <line x1="35" y1="165" x2="42" y2="158"/>
+        <line x1="165" y1="165" x2="158" y2="158"/>
+      </g>
+      <!-- Cardinal arms (N S E W) -->
+      <polygon points="100,12 95.5,97 100,101 104.5,97" fill="#C4922B"/>
+      <polygon points="100,188 104.5,103 100,99 95.5,103" fill="#C4922B" opacity="0.75"/>
+      <polygon points="188,100 103,95.5 99,100 103,104.5" fill="#C4922B" opacity="0.75"/>
+      <polygon points="12,100 97,104.5 101,100 97,95.5" fill="#C4922B" opacity="0.75"/>
+      <!-- Intercardinal arms (NE NW SE SW) -->
+      <polygon points="162,38 104,97 100,101 96,97" fill="#7A5A20" opacity="0.55"/>
+      <polygon points="38,38 96,97 100,101 104,97" fill="#7A5A20" opacity="0.55"/>
+      <polygon points="162,162 104,103 100,99 96,103" fill="#7A5A20" opacity="0.55"/>
+      <polygon points="38,162 96,103 100,99 104,103" fill="#7A5A20" opacity="0.55"/>
+      <!-- Center jewel -->
+      <circle cx="100" cy="100" r="10" fill="#C4922B" opacity="0.9"/>
+      <circle cx="100" cy="100" r="7" fill="#0C0804"/>
+      <circle cx="100" cy="100" r="3.5" fill="#C4922B"/>
+      <circle cx="100" cy="100" r="1.5" fill="#E8C97A"/>
+      <!-- N label -->
+      <text x="100" y="7" text-anchor="middle" fill="#E8CC60" font-family="Georgia,serif" font-size="10" font-weight="bold" opacity="0.85">N</text>
+    </svg>
+  </div>
+
+  <p class="eyebrow hero-eyebrow">
+    <span data-lang="en">The Family Game Library · Est. 2024</span>
+    <span data-lang="fr">La Bibliothèque Ludique de la Famille · Fondée 2024</span>
+  </p>
+
+  <h1 class="hero-title display">Cabinet <em>Ludo</em></h1>
+
+  <p class="hero-subtitle">
+    <span data-lang="en">Game Library · Play Archives · Table Companion</span>
+    <span data-lang="fr">Bibliothèque Ludique · Archives de Jeu · Compagnon de Table</span>
+  </p>
+
+  <p class="ornament">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+  <p class="hero-tagline">
+    <span data-lang="en">Curated for a lifetime of play · Guarded by Ludo</span>
+    <span data-lang="fr">Curé pour une vie de jeu · Gardé par Ludo</span>
+  </p>
+
+  <!-- Gateway navigation -->
+  <div class="gateways" style="margin-top:64px;width:100%;max-width:900px;">
+
+    <a href="collection.html" class="gateway" data-accent="gold">
+      <div class="gateway-icon">📚</div>
+      <div class="gateway-number">
+        <span data-lang="en">I — The Collection</span>
+        <span data-lang="fr">I — La Collection</span>
+      </div>
+      <div class="gateway-title">
+        <span data-lang="en">The Game Library</span>
+        <span data-lang="fr">La Bibliothèque</span>
+      </div>
+      <p class="gateway-desc">
+        <span data-lang="en">All games in the family collection — quick-start reminders, full rules, and the stories behind each one. Because every game deserves to be remembered.</span>
+        <span data-lang="fr">Tous les jeux de la collection familiale — rappels de démarrage rapide, règles complètes, et les histoires derrière chacun.</span>
+      </p>
+      <span class="gateway-arrow">→</span>
+    </a>
+
+    <a href="scouting.html" class="gateway" data-accent="teal">
+      <div class="gateway-icon">🔭</div>
+      <div class="gateway-number">
+        <span data-lang="en">II — Scouting & Discovery</span>
+        <span data-lang="fr">II — Exploration</span>
+      </div>
+      <div class="gateway-title">
+        <span data-lang="en">The Expedition Log</span>
+        <span data-lang="fr">Le Journal d'Expédition</span>
+      </div>
+      <p class="gateway-desc">
+        <span data-lang="en">New games discovered, assessed, and filed. Weekly scouting reports — beautiful editions, rare finds, Kickstarter campaigns, and artisan workshops the world forgot.</span>
+        <span data-lang="fr">Nouveaux jeux découverts, évalués et archivés. Rapports de reconnaissance hebdomadaires — éditions rares, Kickstarters, ateliers artisanaux.</span>
+      </p>
+      <span class="gateway-arrow">→</span>
+    </a>
+
+    <a href="collection.html#quick-start" class="gateway" data-accent="indigo">
+      <div class="gateway-icon">⚡</div>
+      <div class="gateway-number">
+        <span data-lang="en">III — Quick Start</span>
+        <span data-lang="fr">III — Démarrage Rapide</span>
+      </div>
+      <div class="gateway-title">
+        <span data-lang="en">Rules at the Table</span>
+        <span data-lang="fr">Règles à Table</span>
+      </div>
+      <p class="gateway-desc">
+        <span data-lang="en">Pick up any game you haven't played in months and be ready in five minutes. Essential mechanics, setup reminders, and scoring — nothing more, nothing less.</span>
+        <span data-lang="fr">Reprenez n'importe quel jeu après des mois et soyez prêt en cinq minutes. Mécaniques essentielles, rappels de mise en place et notation.</span>
+      </p>
+      <span class="gateway-arrow">→</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══ FAMILY ═══════════════════════════════════════════════════ -->
+<section class="family-section">
+  <div class="container">
+    <p class="eyebrow" style="text-align:center;margin-bottom:8px;">
+      <span data-lang="en">The Players</span>
+      <span data-lang="fr">Les Joueurs</span>
+    </p>
+    <h2 style="text-align:center;font-family:var(--font-heading);font-style:italic;font-weight:400;color:var(--ivory-mid);font-size:1.3rem;">
+      <span data-lang="en">One table. Five players. Infinite occasions for betrayal.</span>
+      <span data-lang="fr">Une table. Cinq joueurs. Des occasions infinies de trahison.</span>
+    </h2>
+
+    <div class="family-grid" style="margin-top:40px;">
+      <div class="family-member">
+        <div class="family-name">Chris</div>
+        <div class="family-role">
+          <span data-lang="en">Collector · Diplomat · Architect of the evening</span>
+          <span data-lang="fr">Collectionneur · Diplomate · Architecte de la soirée</span>
+        </div>
+      </div>
+      <div class="family-member">
+        <div class="family-name">Maud</div>
+        <div class="family-role">
+          <span data-lang="en">Gentle. Competitive. Do not underestimate.</span>
+          <span data-lang="fr">Douce. Compétitive. Ne pas sous-estimer.</span>
+        </div>
+      </div>
+      <div class="family-member">
+        <div class="family-name">Antonin</div>
+        <div class="family-role">
+          <span data-lang="en">Resource engine. Hates losing. Will not stop talking about it.</span>
+          <span data-lang="fr">Moteur à ressources. Déteste perdre. Ne cessera pas d'en parler.</span>
+        </div>
+      </div>
+      <div class="family-member">
+        <div class="family-name">Audrey</div>
+        <div class="family-role">
+          <span data-lang="en">The coup specialist. Always watching. Always smiling.</span>
+          <span data-lang="fr">La spécialiste du coup d'état. Toujours à l'affût. Toujours souriante.</span>
+        </div>
+      </div>
+      <div class="family-member">
+        <div class="family-name">+ Partners</div>
+        <div class="family-role">
+          <span data-lang="en">One code-cracker. One gentle newcomer. Welcome.</span>
+          <span data-lang="fr">Un décrypteur. Un néophyte bienvenu. Bienvenue.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule" style="margin-top:48px;"><div class="rule-inner">✦</div></div>
+
+    <blockquote style="text-align:center;max-width:640px;margin:0 auto;">
+      <p style="font-family:var(--font-heading);font-style:italic;font-size:1.15rem;color:var(--ivory-mid);line-height:1.8;">
+        <span data-lang="en">"The best games are the ones that survive being passed down. The best collection is the one that grows with the people who play it."</span>
+        <span data-lang="fr">«&nbsp;Les meilleurs jeux sont ceux qui survivent à être transmis. La meilleure collection est celle qui grandit avec les gens qui y jouent.&nbsp;»</span>
+      </p>
+      <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold-dim);margin-top:16px;">— LUDO</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="js/games-data.js"></script>
+<script src="js/ludo.js"></script>
+</body>
+</html>

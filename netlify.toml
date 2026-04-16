@@ -1,0 +1,30 @@
+# Cabinet Ludo — Netlify Configuration
+# GitHub repo: christykee/ludo-boardgames
+# Auto-deploys from main branch
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+# PDF files served with correct content type
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    Content-Disposition = "inline"
+
+# Pretty URLs
+[[redirects]]
+  from = "/collection"
+  to = "/collection.html"
+  status = 200
+
+[[redirects]]
+  from = "/scouting"
+  to = "/scouting.html"
+  status = 200

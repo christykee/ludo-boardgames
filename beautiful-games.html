@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quest for Beautiful Games — 10 Masterworks of Modern Board Game Design</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --bg: #0f0f14;
+      --card-bg: #17171f;
+      --card-border: #2a2a38;
+      --text: #ddd8cc;
+      --text-muted: #8a8580;
+      --accent: #7b4f2c;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      text-align: center;
+      padding: 72px 24px 48px;
+      border-bottom: 1px solid #2a2a38;
+      background: radial-gradient(ellipse at top, #1e1830 0%, var(--bg) 70%);
+    }
+    .site-header .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .site-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #f0ead8;
+      margin-bottom: 20px;
+    }
+    .site-header h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .site-header .subtitle {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin: 24px 0 0;
+      opacity: 0.6;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 680px), 1fr));
+      gap: 2px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      z-index: 2;
+    }
+
+    /* Rank badge */
+    .card-rank {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Artisan badge */
+    .artisan-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid var(--gold);
+      padding: 4px 10px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Image area */
+    .card-image {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .card:hover .card-image img {
+      transform: scale(1.04);
+    }
+    .card-image.no-image {
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    .card-image.no-image .gradient-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: rgba(255,255,255,0.12);
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Image overlay gradient */
+    .card-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(23,23,31,0.85) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .card-image.no-image::after { display: none; }
+
+    /* Body */
+    .card-body {
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-title-block { flex: 1; min-width: 0; }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #f0ead8;
+      line-height: 1.15;
+    }
+    .card-publisher {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .card-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .stat-pill {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 2px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .card-category {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-left: 2px solid var(--gold);
+      padding-left: 8px;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      padding-top: 16px;
+      border-top: 1px solid var(--card-border);
+    }
+    .card-art-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .card-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 6px 14px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .card-link:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      text-align: center;
+      padding: 48px 24px;
+      border-top: 1px solid var(--card-border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .site-footer strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <p class="eyebrow">Chris's Board Game Library · Curation Notes</p>
+  <h1>Quest for <em>Beautiful Games</em></h1>
+  <p class="subtitle">Ten masterworks of modern board game design — chosen for production quality, artistic vision, historical depth, and enduring worth as objects. Games that belong in a collection, not a closet.</p>
+  <p class="ornament">✦ &nbsp;&nbsp; ✦ &nbsp;&nbsp; ✦</p>
+</header>
+
+<main class="grid">
+
+  <!-- 1. PAX PAMIR -->
+  <article class="card">
+    <div class="card-rank">1</div>
+    <div class="artisan-badge">Artisan ✦</div>
+    <div class="card-image no-image" style="background: linear-gradient(135deg, #2d1b4e 0%, #4a2060 30%, #7b3d1a 65%, #c9a84c 100%);">
+      <span class="gradient-title">Pax Pamir<br>2nd Edition</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Pax Pamir: 2nd Edition</div>
+          <div class="card-publisher">Wehrlegig Games · 2019</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–5 Players</span>
+            <span class="stat-pill">BGG Weight 3.4</span>
+            <span class="stat-pill">45–120 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Historical Strategy & Political Simulation · Artisan ✦</div>
+      <p class="card-description">
+        The benchmark. Set during the collapse of the Durrani Empire in 19th-century Afghanistan, Pax Pamir is printed on a <em>cloth board</em> with chalk-style wooden pieces and hand-illustrated cards depicting historical Afghan, British, and Russian figures with meticulous period accuracy. The political mechanism — shifting alliances, coalition scoring, treachery as strategy — is as elegant as anything published in the last twenty years. Already in your collection. The standard against which everything else is measured.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Cloth board · chalk pieces · illustrated cards · Wehrlegig standard</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/256960/pax-pamir-second-edition" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2. SCYTHE -->
+  <article class="card">
+    <div class="card-rank">2</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Scythe_set-up_1.jpg/800px-Scythe_set-up_1.jpg"
+        alt="Scythe board game set up with mechs and player boards"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Scythe</div>
+          <div class="card-publisher">Stonemaier Games · 2016</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–5 Players</span>
+            <span class="stat-pill">BGG Weight 3.4</span>
+            <span class="stat-pill">90–115 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Euro Strategy · Engine Building</div>
+      <p class="card-description">
+        Jakub Różalski's paintings of diesel-punk mechs towering over pastoral 1920s Eastern Europe fields are among the most distinctive and haunting images in modern game design. The production matches the ambition: thick player boards with embossed action dials, enormous resource tokens, detailed plastic mechs, and encounter cards illustrated in the same painterly style. The alternate-history setting — five factions vying for control of a post-war Europa — gives the game genuine historical texture beneath the fantasy.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art by Jakub Różalski · Stonemaier premium production</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/169786/scythe" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3. OATH -->
+  <article class="card">
+    <div class="card-rank">3</div>
+    <div class="card-image no-image" style="background: linear-gradient(145deg, #0d2b1a 0%, #1a4a30 40%, #3d2a10 75%, #6b4c20 100%);">
+      <span class="gradient-title">Oath:<br>Chronicles of<br>Empire & Exile</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Oath: Chronicles of Empire & Exile</div>
+          <div class="card-publisher">Leder Games · 2021</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–6 Players</span>
+            <span class="stat-pill">BGG Weight 4.3</span>
+            <span class="stat-pill">120–180 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Historical Strategy & Political Simulation</div>
+      <p class="card-description">
+        Cole Wehrle and Kyle Ferrin at their most ambitious. Each session of Oath reshapes the game's card pool, slowly accumulating the wreckage and relics of previous civilizations like an archaeological record. Ferrin's illustration style here pushes into expressionist abstraction — angular figures, mythic landscapes, a visual language suggesting deep time. The game explores legitimacy, exile, and empire with real intellectual seriousness. For your strategic circle: this is the game that most rewards being played by the same group across many months.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art by Kyle Ferrin · persistent legacy mechanics · Leder Games</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/291572/oath-chronicles-of-empire-and-exile" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 4. ROOT -->
+  <article class="card">
+    <div class="card-rank">4</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Turn_1_in_board_game_Root.jpg/800px-Turn_1_in_board_game_Root.jpg"
+        alt="Root board game components on the woodland map"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Root</div>
+          <div class="card-publisher">Leder Games · 2018</div>
+          <div class="card-stats">
+            <span class="stat-pill">2–4 Players</span>
+            <span class="stat-pill">BGG Weight 3.7</span>
+            <span class="stat-pill">60–90 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Family Competitive Strategy · Asymmetric</div>
+      <p class="card-description">
+        Kyle Ferrin's hand-drawn woodland aesthetic has become one of the most recognizable visual languages in modern board gaming. Rabbits, foxes, birds, raccoons, and mice wage asymmetric war across a hand-illustrated forest map, each faction operating under completely different rules. The visual tone is storybook-whimsical — and deliberately deceptive. Root is a ferocious political game dressed as a children's story, a quality that makes it perfect for your family's slightly adversarial table temperament. The tension between the art and the game is itself part of the pleasure.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art by Kyle Ferrin · highly asymmetric factions</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/237182/root" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 5. WINGSPAN -->
+  <article class="card">
+    <div class="card-rank">5</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Components_in_Wingspan_board_game.jpg/800px-Components_in_Wingspan_board_game.jpg"
+        alt="Wingspan board game components including bird cards and dice"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Wingspan</div>
+          <div class="card-publisher">Stonemaier Games · 2019</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–5 Players</span>
+            <span class="stat-pill">BGG Weight 2.4</span>
+            <span class="stat-pill">40–70 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Euro Strategy · Engine Building</div>
+      <p class="card-description">
+        Natalia Romanova's bird illustrations are among the most celebrated in modern game design — 170+ bird cards each feature a detailed, scientific-illustration-style painting of a real species, with the bird's egg, wingspan, habitat, and diet carefully rendered. The wooden egg tokens, the custom illustrated dice, and the "birdfeeder" dice tower are production details that elevate Wingspan from good game to beautiful object. Of interest: the <strong>European Expansion</strong> features the Old World species and aesthetics closest to your preferred historical range.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">170+ bird illustrations by Natalia Romanova · European edition available</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/266192/wingspan" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 6. LISBOA -->
+  <article class="card">
+    <div class="card-rank">6</div>
+    <div class="card-image no-image" style="background: linear-gradient(140deg, #0d1f3c 0%, #1a3a6e 35%, #c9a84c 70%, #f0d080 100%);">
+      <span class="gradient-title">Lisboa</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Lisboa</div>
+          <div class="card-publisher">Eagle-Gryphon Games · 2017</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–4 Players</span>
+            <span class="stat-pill">BGG Weight 4.5</span>
+            <span class="stat-pill">120–180 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Euro Strategy · Historical Reconstruction</div>
+      <p class="card-description">
+        Ian O'Toole's graphic design for Lisboa is arguably the most detailed and beautiful ever produced for a board game. Set during the rebuilding of Lisbon after the catastrophic 1755 earthquake, tsunami, and fire, every element — the board, the cards, the church tiles — reflects the Pombaline architectural period with period fidelity. The board itself is a visual poem: dense with information, luminous with Azulejo blue and gold. Designer Vital Lacerda's systems are equally ambitious. Not a casual game — but the right evening, the right group, and Lisboa rewards like almost nothing else.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Graphic design by Ian O'Toole · Pombaline Lisbon 1755 setting</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/161533/lisboa" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 7. EVERDELL -->
+  <article class="card">
+    <div class="card-rank">7</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Cluttered_forest_in_board_game_Everdell.jpg/800px-Cluttered_forest_in_board_game_Everdell.jpg"
+        alt="Everdell board game forest with the 3D Evertree"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Everdell</div>
+          <div class="card-publisher">Starling Games · 2018</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–4 Players</span>
+            <span class="stat-pill">BGG Weight 2.8</span>
+            <span class="stat-pill">40–80 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Euro Strategy · Engine Building</div>
+      <p class="card-description">
+        Everdell's centrepiece is the Evertree — a magnificent 3D sculpted tree that towers over the board, used to hold the event and season cards as the game progresses through the year. Andrew Bosley's illustrated cards depict a civilisation of critters (hedgehogs, foxes, squirrels, frogs) constructing buildings, hosting festivals, and gathering resources in a forest that feels genuinely enchanted. The production — illustrated cards, wooden meeples, custom resources — is exceptional at any price point, and the Collector's Edition pushes it to the level of a display object. Already in your collection. One of its greatest pleasures is watching new players encounter the table for the first time.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art by Andrew Bosley · 3D Evertree centrepiece</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/199792/everdell" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 8. BLOOD RAGE -->
+  <article class="card">
+    <div class="card-rank">8</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/en/5/5a/Blood_Rage_board_game_box_cover.jpg"
+        alt="Blood Rage board game box art with Viking warriors"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Blood Rage</div>
+          <div class="card-publisher">CMON · 2015</div>
+          <div class="card-stats">
+            <span class="stat-pill">2–4 Players</span>
+            <span class="stat-pill">BGG Weight 2.9</span>
+            <span class="stat-pill">60–90 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Family Competitive Strategy · Miniatures</div>
+      <p class="card-description">
+        Blood Rage was published at the height of CMON's miniature design era, and it remains the high-water mark of that tradition. The base game contains 67 plastic miniatures — clan warriors, clan monsters, and four towering Norse mythological creatures including a Fenrir Wolf and Sea Serpent of extraordinary sculpted detail. Adrian Smith's art draws on genuine Old Norse mythology and runestone iconography, giving the game historical grounding unusual for a miniatures game. The gameplay itself — draft-based Viking raiding, Ragnarök as victory condition — is punchy, adversarial, and wonderful for competitive family groups.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art by Adrian Smith & Noah Bradley · 67 miniatures including Norse monsters</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/170216/blood-rage" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 9. SLEEPING GODS -->
+  <article class="card">
+    <div class="card-rank">9</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sleeping_Gods.jpg/800px-Sleeping_Gods.jpg"
+        alt="Sleeping Gods board game box art"
+        loading="lazy"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Sleeping Gods</div>
+          <div class="card-publisher">Red Raven Games · 2021</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–4 Players</span>
+            <span class="stat-pill">BGG Weight 2.8</span>
+            <span class="stat-pill">60–120 min/session</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Cooperative · Campaign</div>
+      <p class="card-description">
+        Ryan Laukat's illustrated atlas for Sleeping Gods is one of the most extraordinary physical objects in modern board gaming. Players explore the Wandering Sea as the crew of a 1929 steamship drawn through a portal to a mythic ocean world, navigating a hand-drawn foldout map of uncommon beauty. The campaign storybook, the illustrated encounter cards, and the massive illustrated map combine into something that feels closer to a medieval illuminated manuscript than a board game. Laukat designed, illustrated, and wrote the entire game himself — a singular artistic vision that shows in every component.
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Art & design by Ryan Laukat · hand-illustrated atlas · 1929 setting</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/255984/sleeping-gods" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 10. KINGDOM DEATH: MONSTER -->
+  <article class="card">
+    <div class="card-rank">10</div>
+    <div class="artisan-badge">Artisan ✦</div>
+    <div class="card-image">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/en/7/7a/Kingdom_death_monster_logo.jpg"
+        alt="Kingdom Death Monster logo"
+        loading="lazy"
+        style="object-fit: contain; background: #0a0a0f; padding: 40px;"
+      />
+    </div>
+    <div class="card-body">
+      <div class="card-meta-row">
+        <div class="card-title-block">
+          <div class="card-title">Kingdom Death: Monster</div>
+          <div class="card-publisher">Adam Poots Games · 2015 (1.5: 2020)</div>
+          <div class="card-stats">
+            <span class="stat-pill">1–4 Players</span>
+            <span class="stat-pill">BGG Weight 4.2</span>
+            <span class="stat-pill">60–180 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-category">Cooperative · Artisan ✦</div>
+      <p class="card-description">
+        The most audacious production project in board game history. Kingdom Death: Monster is a cooperative survival horror campaign where players fight nightmarish monsters rendered as extraordinarily detailed resin miniatures — some standing 10+ inches tall. The Kickstarter 1.5 campaign raised over $12 million. The art direction is dark, sculptural, wholly original — less a game than a collector's object that happens to also be played. It sits at the furthest extreme of artisan board game production, alongside antique chess sets and signed Wehrlegig editions, as an object you display as much as play. Acquisition source: Kickstarter campaigns or the publisher directly (kingdomdeath.com).
+      </p>
+      <div class="card-footer">
+        <span class="card-art-note">Resin miniatures · Adam Poots sole creative vision · Kickstarter/publisher direct</span>
+        <a class="card-link" href="https://boardgamegeek.com/boardgame/55690/kingdom-death-monster" target="_blank">BGG →</a>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <p>Curated for Chris's lifelong board game collection · March 2026</p>
+  <p style="margin-top:8px;">Games marked <strong>Artisan ✦</strong> are recommended for specialist acquisition: publisher direct, Kickstarter, or artisan dealer.</p>
+</footer>
+
+</body>
+</html>

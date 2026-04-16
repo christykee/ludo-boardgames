@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Collection</title>
+  <link rel="stylesheet" href="css/ludo.css">
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="collection.html" class="active">Collection</a></li>
+      <li><a href="scouting.html">Scouting</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ════════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · The Collection</span>
+      <span data-lang="fr">Cabinet Ludo · La Collection</span>
+    </p>
+    <h1 class="page-title display">
+      <span data-lang="en">The Game Library</span>
+      <span data-lang="fr">La Bibliothèque</span>
+    </h1>
+    <p class="page-subtitle">
+      <span data-lang="en">Every game owned, every rule remembered, every quick-start at hand.</span>
+      <span data-lang="fr">Chaque jeu possédé, chaque règle mémorisée, chaque démarrage rapide à portée de main.</span>
+    </p>
+  </div>
+</header>
+
+<!-- ══ MAIN CONTENT ═════════════════════════════════════════════ -->
+<main class="section" id="quick-start">
+  <div class="container">
+
+    <!-- Filter tabs -->
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-cat="all">
+        <span data-lang="en">All</span><span data-lang="fr">Tous</span>
+        <span class="count-badge" id="count-all"></span>
+      </button>
+      <button class="filter-btn" data-cat="quick-social">
+        <span data-lang="en">Quick &amp; Social</span><span data-lang="fr">Rapides</span>
+      </button>
+      <button class="filter-btn" data-cat="abstract">
+        <span data-lang="en">Classics</span><span data-lang="fr">Classiques</span>
+      </button>
+      <button class="filter-btn" data-cat="family-strategy">
+        <span data-lang="en">Family Strategy</span><span data-lang="fr">Stratégie Fam.</span>
+      </button>
+      <button class="filter-btn" data-cat="social-deduction">
+        <span data-lang="en">Social Deduction</span><span data-lang="fr">Déduction</span>
+      </button>
+      <button class="filter-btn" data-cat="euro-strategy">
+        <span data-lang="en">Euro Strategy</span><span data-lang="fr">Euro</span>
+      </button>
+      <button class="filter-btn" data-cat="historical-strategy">
+        <span data-lang="en">Historical</span><span data-lang="fr">Historique</span>
+      </button>
+      <button class="filter-btn" data-cat="cooperative">
+        <span data-lang="en">Cooperative</span><span data-lang="fr">Coopératif</span>
+      </button>
+      <button class="filter-btn" data-cat="artisan">
+        <span data-lang="en">✦ Artisan</span><span data-lang="fr">✦ Artisan</span>
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput"
+        placeholder="Search games, publishers, designers…"
+        oninput="filterAndSearch()">
+    </div>
+
+    <!-- Game grid -->
+    <div class="game-grid" id="gameGrid">
+      <!-- populated by JS -->
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ GAME MODAL ═══════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="gameModal" role="dialog" aria-modal="true">
+    <button class="modal-close" aria-label="Close">✕ CLOSE</button>
+
+    <!-- Dark header band — Jules Verne title style -->
+    <div class="modal-header">
+      <p class="eyebrow modal-eyebrow"></p>
+      <h2 class="modal-title"></h2>
+      <p class="modal-subtitle"></p>
+      <div class="modal-stats"></div>
+    </div>
+
+    <!-- Image gallery — loads from BGG API -->
+    <div class="modal-gallery-container">
+      <!-- populated async by openGameModal() -->
+    </div>
+
+    <!-- Body — parchment -->
+    <div class="modal-body">
+      <div class="modal-meta"></div>
+
+      <div>
+        <p class="modal-section-title">
+          <span data-lang="en">About This Game</span>
+          <span data-lang="fr">À Propos du Jeu</span>
+        </p>
+        <div class="modal-text modal-description"></div>
+      </div>
+
+      <div>
+        <p class="modal-section-title">
+          <span data-lang="en">⚡ Quick Start — Essential Rules</span>
+          <span data-lang="fr">⚡ Démarrage Rapide — Règles Essentielles</span>
+        </p>
+        <div class="quick-start-box">
+          <p class="quick-start-text"></p>
+        </div>
+      </div>
+
+      <div class="artisan-note modal-artisan-note" style="display:none;">
+        <span class="artisan-note-icon">✦</span>
+        <p class="artisan-note-text"></p>
+      </div>
+
+      <div class="modal-actions">
+        <a class="btn btn-primary btn-pdf" href="#" target="_blank">
+          📄 <span data-lang="en">Open Full Rules</span><span data-lang="fr">Ouvrir les Règles</span>
+        </a>
+        <a class="btn btn-ghost btn-bgg" href="#" target="_blank">
+          🎲 BoardGameGeek Gallery
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="js/games-data.js"></script>
+<script src="js/ludo.js"></script>
+<script>
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function filterAndSearch() {
+    searchQuery = document.getElementById('searchInput').value.trim();
+    renderGames();
+  }
+
+  function renderGames() {
+    const grid = document.getElementById('gameGrid');
+    let filtered = GAMES;
+
+    // Apply category filter
+    if (activeFilter === 'artisan') {
+      filtered = GAMES.filter(g => g.artisan);
+    } else if (activeFilter !== 'all') {
+      filtered = GAMES.filter(g => g.category === activeFilter);
+    }
+
+    // Apply search
+    if (searchQuery.length > 1) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(g =>
+        g.name.toLowerCase().includes(q) ||
+        (g.subtitle || '').toLowerCase().includes(q) ||
+        g.publisher.toLowerCase().includes(q) ||
+        (g.description || '').toLowerCase().includes(q) ||
+        (g.tags || []).some(t => t.includes(q))
+      );
+    }
+
+    // Update total count
+    document.getElementById('count-all').textContent = GAMES.length;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div class="no-results">
+        ${currentLang === 'fr' ? 'Aucun jeu trouvé. Essayez un autre terme.' : 'No games found. Try a different search.'}
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(buildGameCard).join('');
+    // Lazy-load BGG cover images for all rendered cards
+    requestAnimationFrame(() => loadVisibleCardImages());
+  }
+
+  // Filter button listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('count-all').textContent = GAMES.length;
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.cat;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGames();
+      });
+    });
+
+    renderGames();
+  });
+</script>
+</body>
+</html>

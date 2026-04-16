@@ -1,0 +1,718 @@
+/* ═══════════════════════════════════════════════════════════════════
+   CABINET LUDO — Master Stylesheet v3
+   Jules Verne · 20,000 Leagues Under the Sea · True Steampunk
+   ─────────────────────────────────────────────────────────────────
+   DESIGN LOGIC:
+   The body IS the ocean — deep, dark teal.
+   Cards and panels ARE the lit cabin of the Nautilus — warm cream
+   parchment floating inside heavy brass frames.
+   Gold ornament borders frame everything like a Victorian engraving.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ── JULES VERNE COLOUR PALETTE v3 ── */
+:root {
+  /* === THE OCEAN (dark backgrounds — the dominant environment) === */
+  --ocean-deep:     #051410;   /* the abyss — darkest corners */
+  --ocean-mid:      #0A2A1C;   /* the sea floor — main body bg */
+  --ocean-surface:  #0D3828;   /* shallow water — section bg */
+  --ocean-bright:   #145038;   /* where light filters through */
+  --ocean-teal:     #1A7060;   /* the bright Nautilus teal */
+  --ocean-light:    #28A090;   /* turquoise gleam */
+  --ocean-pale:     #5AC0B0;   /* pale aquamarine highlight */
+
+  /* === THE CABIN (cream panels — lit interiors, the Nautilus salon) === */
+  --cream:          #FAF0D5;   /* aged parchment — card background */
+  --cream-bright:   #FFFDF0;   /* bright cream — modal body */
+  --cream-mid:      #F0E4C0;   /* medium parchment — section dividers */
+  --cream-warm:     #E8D8A8;   /* warm parchment — darker cream areas */
+  --cream-dark:     #C8B880;   /* deep parchment — borders on cream */
+
+  /* === THE BRASS (gold ornament — borders, titles, instruments) === */
+  --brass:          #C8960C;   /* aged brass — primary gold */
+  --brass-bright:   #E8C030;   /* polished brass — highlights */
+  --brass-deep:     #906810;   /* tarnished brass — shadows */
+  --brass-pale:     #F0D878;   /* pale gold — glow */
+  --brass-glow:     rgba(200,150,12,0.14);
+  --brass-border:   rgba(200,150,12,0.40);
+  --brass-border-hi: rgba(232,192,48,0.70);
+  --brass-border-lo: rgba(144,104,16,0.30);
+
+  /* === TEXT — ink on parchment OR ivory on ocean === */
+  --ink:            #1A1008;   /* pure dark ink — on cream */
+  --ink-mid:        #2A2010;   /* medium ink — body text on cream */
+  --ink-light:      #5A4A30;   /* faded ink — secondary on cream */
+  --ink-faint:      #8A7A58;   /* very faded — captions on cream */
+
+  --ivory:          #F0E4C0;   /* ivory — primary text on ocean */
+  --ivory-bright:   #FFF8E8;   /* bright ivory — headings on ocean */
+  --ivory-mid:      #C8B878;   /* warm ivory — secondary on ocean */
+  --ivory-dim:      #908050;   /* dim ivory — muted on ocean */
+
+  /* === NAVIGATION (darkest — the hull of the Nautilus) === */
+  --nav-bg:         #040C08;   /* near black — darkest element */
+  --nav-border:     rgba(200,150,12,0.50);
+
+  /* === BORDERS & STRUCTURE === */
+  --border-brass:   rgba(200,150,12,0.40);
+  --border-brass-hi: rgba(232,192,48,0.65);
+  --border-ocean:   rgba(26,112,96,0.35);
+  --border-cream:   rgba(200,180,120,0.50);
+
+  /* === TYPOGRAPHY === */
+  --font-display:  'Cinzel', Georgia, serif;
+  --font-heading:  'Cormorant Garamond', Georgia, serif;
+  --font-body:     'EB Garamond', Georgia, serif;
+
+  --max-w:   1380px;
+  --nav-h:   64px;
+  --radius:  2px;
+  --t:       0.22s ease;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* THE OCEAN — deep dark teal is the page itself */
+body {
+  background: var(--ocean-mid);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ocean depth texture — subtle deep-sea grid, barely visible */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40h80M40 0v80' stroke='%2328A090' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(26,112,96,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(5,20,16,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(5,20,16,0.6) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ivory-bright);
+}
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+
+/* On parchment cards, headings are dark ink */
+.on-cream h1, .on-cream h2, .on-cream h3,
+.game-card h1, .game-card h2, .game-card h3 { color: var(--ink); }
+
+.display { font-family: var(--font-display); letter-spacing: 0.08em; }
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.ornament { color: var(--brass); opacity: 0.7; font-size: 1.1rem; letter-spacing: 0.5em; }
+
+a { color: var(--ocean-pale); text-decoration: none; transition: color var(--t); }
+a:hover { color: var(--brass-bright); }
+img { display: block; max-width: 100%; }
+
+/* ── LAYOUT ── */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+.section    { padding: 72px 0; }
+.section-sm { padding: 40px 0; }
+
+/* ── STEAMPUNK ORNAMENTAL DIVIDER ── */
+.rule { display: flex; align-items: center; gap: 14px; margin: 32px 0; }
+.rule::before, .rule::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, var(--brass-border-hi), transparent);
+}
+.rule-inner {
+  color: var(--brass);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+/* ── NAVIGATION — the hull, darkest element ── */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--brass-deep);
+  box-shadow: 0 2px 0 rgba(200,150,12,0.25), 0 4px 20px rgba(4,12,8,0.8);
+  display: flex; align-items: center;
+}
+/* Double-line gold border under nav */
+.site-nav::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--brass), var(--brass-bright), var(--brass), transparent);
+  opacity: 0.5;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.nav-brand {
+  font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+  color: var(--brass-bright); letter-spacing: 0.15em;
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--ivory-mid);
+  padding-bottom: 2px; border-bottom: 1px solid transparent;
+  transition: all var(--t);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--brass-bright); border-bottom-color: var(--brass); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.lang-toggle { display: flex; border: 1px solid var(--brass-deep); overflow: hidden; }
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory-dim);
+  padding: 5px 10px; transition: all var(--t);
+}
+.lang-btn.active { background: var(--brass); color: var(--nav-bg); }
+.lang-btn:hover:not(.active) { color: var(--brass-bright); }
+
+/* ── HERO — The Nautilus surfaces ── */
+.hero {
+  min-height: calc(100vh - var(--nav-h));
+  background:
+    linear-gradient(170deg, var(--nav-bg) 0%, var(--ocean-surface) 45%, var(--ocean-bright) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 28px; position: relative; overflow: hidden;
+}
+/* Victorian frame corners on hero */
+.hero::before {
+  content: '';
+  position: absolute; inset: 20px;
+  border: 1px solid var(--brass-border);
+  box-shadow:
+    inset 0 0 0 3px rgba(4,12,8,0.8),
+    inset 0 0 0 4px var(--brass-border-lo),
+    0 0 60px rgba(4,12,8,0.5);
+  pointer-events: none;
+}
+/* Radial ocean glow */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 110%, rgba(26,112,96,0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 20% at 15% 50%, rgba(200,150,12,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 20% at 85% 50%, rgba(200,150,12,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.compass-wrap {
+  width: clamp(140px, 18vw, 200px); height: clamp(140px, 18vw, 200px);
+  margin: 0 auto 40px; opacity: 0.90;
+  animation: roseFloat 8s ease-in-out infinite;
+  position: relative; z-index: 1;
+}
+@keyframes roseFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(1deg); }
+}
+
+.hero-eyebrow { margin-bottom: 20px; position: relative; z-index: 1; }
+.hero-eyebrow .eyebrow { color: var(--brass-bright); }
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700; letter-spacing: 0.12em; color: var(--ivory-bright);
+  line-height: 1.05; margin-bottom: 8px; position: relative; z-index: 1;
+  text-shadow: 0 2px 30px rgba(4,12,8,0.8);
+}
+.hero-title em {
+  font-style: italic; color: var(--ocean-pale);
+  font-family: var(--font-heading); font-weight: 400; letter-spacing: 0.04em;
+}
+.hero-subtitle {
+  font-family: var(--font-heading); font-size: clamp(0.95rem, 2vw, 1.25rem);
+  color: var(--ivory-mid); margin-bottom: 10px; font-style: italic;
+  position: relative; z-index: 1;
+}
+.hero-tagline {
+  font-size: 0.72rem; color: var(--ivory-dim);
+  font-family: var(--font-display); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-top: 12px; position: relative; z-index: 1;
+}
+
+/* ── GATEWAY CARDS — porthole windows into the Nautilus ── */
+.gateways {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; margin-top: 56px; position: relative; z-index: 1;
+  border: 1px solid var(--brass-border-hi);
+  box-shadow: 0 0 0 3px rgba(4,12,8,0.9), 0 0 0 4px var(--brass-border-lo);
+}
+.gateway {
+  background: rgba(10,42,28,0.70); backdrop-filter: blur(8px);
+  padding: 36px 30px; display: flex; flex-direction: column; gap: 12px;
+  cursor: pointer; text-align: left; transition: background var(--t);
+  text-decoration: none; color: inherit; position: relative; overflow: hidden;
+  border: 1px solid rgba(200,150,12,0.12);
+}
+.gateway::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent-color, var(--brass)); transform: scaleX(0);
+  transition: transform var(--t); transform-origin: left;
+}
+.gateway:hover { background: rgba(13,56,40,0.85); }
+.gateway:hover::before { transform: scaleX(1); }
+.gateway:hover .gateway-arrow { transform: translateX(6px); color: var(--brass-bright); }
+.gateway-icon { font-size: 1.8rem; margin-bottom: 4px; }
+.gateway-number { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.28em; color: var(--brass-deep); text-transform: uppercase; }
+.gateway-title  { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; letter-spacing: 0.08em; color: var(--ivory-bright); }
+.gateway-desc   { font-family: var(--font-body); font-size: 0.88rem; color: var(--ivory-mid); line-height: 1.65; flex: 1; }
+.gateway-arrow  { color: var(--brass); font-size: 1.1rem; transition: transform var(--t), color var(--t); align-self: flex-start; }
+.gateway[data-accent="gold"]   { --accent-color: var(--brass); }
+.gateway[data-accent="teal"]   { --accent-color: var(--ocean-pale); }
+.gateway[data-accent="indigo"] { --accent-color: #7A9ABA; }
+
+/* ── PAGE HERO (inner pages) ── */
+.page-hero {
+  background: linear-gradient(135deg, var(--nav-bg) 0%, var(--ocean-surface) 100%);
+  padding: 52px 0 38px;
+  border-bottom: 1px solid var(--brass-deep);
+  position: relative;
+}
+.page-hero::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--brass), var(--ocean-pale), var(--brass), transparent);
+  opacity: 0.6;
+}
+.page-hero-inner { position: relative; z-index: 1; }
+.page-hero .eyebrow { color: var(--brass-bright); margin-bottom: 10px; }
+.page-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700; letter-spacing: 0.1em; color: var(--ivory-bright); margin-bottom: 8px;
+}
+.page-subtitle { font-family: var(--font-heading); font-style: italic; color: var(--ivory-mid); font-size: 1.1rem; }
+
+/* ── FILTER TABS — dark ocean bar with brass accents ── */
+.filter-bar {
+  display: flex; align-items: center; flex-wrap: wrap;
+  border-bottom: 1px solid var(--brass-border);
+  margin-bottom: 40px;
+  position: sticky; top: var(--nav-h); z-index: 50;
+  background: var(--ocean-mid);
+  padding-top: 20px;
+  /* thin gold line at top of sticky bar */
+  box-shadow: 0 -1px 0 var(--brass-border-lo), 0 4px 20px rgba(4,12,8,0.6);
+}
+.filter-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  cursor: pointer; font-family: var(--font-display); font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ivory-dim);
+  padding: 12px 16px; margin-bottom: -2px; transition: all var(--t); white-space: nowrap;
+}
+.filter-btn:hover { color: var(--ocean-pale); }
+.filter-btn.active { color: var(--brass-bright); border-bottom-color: var(--brass); }
+.count-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ocean-teal); border-radius: 10px; font-family: var(--font-display);
+  font-size: 0.58rem; color: var(--ivory-bright); padding: 1px 7px; margin-left: 6px;
+}
+
+/* ── SEARCH — dark field with brass border ── */
+.search-wrap { margin-bottom: 36px; position: relative; max-width: 420px; }
+.search-input {
+  width: 100%; background: var(--ocean-surface);
+  border: 1px solid var(--brass-border);
+  color: var(--ivory-bright);
+  font-family: var(--font-body); font-size: 1rem; padding: 10px 16px 10px 42px;
+  outline: none; transition: border-color var(--t);
+}
+.search-input::placeholder { color: var(--ivory-dim); }
+.search-input:focus { border-color: var(--brass); box-shadow: 0 0 0 3px var(--brass-glow); }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ivory-dim); font-size: 1rem; pointer-events: none; }
+
+/* ── GAME GRID ── */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 24px;
+}
+
+/* ── GAME CARD — the lit cabin of the Nautilus ── */
+/* The card IS the cream parchment panel, framed in brass, floating in the dark ocean */
+.game-card {
+  background: var(--cream);
+  border: 1px solid var(--brass-border-hi);
+  /* Double-line Victorian frame effect */
+  box-shadow:
+    0 0 0 3px var(--ocean-mid),
+    0 0 0 4px var(--brass-border-lo),
+    4px 8px 28px rgba(4,12,8,0.70),
+    inset 0 0 0 1px rgba(200,180,120,0.30);
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: border-color var(--t), box-shadow var(--t), transform 0.28s ease;
+  position: relative; overflow: visible;
+}
+/* Brass top stripe */
+.game-card::before {
+  content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 4px;
+  background: linear-gradient(to right, var(--brass-deep), var(--brass-bright), var(--brass-deep));
+  z-index: 2;
+}
+.game-card:hover {
+  border-color: var(--brass-bright);
+  box-shadow:
+    0 0 0 3px var(--ocean-mid),
+    0 0 0 4px var(--brass-border),
+    6px 12px 40px rgba(4,12,8,0.80),
+    0 0 20px rgba(200,150,12,0.15),
+    inset 0 0 0 1px rgba(200,180,120,0.40);
+  transform: translateY(-4px);
+}
+.game-card:hover .card-img-inner { transform: scale(1.05); }
+
+/* Artisan badge */
+.artisan-badge {
+  position: absolute; top: 14px; right: -1px; z-index: 10;
+  background: var(--nav-bg); border: 1px solid var(--brass-border-hi);
+  border-right: none;
+  padding: 3px 9px; font-family: var(--font-display); font-size: 0.55rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-bright);
+}
+
+/* Card image */
+.card-img {
+  width: 100%; height: 200px; overflow: hidden; flex-shrink: 0;
+  position: relative;
+  border-bottom: 1px solid var(--brass-border);
+}
+.card-img-inner {
+  width: 100%; height: 100%; transition: transform 0.5s ease;
+  position: relative;
+}
+.card-img-inner img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  display: block; transition: opacity 0.4s ease;
+}
+.card-img-inner img.loading { opacity: 0; }
+.card-img-inner img.loaded  { opacity: 1; }
+.card-img::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(to top, rgba(10,42,28,0.70) 0%, transparent 100%);
+  pointer-events: none;
+}
+.card-img-bg {
+  width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 16px;
+}
+.card-img-title {
+  font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700;
+  font-style: italic; color: rgba(255,255,255,0.15); line-height: 1.1;
+  position: relative; z-index: 1;
+}
+
+/* Card body — warm cream parchment, dark ink */
+.card-body {
+  padding: 18px 20px 20px;
+  display: flex; flex-direction: column; gap: 9px; flex: 1;
+  background: var(--cream);
+  color: var(--ink-mid);
+}
+.card-category-tag {
+  font-family: var(--font-display); font-size: 0.57rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ocean-teal);
+  border-left: 2px solid var(--ocean-teal); padding-left: 8px;
+}
+.card-title    { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; color: var(--ink); line-height: 1.15; }
+.card-subtitle { font-family: var(--font-heading); font-style: italic; font-size: 0.88rem; color: var(--ink-light); margin-top: -5px; }
+.card-publisher { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--brass-deep); text-transform: uppercase; }
+.card-stats    { display: flex; flex-wrap: wrap; gap: 5px; }
+.stat-pill {
+  background: var(--ocean-surface); border: 1px solid var(--border-ocean);
+  padding: 2px 8px;
+  font-family: var(--font-display); font-size: 0.58rem; color: var(--ocean-pale);
+  letter-spacing: 0.06em; white-space: nowrap;
+}
+.card-desc {
+  font-size: 0.88rem; color: var(--ink-mid); line-height: 1.65; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card-footer {
+  display: flex; gap: 8px; padding-top: 12px;
+  border-top: 1px solid var(--border-cream); flex-wrap: wrap; margin-top: auto;
+}
+.card-btn {
+  font-family: var(--font-display); font-size: 0.57rem; letter-spacing: 0.16em;
+  text-transform: uppercase; padding: 6px 12px;
+  border: 1px solid var(--brass-border); background: none;
+  color: var(--brass-deep); cursor: pointer;
+  transition: all var(--t); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.card-btn:hover { background: var(--brass); color: var(--nav-bg); border-color: var(--brass); }
+.card-btn.primary {
+  background: var(--ocean-surface); color: var(--ivory-bright);
+  border-color: var(--ocean-teal);
+}
+.card-btn.primary:hover { background: var(--ocean-teal); border-color: var(--ocean-teal); }
+
+/* ── GAME MODAL — illuminated expedition journal ── */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(4,12,8,0.88);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.modal-backdrop.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--cream-bright);
+  border: 1px solid var(--brass-border-hi);
+  box-shadow:
+    0 0 0 3px rgba(4,12,8,0.95),
+    0 0 0 5px var(--brass-border-lo),
+    0 20px 80px rgba(4,12,8,0.90),
+    0 0 40px rgba(200,150,12,0.12);
+  max-width: 780px; width: 100%; max-height: 90vh; overflow-y: auto;
+  position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+}
+.modal-backdrop.open .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none; cursor: pointer;
+  color: var(--ivory-mid); font-size: 1.2rem;
+  padding: 6px 10px; transition: color var(--t); z-index: 10;
+  font-family: var(--font-display); letter-spacing: 0.1em;
+}
+.modal-close:hover { color: var(--brass-bright); }
+
+/* Modal header — dark ocean band, like the Jules Verne title strip */
+.modal-header {
+  background: linear-gradient(135deg, var(--nav-bg) 0%, var(--ocean-surface) 100%);
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--brass-deep);
+  position: relative;
+}
+.modal-header::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--brass), var(--ocean-pale), var(--brass), transparent);
+  opacity: 0.7;
+}
+.modal-eyebrow  { color: var(--brass-bright) !important; margin-bottom: 8px; }
+.modal-title    { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; letter-spacing: 0.06em; color: var(--ivory-bright); }
+.modal-subtitle { font-family: var(--font-heading); font-style: italic; color: var(--ivory-mid); font-size: 1rem; margin-top: 4px; }
+.modal-stats    { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.modal-stats .stat-pill { background: rgba(26,112,96,0.25); border-color: rgba(26,112,96,0.55); color: var(--ocean-pale); }
+
+/* ── IMAGE GALLERY ── */
+.modal-gallery { padding: 0; margin: 0; }
+.gallery-main {
+  width: 100%; height: 320px; overflow: hidden; position: relative;
+  background: var(--nav-bg); border-bottom: 1px solid var(--brass-border);
+  cursor: pointer;
+}
+.gallery-main img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+.gallery-main img:hover { transform: scale(1.03); }
+.gallery-main .gallery-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+}
+.gallery-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  display: flex; justify-content: space-between; width: 100%; padding: 0 12px;
+  pointer-events: none;
+}
+.gallery-nav-btn {
+  background: rgba(4,12,8,0.75); border: 1px solid var(--brass-border-hi);
+  color: var(--brass-bright); font-size: 1.1rem; width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--t); pointer-events: all;
+  font-family: var(--font-display);
+}
+.gallery-nav-btn:hover { background: var(--brass); color: var(--nav-bg); }
+.gallery-counter {
+  position: absolute; bottom: 10px; right: 12px;
+  background: rgba(4,12,8,0.80); border: 1px solid var(--brass-border);
+  padding: 2px 8px; font-family: var(--font-display); font-size: 0.6rem;
+  letter-spacing: 0.15em; color: var(--brass-bright);
+}
+.gallery-thumbs {
+  display: flex; gap: 3px; padding: 3px;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--brass-border); overflow-x: auto;
+}
+.gallery-thumb {
+  width: 80px; height: 60px; flex-shrink: 0; overflow: hidden;
+  cursor: pointer; opacity: 0.55; border: 2px solid transparent;
+  transition: all var(--t);
+}
+.gallery-thumb img  { width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumb.active, .gallery-thumb:hover { opacity: 1; border-color: var(--brass); }
+.gallery-loading {
+  display: flex; align-items: center; justify-content: center; height: 320px;
+  color: var(--ivory-dim); font-family: var(--font-display); font-size: 0.7rem;
+  letter-spacing: 0.2em; flex-direction: column; gap: 16px;
+}
+.gallery-spinner {
+  width: 32px; height: 32px; border: 2px solid var(--brass-deep);
+  border-top-color: var(--brass); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Modal body — warm cream parchment, dark ink (the expedition journal) */
+.modal-body {
+  padding: 24px 32px 32px;
+  display: flex; flex-direction: column; gap: 20px;
+  background: var(--cream-bright);
+  color: var(--ink-mid);
+}
+.modal-section-title {
+  font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--ocean-teal); margin-bottom: 10px;
+}
+.modal-text { font-family: var(--font-body); font-size: 1rem; color: var(--ink-mid); line-height: 1.78; }
+.modal-meta { margin-bottom: 4px; }
+.modal-meta .publisher-line {
+  color: var(--ocean-teal); font-family: var(--font-display); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px;
+}
+.modal-meta .setting-line { color: var(--ink-light); font-style: italic; font-size: 0.92rem; }
+
+/* Quick Start box — field notes on yellowed paper */
+.quick-start-box {
+  background: var(--cream-mid);
+  border: 1px solid var(--brass-border-hi);
+  border-left: 4px solid var(--ocean-teal);
+  padding: 16px 20px;
+  box-shadow: inset 0 0 0 1px rgba(200,150,12,0.08);
+}
+.quick-start-text { font-family: var(--font-body); font-size: 0.95rem; color: var(--ink); line-height: 1.82; }
+
+/* Artisan note — brass-bordered */
+.artisan-note {
+  background: linear-gradient(135deg, var(--cream-warm), rgba(200,150,12,0.08));
+  border: 1px solid var(--brass-border-hi);
+  padding: 14px 18px; display: flex; gap: 12px; align-items: flex-start;
+}
+.artisan-note-icon { color: var(--brass); flex-shrink: 0; font-size: 1.1rem; }
+.artisan-note-text { font-family: var(--font-body); font-style: italic; font-size: 0.9rem; color: var(--ink-mid); line-height: 1.65; }
+
+/* Buttons in modal */
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 10px 20px;
+  cursor: pointer; transition: all var(--t); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px; border: 1px solid transparent;
+}
+.btn-primary { background: var(--ocean-teal); color: var(--ivory-bright); border-color: var(--ocean-teal); }
+.btn-primary:hover { background: var(--ocean-bright); }
+.btn-ghost { background: none; color: var(--brass-deep); border: 1px solid var(--brass-border-hi); }
+.btn-ghost:hover { background: var(--brass-glow); color: var(--brass); border-color: var(--brass); }
+
+/* ── SCOUTING SECTION — deep ocean charts ── */
+.framework-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 32px; }
+.framework-item {
+  background: var(--cream); border: 1px solid var(--brass-border);
+  padding: 24px 22px;
+  box-shadow: 2px 4px 16px rgba(4,12,8,0.50),
+              inset 0 0 0 1px rgba(200,180,120,0.20);
+  color: var(--ink-mid);
+}
+.framework-num   { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--brass-border-hi); line-height: 1; margin-bottom: 10px; }
+.framework-label { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ocean-teal); margin-bottom: 8px; }
+.framework-desc  { font-family: var(--font-body); font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+
+.scout-card {
+  background: var(--cream); border: 1px solid var(--brass-border);
+  padding: 28px; display: flex; flex-direction: column; gap: 14px;
+  box-shadow: 2px 4px 16px rgba(4,12,8,0.50);
+  transition: border-color var(--t), box-shadow var(--t);
+  color: var(--ink-mid);
+}
+.scout-card:hover { border-color: var(--brass-bright); box-shadow: 4px 8px 28px rgba(4,12,8,0.70); }
+.scout-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ocean-teal); border: 1px solid var(--border-ocean);
+  padding: 3px 10px; align-self: flex-start;
+}
+.scout-rating-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.rating-pill {
+  padding: 4px 10px; border: 1px solid rgba(0,0,0,0.12);
+  font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.rating-pill.green { color: #1A7A40; border-color: rgba(26,122,64,0.35); background: rgba(26,122,64,0.08); }
+.rating-pill.amber { color: var(--brass-deep); border-color: var(--brass-border); background: var(--brass-glow); }
+.rating-pill.red   { color: #8A2020; border-color: rgba(138,32,32,0.35); background: rgba(138,32,32,0.06); }
+
+/* ── FAMILY SECTION — the crew manifest ── */
+.family-section {
+  padding: 56px 0;
+  background: var(--ocean-surface);
+  border-top: 1px solid var(--brass-border);
+  border-bottom: 1px solid var(--brass-border);
+  position: relative;
+}
+/* Subtle inner border on the family section */
+.family-section::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px solid var(--brass-border-lo);
+  pointer-events: none;
+}
+.family-grid   { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 36px; }
+.family-member { text-align: center; }
+.family-name   { font-family: var(--font-display); font-size: 0.88rem; letter-spacing: 0.14em; color: var(--ivory-bright); margin-bottom: 4px; }
+.family-role   { font-family: var(--font-body); font-style: italic; font-size: 0.82rem; color: var(--ivory-mid); }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--nav-bg);
+  border-top: 1px solid var(--brass-deep);
+  box-shadow: 0 -2px 0 rgba(200,150,12,0.25);
+  padding: 36px 0; text-align: center;
+}
+.footer-brand { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--brass-bright); letter-spacing: 0.18em; margin-bottom: 10px; }
+.footer-text  { font-family: var(--font-body); font-style: italic; font-size: 0.85rem; color: var(--ivory-dim); }
+
+/* ── MAIN CONTENT SECTIONS — everything lives in the ocean dark ── */
+main.section {
+  background: var(--ocean-mid);
+}
+
+/* ── UTILITY ── */
+[data-lang] { display: none; }
+.lang-en [data-lang="en"] { display: block; }
+.lang-fr [data-lang="fr"] { display: block; }
+.lang-en span[data-lang="en"], .lang-fr span[data-lang="fr"] { display: inline; }
+.no-results {
+  grid-column: 1/-1; text-align: center; padding: 60px;
+  color: var(--ivory-dim); font-family: var(--font-heading); font-style: italic; font-size: 1.1rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .gateways  { grid-template-columns: 1fr; }
+  .modal-body, .modal-header { padding-left: 18px; padding-right: 18px; }
+  .filter-btn { padding: 10px 11px; font-size: 0.57rem; }
+  .gallery-main { height: 220px; }
+  .hero::before { inset: 8px; }
+}

@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# PDFs — kept locally, not deployed (too large for GitHub)
+*.pdf
+*.PDF
+
+# Skill files — local Cowork tool, not part of the website
+*.skill
+
+# Node / build artifacts (if any future tooling is added)
+node_modules/
+dist/
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# Sensitive project config
+# CLAUDE.md is kept — it describes the project for future sessions
