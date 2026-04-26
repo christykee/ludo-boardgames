@@ -4,40 +4,41 @@
    and full metadata for display and filtering.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ── Static BGG cover URLs (scraped from each game's og:image) ────────
-   Why baked-in: BGG xmlapi2 is now CORS-walled AND auth-walled, so
-   runtime fetch fails. These URLs are cf.geekdo-images.com CDN paths
-   from the public game pages — hot-linkable, stable.
+/* ── Local cover paths (baked from BGG og:image into /covers/) ────────
+   Why local: zero external dependency. BGG hot-link protection,
+   weserv proxy outages, cf.geekdo-images.com CDN changes — none
+   of it can break Cabinet Ludo. Files committed to the repo at
+   /covers/<slug>.jpg, ~50–80KB each, 700–800px JPEG q≈0.78.
    Keyed by BGG id; ludo.js falls back to gradient if a game's id is
    missing here. */
 const BGG_COVERS = {
-  13:     'https://images.weserv.nl/?url=cf.geekdo-images.com/0XODRpReiZBFUffEcqT5-Q__opengraph/img/ARkyerUcE8vdJx0U5S0eVM0RTzY=/0x0:1000x525/fit-in/1200x630/filters:strip_icc()/pic9156909.png',
-  325:    'https://images.weserv.nl/?url=cf.geekdo-images.com/v8ll_1CxVGP-KN-NqkoQsg__opengraph/img/wiBswy3cYMLF7D2gk4x-lxcyWUI=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8828019.jpg',
-  926:    'https://images.weserv.nl/?url=cf.geekdo-images.com/CQHOCJI6EFUUsQiGXS9oHg__opengraph/img/ULdEQYJuVN32uVpcJv2OAjxnqrM=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8828016.jpg',
-  171:    'https://images.weserv.nl/?url=cf.geekdo-images.com/0_RWFMNapgr5yCrdhvGi_Q__opengraph/img/K7-MKIaTowM-QZjFCzpMbuO38pI=/0x18:6478x3419/fit-in/1200x630/filters:strip_icc()/pic8785991.jpg',
-  181:    'https://images.weserv.nl/?url=cf.geekdo-images.com/Oem1TTtSgxOghRFCoyWRPw__opengraph/img/UcmKPcJUUscy7ikWw1Ew8_Y-tu8=/0x0:889x467/fit-in/1200x630/filters:strip_icc()/pic4916782.jpg',
-  220:    'https://images.weserv.nl/?url=cf.geekdo-images.com/lNRG273h6gkd3szSY3EswQ__opengraph/img/GWbNcp24PacF53OMuHSU9SGEYNw=/0x591:2835x2079/fit-in/1200x630/filters:strip_icc()/pic9202764.png',
-  483:    'https://images.weserv.nl/?url=cf.geekdo-images.com/CGJihifkrZSqW40zElgXkQ__opengraph/img/iJynfjeQLNzBQ6Yso4G5nU2OUJY=/0x71:2000x1121/fit-in/1200x630/filters:strip_icc()/pic7376874.jpg',
-  1115:   'https://images.weserv.nl/?url=cf.geekdo-images.com/QhsvR9GY0LbTpj27fairWA__opengraph/img/FFuk1EuC8UkRBQhlznzheUMpbbs=/0x61:509x347/fit-in/1200x630/filters:fill(blur):strip_icc()/pic186610.jpg',
-  2397:   'https://images.weserv.nl/?url=cf.geekdo-images.com/fuNntWUQ8NsmbF7S1gn5GQ__opengraph/img/B3T0-_4jgocgtMHgUBIH7xYTetM=/fit-in/1200x630/filters:strip_icc()/pic4017988.jpg',
-  2511:   'https://images.weserv.nl/?url=cf.geekdo-images.com/ptDZ2tJ6dSNiONAx3HH8Tw__opengraph/img/QXogVcR9A3LAD-E4lkCeCBHq_D4=/0x0:1501x788/fit-in/1200x630/filters:strip_icc()/pic3514298.jpg',
-  9209:   'https://images.weserv.nl/?url=cf.geekdo-images.com/kdWYkW-7AqG63HhqPL6ekA__opengraph/img/dQRVo1f0UIX-QxlmItn6syEn1a4=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8937637.jpg',
-  11330:  'https://images.weserv.nl/?url=cf.geekdo-images.com/aTzHfe4DVgNvHPmGYThWuw__opengraph/img/0CtvbT41bhEVfoM4ssF-DHcoCxU=/0x492:698x935/fit-in/1200x630/filters:fill(blur):strip_icc()/pic9110087.jpg',
-  30549:  'https://images.weserv.nl/?url=cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__opengraph/img/fNu5AeI1nPD73l9_KNPEurNwBuI=/0x655:976x1167/fit-in/1200x630/filters:strip_icc()/pic1534148.jpg',
-  67877:  'https://images.weserv.nl/?url=cf.geekdo-images.com/OvOpd-Lhl7t3h9fF_qi6lQ__opengraph/img/b4tzFBPPu88LBeOKaCkOmGU608w=/0x187:2245x1365/fit-in/1200x630/filters:strip_icc()/pic2527529.jpg',
-  92415:  'https://images.weserv.nl/?url=cf.geekdo-images.com/GVbKORueiHezUaLfVZKlfQ__opengraph/img/0-SrNslW3qHoB8iIJoZMmexInAo=/0x0:900x473/fit-in/1200x630/filters:strip_icc()/pic9315848.jpg',
-  103343: 'https://images.weserv.nl/?url=cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__opengraph/img/tF5c-5cy78b5F7SsfckjKaZSTQI=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic1077906.jpg',
-  188188: 'https://images.weserv.nl/?url=cf.geekdo-images.com/xxeCjCjznn8wh5p8CSx5jA__opengraph/img/e46vqphHq5SKiONS13TaRUteJVA=/0x499:1108x1081/fit-in/1200x630/filters:strip_icc()/pic1896477.jpg',
-  128882: 'https://images.weserv.nl/?url=cf.geekdo-images.com/LPa6rsGcv8S0-OeNjCOAEQ__opengraph/img/dioop3_JeqcZjKy_ccNs8-cG8G8=/0x0:700x368/fit-in/1200x630/filters:strip_icc()/pic1398895.jpg',
-  129622: 'https://images.weserv.nl/?url=cf.geekdo-images.com/T1ltXwapFUtghS9A7_tf4g__opengraph/img/Q-TYFTvpmXb1QogiEl0udcOtXPU=/0x0:1364x716/fit-in/1200x630/filters:strip_icc()/pic1401448.jpg',
-  131357: 'https://images.weserv.nl/?url=cf.geekdo-images.com/MWhSY_GOe2-bmlQ2rntSVg__opengraph/img/JxPFbyoilhY-P5helyOKI5Bw7LM=/0x0:399x209/fit-in/1200x630/filters:strip_icc()/pic2016054.jpg',
-  173346: 'https://images.weserv.nl/?url=cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__opengraph/img/EyT9R-od6g-49iIzr8TeWpTg94g=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic2576399.jpg',
-  188834: 'https://images.weserv.nl/?url=cf.geekdo-images.com/rAQ3hIXoH6xDcj41v9iqCg__opengraph/img/ae8mg6V5TH2WKatln7JHz3BIi8I=/8x0:693x360/fit-in/1200x630/filters:strip_icc()/pic5164305.jpg',
-  199792: 'https://images.weserv.nl/?url=cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__opengraph/img/LaoNUvWBEx8UQuHyXjStN_0wwL8=/0x42:1600x882/fit-in/1200x630/filters:strip_icc()/pic3918905.png',
-  227072: 'https://images.weserv.nl/?url=cf.geekdo-images.com/-uBkiypUVyRKxNuOI_-ZpQ__opengraph/img/WJY75yualZKr9U1G1sixKKLRpxA=/0x37:851x484/fit-in/1200x630/filters:strip_icc()/pic3552344.png',
-  256960: 'https://images.weserv.nl/?url=cf.geekdo-images.com/oSM_AuKYfGIwOtKbVEsoVg__opengraph/img/k_2lbdBwtB2TlxSjnL-P2luonIo=/0x80:1673x958/fit-in/1200x630/filters:strip_icc()/pic4503733.png',
-  257499: 'https://images.weserv.nl/?url=cf.geekdo-images.com/09KeqyJEtu2qcskbtlOhqw__opengraph/img/Z-G4SyC61wOiDt1HK9KV6lHgMLc=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic5726297.jpg',
-  332686: 'https://images.weserv.nl/?url=cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__opengraph/img/gRepsbz9DFvDSrjf49vBfoCL8t8=/0x415:2333x1640/fit-in/1200x630/filters:strip_icc()/pic6601629.jpg'
+  13:     'covers/catan.jpg',
+  325:    'covers/catan-seafarers.jpg',
+  926:    'covers/catan-ck.jpg',
+  171:    'covers/chess.jpg',
+  181:    'covers/risk.jpg',
+  220:    'covers/high-society.jpg',
+  483:    'covers/diplomacy.jpg',
+  1115:   'covers/poker.jpg',
+  2397:   'covers/backgammon.jpg',
+  2511:   'covers/sherlock-holmes.jpg',
+  9209:   'covers/ticket-to-ride.jpg',
+  11330:  'covers/jass.jpg',
+  30549:  'covers/pandemic.jpg',
+  67877:  'covers/anomia.jpg',
+  92415:  'covers/skull.jpg',
+  103343: 'covers/game-of-thrones.jpg',
+  188188: 'covers/complots.jpg',
+  128882: 'covers/avalon.jpg',
+  129622: 'covers/love-letter-bridgerton.jpg',
+  131357: 'covers/coup.jpg',
+  173346: 'covers/7-wonders-duel.jpg',
+  188834: 'covers/secret-hitler.jpg',
+  199792: 'covers/everdell.jpg',
+  227072: 'covers/chameleon.jpg',
+  256960: 'covers/pax-pamir.jpg',
+  257499: 'covers/arkham-horror.jpg',
+  332686: 'covers/john-company.jpg'
 };
 
 const CATEGORIES = {
