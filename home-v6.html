@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Cartouche</title>
+  <meta name="description" content="A lifelong board game library, curated for one family. Game library, quick-start rules, and scouting reports.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       HOME v6 — THE CARTOUCHE · Cabinet Doors
+       Built directly off the Jules Verne · 20,000 Leagues cover.
+       Deep teal sea, brass filigree, Beaux-Arts cartouches around every
+       door. Sea-creature ornaments at the corners, kelp at the edges,
+       ammonite spirals between sections.
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* The page background drops a richer Nautilus teal just on this screen */
+    body.home-v6 {
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%,   rgba(179,223,217,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(13,53,53,0.65)    0%, transparent 60%),
+        linear-gradient(180deg, #1f5f5d 0%, #2a7270 35%, #1f5f5d 65%, #133e3e 100%);
+    }
+
+    /* ── HERO CARTOUCHE — the big oval brass plate that opens the page ── */
+    .verne-cover {
+      position: relative;
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding: 64px 56px 72px;
+      isolation: isolate;
+    }
+    .verne-cover::before {
+      /* Outer brass rope frame — the "binding" of the cover */
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 3px double rgba(212,165,46,0.55);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .verne-cover::after {
+      /* Inner thin brass keyline */
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(212,165,46,0.30);
+      pointer-events: none;
+    }
+
+    /* Corner ornaments anchor the cartouche to the cover */
+    .corner {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .corner-tl { top: -10px; left: -10px; }
+    .corner-tr { top: -10px; right: -10px; transform: scaleX(-1); }
+    .corner-bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+    .corner-br { bottom: -10px; right: -10px; transform: scale(-1,-1); }
+
+    /* The central oval cartouche — the title plate */
+    .cartouche-oval {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 48px 48px;
+      text-align: center;
+      z-index: 1;
+    }
+    .cartouche-frame {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .cartouche-frame svg { width: 100%; height: 100%; display: block; }
+
+    .verne-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 0 rgba(13,53,53,0.5);
+    }
+    .verne-mark {
+      display: inline-block;
+      margin: 4px 0 14px;
+      color: #f0cc55;
+      font-size: 1.1rem;
+      letter-spacing: 0.6em;
+      opacity: 0.85;
+    }
+    .verne-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: #FFF8E8;
+      text-shadow:
+        0 1px 0 rgba(13,53,53,0.6),
+        0 2px 12px rgba(13,53,53,0.45),
+        0 0 22px rgba(240,204,85,0.18);
+      margin: 4px 0 4px;
+    }
+    .verne-title em {
+      font-style: italic;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: #f0cc55;
+      letter-spacing: 0.03em;
+    }
+    .verne-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 22px 0 18px;
+      color: rgba(240,204,85,0.6);
+    }
+    .verne-rule .line {
+      flex: 0 0 110px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,204,85,0.55), transparent);
+    }
+    .verne-rule .star {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      color: #f0cc55;
+    }
+    .verne-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.18rem;
+      color: #F2E8C8;
+      margin: 0 0 6px;
+    }
+    .verne-author {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      color: #DCCC92;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ── THE FOUR DOORS ── */
+    .doors {
+      max-width: 1280px;
+      margin: 56px auto 0;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 820px) {
+      .doors { grid-template-columns: 1fr; }
+    }
+    .door {
+      position: relative;
+      display: block;
+      min-height: 380px;
+      border-radius: 3px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #FFF8E8;
+      isolation: isolate;
+      background: #133e3e;
+      box-shadow:
+        0 18px 50px rgba(13,53,53,0.55),
+        0 0 0 1px rgba(212,165,46,0.45) inset,
+        0 0 0 6px rgba(13,53,53,0.4) inset,
+        0 0 0 7px rgba(212,165,46,0.35) inset;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .door:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 26px 60px rgba(13,53,53,0.65),
+        0 0 0 1px rgba(240,204,85,0.7) inset,
+        0 0 0 6px rgba(13,53,53,0.4) inset,
+        0 0 0 7px rgba(240,204,85,0.55) inset;
+    }
+    .door-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.85) contrast(1.05);
+    }
+    .door-image::after {
+      /* sea-light wash to keep type readable */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(13,53,53,0.20) 0%, rgba(13,53,53,0.45) 45%, rgba(13,53,53,0.88) 100%),
+        radial-gradient(ellipse at 50% 35%, rgba(31,95,93,0.05) 0%, rgba(13,53,53,0.55) 90%);
+    }
+    .door-frame {
+      position: absolute;
+      inset: 18px;
+      border: 1.5px solid rgba(240,204,85,0.55);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .door-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(240,204,85,0.30);
+    }
+    /* small brass cornerpieces on each door */
+    .door-frame .dc {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-color: rgba(240,204,85,0.85);
+      border-style: solid;
+      border-width: 0;
+    }
+    .door-frame .dc.tl { top: -2px; left: -2px;     border-top-width: 2px;  border-left-width: 2px;  }
+    .door-frame .dc.tr { top: -2px; right: -2px;    border-top-width: 2px;  border-right-width: 2px; }
+    .door-frame .dc.bl { bottom: -2px; left: -2px;  border-bottom-width: 2px; border-left-width: 2px; }
+    .door-frame .dc.br { bottom: -2px; right: -2px; border-bottom-width: 2px; border-right-width: 2px; }
+
+    .door-inner {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      padding: 36px 36px 32px;
+    }
+    .door-numeral {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 0 rgba(13,53,53,0.7);
+    }
+    .door-title {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      color: #FFF8E8;
+      text-shadow: 0 2px 8px rgba(13,53,53,0.85), 0 0 22px rgba(13,53,53,0.6);
+      margin-bottom: 10px;
+    }
+    .door-title em {
+      font-style: italic;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      color: #f6e08d;
+    }
+    .door-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.06rem;
+      color: #F2E8C8;
+      max-width: 28em;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .door-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .door-arrow svg { width: 28px; height: 14px; transition: transform 0.3s ease; }
+    .door:hover .door-arrow svg { transform: translateX(6px); }
+    .door:hover .door-arrow { color: #f6e08d; }
+
+    /* Door corner brass rosette */
+    .door-rosette {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 56px;
+      height: 56px;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    /* ── BETWEEN-SECTION FILIGREE ── */
+    .filigree-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      max-width: 880px;
+      margin: 64px auto 0;
+      padding: 0 24px;
+      color: rgba(240,204,85,0.55);
+    }
+    .filigree-row .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,204,85,0.55), transparent);
+    }
+    .filigree-row svg { flex: 0 0 auto; height: 36px; opacity: 0.9; }
+
+    /* ── PORTHOLE FAMILY SECTION ── */
+    .porthole-section {
+      max-width: 1180px;
+      margin: 56px auto 0;
+      padding: 56px 32px 32px;
+    }
+    .porthole-eyebrow {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      letter-spacing: 0.42em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .porthole-title {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: #F2E8C8;
+      margin-bottom: 36px;
+      max-width: 38em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .portholes {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 880px) {
+      .portholes { grid-template-columns: repeat(2, 1fr); }
+    }
+    .porthole {
+      position: relative;
+      text-align: center;
+      padding: 22px 16px 20px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(240,204,85,0.10), transparent 60%),
+        linear-gradient(180deg, #1d5454 0%, #163e3e 100%);
+      border: 1px solid rgba(212,165,46,0.45);
+      border-radius: 3px;
+      box-shadow: 0 0 0 4px rgba(13,53,53,0.4) inset, 0 0 0 5px rgba(212,165,46,0.30) inset;
+    }
+    .porthole-disc {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #f6e08d 0%, #d4a52e 45%, #9c7820 100%);
+      box-shadow:
+        0 0 0 3px #1d5454,
+        0 0 0 4px rgba(212,165,46,0.6),
+        inset 0 6px 14px rgba(13,53,53,0.55),
+        inset 0 -4px 10px rgba(255,248,232,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1d5454;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 0 rgba(255,248,232,0.5);
+    }
+    .porthole-name {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #FFF8E8;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .porthole-role {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #DCCC92;
+      line-height: 1.45;
+    }
+
+    /* ── BOTTOM BANNER (Verne author plate) ── */
+    .author-plate {
+      max-width: 720px;
+      margin: 64px auto 24px;
+      padding: 28px 36px;
+      text-align: center;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(212,165,46,0.10) 0%, rgba(13,53,53,0.0) 100%);
+      border: 1.5px solid rgba(212,165,46,0.55);
+      border-radius: 3px;
+      box-shadow: 0 0 0 4px rgba(13,53,53,0.45) inset, 0 0 0 5px rgba(212,165,46,0.30) inset;
+    }
+    .author-plate::before, .author-plate::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translateY(-50%) rotate(45deg);
+      border: 1.5px solid rgba(212,165,46,0.55);
+      background: #1f5f5d;
+      box-shadow: 0 0 0 3px rgba(13,53,53,0.45) inset;
+    }
+    .author-plate::before { left: -12px; }
+    .author-plate::after  { right: -12px; }
+    .author-plate p {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #F2E8C8;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .author-plate .signature {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      color: #f0cc55;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body class="home-v6">
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO — THE VERNE COVER ════════════════════════════════════ -->
+<section class="verne-cover">
+
+  <!-- ── CORNER ORNAMENTS — sea creatures + scrollwork echoing the Nautilus cover ── -->
+  <!-- Top-left: ammonite spiral with kelp -->
+  <svg class="corner corner-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <!-- ammonite spiral -->
+      <path d="M48,52 a26,26 0 1,1 0.01,0 M52,52 a22,22 0 1,1 0.01,0 M56,52 a18,18 0 1,1 0.01,0 M60,52 a14,14 0 1,1 0.01,0 M62,52 a10,10 0 1,1 0.01,0 M64,52 a6,6 0 1,1 0.01,0"/>
+      <!-- ridges across the spiral -->
+      <g stroke-width="0.9" opacity="0.7">
+        <path d="M48,52 L78,52"/>
+        <path d="M50,38 L64,42"/>
+        <path d="M50,66 L64,62"/>
+        <path d="M38,52 L26,52"/>
+        <path d="M62,38 L74,32"/>
+      </g>
+      <!-- brass scrollwork extending right and down -->
+      <path d="M78,52 C100,52 110,40 130,40 S160,52 174,40"/>
+      <path d="M78,52 C100,52 110,64 130,64 S160,52 174,64"/>
+      <path d="M52,80 C52,100 40,110 40,130 S52,160 40,174"/>
+      <path d="M52,80 C52,100 64,110 64,130 S52,160 64,174"/>
+      <!-- scrollwork curls -->
+      <path d="M170,40 q12,-4 12,-12 q-8,2 -10,8" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M170,64 q12,4 12,12 q-8,-2 -10,-8" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M40,170 q-4,12 -12,12 q2,-8 8,-10" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M64,170 q4,12 12,12 q-2,-8 -8,-10" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <!-- kelp frond -->
+      <path d="M30,180 q-6,-30 8,-60 q-12,-26 4,-50 q-14,-20 0,-40" stroke-width="1.1" opacity="0.55"/>
+      <path d="M30,150 q14,-2 18,-12"/>
+      <path d="M30,110 q14,2 18,12"/>
+      <path d="M30,70  q14,-2 18,-12"/>
+    </g>
+    <!-- center jewel of the spiral -->
+    <circle cx="64" cy="52" r="3" fill="#f6e08d"/>
+  </svg>
+
+  <!-- Top-right: scallop + scrollwork -->
+  <svg class="corner corner-tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <!-- scallop shell -->
+      <path d="M30,60 q34,-44 68,0" stroke-width="1.6"/>
+      <path d="M30,60 L98,60"/>
+      <g stroke-width="0.9" opacity="0.75">
+        <path d="M64,60 L64,22"/>
+        <path d="M50,60 L42,28"/>
+        <path d="M78,60 L86,28"/>
+        <path d="M40,60 L30,36"/>
+        <path d="M88,60 L98,36"/>
+      </g>
+      <!-- shell hinge dot -->
+      <circle cx="64" cy="62" r="2.4" fill="#f6e08d" stroke="none"/>
+      <!-- scrollwork extending right and down -->
+      <path d="M30,60 C20,60 12,72 12,90 S20,130 12,150"/>
+      <path d="M52,60 C52,80 64,90 64,110 S52,150 64,170"/>
+      <path d="M98,60 q40,8 60,28"/>
+      <!-- curls -->
+      <path d="M12,150 q-4,12 4,18 q4,-8 0,-14" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M64,170 q-4,12 4,18 q4,-8 0,-14" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <!-- kelp + bubble cluster -->
+      <path d="M180,30 q-30,30 -30,80 q-20,30 -10,60" stroke-width="1.1" opacity="0.55"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.8">
+      <circle cx="160" cy="20" r="2"/>
+      <circle cx="170" cy="50" r="1.4"/>
+      <circle cx="148" cy="70" r="1.6"/>
+      <circle cx="178" cy="90" r="1"/>
+    </g>
+  </svg>
+
+  <!-- Bottom-left: jellyfish + tentacles -->
+  <svg class="corner corner-bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <!-- jellyfish bell -->
+      <path d="M30,90 q40,-50 80,0 q-6,8 -16,8 q-6,-6 -14,0 q-10,-8 -20,0 q-8,-6 -14,0 q-10,0 -16,-8 z" fill="#1f5f5d" stroke-width="1.4"/>
+      <!-- bell stripes -->
+      <g stroke-width="0.9" opacity="0.7">
+        <path d="M40,82 q30,-40 60,0"/>
+        <path d="M48,76 q22,-32 44,0"/>
+        <path d="M56,72 q14,-22 28,0"/>
+      </g>
+      <!-- tentacles -->
+      <path d="M40,98 q-2,30 8,50 q-10,12 0,30"/>
+      <path d="M52,98 q4,30 -4,50 q10,12 -2,30"/>
+      <path d="M70,98 q-2,30 6,50 q-8,12 2,30"/>
+      <path d="M82,98 q4,30 -4,50 q10,12 -2,30"/>
+      <path d="M100,98 q-2,30 6,50 q-8,12 2,30"/>
+      <!-- scrollwork extending up and right -->
+      <path d="M28,90 C18,80 18,60 28,40 S40,12 28,4"/>
+      <path d="M110,90 q40,8 60,28"/>
+      <!-- ammonite small -->
+      <path d="M150,30 a10,10 0 1,1 0.01,0 M152,30 a8,8 0 1,1 0.01,0 M154,30 a6,6 0 1,1 0.01,0"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.7">
+      <circle cx="22" cy="20" r="1.4"/>
+      <circle cx="42" cy="14" r="1"/>
+      <circle cx="160" cy="80" r="1.4"/>
+    </g>
+  </svg>
+
+  <!-- Bottom-right: narwhal/swordfish + coral -->
+  <svg class="corner corner-br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <!-- narwhal body -->
+      <path d="M30,120 q40,-30 90,-10 q12,-2 28,-12 q-8,14 -22,18 q-50,18 -96,4 z" fill="#1f5f5d" stroke-width="1.4"/>
+      <!-- narwhal tail -->
+      <path d="M30,120 q-12,-8 -22,0 q12,4 22,8 q-12,8 -22,0"/>
+      <!-- horn -->
+      <path d="M148,98 L182,68" stroke-width="1.6"/>
+      <g stroke-width="0.6" opacity="0.7">
+        <path d="M152,94 L176,72"/>
+        <path d="M156,90 L172,76"/>
+      </g>
+      <!-- eye -->
+      <circle cx="132" cy="100" r="1.6" fill="#f6e08d" stroke="none"/>
+      <!-- fin -->
+      <path d="M84,108 q6,-14 16,-12 q-2,10 -6,16"/>
+      <!-- coral fronds -->
+      <path d="M40,180 q-4,-30 12,-50 q-12,-20 4,-40 q-12,-16 0,-36"/>
+      <path d="M40,150 q12,-2 18,-10"/>
+      <path d="M40,110 q12,2 18,10"/>
+      <!-- scrollwork curls -->
+      <path d="M170,180 q-4,-30 -20,-50 q14,-12 28,-12"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.7">
+      <circle cx="172" cy="28" r="1.6"/>
+      <circle cx="186" cy="48" r="1"/>
+      <circle cx="160" cy="60" r="1"/>
+    </g>
+  </svg>
+
+  <!-- ── CENTRAL OVAL CARTOUCHE — the title plate ── -->
+  <div class="cartouche-oval">
+
+    <!-- Oval brass cartouche frame -->
+    <div class="cartouche-frame">
+      <svg viewBox="0 0 720 460" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="brassGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f6e08d"/>
+            <stop offset="50%" stop-color="#d4a52e"/>
+            <stop offset="100%" stop-color="#9c7820"/>
+          </linearGradient>
+        </defs>
+        <!-- outer oval -->
+        <ellipse cx="360" cy="230" rx="340" ry="210"
+          fill="none" stroke="url(#brassGrad)" stroke-width="2.5"/>
+        <!-- inner oval -->
+        <ellipse cx="360" cy="230" rx="332" ry="202"
+          fill="none" stroke="rgba(240,204,85,0.55)" stroke-width="0.7"/>
+        <!-- top crest scroll -->
+        <g fill="url(#brassGrad)" opacity="0.95">
+          <path d="M340,28 q20,-14 40,0 q-6,6 -14,4 q-6,4 -12,0 q-8,2 -14,-4 z"/>
+          <path d="M334,30 q-22,-2 -40,8 q14,-2 22,4 q4,-6 18,-4 z"/>
+          <path d="M386,30 q22,-2 40,8 q-14,-2 -22,4 q-4,-6 -18,-4 z"/>
+        </g>
+        <!-- bottom crest scroll -->
+        <g fill="url(#brassGrad)" opacity="0.95">
+          <path d="M340,432 q20,14 40,0 q-6,-6 -14,-4 q-6,-4 -12,0 q-8,-2 -14,4 z"/>
+          <path d="M334,430 q-22,2 -40,-8 q14,2 22,-4 q4,6 18,4 z"/>
+          <path d="M386,430 q22,2 40,-8 q-14,2 -22,-4 q-4,6 -18,4 z"/>
+        </g>
+        <!-- side rosettes (simple ammonite-like spirals) -->
+        <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.85">
+          <circle cx="20" cy="230" r="9"/>
+          <circle cx="20" cy="230" r="5"/>
+          <circle cx="20" cy="230" r="2" fill="#f6e08d" stroke="none"/>
+          <circle cx="700" cy="230" r="9"/>
+          <circle cx="700" cy="230" r="5"/>
+          <circle cx="700" cy="230" r="2" fill="#f6e08d" stroke="none"/>
+        </g>
+        <!-- decorative arabesque flourishes top corners of cartouche -->
+        <g fill="none" stroke="#d4a52e" stroke-width="1" opacity="0.75">
+          <path d="M150,60 q40,-26 80,-6 q-30,-4 -50,10 q10,-18 -30,-4"/>
+          <path d="M570,60 q-40,-26 -80,-6 q30,-4 50,10 q-10,-18 30,-4"/>
+          <path d="M150,400 q40,26 80,6 q-30,4 -50,-10 q10,18 -30,4"/>
+          <path d="M570,400 q-40,26 -80,6 q30,4 50,-10 q-10,18 30,4"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="verne-eyebrow">
+      <span data-lang="en">The Family Game Library · Established 2024</span>
+      <span data-lang="fr">La Bibliothèque Ludique · Fondée 2024</span>
+    </p>
+    <div class="verne-mark">✦ ⚓ ✦</div>
+    <h1 class="verne-title">CABINET <em>Ludo</em></h1>
+    <div class="verne-rule">
+      <span class="line"></span><span class="star">✦ ⚓ ✦</span><span class="line"></span>
+    </div>
+    <p class="verne-tagline">
+      <span data-lang="en">A lifelong library of play, kept under brass and lit by sea-light.</span>
+      <span data-lang="fr">Une bibliothèque de jeu à vie, gardée sous le laiton et éclairée par la lumière marine.</span>
+    </p>
+    <p class="verne-author">— Curated &amp; Guarded by Ludo —</p>
+  </div>
+</section>
+
+<!-- ══ FILIGREE DIVIDER ════════════════════════════════════════════════ -->
+<div class="filigree-row" aria-hidden="true">
+  <span class="line"></span>
+  <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.1" stroke-linecap="round" opacity="0.9">
+      <path d="M40,18 C70,2 100,34 140,18 C180,2 210,34 240,18"/>
+      <path d="M40,18 C70,34 100,2 140,18 C180,34 210,2 240,18" opacity="0.5"/>
+      <circle cx="140" cy="18" r="6" fill="#d4a52e" stroke="none" opacity="0.9"/>
+      <circle cx="140" cy="18" r="2.4" fill="#1f5f5d" stroke="none"/>
+      <circle cx="60" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+      <circle cx="220" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+    </g>
+  </svg>
+  <span class="line"></span>
+</div>
+
+<!-- ══ THE FOUR DOORS ══════════════════════════════════════════════════ -->
+<div style="text-align:center;margin:48px auto 0;">
+  <p class="verne-eyebrow" style="margin:0;">
+    <span data-lang="en">Choose Your Door</span>
+    <span data-lang="fr">Choisissez Votre Porte</span>
+  </p>
+  <p style="font-family:var(--font-heading);font-style:italic;color:#DCCC92;font-size:1.05rem;margin-top:6px;">
+    <span data-lang="en">Four chambers of the Cabinet — pick where the evening begins.</span>
+    <span data-lang="fr">Quatre chambres du Cabinet — choisissez où commence la soirée.</span>
+  </p>
+</div>
+
+<section class="doors">
+
+  <!-- DOOR I — COLLECTION -->
+  <a class="door" href="collection.html">
+    <div class="door-image" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pieter_Bruegel_the_Elder_-_Children%E2%80%99s_Games_-_Google_Art_Project.jpg/1200px-Pieter_Bruegel_the_Elder_-_Children%E2%80%99s_Games_-_Google_Art_Project.jpg');"></div>
+    <div class="door-frame"><span class="dc tl"></span><span class="dc tr"></span><span class="dc bl"></span><span class="dc br"></span></div>
+    <svg class="door-rosette" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.95">
+        <circle cx="28" cy="28" r="22"/>
+        <circle cx="28" cy="28" r="16"/>
+        <path d="M28,6 L28,50 M6,28 L50,28 M12,12 L44,44 M44,12 L12,44" stroke-width="0.7" opacity="0.7"/>
+      </g>
+      <circle cx="28" cy="28" r="4" fill="#f6e08d"/>
+      <circle cx="28" cy="28" r="1.6" fill="#1f5f5d"/>
+    </svg>
+    <div class="door-inner">
+      <div class="door-numeral">— I — Door of the Cabinet</div>
+      <h2 class="door-title">The <em>Collection</em></h2>
+      <p class="door-tagline">
+        <span data-lang="en">Every game on the shelves. Rulebooks, one-page cheat sheets, Ask Ludo on every card. Filter by players, time, weight, ease for guests.</span>
+        <span data-lang="fr">Tous les jeux sur les étagères. Règles, fiches d'une page, Ask Ludo sur chaque carte. Filtres par joueurs, durée, poids, accessibilité.</span>
+      </p>
+      <span class="door-arrow">
+        <span data-lang="en">Open the cabinet</span><span data-lang="fr">Ouvrir le cabinet</span>
+        <svg viewBox="0 0 28 14" xmlns="http://www.w3.org/2000/svg"><path d="M0,7 L24,7 M18,2 L24,7 L18,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- DOOR II — HERITAGE -->
+  <a class="door" href="heritage.html">
+    <div class="door-image" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Senet_at_Egyptian_Museum_of_Berlin.jpg/1200px-Senet_at_Egyptian_Museum_of_Berlin.jpg');"></div>
+    <div class="door-frame"><span class="dc tl"></span><span class="dc tr"></span><span class="dc bl"></span><span class="dc br"></span></div>
+    <svg class="door-rosette" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.95">
+        <polygon points="28,4 32,22 50,22 35,33 41,50 28,40 15,50 21,33 6,22 24,22"/>
+      </g>
+      <circle cx="28" cy="28" r="3" fill="#f6e08d"/>
+    </svg>
+    <div class="door-inner">
+      <div class="door-numeral">— II — Door of the Ancients</div>
+      <h2 class="door-title">The <em>Heritage</em></h2>
+      <p class="door-tagline">
+        <span data-lang="en">Games that outlasted empires. Chess, Go, Backgammon, Senet, Pachisi, Tafl. Deep histories, antique editions, the auction houses where they still surface.</span>
+        <span data-lang="fr">Jeux qui ont survécu aux empires. Échecs, Go, Backgammon, Senet, Pachisi, Tafl. Histoires profondes, éditions anciennes, maisons de ventes.</span>
+      </p>
+      <span class="door-arrow">
+        <span data-lang="en">Walk the long board</span><span data-lang="fr">Parcourir le long plateau</span>
+        <svg viewBox="0 0 28 14" xmlns="http://www.w3.org/2000/svg"><path d="M0,7 L24,7 M18,2 L24,7 L18,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- DOOR III — EDITIONS ATLAS -->
+  <a class="door" href="editions.html">
+    <div class="door-image" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mercator_world_map_1569.png/1200px-Mercator_world_map_1569.png');"></div>
+    <div class="door-frame"><span class="dc tl"></span><span class="dc tr"></span><span class="dc bl"></span><span class="dc br"></span></div>
+    <svg class="door-rosette" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.95">
+        <circle cx="28" cy="28" r="22"/>
+        <path d="M28,6 L28,50 M6,28 L50,28"/>
+        <path d="M28,6 L34,28 L28,50 L22,28 Z"/>
+      </g>
+      <circle cx="28" cy="28" r="3" fill="#f6e08d"/>
+    </svg>
+    <div class="door-inner">
+      <div class="door-numeral">— III — Door of the Atlas</div>
+      <h2 class="door-title">The <em>Editions Atlas</em></h2>
+      <p class="door-tagline">
+        <span data-lang="en">Modern game families that exist in many editions. Ticket to Ride, Diplomacy, Catan, Pandemic. Comparisons, rankings, which version belongs in this cabinet.</span>
+        <span data-lang="fr">Familles de jeux en plusieurs éditions. Ticket to Ride, Diplomacy, Catan, Pandemic. Comparaisons, classements, quelle version mérite cette armoire.</span>
+      </p>
+      <span class="door-arrow">
+        <span data-lang="en">Unfold the atlas</span><span data-lang="fr">Déplier l'atlas</span>
+        <svg viewBox="0 0 28 14" xmlns="http://www.w3.org/2000/svg"><path d="M0,7 L24,7 M18,2 L24,7 L18,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- DOOR IV — SCOUTING -->
+  <a class="door" href="scouting.html">
+    <div class="door-image" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Theodorus_Netscher_-_Astronomer_with_telescope.jpg/1200px-Theodorus_Netscher_-_Astronomer_with_telescope.jpg');"></div>
+    <div class="door-frame"><span class="dc tl"></span><span class="dc tr"></span><span class="dc bl"></span><span class="dc br"></span></div>
+    <svg class="door-rosette" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.95">
+        <circle cx="28" cy="28" r="22"/>
+        <circle cx="28" cy="28" r="14"/>
+        <path d="M28,2 L28,12 M28,44 L28,54 M2,28 L12,28 M44,28 L54,28"/>
+        <path d="M10,10 L18,18 M46,10 L38,18 M10,46 L18,38 M46,46 L38,38" stroke-width="0.7"/>
+      </g>
+      <polygon points="28,16 30,28 28,40 26,28" fill="#f6e08d"/>
+      <polygon points="16,28 28,26 40,28 28,30" fill="#f6e08d" opacity="0.7"/>
+    </svg>
+    <div class="door-inner">
+      <div class="door-numeral">— IV — Door of the Telescope</div>
+      <h2 class="door-title">The <em>Scouting Log</em></h2>
+      <p class="door-tagline">
+        <span data-lang="en">Weekly reports from the trade routes. New releases, rare finds, Kickstarter campaigns, artisan workshops the world forgot.</span>
+        <span data-lang="fr">Rapports hebdomadaires des routes du commerce. Nouveautés, raretés, Kickstarters, ateliers artisanaux.</span>
+      </p>
+      <span class="door-arrow">
+        <span data-lang="en">Raise the periscope</span><span data-lang="fr">Lever le périscope</span>
+        <svg viewBox="0 0 28 14" xmlns="http://www.w3.org/2000/svg"><path d="M0,7 L24,7 M18,2 L24,7 L18,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+</section>
+
+<!-- ══ FILIGREE DIVIDER ════════════════════════════════════════════════ -->
+<div class="filigree-row" aria-hidden="true">
+  <span class="line"></span>
+  <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.1" stroke-linecap="round" opacity="0.9">
+      <path d="M40,18 C70,2 100,34 140,18 C180,2 210,34 240,18"/>
+      <path d="M40,18 C70,34 100,2 140,18 C180,34 210,2 240,18" opacity="0.5"/>
+      <!-- center compass -->
+      <circle cx="140" cy="18" r="9" fill="none"/>
+      <path d="M140,9 L140,27 M131,18 L149,18" stroke-width="0.7"/>
+      <polygon points="140,11 142,18 140,25 138,18" fill="#d4a52e" stroke="none"/>
+      <circle cx="60" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+      <circle cx="220" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+    </g>
+  </svg>
+  <span class="line"></span>
+</div>
+
+<!-- ══ THE PORTHOLES — FAMILY ══════════════════════════════════════════ -->
+<section class="porthole-section">
+  <p class="porthole-eyebrow">
+    <span data-lang="en">— The Crew of the Cabinet —</span>
+    <span data-lang="fr">— L'Équipage du Cabinet —</span>
+  </p>
+  <p class="porthole-title">
+    <span data-lang="en">One table. Five players. Infinite occasions for betrayal.</span>
+    <span data-lang="fr">Une table. Cinq joueurs. Des occasions infinies de trahison.</span>
+  </p>
+
+  <div class="portholes">
+    <div class="porthole">
+      <div class="porthole-disc">C</div>
+      <div class="porthole-name">Chris</div>
+      <div class="porthole-role">
+        <span data-lang="en">Collector · Diplomat · Architect of the evening</span>
+        <span data-lang="fr">Collectionneur · Diplomate · Architecte de la soirée</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">M</div>
+      <div class="porthole-name">Maud</div>
+      <div class="porthole-role">
+        <span data-lang="en">Gentle. Competitive. Do not underestimate.</span>
+        <span data-lang="fr">Douce. Compétitive. Ne pas sous-estimer.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">A</div>
+      <div class="porthole-name">Antonin</div>
+      <div class="porthole-role">
+        <span data-lang="en">Resource engine. Hates losing. Will not stop talking about it.</span>
+        <span data-lang="fr">Moteur à ressources. Déteste perdre. Ne cessera pas d'en parler.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">A</div>
+      <div class="porthole-name">Audrey</div>
+      <div class="porthole-role">
+        <span data-lang="en">The coup specialist. Always watching. Always smiling.</span>
+        <span data-lang="fr">La spécialiste du coup. Toujours à l'affût. Toujours souriante.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">+</div>
+      <div class="porthole-name">Partners</div>
+      <div class="porthole-role">
+        <span data-lang="en">One code-cracker. One gentle newcomer. Welcome aboard.</span>
+        <span data-lang="fr">Un décrypteur. Un néophyte bienvenu. Bienvenue à bord.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AUTHOR PLATE — Verne signature panel ════════════════════════════ -->
+<div class="author-plate">
+  <p>
+    <span data-lang="en">"The best games are the ones that survive being passed down. The best collection is the one that grows with the people who play it."</span>
+    <span data-lang="fr">«&nbsp;Les meilleurs jeux sont ceux qui survivent à être transmis. La meilleure collection est celle qui grandit avec les gens qui y jouent.&nbsp;»</span>
+  </p>
+  <span class="signature">— Ludo —</span>
+</div>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="games-data.js"></script>
+<script src="ludo.js"></script>
+</body>
+</html>
