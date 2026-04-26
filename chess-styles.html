@@ -402,6 +402,48 @@
       text-align: center;
     }
 
+    /* Gallery placeholder card — for sub-style tiles where no Wikimedia image is available */
+    .gal-placeholder {
+      width: 100%;
+      height: 220px;
+      background:
+        radial-gradient(ellipse at center, rgba(212,165,46,0.18), transparent 65%),
+        linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--brass-bright);
+      padding: 14px 18px;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--brass-border-lo);
+    }
+    .gal-placeholder::before, .gal-placeholder::after {
+      content: '✦';
+      font-size: 0.95rem;
+      color: var(--brass);
+      opacity: 0.4;
+      margin: 4px 0;
+    }
+    .gal-ph-label {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--brass-pale);
+      padding: 10px 14px;
+      border: 1px solid var(--brass-border-hi);
+      max-width: 90%;
+      line-height: 1.45;
+    }
+    .gal-ph-sub {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--ivory-mid);
+      margin-top: 8px;
+      font-style: italic;
+      max-width: 90%;
+      line-height: 1.45;
+    }
+
     /* Closing essay panel */
     .closing-essay {
       max-width: 820px;
@@ -1199,6 +1241,31 @@
     <figcaption>Vizagapatam ivory-and-sandalwood jewellery box · same workshop tradition as the chess compendia · Coromandel coast, early 19th c.</figcaption>
   </figure>
 
+  <!-- Sub-type gallery — Vizagapatam typology -->
+  <div class="style-gallery" aria-label="Vizagapatam sub-types">
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Type A · 1780–1830</span><span data-lang="fr">Type A · 1780–1830</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Pure ivory, abstract European form, made for the British market</span><span data-lang="fr">Ivoire pur, forme abstraite européenne, marché britannique</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Connoisseur's Set</span><span data-lang="fr">Le Jeu du Connaisseur</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Type B · 1820–1880</span><span data-lang="fr">Type B · 1820–1880</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Hybrid: figural ivory Indian forms with abstract bishops &amp; rooks</span><span data-lang="fr">Hybride : ivoire figuratif indien, fous &amp; tours abstraits</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Hybrid Compendium</span><span data-lang="fr">Le Compendium Hybride</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Type C · Late 19th c.</span><span data-lang="fr">Type C · Fin XIX<sup>e</sup></span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Bone (not ivory). Same inlaid boards, less fine pieces. Lower entry price.</span><span data-lang="fr">Os (pas ivoire). Mêmes échiquiers, pièces moins fines. Prix d'entrée plus bas.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Late Bone Set</span><span data-lang="fr">Le Jeu Tardif en Os</span></figcaption>
+    </figure>
+  </div>
+
   <div class="style-body">
     <div class="style-narrative">
       <p data-lang="en"><span style="font-family:var(--font-display); font-size:1.4em; float:left; line-height:0.9; padding-right:6px; color:var(--brass-bright);">V</span>izagapatam — modern Vishakhapatnam, on the Andhra Pradesh coast — was a small port settled by the East India Company in 1682, with a hinterland rich in three things: the world's best sandalwood, plentiful ivory from inland trade, and a workforce of Telugu carvers already trained in temple-art traditions. By the 1770s the port was producing the most distinctive form of Indian export furniture: ivory or bone laid into sandalwood veneer in incised foliate patterns picked out in lac.</p>
@@ -1275,6 +1342,31 @@
     <figcaption>Indian figural ivory king · elephant-with-howdah, the canonical Bengal workshop type · 19th c.</figcaption>
   </figure>
 
+  <!-- Sub-type gallery — Berhampur / Bengal typology -->
+  <div class="style-gallery" aria-label="Berhampur Bengal sub-types">
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Murshidabad · c. 1780–1830</span><span data-lang="fr">Murshidabad · vers 1780–1830</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Court-grade ivory, Nawab patronage. Garrick Coleman Stock #793 type.</span><span data-lang="fr">Ivoire qualité de cour, mécénat des Nawabs. Type stock #793 Garrick Coleman.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Nawab's Cousin</span><span data-lang="fr">Le Cousin du Nawab</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Berhampur · c. 1830–1880</span><span data-lang="fr">Berhampur · vers 1830–1880</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">The volume workhorse. Howdah-elephant kings, polychrome lac highlights.</span><span data-lang="fr">Le cheval de trait. Rois éléphants à howdah, rehauts de laque polychrome.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Workshop Standard</span><span data-lang="fr">Le Standard d'Atelier</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Late Bengal Bone · 1880–1910</span><span data-lang="fr">Os Bengale tardif · 1880–1910</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Post-CITES anticipation. Bone replaces ivory; designs simplified for export.</span><span data-lang="fr">Anticipation pré-CITES. L'os remplace l'ivoire ; designs simplifiés pour l'export.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Tourist-Era Set</span><span data-lang="fr">Le Jeu de l'Ère Touristique</span></figcaption>
+    </figure>
+  </div>
+
   <div class="style-body">
     <div class="style-narrative">
       <p data-lang="en">Berhampur — a market town in West Bengal — became, through the 19th century, the volume capital of Indian figural chess production. Its workshops took the Mughal-Lucknow figural template and industrialised it, producing sets in numbers Lucknow's court ateliers could never have matched. They worked in ivory while ivory was abundant, then in bone after the 1880s as ivory grew scarce and CITES-anticipating regulation began. They sold to Calcutta export houses, Bombay merchants, and direct to British officers transferring home with their pension and a regimental story.</p>
@@ -1349,6 +1441,31 @@
          onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>John Company · Sepoy vs Sahib · Anglo-Indian Theatre in Ivory</div></div>';">
     <figcaption>Ivory chess piece, Punjab Hills, late 1770s · gilt and polychrome · Dallas Museum of Art — period Indian carving of the kind John Company houses traded</figcaption>
   </figure>
+
+  <!-- Sub-type gallery — John Company / Sepoy vs Sahib typology -->
+  <div class="style-gallery" aria-label="John Company sub-types">
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Berhampur "John Co." · 1830–1860</span><span data-lang="fr">Berhampur «&nbsp;John Co.&nbsp;» · 1830–1860</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Princes-on-howdahs vs colonels-in-shakos. Christie's catalogues this attribution explicitly.</span><span data-lang="fr">Princes à howdahs vs colonels en shakos. Christie's catalogue explicitement cette attribution.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Christie's Type</span><span data-lang="fr">Le Type Christie's</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Murshidabad "Battle Set" · 1820–1850</span><span data-lang="fr">Murshidabad «&nbsp;Bataille&nbsp;» · 1820–1850</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Finer carving, regimental detail. The £25,000+ tier. Officer-provenance bonus.</span><span data-lang="fr">Sculpture plus fine, détails régimentaires. Le palier 25&nbsp;000+&nbsp;£. Bonus de provenance officier.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Officer's Set</span><span data-lang="fr">Le Jeu d'Officier</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Composite / Late Souvenir · 1860–1900</span><span data-lang="fr">Composite / Souvenir tardif · 1860–1900</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Mixed origin pieces, married armies. Identifiable by uniform anachronisms.</span><span data-lang="fr">Pièces d'origine mixte, armées mariées. Identifiable par anachronismes d'uniforme.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Composite Caveat</span><span data-lang="fr">L'Avertissement Composite</span></figcaption>
+    </figure>
+  </div>
 
   <div class="style-body">
     <div class="style-narrative">
@@ -1426,6 +1543,31 @@
          onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Anglo-Indian Lund · Pre-Staunton Aristocrat · Tall Slender Ivory</div></div>';">
     <figcaption>A turned knight in Indian ebony · the lathe-turned, slender abstract idiom of which the Lund pattern is the great Anglo-Indian exemplar</figcaption>
   </figure>
+
+  <!-- Sub-type gallery — Anglo-Indian Lund typology -->
+  <div class="style-gallery" aria-label="Anglo-Indian Lund sub-types">
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Signed "William Lund 24 Fleet St."</span><span data-lang="fr">Signé «&nbsp;William Lund 24 Fleet St.&nbsp;»</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">The gold standard. Maltese-cross king, fleur-de-lys queen. Garrick Coleman #400.</span><span data-lang="fr">La référence absolue. Roi à croix maltaise, reine fleur de lys. Garrick Coleman #400.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Signed Set</span><span data-lang="fr">Le Jeu Signé</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Calcutta Pattern · c. 1820–1850</span><span data-lang="fr">Modèle Calcutta · vers 1820–1850</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Same workshop, no Lund signature. Sometimes called "pre-Staunton Anglo-Indian."</span><span data-lang="fr">Même atelier, sans signature Lund. Parfois nommé «&nbsp;anglo-indien pré-Staunton&nbsp;».</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Unsigned Cousin</span><span data-lang="fr">Le Cousin Anonyme</span></figcaption>
+    </figure>
+    <figure class="gal-item">
+      <div class="gal-placeholder">
+        <div class="gal-ph-label"><span data-lang="en">Camaratta Reproduction · 2010s+</span><span data-lang="fr">Reproduction Camaratta · années 2010+</span></div>
+        <div class="gal-ph-sub"><span data-lang="en">Honest modern repro in camel bone or boxwood. Lot #400 / #371. $1,295.</span><span data-lang="fr">Reproduction moderne honnête en os de chameau ou buis. Lot #400 / #371. 1&nbsp;295&nbsp;$.</span></div>
+      </div>
+      <figcaption><span data-lang="en">The Studied Reproduction</span><span data-lang="fr">La Reproduction Étudiée</span></figcaption>
+    </figure>
+  </div>
 
   <div class="style-body">
     <div class="style-narrative">
