@@ -187,7 +187,8 @@ const GAMES = [
   },
 
   {
-    id: 'tapper', name: 'Tapper', subtitle: null,
+    id: 'tapple', name: 'Tapple', subtitle: null,
+    cover: 'covers/tapple.jpg',
     category: 'quick-social',
     publisher: '—', designer: '—', year: 2020,
     players: { min:3, max:8, ideal:5, display:'3–8' },
@@ -206,6 +207,7 @@ const GAMES = [
 
   {
     id: 'love-letter', name: 'Love Letter', subtitle: 'Bridgerton Edition',
+    cover: 'covers/love-letter-bridgerton.jpg',
     category: 'quick-social',
     publisher: 'Z-Man Games', designer: 'Seiji Kanai', year: 2012,
     players: { min:2, max:6, ideal:4, display:'2–6' },
@@ -263,6 +265,7 @@ const GAMES = [
 
   {
     id: 'jass', name: 'Jass', subtitle: 'Swiss National Card Game',
+    cover: 'covers/jass.jpg',
     category: 'abstract',
     publisher: 'Traditional (Swiss)', designer: 'Traditional', year: null,
     players: { min:2, max:4, ideal:4, display:'2–4' },
@@ -281,6 +284,7 @@ const GAMES = [
 
   {
     id: 'poker', name: 'Poker', subtitle: "Texas Hold'em",
+    cover: 'covers/poker.jpg',
     category: 'abstract',
     publisher: 'Traditional', designer: 'Traditional', year: null,
     players: { min:2, max:10, ideal:6, display:'2–10' },
@@ -321,6 +325,7 @@ const GAMES = [
 
   {
     id: 'catan-ck', name: 'Catan: Cities & Knights', subtitle: 'Expansion',
+    cover: 'covers/catan-ck.jpg',
     category: 'euro-strategy',
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1998,
     players: { min:3, max:4, ideal:4, display:'3–4 (5–6 with expansion)' },
@@ -339,6 +344,7 @@ const GAMES = [
 
   {
     id: 'catan-seafarers', name: 'Catan: Seafarers', subtitle: 'Expansion',
+    cover: 'covers/catan-seafarers.jpg',
     category: 'euro-strategy',
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1997,
     players: { min:3, max:4, ideal:4, display:'3–4 (5–6 with expansion)' },

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Backgammon · Sources, Dealers &amp; Makers</title>
+  <meta name="description" content="A working buyer's guide to backgammon — antique tric-trac, vintage tournament boards, and contemporary luxury makers worth following.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    /* ── PAGE-SPECIFIC: BACKGAMMON SOURCES ─────────────────────── */
+
+    html.lang-en [data-lang="fr"] { display: none; }
+    html.lang-fr [data-lang="en"] { display: none; }
+
+    /* Hero */
+    .src-hero {
+      padding: 88px 0 48px;
+      text-align: center;
+    }
+    .src-hero .container { max-width: 880px; }
+    .src-hero h1 {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      color: var(--ivory-bright);
+      margin: 14px 0 18px;
+    }
+    .src-hero h1 em {
+      font-style: normal;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      color: var(--brass-bright);
+      display: block;
+      font-size: 0.7em;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+    .src-hero .subtitle {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.16rem;
+      color: var(--ivory-mid);
+      max-width: 720px;
+      margin: 14px auto 0;
+      line-height: 1.7;
+    }
+
+    /* Tier section */
+    .tier-section {
+      padding: 56px 0 36px;
+      border-top: 1px solid var(--brass-border-lo);
+    }
+    .tier-section:first-of-type { border-top: none; }
+    .tier-header {
+      max-width: 880px;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+    .tier-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--brass-bright);
+      letter-spacing: 0.18em;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .tier-title {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      color: var(--ivory-bright);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .tier-tag {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ivory-mid);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .dealer-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 22px;
+    }
+    .dealer-tile {
+      background: rgba(13,53,53,0.55);
+      border: 1px solid var(--brass-border);
+      padding: 26px 26px 22px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .dealer-tile::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--brass);
+    }
+    .dealer-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 10px;
+    }
+    .dealer-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--ivory-bright);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .dealer-vendor {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 14px;
+    }
+    .dealer-body {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--ivory-mid);
+      margin-bottom: 12px;
+    }
+    .dealer-detail {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      line-height: 1.6;
+      color: var(--ivory-dim);
+      margin-bottom: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--brass-border-lo);
+    }
+    .dealer-meta-row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding: 10px 0;
+      margin-bottom: 12px;
+      border-top: 1px solid var(--brass-border-lo);
+      border-bottom: 1px solid var(--brass-border-lo);
+    }
+    .dealer-meta-pill {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border: 1px solid var(--brass-border);
+      color: var(--brass);
+    }
+    .dealer-price {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      color: var(--brass-bright);
+      padding: 8px 12px;
+      background: rgba(212,165,46,0.08);
+      border-left: 2px solid var(--brass);
+      align-self: flex-start;
+      margin-bottom: 14px;
+    }
+    .dealer-link {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-decoration: none;
+      border-bottom: 1px solid var(--brass-border);
+      padding-bottom: 4px;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+    .dealer-link:hover { border-bottom-color: var(--brass-bright); }
+
+    .placeholder-tile {
+      background: rgba(13,53,53,0.35);
+      border: 1px dashed var(--brass-border-lo);
+      padding: 30px 26px;
+      text-align: center;
+      color: var(--ivory-dim);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .closing {
+      max-width: 880px;
+      margin: 60px auto 0;
+      padding: 36px 32px;
+      background: rgba(13,53,53,0.55);
+      border: 1px solid var(--brass-border);
+      position: relative;
+    }
+    .closing::before, .closing::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--brass), transparent);
+    }
+    .closing::before { top: 0; }
+    .closing::after { bottom: 0; }
+    .closing h3 {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .closing p {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      line-height: 1.85;
+      color: var(--ivory-mid);
+      margin-bottom: 14px;
+    }
+
+    .footer-link {
+      max-width: 880px;
+      margin: 40px auto 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--brass-border-lo);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-link a {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-decoration: none;
+      border-bottom: 1px solid var(--brass-border);
+      padding-bottom: 4px;
+    }
+    .footer-link a:hover { border-bottom-color: var(--brass-bright); }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html" class="active"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="src-hero">
+  <div class="container">
+    <p class="eyebrow">
+      <span data-lang="en">Heritage · Backgammon · Sources Companion</span>
+      <span data-lang="fr">Patrimoine · Backgammon · Compagnon des Sources</span>
+    </p>
+    <h1>
+      <span data-lang="en">Where to Acquire <em>Backgammon · Makers, Dealers &amp; Maisons</em></span>
+      <span data-lang="fr">Où Acquérir <em>Backgammon · Faiseurs, Marchands &amp; Maisons</em></span>
+    </h1>
+    <p class="subtitle">
+      <span data-lang="en">A working list of houses, makers, and dealers worth following — split between contemporary luxury, vintage tournament editions, and antique tric-trac. The page grows entry by entry as the hunt unfolds.</span>
+      <span data-lang="fr">Une liste de travail des maisons, faiseurs et marchands à suivre — entre luxe contemporain, éditions tournoi vintage et tric-trac d'époque. La page grandit entrée par entrée, au rythme de la chasse.</span>
+    </p>
+    <p style="font-family:var(--font-display); font-size:0.6rem; letter-spacing:0.22em; color:var(--brass); margin-top:18px; text-transform:uppercase;">
+      <span data-lang="en">Last updated · April 2026 · Verify current availability and prices before contact</span>
+      <span data-lang="fr">Dernière mise à jour · avril 2026 · Vérifier disponibilité et prix avant tout contact</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══ TIER 1 · CONTEMPORARY LUXURY & ARTISAN ════════════════════ -->
+<section class="tier-section container">
+  <div class="tier-header">
+    <span class="tier-num">I</span>
+    <h2 class="tier-title">
+      <span data-lang="en">Contemporary Maisons &amp; Artisan Workshops</span>
+      <span data-lang="fr">Maisons Contemporaines &amp; Ateliers Artisanaux</span>
+    </h2>
+    <p class="tier-tag">
+      <span data-lang="en">New-build sets from publishing-house lifestyle maisons and from family workshops still cutting wood by hand. Bought new, in pristine condition, with proper boxes and provenance — the daily-driver tier for those who want the salon piece without the auction-house drama.</span>
+      <span data-lang="fr">Jeux neufs issus de maisons d'édition lifestyle et d'ateliers familiaux qui taillent encore le bois à la main. Achetés neufs, en condition parfaite, avec coffret et provenance d'origine — le palier "salon" pour qui veut la pièce sans la tension d'enchères.</span>
+    </p>
+  </div>
+
+  <div class="dealer-grid">
+
+    <!-- 1. ASSOULINE · PEBBLE BACKGAMMON SET -->
+    <article class="dealer-tile">
+      <p class="dealer-eyebrow">
+        <span data-lang="en">Maison · publisher-lifestyle</span>
+        <span data-lang="fr">Maison · édition-lifestyle</span>
+      </p>
+      <h3 class="dealer-title">
+        <span data-lang="en">Assouline — Pebble Backgammon Set</span>
+        <span data-lang="fr">Assouline — Backgammon Pebble</span>
+      </h3>
+      <p class="dealer-vendor">
+        Assouline · ap.assouline.com · <span data-lang="en">French maison</span><span data-lang="fr">Maison française</span>
+      </p>
+
+      <div class="dealer-meta-row">
+        <span class="dealer-meta-pill"><span data-lang="en">Leather</span><span data-lang="fr">Cuir</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">Brass</span><span data-lang="fr">Laiton</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">Wood</span><span data-lang="fr">Bois</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">New build</span><span data-lang="fr">Neuf</span></span>
+      </div>
+
+      <p class="dealer-body">
+        <span data-lang="en">Assouline's Pebble Backgammon Set — a leather-clad case, brass detailing, and turned wooden chips presented as smooth pebbles rather than the usual stacked discs. The Maison's lifestyle take on a salon classic, sitting alongside their luxury book editions.</span>
+        <span data-lang="fr">Le Backgammon Pebble d'Assouline — coffret habillé de cuir, finitions laiton, jetons en bois tournés présentés en galets plutôt qu'en disques empilés. La lecture lifestyle de la Maison sur un classique de salon, à côté de leurs éditions de luxe.</span>
+      </p>
+
+      <p class="dealer-detail">
+        <span data-lang="en">Sits in the contemporary-luxury slot rather than the antique one — pay for design, materials, and Maison provenance, not for age. Worth keeping on the radar for gift occasions or as the "non-precious" daily set that lives on the coffee table while any antique stays in the cabinet.</span>
+        <span data-lang="fr">Se range dans le segment luxe contemporain, pas ancien — on paie pour le dessin, les matières et la provenance Maison, pas pour l'âge. À garder en tête pour un cadeau ou comme jeu "non-précieux" du quotidien sur la table basse, pendant qu'une pièce ancienne reste dans le cabinet.</span>
+      </p>
+
+      <span class="dealer-price">
+        <span data-lang="en">Price · see page</span>
+        <span data-lang="fr">Prix · voir page</span>
+      </span>
+
+      <a class="dealer-link" href="https://ap.assouline.com/products/pebble-backgammon-set-leather-brass-wood" target="_blank" rel="noopener">
+        <span data-lang="en">→ View on ap.assouline.com</span>
+        <span data-lang="fr">→ Voir sur ap.assouline.com</span>
+      </a>
+    </article>
+
+    <!-- 2. MANOPOULOS · GREEK ARTISAN WORKSHOP -->
+    <article class="dealer-tile">
+      <p class="dealer-eyebrow">
+        <span data-lang="en">Atelier · family workshop · since 1979</span>
+        <span data-lang="fr">Atelier · maison familiale · depuis 1979</span>
+      </p>
+      <h3 class="dealer-title">
+        <span data-lang="en">Manopoulos — Handmade Greek Boards</span>
+        <span data-lang="fr">Manopoulos — Plateaux grecs faits main</span>
+      </h3>
+      <p class="dealer-vendor">
+        Manopoulos · manopoulos.com · <span data-lang="en">Korinthos, Greece</span><span data-lang="fr">Corinthe, Grèce</span>
+      </p>
+
+      <div class="dealer-meta-row">
+        <span class="dealer-meta-pill"><span data-lang="en">Walnut</span><span data-lang="fr">Noyer</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">Olive wood</span><span data-lang="fr">Olivier</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">Marquetry</span><span data-lang="fr">Marqueterie</span></span>
+        <span class="dealer-meta-pill"><span data-lang="en">Handmade</span><span data-lang="fr">Fait main</span></span>
+      </div>
+
+      <p class="dealer-body">
+        <span data-lang="en">A family workshop that has been cutting wood, inlaying marquetry and turning chips by hand in Korinthos since 1979. The catalogue runs from solid-walnut tournament boards through to high-end olive-burl and mythology-themed inlay editions — the artisan counterpoint to the maison-publisher tier.</span>
+        <span data-lang="fr">Un atelier familial qui taille le bois, marquette et tourne les jetons à la main à Corinthe depuis 1979. Le catalogue va du plateau tournoi en noyer massif aux éditions haut-de-gamme en ronce d'olivier et marqueteries mythologiques — la contrepartie artisanale du palier maison-éditeur.</span>
+      </p>
+
+      <p class="dealer-detail">
+        <span data-lang="en">The point of interest here is range and material honesty: Manopoulos sells the same handmade lineage at €150, €1,500 and €5,000+ price points, so it suits both a "first proper board to play tonight" and an aspirational marquetry piece. Strong contender for the everyday Cabinet board if Assouline ends up reading too lifestyle-y.</span>
+        <span data-lang="fr">Ce qui retient l'attention ici : amplitude et franchise sur la matière. Manopoulos vend la même filiation faite-main à 150 €, 1 500 € et 5 000 € et plus — convient autant à un "premier vrai plateau pour jouer ce soir" qu'à une pièce aspirationnelle. Sérieux candidat pour le plateau quotidien du Cabinet si Assouline tire trop vers le lifestyle.</span>
+      </p>
+
+      <span class="dealer-price">
+        <span data-lang="en">Range · €150–€5,000+ · see catalogue</span>
+        <span data-lang="fr">Fourchette · 150–5 000 €+ · voir catalogue</span>
+      </span>
+
+      <a class="dealer-link" href="https://www.manopoulos.com/" target="_blank" rel="noopener">
+        <span data-lang="en">→ View on manopoulos.com</span>
+        <span data-lang="fr">→ Voir sur manopoulos.com</span>
+      </a>
+    </article>
+
+    <!-- Placeholder slots for future luxury maisons -->
+    <div class="placeholder-tile">
+      <span data-lang="en">Hermès · Geoffrey Parker · Aerin · Linley — to be added as researched.</span>
+      <span data-lang="fr">Hermès · Geoffrey Parker · Aerin · Linley — à ajouter au fil des recherches.</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TIER 2 · VINTAGE TOURNAMENT EDITIONS ══════════════════════ -->
+<section class="tier-section container">
+  <div class="tier-header">
+    <span class="tier-num">II</span>
+    <h2 class="tier-title">
+      <span data-lang="en">Vintage Tournament Editions</span>
+      <span data-lang="fr">Éditions Tournoi Vintage</span>
+    </h2>
+    <p class="tier-tag">
+      <span data-lang="en">1970s–1990s leather-cased tournament sets — the heyday of competitive backgammon. Crisfield, Geoffrey Parker, Etienne Aigner, Mark Cross. Built to play, hold their value, and quietly age into "vintage" rather than "antique".</span>
+      <span data-lang="fr">Coffrets de tournoi en cuir des années 1970–1990 — l'âge d'or du backgammon de compétition. Crisfield, Geoffrey Parker, Etienne Aigner, Mark Cross. Conçus pour le jeu, gardent leur valeur, et vieillissent en "vintage" plutôt qu'en "ancien".</span>
+    </p>
+  </div>
+
+  <div class="dealer-grid">
+    <div class="placeholder-tile">
+      <span data-lang="en">Sourcing in progress. eBay, 1stDibs and Pamono saved searches; specialist tournament-set dealers to be added once verified.</span>
+      <span data-lang="fr">Recherche en cours. Alertes eBay, 1stDibs et Pamono ; marchands spécialisés en jeux de tournoi à ajouter une fois vérifiés.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TIER 3 · ANTIQUE & TRIC-TRAC ══════════════════════════════ -->
+<section class="tier-section container">
+  <div class="tier-header">
+    <span class="tier-num">III</span>
+    <h2 class="tier-title">
+      <span data-lang="en">Antique &amp; Tric-Trac</span>
+      <span data-lang="fr">Ancien &amp; Tric-Trac</span>
+    </h2>
+    <p class="tier-tag">
+      <span data-lang="en">19th-century English and French boards — bone or ivory points, rosewood and walnut cases, sometimes folded into a chess-and-backgammon compendium. Luke Honey, Garrick Coleman and the French regional auction houses are the natural starting points.</span>
+      <span data-lang="fr">Plateaux anglais et français du XIX<sup>e</sup> siècle — pointes en os ou ivoire, coffrets palissandre et noyer, parfois pliés dans un compendium échecs-backgammon. Luke Honey, Garrick Coleman et les ventes régionales françaises sont les points de départ naturels.</span>
+    </p>
+  </div>
+
+  <div class="dealer-grid">
+    <div class="placeholder-tile">
+      <span data-lang="en">Cross-pollinate with the chess sources page — most antique chess dealers also handle tric-trac compendia.</span>
+      <span data-lang="fr">À croiser avec la page des sources échecs — la plupart des marchands d'échecs anciens traitent aussi des compendiums tric-trac.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSING ══════════════════════════════════════════════════ -->
+<section class="container">
+  <div class="closing">
+    <h3>
+      <span data-lang="en">How this page grows</span>
+      <span data-lang="fr">Comment cette page grandit</span>
+    </h3>
+    <p>
+      <span data-lang="en">Every entry is added by hand after a vendor has been verified for legitimacy, materials, and price honesty. The three tiers (luxury maison, vintage tournament, antique &amp; tric-trac) deliberately stay separate so the trade-off between "built today, perfect" and "built then, lived in" stays visible.</span>
+      <span data-lang="fr">Chaque entrée est ajoutée à la main après vérification du marchand — légitimité, matières, justesse de prix. Les trois paliers (maison de luxe, tournoi vintage, ancien &amp; tric-trac) restent volontairement séparés afin que l'arbitrage entre "fait aujourd'hui, parfait" et "fait alors, vécu" reste lisible.</span>
+    </p>
+    <p>
+      <span data-lang="en">Found a maker or dealer worth adding? Drop the link into the chat with Cabinet Ludo and it lands in the next revision.</span>
+      <span data-lang="fr">Trouvé un faiseur ou un marchand à ajouter ? Glissez le lien dans la conversation avec Cabinet Ludo, il rejoindra la prochaine révision.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══ FOOTER LINK ══════════════════════════════════════════════ -->
+<div class="footer-link">
+  <a href="heritage.html">
+    <span data-lang="en">← Back to Heritage</span>
+    <span data-lang="fr">← Retour au Patrimoine</span>
+  </a>
+  <a href="chess-sources.html">
+    <span data-lang="en">→ Chess Sources Companion</span>
+    <span data-lang="fr">→ Sources Échecs (compagnon)</span>
+  </a>
+</div>
+
+<!-- ══ LANG TOGGLE SCRIPT ═══════════════════════════════════════ -->
+<script>
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      document.documentElement.classList.remove('lang-en', 'lang-fr');
+      document.documentElement.classList.add('lang-' + lang);
+      document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === lang));
+    });
+  });
+</script>
+
+</body>
+</html>
