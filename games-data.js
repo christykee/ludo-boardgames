@@ -4,6 +4,42 @@
    and full metadata for display and filtering.
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ── Static BGG cover URLs (scraped from each game's og:image) ────────
+   Why baked-in: BGG xmlapi2 is now CORS-walled AND auth-walled, so
+   runtime fetch fails. These URLs are cf.geekdo-images.com CDN paths
+   from the public game pages — hot-linkable, stable.
+   Keyed by BGG id; ludo.js falls back to gradient if a game's id is
+   missing here. */
+const BGG_COVERS = {
+  13:     'https://cf.geekdo-images.com/0XODRpReiZBFUffEcqT5-Q__opengraph/img/ARkyerUcE8vdJx0U5S0eVM0RTzY=/0x0:1000x525/fit-in/1200x630/filters:strip_icc()/pic9156909.png',
+  38:     'https://cf.geekdo-images.com/kazoS3z-rZ4RFBvAHMKbzA__opengraph/img/TLllrG14IYc3FyVYguU9eiBM2z8=/0x0:1531x804/fit-in/1200x630/filters:strip_icc()/pic6274530.jpg',
+  42:     'https://cf.geekdo-images.com/t-cfSQs4Ic3SAzCSxTigLg__opengraph/img/hb0KRf4FhBZpB725ehiln26_LPc=/0x48:1560x867/fit-in/1200x630/filters:strip_icc()/pic9203204.png',
+  171:    'https://cf.geekdo-images.com/0_RWFMNapgr5yCrdhvGi_Q__opengraph/img/K7-MKIaTowM-QZjFCzpMbuO38pI=/0x18:6478x3419/fit-in/1200x630/filters:strip_icc()/pic8785991.jpg',
+  181:    'https://cf.geekdo-images.com/Oem1TTtSgxOghRFCoyWRPw__opengraph/img/UcmKPcJUUscy7ikWw1Ew8_Y-tu8=/0x0:889x467/fit-in/1200x630/filters:strip_icc()/pic4916782.jpg',
+  220:    'https://cf.geekdo-images.com/lNRG273h6gkd3szSY3EswQ__opengraph/img/GWbNcp24PacF53OMuHSU9SGEYNw=/0x591:2835x2079/fit-in/1200x630/filters:strip_icc()/pic9202764.png',
+  483:    'https://cf.geekdo-images.com/CGJihifkrZSqW40zElgXkQ__opengraph/img/iJynfjeQLNzBQ6Yso4G5nU2OUJY=/0x71:2000x1121/fit-in/1200x630/filters:strip_icc()/pic7376874.jpg',
+  1115:   'https://cf.geekdo-images.com/QhsvR9GY0LbTpj27fairWA__opengraph/img/FFuk1EuC8UkRBQhlznzheUMpbbs=/0x61:509x347/fit-in/1200x630/filters:fill(blur):strip_icc()/pic186610.jpg',
+  2397:   'https://cf.geekdo-images.com/fuNntWUQ8NsmbF7S1gn5GQ__opengraph/img/B3T0-_4jgocgtMHgUBIH7xYTetM=/fit-in/1200x630/filters:strip_icc()/pic4017988.jpg',
+  2511:   'https://cf.geekdo-images.com/ptDZ2tJ6dSNiONAx3HH8Tw__opengraph/img/QXogVcR9A3LAD-E4lkCeCBHq_D4=/0x0:1501x788/fit-in/1200x630/filters:strip_icc()/pic3514298.jpg',
+  9209:   'https://cf.geekdo-images.com/kdWYkW-7AqG63HhqPL6ekA__opengraph/img/dQRVo1f0UIX-QxlmItn6syEn1a4=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8937637.jpg',
+  11330:  'https://cf.geekdo-images.com/aTzHfe4DVgNvHPmGYThWuw__opengraph/img/0CtvbT41bhEVfoM4ssF-DHcoCxU=/0x492:698x935/fit-in/1200x630/filters:fill(blur):strip_icc()/pic9110087.jpg',
+  30549:  'https://cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__opengraph/img/fNu5AeI1nPD73l9_KNPEurNwBuI=/0x655:976x1167/fit-in/1200x630/filters:strip_icc()/pic1534148.jpg',
+  55584:  'https://cf.geekdo-images.com/rfZLgeT1PYojpW3WfsSruA__opengraph/img/wCEqxxHZIS4NoEbzz84Cf9d68zU=/0x838:792x1254/fit-in/1200x630/filters:strip_icc()/pic673213.jpg',
+  92415:  'https://cf.geekdo-images.com/GVbKORueiHezUaLfVZKlfQ__opengraph/img/0-SrNslW3qHoB8iIJoZMmexInAo=/0x0:900x473/fit-in/1200x630/filters:strip_icc()/pic9315848.jpg',
+  103343: 'https://cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__opengraph/img/tF5c-5cy78b5F7SsfckjKaZSTQI=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic1077906.jpg',
+  116985: 'https://cf.geekdo-images.com/D9m0sE_WBgS-WVYoeQT2nw__opengraph/img/tNJS4j7A2wEow8bJ-Sg5gbyoxzc=/0x0:420x221/fit-in/1200x630/filters:strip_icc()/pic1304355.jpg',
+  128882: 'https://cf.geekdo-images.com/LPa6rsGcv8S0-OeNjCOAEQ__opengraph/img/dioop3_JeqcZjKy_ccNs8-cG8G8=/0x0:700x368/fit-in/1200x630/filters:strip_icc()/pic1398895.jpg',
+  129622: 'https://cf.geekdo-images.com/T1ltXwapFUtghS9A7_tf4g__opengraph/img/Q-TYFTvpmXb1QogiEl0udcOtXPU=/0x0:1364x716/fit-in/1200x630/filters:strip_icc()/pic1401448.jpg',
+  131357: 'https://cf.geekdo-images.com/MWhSY_GOe2-bmlQ2rntSVg__opengraph/img/JxPFbyoilhY-P5helyOKI5Bw7LM=/0x0:399x209/fit-in/1200x630/filters:strip_icc()/pic2016054.jpg',
+  173346: 'https://cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__opengraph/img/EyT9R-od6g-49iIzr8TeWpTg94g=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic2576399.jpg',
+  188834: 'https://cf.geekdo-images.com/rAQ3hIXoH6xDcj41v9iqCg__opengraph/img/ae8mg6V5TH2WKatln7JHz3BIi8I=/8x0:693x360/fit-in/1200x630/filters:strip_icc()/pic5164305.jpg',
+  199792: 'https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__opengraph/img/LaoNUvWBEx8UQuHyXjStN_0wwL8=/0x42:1600x882/fit-in/1200x630/filters:strip_icc()/pic3918905.png',
+  227935: 'https://cf.geekdo-images.com/bUbrvlY6Dw1cdb-sNrnkew__opengraph/img/DxlvVMrQztjss2gXPH2TIrYlCKA=/0x1853:3900x3900/fit-in/1200x630/filters:strip_icc()/pic5188761.jpg',
+  256960: 'https://cf.geekdo-images.com/oSM_AuKYfGIwOtKbVEsoVg__opengraph/img/k_2lbdBwtB2TlxSjnL-P2luonIo=/0x80:1673x958/fit-in/1200x630/filters:strip_icc()/pic4503733.png',
+  257499: 'https://cf.geekdo-images.com/09KeqyJEtu2qcskbtlOhqw__opengraph/img/Z-G4SyC61wOiDt1HK9KV6lHgMLc=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic5726297.jpg',
+  332686: 'https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__opengraph/img/gRepsbz9DFvDSrjf49vBfoCL8t8=/0x415:2333x1640/fit-in/1200x630/filters:strip_icc()/pic6601629.jpg'
+};
+
 const CATEGORIES = {
   'quick-social':       { label: 'Quick Social & Party',                labelFr: 'Jeux Rapides & Sociaux',         icon: '🎲' },
   'abstract':           { label: 'Classic Abstracts & Traditional',     labelFr: 'Classiques & Abstraits',         icon: '♟️' },
@@ -62,7 +98,6 @@ const GAMES = [
     players: { min:2, max:5, ideal:4, display:'2–5' },
     duration: { min:20, max:40, display:'20–40 min' },
     bggWeight: 1.8, bggId: null,
-    cover: 'https://commons.wikimedia.org/wiki/Special:FilePath/John_William_Waterhouse_-_Consulting_the_Oracle_-_Tate_Britain.jpg?width=600',
     description: 'A rare niche gem from Australia. Created by James Walden, Oracle is adversarial, logical, and deeply satisfying. Its prediction mechanics reward pattern recognition and reading opponents. Portable enough for any table or vacation. A family favourite for its clean, elegant logic.',
     descriptionFr: 'Un joyau rare d\'Australie. Créé par James Walden, Oracle est adversarial, logique et profondément satisfaisant. Portable pour n\'importe quelle table ou vacances. Un favori de la famille pour sa logique élégante.',
     quickStart: 'Deal cards. Each round: make predictions about what opponents will play, then reveal simultaneously. Score for correct predictions. The interplay between what you commit to and what you expect from others is the entire game. Full rules: ORACLE.pdf',
@@ -135,7 +170,6 @@ const GAMES = [
     players: { min:3, max:8, ideal:6, display:'3–8' },
     duration: { min:15, max:30, display:'15–30 min' },
     bggWeight: 1.2, bggId: null,
-    cover: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pietro_longhi%2C_il_ridotto%2C_1757-60%2C_01.jpg?width=600',
     description: 'A social party game about fitting in and standing out at exactly the right moment. Fast, social, and ideal as a table warmup.',
     descriptionFr: 'Jeu de soirée sur l\'art de se fondre dans la masse ou de se démarquer au bon moment. Rapide et social.',
     quickStart: 'Full rules in BLEND IN.pdf',
@@ -154,7 +188,6 @@ const GAMES = [
     players: { min:3, max:8, ideal:5, display:'3–8' },
     duration: { min:15, max:30, display:'15–30 min' },
     bggWeight: 1.2, bggId: null,
-    cover: 'https://commons.wikimedia.org/wiki/Special:FilePath/1674_Steen_Merry_company_on_a_terrace_anagoria.JPG?width=600',
     description: 'Quick, light, and portable. A game of timing and social reading that works perfectly as a pre-dinner opener or late-night wind-down.',
     descriptionFr: 'Rapide, léger et portable. Parfait avant le dîner ou en fin de soirée.',
     quickStart: 'Full rules in TAPPER.pdf',
@@ -230,7 +263,6 @@ const GAMES = [
     players: { min:2, max:4, ideal:4, display:'2–4' },
     duration: { min:30, max:60, display:'30–60 min' },
     bggWeight: 2.2, bggId: 11330,
-    cover: 'https://commons.wikimedia.org/wiki/Special:FilePath/Schweizer_jass_karten.jpg?width=600',
     description: 'The Swiss national card game — centuries of regional play in a single 36-card deck. A trick-taking game with a unique trump system where the Buur (Jack of trumps) and Nell (Nine of trumps) hold supreme power. Several variants: Coiffeur, Differenzler, Schieber. Family tradition.',
     descriptionFr: 'Le jeu de cartes national suisse — des siècles de pratique régionale. Jeu de plis avec un système d\'atouts unique où le Buur et le Nell dominent. Variantes: Coiffeur, Differenzler, Schieber. Tradition familiale.',
     quickStart: 'Use Swiss 36-card deck. Trump is declared at the start of each round. Trump hierarchy (high to low): Buur (Jack), Nell (9), Ace, King, Queen, 8, 7, 6. Non-trump: Ace, King, Queen, Jack, 10, 9, 8, 7, 6. Lead trick, must follow suit if possible. See JASS PDFs for scoring and variant rules.',

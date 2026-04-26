@@ -115,28 +115,15 @@ async function fetchBGGGallery(bggId, limit = 8) {
   return images;
 }
 
-/* Inject real cover image into an existing card element */
+/* Inject real cover image into an existing card element.
+   With BGG_COVERS baked in, every cover is resolved synchronously at
+   buildGameCard time. This function exists only as a safety net for
+   gallery refresh / rebuilds, and is otherwise a no-op. */
 async function loadCardImage(cardEl, game) {
   const imgEl = cardEl.querySelector('.card-real-img');
   if (!imgEl) return;
-  // If a static cover is already injected, skip BGG fetch
   if (imgEl.dataset.staticCover === '1') return;
-  if (!game.bggId) return;
-
-  const url = await fetchBGGCover(game.bggId);
-  if (!url) return;
-
-  const loader = new Image();
-  loader.onload = () => {
-    imgEl.src = url;
-    imgEl.style.display = '';   // reset in case the empty-src onerror hid it earlier
-    imgEl.classList.add('loaded');
-    imgEl.classList.remove('loading');
-    const bg = cardEl.querySelector('.card-img-bg');
-    if (bg) bg.style.display = 'none';
-  };
-  loader.onerror = () => {};
-  loader.src = url;
+  // No runtime BGG fetch — covers come from BGG_COVERS at build time.
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -360,14 +347,20 @@ function buildGameCard(game) {
   const cat = CATEGORIES[game.category];
   const desc = t(game, 'description');
 
-  // Use a static cover URL if curated, else 1x1 transparent gif placeholder
-  // (empty src would resolve to the page URL and trigger onerror before BGG fetch).
+  // Resolve a cover URL synchronously. Order:
+  //   1. game.cover (per-record override, if a curator pinned a specific image)
+  //   2. BGG_COVERS[game.bggId] (static map at top of games-data.js)
+  //   3. nothing → fall through to gradient panel (bgFallback) with title text
+  // We no longer rely on runtime BGG xmlapi2 fetch — it is CORS+auth blocked.
+  const resolvedCover = game.cover
+    || (game.bggId && typeof BGG_COVERS !== 'undefined' && BGG_COVERS[game.bggId])
+    || null;
   const TRANSPARENT_PX = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-  const hasImg = !!(game.cover || game.bggId);
-  const staticAttr = game.cover ? ' data-static-cover="1"' : '';
-  const initialSrc = game.cover || TRANSPARENT_PX;
-  const initialClass = game.cover ? 'card-real-img loaded' : 'card-real-img loading';
-  const bgFallbackStyle = game.cover
+  const hasImg = !!resolvedCover;
+  const staticAttr = resolvedCover ? ' data-static-cover="1"' : '';
+  const initialSrc = resolvedCover || TRANSPARENT_PX;
+  const initialClass = resolvedCover ? 'card-real-img loaded' : 'card-real-img loading';
+  const bgFallbackStyle = resolvedCover
     ? `background:${game.gradient};position:absolute;inset:0;display:none;`
     : `background:${game.gradient};position:absolute;inset:0;`;
   const cardHTML = `
