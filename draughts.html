@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Draughts · Five Thousand Years</title>
+  <meta name="description" content="The complete history of Draughts and Checkers — from Egyptian Alquerque to Victorian ivory sets. A collector's guide to the world's oldest board game.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+
+    /* ── PAGE-SPECIFIC: DRAUGHTS ─────────────────────────────────── */
+
+    /* Timeline */
+    .timeline-wrap {
+      position: relative;
+      padding: 12px 0 0;
+    }
+    .timeline-rail {
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--brass-border-hi), var(--brass-border), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-event {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      align-items: start;
+      gap: 0 0;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    .tl-event:nth-child(odd) .tl-content { text-align: right; padding-right: 32px; }
+    .tl-event:nth-child(odd) .tl-empty   { order: 3; }
+    .tl-event:nth-child(even) .tl-content { padding-left: 32px; order: 3; }
+    .tl-event:nth-child(even) .tl-empty  { order: 1; }
+
+    .tl-node {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; order: 2; padding-top: 4px;
+    }
+    .tl-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--ocean-mid);
+      border: 2px solid var(--brass);
+      box-shadow: 0 0 8px var(--brass-glow);
+      flex-shrink: 0;
+    }
+    .tl-dot.major {
+      width: 18px; height: 18px;
+      background: var(--brass-deep);
+      border-color: var(--brass-bright);
+      box-shadow: 0 0 14px rgba(200,150,12,0.35);
+    }
+
+    .tl-era {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 5px;
+    }
+    .tl-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ivory-bright);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .tl-body {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--ivory-mid);
+    }
+    .tl-empty { /* spacer column */ }
+
+    /* ── ANTIQUE SET CARDS ── */
+    .sets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+      gap: 28px;
+    }
+    .set-card {
+      background: var(--cream);
+      border: 1px solid var(--brass-border-hi);
+      box-shadow:
+        0 0 0 3px var(--ocean-mid),
+        0 0 0 4px var(--brass-border-lo),
+        4px 8px 28px rgba(4,12,8,0.70),
+        inset 0 0 0 1px rgba(200,180,120,0.30);
+      position: relative;
+      overflow: visible;
+    }
+    /* Brass top stripe */
+    .set-card::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px; right: -1px; height: 4px;
+      background: linear-gradient(to right, var(--brass-deep), var(--brass-bright), var(--brass-deep));
+      z-index: 2;
+    }
+
+    .set-illustration {
+      height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .set-illustration img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .set-card:hover .set-illustration img {
+      transform: scale(1.04);
+    }
+    .photo-credit {
+      position: absolute;
+      bottom: 0; right: 0;
+      background: rgba(4,12,8,0.72);
+      font-family: var(--font-display, 'Cinzel', serif);
+      font-size: 0.48rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(200,150,12,0.7);
+      padding: 3px 7px;
+      pointer-events: none;
+    }
+    .tl-photo {
+      margin-top: 14px;
+      border: 1px solid rgba(200,150,12,0.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .tl-photo img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(15%) contrast(1.05);
+    }
+    .tl-photo-credit {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(4,12,8,0.72);
+      font-family: var(--font-display, 'Cinzel', serif);
+      font-size: 0.46rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(200,150,12,0.65);
+      padding: 3px 8px;
+      text-align: center;
+    }
+    .set-body {
+      padding: 20px 22px 22px;
+      color: var(--ink);
+    }
+    .set-provenance {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-deep);
+      margin-bottom: 7px;
+    }
+    .set-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 5px;
+      line-height: 1.25;
+    }
+    .set-period {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      margin-bottom: 12px;
+    }
+    .set-desc {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      margin-bottom: 14px;
+    }
+    .material-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .material-tag {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border: 1px solid var(--brass-border);
+      color: var(--brass-deep);
+      background: var(--cream-mid);
+    }
+    .set-source {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cream-dark);
+    }
+    .set-source a {
+      color: var(--ocean-teal);
+    }
+    .set-source a:hover { color: var(--brass); }
+
+    /* Artisan flag */
+    .artisan-flag {
+      position: absolute;
+      top: 14px; right: -1px;
+      background: var(--nav-bg);
+      border: 1px solid var(--brass-border-hi);
+      border-right: none;
+      padding: 3px 9px;
+      font-family: var(--font-display);
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      z-index: 10;
+    }
+
+    /* ── VARIANTS TABLE ── */
+    .variants-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+    }
+    .variants-table th {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass);
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--brass-border);
+      background: rgba(200,150,12,0.05);
+    }
+    .variants-table td {
+      font-size: 0.88rem;
+      color: var(--ivory-mid);
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(200,150,12,0.08);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .variants-table tr:hover td {
+      background: rgba(200,150,12,0.03);
+    }
+    .v-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--ivory-bright);
+      font-size: 0.95rem;
+    }
+    .v-country {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brass-deep);
+    }
+
+    /* ── ACQUISITION CARDS ── */
+    .acq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 20px;
+    }
+    .acq-card {
+      background: rgba(13,56,40,0.50);
+      border: 1px solid var(--brass-border);
+      padding: 22px;
+    }
+    .acq-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .acq-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 10px;
+    }
+    .acq-body {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--ivory-mid);
+    }
+    .acq-body a { color: var(--ocean-pale); }
+    .acq-body a:hover { color: var(--brass-bright); }
+    .acq-price {
+      margin-top: 10px;
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--brass);
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 3px solid var(--brass);
+      padding: 8px 0 8px 24px;
+      margin: 28px 0;
+    }
+    .pull-quote p {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--ivory-bright);
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-deep);
+    }
+
+    /* ── SECTION PANELS ── */
+    .panel {
+      background: rgba(13,56,40,0.35);
+      border: 1px solid var(--brass-border);
+      padding: 32px;
+      margin-bottom: 28px;
+    }
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 14px;
+    }
+    .panel p, .panel li {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--ivory-mid);
+    }
+
+    /* ── BOARD HERO SVG ── */
+    .board-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+    }
+
+    @media (max-width: 680px) {
+      .tl-event {
+        grid-template-columns: 24px 1fr;
+      }
+      .tl-event:nth-child(odd) .tl-content { text-align: left; padding-right: 0; padding-left: 20px; }
+      .tl-event:nth-child(even) .tl-content { padding-left: 20px; order: unset; }
+      .tl-event:nth-child(odd) .tl-empty   { display: none; }
+      .tl-event:nth-child(even) .tl-empty  { display: none; }
+      .tl-node { order: 1; align-self: start; margin-top: 4px; }
+      .tl-event:nth-child(odd) .tl-content { order: 2; }
+      .timeline-rail { left: 12px; }
+    }
+
+    /* Lang visibility */
+    html.lang-en [data-lang="fr"] { display: none; }
+    html.lang-fr [data-lang="en"] { display: none; }
+
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html" class="active"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ════════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · Artisan & Collector · Deep History</span>
+      <span data-lang="fr">Cabinet Ludo · Artisan & Collectionneur · Histoire Profonde</span>
+    </p>
+    <h1 class="page-title display">
+      <span data-lang="en">Draughts · Dama · Jeu de Dames</span>
+      <span data-lang="fr">Dames · Draughts · Jeu de Dames</span>
+    </h1>
+    <p class="page-subtitle">
+      <span data-lang="en">Five thousand years of the world's most universal board game — and the most beautiful objects it ever produced.</span>
+      <span data-lang="fr">Cinq mille ans du jeu de plateau le plus universel au monde — et les plus beaux objets qu'il ait jamais produits.</span>
+    </p>
+  </div>
+</header>
+
+<!-- ══ BOARD ORNAMENT ════════════════════════════════════════════ -->
+<div class="board-hero">
+  <svg viewBox="0 0 320 280" width="320" height="280" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer Victorian frame -->
+    <rect x="4" y="4" width="312" height="272" fill="none" stroke="#C8960C" stroke-width="0.8" opacity="0.4"/>
+    <rect x="12" y="12" width="296" height="256" fill="none" stroke="#C8960C" stroke-width="0.3" opacity="0.2"/>
+    <!-- Corner ornaments -->
+    <text x="10" y="22" fill="#C8960C" font-size="14" opacity="0.5">✦</text>
+    <text x="296" y="22" fill="#C8960C" font-size="14" opacity="0.5">✦</text>
+    <text x="10" y="272" fill="#C8960C" font-size="14" opacity="0.5">✦</text>
+    <text x="296" y="272" fill="#C8960C" font-size="14" opacity="0.5">✦</text>
+    <!-- The board — 8×8 -->
+    <g transform="translate(52, 28)">
+      <!-- Board border -->
+      <rect x="-4" y="-4" width="224" height="224" fill="#5A3A0A" stroke="#C8960C" stroke-width="1.5"/>
+      <!-- Squares (dark) -->
+      <!-- Row 0 -->
+      <rect x="0"   y="0"   width="26" height="26" fill="#1A0A00"/>
+      <rect x="52"  y="0"   width="26" height="26" fill="#1A0A00"/>
+      <rect x="104" y="0"   width="26" height="26" fill="#1A0A00"/>
+      <rect x="156" y="0"   width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 1 -->
+      <rect x="26"  y="26"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="78"  y="26"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="130" y="26"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="182" y="26"  width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 2 -->
+      <rect x="0"   y="52"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="52"  y="52"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="104" y="52"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="156" y="52"  width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 3 -->
+      <rect x="26"  y="78"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="78"  y="78"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="130" y="78"  width="26" height="26" fill="#1A0A00"/>
+      <rect x="182" y="78"  width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 4 -->
+      <rect x="0"   y="104" width="26" height="26" fill="#1A0A00"/>
+      <rect x="52"  y="104" width="26" height="26" fill="#1A0A00"/>
+      <rect x="104" y="104" width="26" height="26" fill="#1A0A00"/>
+      <rect x="156" y="104" width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 5 -->
+      <rect x="26"  y="130" width="26" height="26" fill="#1A0A00"/>
+      <rect x="78"  y="130" width="26" height="26" fill="#1A0A00"/>
+      <rect x="130" y="130" width="26" height="26" fill="#1A0A00"/>
+      <rect x="182" y="130" width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 6 -->
+      <rect x="0"   y="156" width="26" height="26" fill="#1A0A00"/>
+      <rect x="52"  y="156" width="26" height="26" fill="#1A0A00"/>
+      <rect x="104" y="156" width="26" height="26" fill="#1A0A00"/>
+      <rect x="156" y="156" width="26" height="26" fill="#1A0A00"/>
+      <!-- Row 7 -->
+      <rect x="26"  y="182" width="26" height="26" fill="#1A0A00"/>
+      <rect x="78"  y="182" width="26" height="26" fill="#1A0A00"/>
+      <rect x="130" y="182" width="26" height="26" fill="#1A0A00"/>
+      <rect x="182" y="182" width="26" height="26" fill="#1A0A00"/>
+      <!-- Light squares fill (walnut) -->
+      <rect x="26"  y="0"   width="26" height="26" fill="#8A5A20"/>
+      <rect x="78"  y="0"   width="26" height="26" fill="#8A5A20"/>
+      <rect x="130" y="0"   width="26" height="26" fill="#8A5A20"/>
+      <rect x="182" y="0"   width="26" height="26" fill="#8A5A20"/>
+      <rect x="0"   y="26"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="52"  y="26"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="104" y="26"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="156" y="26"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="26"  y="52"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="78"  y="52"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="130" y="52"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="182" y="52"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="0"   y="78"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="52"  y="78"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="104" y="78"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="156" y="78"  width="26" height="26" fill="#8A5A20"/>
+      <rect x="26"  y="104" width="26" height="26" fill="#8A5A20"/>
+      <rect x="78"  y="104" width="26" height="26" fill="#8A5A20"/>
+      <rect x="130" y="104" width="26" height="26" fill="#8A5A20"/>
+      <rect x="182" y="104" width="26" height="26" fill="#8A5A20"/>
+      <rect x="0"   y="130" width="26" height="26" fill="#8A5A20"/>
+      <rect x="52"  y="130" width="26" height="26" fill="#8A5A20"/>
+      <rect x="104" y="130" width="26" height="26" fill="#8A5A20"/>
+      <rect x="156" y="130" width="26" height="26" fill="#8A5A20"/>
+      <rect x="26"  y="156" width="26" height="26" fill="#8A5A20"/>
+      <rect x="78"  y="156" width="26" height="26" fill="#8A5A20"/>
+      <rect x="130" y="156" width="26" height="26" fill="#8A5A20"/>
+      <rect x="182" y="156" width="26" height="26" fill="#8A5A20"/>
+      <rect x="0"   y="182" width="26" height="26" fill="#8A5A20"/>
+      <rect x="52"  y="182" width="26" height="26" fill="#8A5A20"/>
+      <rect x="104" y="182" width="26" height="26" fill="#8A5A20"/>
+      <rect x="156" y="182" width="26" height="26" fill="#8A5A20"/>
+      <!-- Ivory pieces — rows 5,6,7 dark squares -->
+      <circle cx="13"  cy="143" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="13"  cy="143" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="65"  cy="143" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="65"  cy="143" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="117" cy="143" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="117" cy="143" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="169" cy="143" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="169" cy="143" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="39"  cy="169" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="39"  cy="169" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="91"  cy="169" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="91"  cy="169" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="143" cy="169" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="143" cy="169" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <circle cx="195" cy="169" r="10" fill="#FAF0D5" stroke="#C8960C" stroke-width="1.5"/>
+      <circle cx="195" cy="169" r="7"  fill="none"    stroke="#E8D8A8" stroke-width="0.6"/>
+      <!-- Ebony pieces — rows 0,1 dark squares -->
+      <circle cx="13"  cy="13"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="13"  cy="13"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="65"  cy="13"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="65"  cy="13"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="117" cy="13"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="117" cy="13"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="169" cy="13"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="169" cy="13"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="39"  cy="39"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="39"  cy="39"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="91"  cy="39"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="91"  cy="39"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="143" cy="39"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="143" cy="39"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+      <circle cx="195" cy="39"  r="10" fill="#0A0400" stroke="#4A2A00" stroke-width="1.5"/>
+      <circle cx="195" cy="39"  r="7"  fill="none"    stroke="#2A1400" stroke-width="0.6"/>
+    </g>
+    <!-- Caption -->
+    <text x="160" y="260" text-anchor="middle" fill="#C8960C" font-family="Georgia,serif"
+          font-size="9" letter-spacing="3" opacity="0.55">IVORY · EBONY · WALNUT · ENGLAND c.1860</text>
+  </svg>
+</div>
+
+<!-- ══ INTRO ═════════════════════════════════════════════════════ -->
+<section class="section-sm" style="padding-top:0;">
+  <div class="container" style="max-width:780px;">
+    <div class="pull-quote">
+      <p data-lang="en">"No game has been played by more human beings, across more centuries, in more countries, than draughts. It is the mother of all territory games — and it produced some of the most beautiful objects ever made for play."</p>
+      <p data-lang="fr">"Aucun jeu n'a été joué par davantage d'êtres humains, à travers plus de siècles, dans plus de pays, que les dames. C'est la mère de tous les jeux de territoire — et il a produit certains des plus beaux objets jamais conçus pour le jeu."</p>
+      <cite>— Ludo's assessment</cite>
+    </div>
+
+    <div class="panel">
+      <p class="panel-title" data-lang="en">Context for the Collection</p>
+      <p class="panel-title" data-lang="fr">Contexte pour la Collection</p>
+      <p data-lang="en">Draughts sits naturally in the <strong>Classic Abstracts &amp; Traditional Games</strong> category — heritage games, no trend, no age, in the collection permanently. A fine antique set would simultaneously earn the <strong>✦ Artisan &amp; Collector</strong> flag. Unlike most artisan acquisitions, the game itself is immediately playable by everyone at the table — no learning curve, no barrier. The perfect permanent object.</p>
+      <p data-lang="fr">Les dames s'intègrent naturellement dans la catégorie <strong>Classiques &amp; Jeux Traditionnels</strong> — jeux patrimoniaux, sans tendance, intemporels, permanents dans la collection. Un bel ensemble ancien mérite simultanément le label <strong>✦ Artisan &amp; Collectionneur</strong>. Contrairement à la plupart des acquisitions artisanales, le jeu est immédiatement jouable par tous à la table — sans courbe d'apprentissage, sans barrière. L'objet permanent idéal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ORNAMENTAL DIVIDER ════════════════════════════════════════ -->
+<div class="container">
+  <div class="rule"><div class="rule-inner" data-lang="en">Historical Chronicle</div><div class="rule-inner" data-lang="fr">Chronique Historique</div></div>
+</div>
+
+<!-- ══ TIMELINE ══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow" style="text-align:center;margin-bottom:48px;">
+      <span data-lang="en">From Alquerque to the Victorian Drawing Room</span>
+      <span data-lang="fr">De l'Alquerque au Salon Victorien</span>
+    </p>
+
+    <div class="timeline-wrap">
+      <div class="timeline-rail"></div>
+
+      <!-- Event 1 -->
+      <div class="tl-event">
+        <div class="tl-content">
+          <div class="tl-era">c. 3000 BCE · Mesopotamia &amp; Egypt</div>
+          <div class="tl-title" data-lang="en">Alquerque — The Mother Game</div>
+          <div class="tl-title" data-lang="fr">L'Alquerque — Le Jeu Originel</div>
+          <div class="tl-body" data-lang="en">Excavations at the Royal Tombs of Ur and at Egyptian temple floors at Tel el-Amarna (c.1350 BCE) reveal boards scratched directly into stone — a 5×5 grid of intersecting diagonals with 10 pieces per side. Pieces move along lines, not within squares. This is <em>Alquerque</em>, or <em>Quirkat</em> — the ancestor of draughts, backgammon variants, and Mancala. The pharaoh Akhenaten's court played it. The Roman emperor Nero played it. For three thousand years, this was the game.</div>
+          <div class="tl-body" data-lang="fr">Les fouilles des Tombeaux Royaux d'Ur et des temples égyptiens de Tel el-Amarna (vers 1350 av. J.-C.) révèlent des plateaux gravés directement dans la pierre — une grille 5×5 de diagonales entrecroisées avec 10 pièces de chaque côté. Les pièces se déplacent le long des lignes, non dans les cases. C'est l'<em>Alquerque</em>, ou <em>Quirkat</em> — l'ancêtre des dames, variantes du backgammon et du Mancala. La cour du pharaon Akhenaton y jouait. L'empereur romain Néron aussi. Pendant trois mille ans, c'était le jeu.</div>
+        </div>
+        <div class="tl-node"><div class="tl-dot major"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="tl-event">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-era">c. 600–900 CE · Arab &amp; Persian Courts</div>
+          <div class="tl-title" data-lang="en">The Arab Transmission</div>
+          <div class="tl-title" data-lang="fr">La Transmission Arabe</div>
+          <div class="tl-body" data-lang="en">Arab scholars and merchants carried Alquerque throughout the Islamic world — from Persia to the Iberian Peninsula. The <em>Kitāb al-Aghānī</em> (Book of Songs, 9th century) references the game as a popular pastime. Arabic manuscripts show boards with ornate geometric inlay patterns — the first hint of the game as a luxury object. Versions reached Al-Andalus (Spain) and from there, the rest of Europe.</div>
+          <div class="tl-body" data-lang="fr">Les savants et marchands arabes ont diffusé l'Alquerque dans tout le monde islamique — de la Perse à la péninsule ibérique. Le <em>Kitāb al-Aghānī</em> (Livre des Chansons, IXe siècle) fait référence au jeu comme divertissement populaire. Des manuscrits arabes montrent des plateaux aux motifs géométriques incrustés — premier indice du jeu comme objet de luxe.</div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="tl-event">
+        <div class="tl-content">
+          <div class="tl-era">c. 1100 CE · Southern France</div>
+          <div class="tl-title" data-lang="en">Fierges — The Crucial Merger</div>
+          <div class="tl-title" data-lang="fr">Les Fierges — La Fusion Décisive</div>
+          <div class="tl-body" data-lang="en">Someone — almost certainly a chess player in Provence or Languedoc — placed Alquerque pieces onto an 8×8 chess board and adapted the diagonal movement. The new pieces were called <em>ferses</em>, the same name as the queen in chess. The expanded board transformed the game: 12 pieces per side instead of 10, a much larger tactical space, and the possibility of the promotion rule (kingship) borrowed directly from chess. This moment invented modern draughts.</div>
+          <div class="tl-body" data-lang="fr">Quelqu'un — presque certainement un joueur d'échecs en Provence ou Languedoc — a placé les pièces de l'Alquerque sur un échiquier 8×8. Les nouvelles pièces furent appelées <em>ferses</em>, même nom que la reine aux échecs. Le plateau élargi transforma le jeu : 12 pièces par camp, espace tactique bien plus vaste, et possibilité de la règle de promotion empruntée aux échecs. Ce moment inventa les dames modernes.</div>
+          <div class="tl-photo">
+            <img src="https://www.thinking3d.ac.uk/assets/images/Zischkin_2.jpg"
+                 alt="Libro de los Juegos, fol. 21v–22r — Alfonso X's medieval manuscript showing players at a board game, Escorial Monastery Library, Madrid, 1283"
+                 loading="lazy">
+            <div class="tl-photo-credit">Libro de los Juegos, fol. 21v–22r · Alfonso X · 1283 · Escorial Monastery Library, Madrid · Wikimedia Commons</div>
+          </div>
+        </div>
+        <div class="tl-node"><div class="tl-dot major"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="tl-event">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-era">1243 · First Written Record</div>
+          <div class="tl-title" data-lang="en">Crowning — Mouskés's Chronicle</div>
+          <div class="tl-title" data-lang="fr">Le Couronnement — La Chronique de Mouskés</div>
+          <div class="tl-body" data-lang="en">The <em>Chronique</em> of Philippe Mouskés (1243) provides the earliest written record of crowning a piece that reaches the far row — the king that can move backward. The game was already established enough to warrant an elaborate treatise. The term <em>Fierges</em> was gradually replaced by <em>Jeu de Dames</em> — the Ladies' Game — a name that spread across all of Europe.</div>
+          <div class="tl-body" data-lang="fr">La <em>Chronique</em> de Philippe Mouskés (1243) constitue la première mention écrite du couronnement d'une pièce atteignant la dernière rangée — la dame pouvant reculer. Le jeu était déjà assez établi pour mériter un traité élaboré. Le terme <em>Fierges</em> fut progressivement remplacé par <em>Jeu de Dames</em> — nom qui se répandit dans toute l'Europe.</div>
+          <div class="tl-photo">
+            <img src="https://www.thinking3d.ac.uk/assets/images/Zischkin_1.jpg"
+                 alt="Libro de los Juegos, fol. 2v — the three philosophers presenting chess, dice, and backgammon to King Alfonso X, 1283"
+                 loading="lazy">
+            <div class="tl-photo-credit">Libro de los Juegos, fol. 2v · Alfonso X · 1283 · Escorial Monastery Library · Wikimedia Commons</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="tl-event">
+        <div class="tl-content">
+          <div class="tl-era">c. 1535 · France</div>
+          <div class="tl-title" data-lang="en">Mandatory Capture — The Game Sharpens</div>
+          <div class="tl-title" data-lang="fr">La Prise Obligatoire — Le Jeu s'Affûte</div>
+          <div class="tl-body" data-lang="en">The codification of mandatory capture transformed draughts from a pleasant territorial exercise into a game of genuine tactical tension. Now players must capture when a capture is available — or suffer the <em>soufflage</em> (huffing) penalty, where their non-capturing piece is removed. This single rule created the distinctive pulse of the game: the forced sacrifice, the three-move combinations, the elegant cruelty of positional traps. The <em>Jeu de Dames</em> was born.</div>
+          <div class="tl-body" data-lang="fr">La codification de la prise obligatoire transforma les dames d'un exercice territorial agréable en un jeu de véritable tension tactique. Désormais les joueurs doivent prendre quand une prise est disponible — ou subir la pénalité du <em>soufflage</em>, où la pièce non prenante est retirée. Cette seule règle créa le rythme distinctif du jeu : le sacrifice forcé, les combinaisons en trois coups, la cruelle élégance des pièges positionnels. Le <em>Jeu de Dames</em> était né.</div>
+        </div>
+        <div class="tl-node"><div class="tl-dot major"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="tl-event">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-era">1668 · Amsterdam</div>
+          <div class="tl-title" data-lang="en">The 10×10 Innovation — International Draughts</div>
+          <div class="tl-title" data-lang="fr">L'Innovation du 10×10 — Les Dames Internationales</div>
+          <div class="tl-body" data-lang="en">Dutch and Belgian players, dissatisfied with the relatively limited depth of the 8×8 game, migrated to a 10×10 board with 20 pieces per side and "flying kings" — kings that can traverse the entire board in a single move, like a bishop in chess. This produced a game of profoundly greater strategic depth, requiring a mathematics of endings that rivals chess endgame theory. The 10×10 game remains the international competitive standard today.</div>
+          <div class="tl-body" data-lang="fr">Les joueurs néerlandais et belges, insatisfaits de la profondeur relativement limitée du jeu 8×8, sont passés à un plateau 10×10 avec 20 pièces par camp et des "dames volantes" — des dames pouvant traverser tout le plateau en un coup, comme un fou aux échecs. Cela produisit un jeu d'une profondeur stratégique bien plus grande, nécessitant une mathématique des finales comparable à la théorie des fins de partie aux échecs.</div>
+        </div>
+      </div>
+
+      <!-- Event 7 -->
+      <div class="tl-event">
+        <div class="tl-content">
+          <div class="tl-era">1756 · Paris</div>
+          <div class="tl-title" data-lang="en">Manoury's Treatise — The First Masterwork</div>
+          <div class="tl-title" data-lang="fr">Le Traité de Manoury — Le Premier Chef-d'Œuvre</div>
+          <div class="tl-body" data-lang="en">Pierre Manoury published the first serious strategic treatise on draughts — establishing the analytical tradition that would eventually produce the first computer program to solve a board game (Jonathan Schaeffer's <em>Chinook</em>, 2007, which proved English draughts ends in a draw with perfect play). From Manoury's era forward, draughts was both a serious intellectual pursuit and a fashionable game of Parisian salons, played on gilded tables with mother-of-pearl and tortoiseshell pieces.</div>
+          <div class="tl-body" data-lang="fr">Pierre Manoury publia le premier traité stratégique sérieux sur les dames — établissant la tradition analytique qui produirait finalement le premier programme informatique à résoudre un jeu de plateau (<em>Chinook</em> de Jonathan Schaeffer, 2007, qui prouva que les dames anglaises se terminent par nulle avec jeu parfait). Dès l'ère de Manoury, les dames étaient à la fois une poursuite intellectuelle sérieuse et un jeu mondain des salons parisiens.</div>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <!-- Event 8 -->
+      <div class="tl-event">
+        <div class="tl-empty"></div>
+        <div class="tl-node"><div class="tl-dot major"></div></div>
+        <div class="tl-content">
+          <div class="tl-era">1795–1900 · London / Paris / Saint-Pétersbourg</div>
+          <div class="tl-title" data-lang="en">The Golden Age of Craft</div>
+          <div class="tl-title" data-lang="fr">L'Âge d'Or de l'Artisanat</div>
+          <div class="tl-body" data-lang="en">Jaques of London (est. 1795), the greatest game manufacturer in history, standardised and elevated the English draughts set: turned ivory counters, red-stained on one side, in fitted mahogany or rosewood cases with green baize. On the continent, French makers produced lacquer and mother-of-pearl sets for aristocratic patrons. Russian nobility commissioned amber-inlaid boards. Italian Sorrento workshops carved marquetry sets with alabaster pieces for the Grand Tour trade. The game was now an object of high craft.</div>
+          <div class="tl-body" data-lang="fr">Jaques of London (fondé en 1795), le plus grand fabricant de jeux de l'histoire, standardisa et éleva le jeu de dames anglais : pions en ivoire tourné, teintés en rouge d'un côté, dans des étuis en acajou ou palissandre avec baize verte. Sur le continent, les artisans français produisirent des ensembles en laque et nacre pour des mécènes aristocratiques. La noblesse russe fit réaliser des plateaux incrustés d'ambre. Les ateliers italiens de Sorrente sculptèrent des jeux en marqueterie avec pièces en albâtre pour le commerce du Grand Tour.</div>
+          <div class="tl-photo">
+            <img src="https://chessantiques.com/wp-content/uploads/2016/10/Checkers_Jaqiues_15x0501.jpg"
+                 alt="Complete Jaques of London ivory draughts set c.1850 — natural and cochineal-stained pieces with original board"
+                 loading="lazy" style="object-position: center top;">
+            <div class="tl-photo-credit">Jaques of London ivory draughts set · England c.1850 · Natural &amp; cochineal-stained · Photo © ChessAntiques.com</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline-wrap -->
+  </div>
+</section>
+
+<!-- ══ ORNAMENTAL DIVIDER ════════════════════════════════════════ -->
+<div class="container">
+  <div class="rule"><div class="rule-inner" data-lang="en">The Most Beautiful Antique Sets</div><div class="rule-inner" data-lang="fr">Les Plus Beaux Ensembles Anciens</div></div>
+</div>
+
+<!-- ══ ANTIQUE SETS ══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:12px;">
+      <span data-lang="en">Six Specimens of the Collector's Art</span>
+      <span data-lang="fr">Six Spécimens de l'Art du Collectionneur</span>
+    </p>
+    <p style="color:var(--ivory-mid);font-style:italic;font-family:var(--font-body);margin-bottom:40px;max-width:640px;">
+      <span data-lang="en">These are the benchmark sets — the objects that define what draughts can be as a permanent acquisition. All six exist in traceable form through specialist dealers and auction houses.</span>
+      <span data-lang="fr">Ces ensembles de référence — les objets qui définissent ce que les dames peuvent être en tant qu'acquisition permanente. Ces six spécimens existent sous forme traçable chez des marchands spécialisés et des maisons de vente aux enchères.</span>
+    </p>
+
+    <div class="sets-grid">
+
+      <!-- SET 1: Jaques Ivory & Ebony -->
+      <div class="set-card">
+        <div class="artisan-flag">✦ Artisan</div>
+        <div class="set-illustration">
+          <img src="https://chessantiques.com/wp-content/uploads/2016/10/Checkers_Jaqiues_15x0502.jpg"
+               alt="Antique Jaques of London ivory draughts set c.1850 — natural and red-stained cochineal pieces in Coromandel box"
+               loading="lazy">
+          <div class="photo-credit">Photo © ChessAntiques.com — Lot 178</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">England · c. 1850–1880</div>
+          <div class="set-name" data-lang="en">Jaques of London — Ivory &amp; Ebony</div>
+          <div class="set-name" data-lang="fr">Jaques of London — Ivoire &amp; Ébène</div>
+          <div class="set-period" data-lang="en">The Victorian benchmark — made for royalty and the Great Exhibition</div>
+          <div class="set-period" data-lang="fr">Le modèle victorien — conçu pour la royauté et la Grande Exposition</div>
+          <div class="set-desc" data-lang="en">Turned ivory counters in the distinctive English "thick coin" form — natural on one side, red-stained on the other — in a fitted mahogany case with green baize interior. Jaques standardised the English set just as they standardised the Staunton chess piece (1849). Original sets in complete condition surface regularly. The definitive starter acquisition for the artisan draughts collector.</div>
+          <div class="set-desc" data-lang="fr">Pions en ivoire tourné dans la forme anglaise distinctive du "jeton épais" — naturel d'un côté, teint en rouge de l'autre — dans un étui en acajou avec intérieur en baize verte. Jaques standardisa l'ensemble anglais comme il standardisa la pièce d'échecs Staunton (1849). Des ensembles originaux complets réapparaissent régulièrement. L'acquisition de référence pour le collectionneur de dames artisanales.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Elephant Ivory</span>
+            <span class="material-tag" data-lang="fr">Ivoire</span>
+            <span class="material-tag" data-lang="en">Mahogany</span>
+            <span class="material-tag" data-lang="fr">Acajou</span>
+            <span class="material-tag" data-lang="en">Green Baize</span>
+            <span class="material-tag" data-lang="fr">Baize Verte</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Source: <a href="https://chessantiques.com/product/antique-ivory-checkers_jaques-of-london/" target="_blank">ChessAntiques.com</a> · 1stDibs · Bonhams · Christie's South Kensington. Price: £600–£2,500.</span>
+            <span data-lang="fr">Source : <a href="https://chessantiques.com/product/antique-ivory-checkers_jaques-of-london/" target="_blank">ChessAntiques.com</a> · 1stDibs · Bonhams · Christie's South Kensington. Prix : £600–£2 500.</span>
+          </div>
+          <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px; overflow:hidden;">
+            <img src="https://chessantiques.com/wp-content/uploads/2016/10/Checkers_Jaqiues_15x0504.jpg"
+                 alt="Close-up of Jaques ivory draughts pieces — natural white and cochineal red"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+            <img src="https://chessantiques.com/wp-content/uploads/2016/10/Checkers_Jaqiues_15x0505.jpg"
+                 alt="Jaques of London draughts pieces detail — turned ivory c.1850"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- SET 2: Russian Amber -->
+      <div class="set-card">
+        <div class="artisan-flag">✦ Museum</div>
+        <div class="set-illustration">
+          <img src="https://www.dhm.de/blog/wp-content/uploads/2024/02/01_Bernstein-Spielbrettkastens-fuer-Schach-Muehle-und-Tric-Trac-1602-c-DHM-Foto-Indra-Desnica-1-1024x782.jpg"
+               alt="Baltic amber game board cassette, Königsberg 1607 — attributed to Georg Schreiber, cream and translucent orange amber with white amber reliefs and silver mounts, chess and Nine Men's Morris on exterior"
+               loading="lazy">
+          <div class="photo-credit">Photo © DHM Berlin / Indra Desnica — Amber game board, Königsberg 1607</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">Königsberg (Prussia) · dated 1607</div>
+          <div class="set-name" data-lang="en">The Königsberg Amber Game Board</div>
+          <div class="set-name" data-lang="fr">Le Plateau de Jeu en Ambre de Königsberg</div>
+          <div class="set-period" data-lang="en">Deutsches Historisches Museum, Berlin — once owned by King Charles I of England</div>
+          <div class="set-period" data-lang="fr">Deutsches Historisches Museum, Berlin — ayant appartenu au roi Charles Ier d'Angleterre</div>
+          <div class="set-desc" data-lang="en">Attributed to Georg Schreiber, the leading amber craftsman of his day. Cream and translucent orange Baltic amber with white amber cameo reliefs laid on gold foil, silver mounts, and an ebony carcass. The exterior carries a Nine Men's Morris board and a Chess board; the interior a full Backgammon board. A diplomatic gift of extraordinary ambition — its provenance runs from the Duchy of Prussia to King James I, then Charles I, who reportedly kept it to the scaffold. Acquired by the DHM Berlin in 2021 at auction. The Sotheby's estimate was £300,000–£500,000.</div>
+          <div class="set-desc" data-lang="fr">Attribué à Georg Schreiber, le principal artisan en ambre de son époque. Ambre baltique crème et orange translucide, avec des reliefs en camée en ambre blanc sur feuille d'or, montures en argent et carcasse en ébène. L'extérieur porte un plateau de Mérels et un échiquier ; l'intérieur, un plateau de Tric-trac complet. Cadeau diplomatique d'une ambition extraordinaire — sa provenance va du Duché de Prusse au roi Jacques Ier, puis Charles Ier, qui l'aurait emporté jusqu'à l'échafaud. Acquis par le DHM Berlin en 2021.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Baltic Amber</span>
+            <span class="material-tag" data-lang="fr">Ambre Baltique</span>
+            <span class="material-tag" data-lang="en">Gold Foil · Silver</span>
+            <span class="material-tag" data-lang="fr">Feuille d'Or · Argent</span>
+            <span class="material-tag" data-lang="en">Ebony</span>
+            <span class="material-tag" data-lang="fr">Ébène</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Location: <a href="https://www.dhm.de/blog/2024/02/14/king-in-check-the-amber-board-game-cassette/" target="_blank">Deutsches Historisches Museum, Berlin</a>. Sold Sotheby's London 2012 for £722,500. Similar amber boards: Hessen Kassel Heritage, Landesmuseum Württemberg Stuttgart, V&amp;A London. Market: Dorotheum Vienna, Sotheby's. Price range: €8,000–€50,000+.</span>
+            <span data-lang="fr">Localisation : <a href="https://www.dhm.de/blog/2024/02/14/king-in-check-the-amber-board-game-cassette/" target="_blank">Deutsches Historisches Museum, Berlin</a>. Vendu Sotheby's Londres 2012 pour £722 500. Plateaux similaires : Hessen Kassel Heritage, Landesmuseum Württemberg Stuttgart. Marché : Dorotheum Vienne, Sotheby's. Prix : 8 000–50 000 €+.</span>
+          </div>
+          <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px; overflow:hidden;">
+            <img src="https://www.dhm.de/blog/wp-content/uploads/2024/02/03_Bernstein-Spielbrettkastens-fuer-Schach-Muehle-und-Tric-Trac-1602-c-DHM-Foto-Indra-Desnica-1024x767.jpg"
+                 alt="Interior backgammon board of the 1607 Königsberg amber game cassette, DHM Berlin"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+            <img src="https://www.bayerisches-nationalmuseum.de/media/objects/49837/D178614_2106373f76.jpg"
+                 alt="Renaissance games board c.1560 — Bayerisches Nationalmuseum Munich, mother-of-pearl, horn, bone and ivory"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- SET 3: Irish Bog Oak & Yew -->
+      <div class="set-card">
+        <div class="artisan-flag">✦ Artisan</div>
+        <div class="set-illustration">
+          <img src="https://images.antiquesatlas.com/dealer-stock-images/puckeringsantiques/Antique_English_Boxed_Set_Ebon_as584a214b.jpg"
+               alt="Victorian English boxed draughts set — turned ebony and boxwood counters in sliding-lid box, Puckerings Antiques London, c.1900 — representative of the dark/light contrasting wood tradition"
+               loading="lazy">
+          <div class="photo-credit">Photo © Puckerings Antiques, London — Ebony &amp; boxwood draughts set c.1900</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">Ireland · Scotland · c. 1820–1880</div>
+          <div class="set-name" data-lang="en">Irish Bog Oak &amp; Yew</div>
+          <div class="set-name" data-lang="fr">Chêne des Tourbières &amp; If d'Irlande</div>
+          <div class="set-period" data-lang="en">A deeply Celtic tradition in near-indestructible prehistoric wood</div>
+          <div class="set-period" data-lang="fr">Une tradition celtique profonde en bois préhistorique quasi indestructible</div>
+          <div class="set-desc" data-lang="en">Bog oak — timber preserved for centuries in Irish peat bogs, emerging jet-black and extraordinarily dense — paired with vivid yew heartwood for chromatic and material contrast. The boards were often carved with Celtic knotwork borders. The materials alone make these sets extraordinary tactile objects; the jet black and burning orange are among the most dramatic natural colour combinations in woodcraft. These sets are rare survivors; most were used hard and are lost.</div>
+          <div class="set-desc" data-lang="fr">Le chêne des tourbières — bois préservé pendant des siècles dans les tourbières irlandaises, ressortant d'un noir de jais et d'une densité extraordinaire — associé à l'if au cœur rutilant pour un contraste chromatique et matériel saisissant. Les plateaux étaient souvent ornés de bordures celtiques entrelacées. Les matériaux seuls font de ces ensembles des objets tactiles remarquables. Ces sets sont de rares survivants.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Bog Oak</span>
+            <span class="material-tag" data-lang="fr">Chêne Tourbière</span>
+            <span class="material-tag" data-lang="en">Irish Yew</span>
+            <span class="material-tag" data-lang="fr">If d'Irlande</span>
+            <span class="material-tag" data-lang="en">Fruitwood</span>
+            <span class="material-tag" data-lang="fr">Bois Fruitier</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Source: Lyon &amp; Turnbull (Edinburgh), Fonsie Mealy Auctioneers (Ireland), 1stDibs. Price: £300–£1,800 depending on condition and completeness.</span>
+            <span data-lang="fr">Source : Lyon &amp; Turnbull (Édimbourg), Fonsie Mealy Auctioneers (Irlande), 1stDibs. Prix : £300–£1 800 selon état et complétude.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SET 4: French Lacquer & Mother of Pearl -->
+      <div class="set-card">
+        <div class="artisan-flag">✦ Rare</div>
+        <div class="set-illustration">
+          <img src="https://www.michaelbackmanltd.com/wp-content/archived-images/Royal_Chinese_Mother-of-Pearl_Gaming_Counter_Set_1_2-855x635.jpg"
+               alt="Royal gaming counter set of Princess Sophia, daughter of George III — Canton, China c.1815, mother-of-pearl counters in black lacquer box with gilt royal cipher. These Chinese-made sets were the actual game pieces used by European aristocracy for Jeu de Dames and card games."
+               loading="lazy">
+          <div class="photo-credit">Photo © Michael Backman Ltd — Royal MOP gaming set of Princess Sophia, Canton c.1815</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">Canton, China for European courts · c. 1700–1840</div>
+          <div class="set-name" data-lang="en">French Jeu de Dames — Lacquer &amp; Nacre</div>
+          <div class="set-name" data-lang="fr">Jeu de Dames Français — Laque &amp; Nacre</div>
+          <div class="set-period" data-lang="en">The actual game pieces of European aristocracy — Chinese-made for French and English courts</div>
+          <div class="set-period" data-lang="fr">Les véritables pièces de jeu de l'aristocratie européenne — fabriquées en Chine pour les cours françaises et anglaises</div>
+          <div class="set-desc" data-lang="en">The <em>Jeu de Dames</em> pieces used in French and English salons were not made in Paris — they were commissioned in Canton. Chinese artisans carved mother-of-pearl counters of extraordinary fineness, each face bearing a different scene, contained in black lacquer boxes with gilt armorial ciphers. The set shown was made for Princess Sophia, daughter of George III, c.1815. These Chinese export gaming sets were the prestige pieces of the European aristocratic table — a direct product of the Compagnie des Indes trade. Each commission was unique. Royal and armorial sets are museum objects.</div>
+          <div class="set-desc" data-lang="fr">Les pièces du <em>Jeu de Dames</em> utilisées dans les salons français et anglais n'étaient pas fabriquées à Paris — elles étaient commandées à Canton. Les artisans chinois sculptaient des pions en nacre d'une finesse extraordinaire, chaque face portant une scène différente, dans des boîtes en laque noire avec des chiffres armoriaux dorés. L'ensemble présenté fut réalisé pour la princesse Sophie, fille de George III, vers 1815. Chaque commission était unique. Les ensembles royaux et armoriaux sont des objets de musée.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Black Lacquer</span>
+            <span class="material-tag" data-lang="fr">Laque Noire</span>
+            <span class="material-tag" data-lang="en">Mother-of-Pearl</span>
+            <span class="material-tag" data-lang="fr">Nacre</span>
+            <span class="material-tag" data-lang="en">Gilt Tortoiseshell</span>
+            <span class="material-tag" data-lang="fr">Écaille Dorée</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Source: <a href="https://www.michaelbackmanltd.com/archived_objects/royal-mother-of-pearl-counters/" target="_blank">Michael Backman Ltd</a> (archived) · Christie's · Sotheby's · 1stDibs. Armorial/royal sets: £5,000–£30,000+. Standard sets: £400–£2,500. Reference: Yale University Archives (Dyer Collection). Musée des Arts Décoratifs, Paris for French lacquer boards.</span>
+            <span data-lang="fr">Source : <a href="https://www.michaelbackmanltd.com/archived_objects/royal-mother-of-pearl-counters/" target="_blank">Michael Backman Ltd</a> (archivé) · Christie's · Sotheby's · 1stDibs. Ensembles armoriaux/royaux : £5 000–£30 000+. Ensembles standards : £400–£2 500. Référence : Archives Université Yale · Musée des Arts Décoratifs, Paris.</span>
+          </div>
+          <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px; overflow:hidden;">
+            <img src="https://www.michaelbackmanltd.com/wp-content/archived-images/Royal_Chinese_Mother-of-Pearl_Gaming_Counter_Set_3_2-847x600.jpg"
+                 alt="Close-up of royal mother-of-pearl gaming counters — each piece uniquely carved, Canton c.1815"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+            <img src="https://www.michaelbackmanltd.com/wp-content/archived-images/Royal_Chinese_Mother-of-Pearl_Gaming_Counter_Set_8_2-773x668.jpg"
+                 alt="Lacquer box showing fitted inner boxes of mother-of-pearl counters — Princess Sophia's gaming set"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- SET 5: Regency Bone & Mahogany -->
+      <div class="set-card">
+        <div class="set-illustration">
+          <img src="https://tomsk3000.com/wp-content/uploads/2019/11/191122_Draughts_02-scaled.jpg"
+               alt="Edwardian British draughts set c.1900 — heavyweight board with matching wooden pieces box"
+               loading="lazy">
+          <div class="photo-credit">Photo © Tomsk3000 — Edwardian British Draughts c.1900</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">England · c. 1800–1835</div>
+          <div class="set-name" data-lang="en">Regency Bone &amp; Mahogany Travel Set</div>
+          <div class="set-name" data-lang="fr">Coffret de Voyage Régence — Os &amp; Acajou</div>
+          <div class="set-period" data-lang="en">The quintessential gentleman's travel game — chess and draughts in one case</div>
+          <div class="set-period" data-lang="fr">Le jeu de voyage du gentleman — échecs et dames dans un seul coffret</div>
+          <div class="set-desc" data-lang="en">A lacquered mahogany case opening to a reversible inlaid board — chess on one face, draughts on the other — with fitted drawers for turned bone counters (natural and red-stained). The Regency period produced hundreds of these double sets, many of exceptional quality. They were the standard fashionable gift between gentlemen and were carried on Grand Tours, military campaigns, and sea voyages. Complete examples in fine condition are very accessible.</div>
+          <div class="set-desc" data-lang="fr">Un coffret en acajou laqué s'ouvrant sur un plateau réversible incrusté — échecs d'un côté, dames de l'autre — avec tiroirs ajustés pour pions en os tourné (naturel et teint en rouge). La période Régence produisit des centaines de ces doubles ensembles, beaucoup d'une qualité exceptionnelle. Ils étaient le cadeau mondain standard entre gentlemen, emportés en Grand Tour, campagnes militaires et voyages en mer.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Turned Bone</span>
+            <span class="material-tag" data-lang="fr">Os Tourné</span>
+            <span class="material-tag" data-lang="en">Mahogany</span>
+            <span class="material-tag" data-lang="fr">Acajou</span>
+            <span class="material-tag" data-lang="en">Bone Inlay</span>
+            <span class="material-tag" data-lang="fr">Incrustation d'Os</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Source: Bonhams, Christie's, 1stDibs, eBay (for lower-end examples). Very accessible — one of the most common fine antique game types. Price: £250–£1,200.</span>
+            <span data-lang="fr">Source : Bonhams, Christie's, 1stDibs, eBay (pour les exemples moins rares). Très accessible — l'un des types de jeux anciens les plus répandus. Prix : £250–£1 200.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SET 6: Italian Marquetry -->
+      <div class="set-card">
+        <div class="artisan-flag">✦ Artisan</div>
+        <div class="set-illustration">
+          <img src="https://www.sellingantiques.co.uk/photosnew/dealer_jdyas/dealer_jdyas_full_1540227093094-7340633113.jpg"
+               alt="19th century Italian marquetry folding chess and draughts board, Sorrento c.1870 — walnut with boxwood, ebony and fruitwood inlay"
+               loading="lazy">
+          <div class="photo-credit">Photo © AJD Antiques via SellingAntiques.co.uk — Sorrento, Italy c.1870</div>
+        </div>
+        <div class="set-body">
+          <div class="set-provenance">Sorrento / Florence, Italy · c. 1850–1910</div>
+          <div class="set-name" data-lang="en">Italian Marquetry &amp; Stone Pieces</div>
+          <div class="set-name" data-lang="fr">Marqueterie Italienne &amp; Pièces en Pierre</div>
+          <div class="set-period" data-lang="en">The Grand Tour acquisition — intarsia woodwork with alabaster and marble counters</div>
+          <div class="set-period" data-lang="fr">L'acquisition du Grand Tour — marqueterie intarsia avec pions en albâtre et marbre</div>
+          <div class="set-desc" data-lang="en">The Italian tradition of <em>intarsia</em> — wood marquetry using walnut, maple, rosewood, satinwood, and boxwood inlaid in geometric or floral patterns — produced the most visually elaborate boards ever made. Sorrento and Florentine workshops exported these throughout Europe as Grand Tour souvenirs for wealthy travellers. Pieces were carved alabaster (white) versus <em>nero marquina</em> marble (near-black), or Murano glass discs in cobalt and clear. The combination of textures is extraordinary.</div>
+          <div class="set-desc" data-lang="fr">La tradition italienne de l'<em>intarsia</em> — marqueterie en bois de noyer, érable, palissandre, bois de satin et buis dans des motifs géométriques ou floraux — a produit les plateaux les plus visuellement élaborés jamais réalisés. Les ateliers de Sorrente et de Florence les exportèrent dans toute l'Europe comme souvenirs du Grand Tour. Les pièces étaient en albâtre sculpté (blanc) contre marbre <em>nero marquina</em> (quasi-noir), ou disques en verre de Murano.</div>
+          <div class="material-tags">
+            <span class="material-tag" data-lang="en">Wood Marquetry</span>
+            <span class="material-tag" data-lang="fr">Marqueterie</span>
+            <span class="material-tag" data-lang="en">Alabaster</span>
+            <span class="material-tag" data-lang="fr">Albâtre</span>
+            <span class="material-tag" data-lang="en">Nero Marble</span>
+            <span class="material-tag" data-lang="fr">Marbre Nero</span>
+          </div>
+          <div class="set-source">
+            <span data-lang="en">Source: 1stDibs, Sotheby's, specialist Italian dealers. More common than French lacquer sets — Grand Tour production was significant. Price: €400–€3,500. Also: Murano glass variants from €300.</span>
+            <span data-lang="fr">Source : 1stDibs, Sotheby's, marchands italiens spécialisés. Plus courant que les ensembles français en laque — la production Grand Tour était importante. Prix : 400–3 500 €. Aussi : variantes en verre de Murano dès 300 €.</span>
+          </div>
+          <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px; overflow:hidden;">
+            <img src="https://www.sellingantiques.co.uk/photosnew/dealer_jdyas/dealer_jdyas_full_1540227114422-5568232499.jpg"
+                 alt="Italian Sorrento marquetry board detail — walnut, boxwood, olive wood and fruitwood inlay c.1870"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+            <img src="https://www.sellingantiques.co.uk/photosnew/dealer_jdyas/dealer_jdyas_full_1540227126375-6581160572.jpg"
+                 alt="Italian marquetry draughts board — closed, showing exterior marquetry pattern"
+                 style="width:100%;height:90px;object-fit:cover;border:1px solid var(--cream-dark);" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sets-grid -->
+  </div>
+</section>
+
+<!-- ══ ORNAMENTAL DIVIDER ════════════════════════════════════════ -->
+<div class="container">
+  <div class="rule"><div class="rule-inner" data-lang="en">Regional Traditions</div><div class="rule-inner" data-lang="fr">Traditions Régionales</div></div>
+</div>
+
+<!-- ══ VARIANTS ══════════════════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:28px;">
+      <span data-lang="en">One Game · Many Traditions · Different Objects</span>
+      <span data-lang="fr">Un Jeu · Beaucoup de Traditions · Des Objets Différents</span>
+    </p>
+    <p style="color:var(--ivory-mid);font-family:var(--font-body);margin-bottom:28px;max-width:680px;font-style:italic;">
+      <span data-lang="en">Rule variants across cultures weren't merely technical — they shaped the physical sets made in each tradition. The 10×10 board demanded larger, more imposing pieces. Turkish draughts' orthogonal movement produced different proportions. Each tradition has its own material culture.</span>
+      <span data-lang="fr">Les variantes de règles entre cultures n'étaient pas seulement techniques — elles façonnaient les ensembles physiques de chaque tradition. Le plateau 10×10 exigeait des pièces plus grandes et imposantes. Le mouvement orthogonal des dames turques créait des proportions différentes. Chaque tradition a sa propre culture matérielle.</span>
+    </p>
+
+    <div style="border:1px solid var(--brass-border);overflow:hidden;">
+      <table class="variants-table">
+        <thead>
+          <tr>
+            <th data-lang="en">Variant</th><th data-lang="fr">Variante</th>
+            <th data-lang="en">Board</th><th data-lang="fr">Plateau</th>
+            <th data-lang="en">Key Rule</th><th data-lang="fr">Règle Clé</th>
+            <th data-lang="en">Depth</th><th data-lang="fr">Profondeur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">English Draughts</div>
+              <div class="v-name" data-lang="fr">Dames Anglaises</div>
+              <div class="v-country" data-lang="en">England · USA (Checkers)</div>
+              <div class="v-country" data-lang="fr">Angleterre · USA (Checkers)</div>
+            </td>
+            <td data-lang="en">8×8 · 12 pieces</td>
+            <td data-lang="fr">8×8 · 12 pièces</td>
+            <td data-lang="en">Men cannot capture backward. Kings move one square.</td>
+            <td data-lang="fr">Les pions ne peuvent pas prendre vers l'arrière. Les dames avancent d'une case.</td>
+            <td data-lang="en">★★★ The simplest — but still solved only in 2007.</td>
+            <td data-lang="fr">★★★ La plus simple — mais résolue seulement en 2007.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">International (Jeu de Dames)</div>
+              <div class="v-name" data-lang="fr">Dames Internationales</div>
+              <div class="v-country" data-lang="en">Netherlands · Belgium · France</div>
+              <div class="v-country" data-lang="fr">Pays-Bas · Belgique · France</div>
+            </td>
+            <td data-lang="en">10×10 · 20 pieces</td>
+            <td data-lang="fr">10×10 · 20 pièces</td>
+            <td data-lang="en">Flying kings (traverse board). Men can capture backward.</td>
+            <td data-lang="fr">Dames volantes (traversent le plateau). Les pions peuvent prendre vers l'arrière.</td>
+            <td data-lang="en">★★★★★ The deepest variant. Rivalling chess in endgame theory.</td>
+            <td data-lang="fr">★★★★★ La variante la plus profonde. Rivale des échecs en théorie des finales.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">Russian Shashki</div>
+              <div class="v-name" data-lang="fr">Shashki Russe</div>
+              <div class="v-country" data-lang="en">Russia · Eastern Europe</div>
+              <div class="v-country" data-lang="fr">Russie · Europe de l'Est</div>
+            </td>
+            <td data-lang="en">8×8 · 12 pieces</td>
+            <td data-lang="fr">8×8 · 12 pièces</td>
+            <td data-lang="en">Men can capture backward. Flying kings. Pieces promoted mid-capture.</td>
+            <td data-lang="fr">Les pions peuvent prendre vers l'arrière. Dames volantes. Promotion en cours de prise.</td>
+            <td data-lang="en">★★★★ More complex than English. The dominant Eastern European form.</td>
+            <td data-lang="fr">★★★★ Plus complexe que les dames anglaises. La forme dominante d'Europe de l'Est.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">Turkish Dama</div>
+              <div class="v-name" data-lang="fr">Dama Turc</div>
+              <div class="v-country" data-lang="en">Turkey · Middle East</div>
+              <div class="v-country" data-lang="fr">Turquie · Moyen-Orient</div>
+            </td>
+            <td data-lang="en">8×8 · 16 pieces</td>
+            <td data-lang="fr">8×8 · 16 pièces</td>
+            <td data-lang="en">Orthogonal movement (not diagonal). Pieces start on all squares.</td>
+            <td data-lang="fr">Mouvement orthogonal (non diagonal). Pièces sur toutes les cases au départ.</td>
+            <td data-lang="en">★★★ A completely different feeling — almost a different game.</td>
+            <td data-lang="fr">★★★ Une sensation totalement différente — presque un autre jeu.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">Italian Dama</div>
+              <div class="v-name" data-lang="fr">Dama Italienne</div>
+              <div class="v-country" data-lang="en">Italy</div>
+              <div class="v-country" data-lang="fr">Italie</div>
+            </td>
+            <td data-lang="en">8×8 · 12 pieces</td>
+            <td data-lang="fr">8×8 · 12 pièces</td>
+            <td data-lang="en">Kings must capture more pieces if available. No backward capture for men.</td>
+            <td data-lang="fr">Les dames doivent prendre le plus grand nombre de pièces possible. Pions sans prise arrière.</td>
+            <td data-lang="en">★★★★ Strongest mandatory capture rule — creates forcing sequences.</td>
+            <td data-lang="fr">★★★★ Règle de prise obligatoire la plus forte — crée des séquences forçantes.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="v-name" data-lang="en">Canadian Draughts</div>
+              <div class="v-name" data-lang="fr">Dames Canadiennes</div>
+              <div class="v-country" data-lang="en">Canada · Québec</div>
+              <div class="v-country" data-lang="fr">Canada · Québec</div>
+            </td>
+            <td data-lang="en">12×12 · 30 pieces</td>
+            <td data-lang="fr">12×12 · 30 pièces</td>
+            <td data-lang="en">The largest standard variant. Spectacular boards were made for this.</td>
+            <td data-lang="fr">La plus grande variante standard. Des plateaux spectaculaires furent créés pour cette version.</td>
+            <td data-lang="en">★★★★★ The most complex of all. Rarely seen outside Quebec.</td>
+            <td data-lang="fr">★★★★★ La plus complexe de toutes. Rarement vue hors du Québec.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ORNAMENTAL DIVIDER ════════════════════════════════════════ -->
+<div class="container">
+  <div class="rule"><div class="rule-inner" data-lang="en">Collector's Acquisition Guide</div><div class="rule-inner" data-lang="fr">Guide d'Acquisition du Collectionneur</div></div>
+</div>
+
+<!-- ══ ACQUISITION ════════════════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="acq-grid">
+
+      <div class="acq-card">
+        <div class="acq-icon">🏛️</div>
+        <div class="acq-title" data-lang="en">Specialist Dealers</div>
+        <div class="acq-title" data-lang="fr">Marchands Spécialisés</div>
+        <div class="acq-body" data-lang="en"><strong><a href="https://chessantiques.com" target="_blank">ChessAntiques.com</a></strong> — the most trusted English-language source for antique game sets, including Jaques of London ivory draughts. Stock rotates. <strong><a href="https://www.1stdibs.com/buy/antique-draughts/" target="_blank">1stDibs</a></strong> aggregates 30+ dealers globally. <strong>Puckering's Antiques</strong> (UK) maintains a specialist games cabinet.</div>
+        <div class="acq-body" data-lang="fr"><strong><a href="https://chessantiques.com" target="_blank">ChessAntiques.com</a></strong> — la source anglophone la plus fiable pour les jeux anciens, dont les dames en ivoire Jaques of London. <strong><a href="https://www.1stdibs.com/buy/antique-draughts/" target="_blank">1stDibs</a></strong> agrège plus de 30 marchands mondiaux. <strong>Puckering's Antiques</strong> (UK) dispose d'un cabinet de jeux spécialisé.</div>
+        <div class="acq-price" data-lang="en">Entry: £300 · Fine: £800–£2,500 · Museum: £5,000+</div>
+        <div class="acq-price" data-lang="fr">Entrée : £300 · Beau : £800–£2 500 · Musée : £5 000+</div>
+      </div>
+
+      <div class="acq-card">
+        <div class="acq-icon">🔨</div>
+        <div class="acq-title" data-lang="en">Auction Houses</div>
+        <div class="acq-title" data-lang="fr">Maisons de Vente</div>
+        <div class="acq-body" data-lang="en"><strong>Bonhams</strong> and <strong>Christie's</strong> (decorative arts sales) for English sets. <strong>Lyon &amp; Turnbull</strong> (Edinburgh) for Scottish and Irish bog oak. <strong>Sotheby's Paris</strong> and <strong>Drouot</strong> for French lacquer. <strong>Dorotheum</strong> (Vienna) for Central European and Russian sets. <strong>Fonsie Mealy</strong> (Ireland) for Irish specimens.</div>
+        <div class="acq-body" data-lang="fr"><strong>Bonhams</strong> et <strong>Christie's</strong> (ventes arts décoratifs) pour les ensembles anglais. <strong>Lyon &amp; Turnbull</strong> (Édimbourg) pour le chêne des tourbières. <strong>Sotheby's Paris</strong> et <strong>Drouot</strong> pour la laque française. <strong>Dorotheum</strong> (Vienne) pour les ensembles d'Europe centrale et russes.</div>
+        <div class="acq-price" data-lang="en">Watch: Decorative Arts, Games, Antiques — not Toys &amp; Games</div>
+        <div class="acq-price" data-lang="fr">Surveiller : Arts Décoratifs, Jeux, Antiquités — pas Jouets &amp; Jeux</div>
+      </div>
+
+      <div class="acq-card">
+        <div class="acq-icon">📐</div>
+        <div class="acq-title" data-lang="en">What to Look For</div>
+        <div class="acq-title" data-lang="fr">Quoi Rechercher</div>
+        <div class="acq-body" data-lang="en">Complete sets (all 24 pieces, ideally original box). Ivory before c.1950 is legal to trade with CITES documentation. Check that pieces are matching — Jaques sets were often "mixed" by dealers. The board is less critical than the pieces; boards were replaced, pieces survived. Provenance adds value but is not essential at sub-£2,000 levels.</div>
+        <div class="acq-body" data-lang="fr">Ensembles complets (24 pièces, idéalement boîte d'origine). L'ivoire avant c.1950 est légal au commerce avec documentation CITES. Vérifier que les pièces sont assorties — les ensembles Jaques étaient souvent "mélangés". Le plateau est moins critique que les pièces ; les plateaux étaient remplacés, les pièces survivaient. La provenance ajoute de la valeur mais n'est pas essentielle en dessous de £2 000.</div>
+        <div class="acq-price" data-lang="en">Note: CITES documentation required for ivory export/import</div>
+        <div class="acq-price" data-lang="fr">Note : Documentation CITES requise pour l'ivoire</div>
+      </div>
+
+      <div class="acq-card">
+        <div class="acq-icon">📚</div>
+        <div class="acq-title" data-lang="en">Reference &amp; Research</div>
+        <div class="acq-title" data-lang="fr">Référence &amp; Recherche</div>
+        <div class="acq-body" data-lang="en"><a href="https://www.online-museum-of-checkers-history.com/" target="_blank">Online Museum of Checkers History</a> — rare private collections documented, including the amber board. <strong>Bayerisches Nationalmuseum</strong> (Munich) — the amber board. <strong>Pitt Rivers Museum</strong> (Oxford) — Alquerque boards from Egypt. <strong>Musée des Arts Décoratifs</strong> (Paris) — French lacquer games. BGG "Draughts" page for rules references.</div>
+        <div class="acq-body" data-lang="fr"><a href="https://www.online-museum-of-checkers-history.com/" target="_blank">Musée en Ligne de l'Histoire des Dames</a> — collections privées rares documentées, dont le plateau en ambre. <strong>Bayerisches Nationalmuseum</strong> (Munich). <strong>Pitt Rivers Museum</strong> (Oxford) — plateaux d'Alquerque d'Égypte. <strong>Musée des Arts Décoratifs</strong> (Paris) — jeux en laque française.</div>
+        <div class="acq-price" data-lang="en">Free to access — bookmarked for scouting</div>
+        <div class="acq-price" data-lang="fr">Accès gratuit — référence pour l'exploration</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ORNAMENT ════════════════════════════════════════════ -->
+<footer style="padding:40px 0;border-top:1px solid var(--brass-border);margin-top:40px;">
+  <div class="container" style="text-align:center;">
+    <p class="ornament">✦ &nbsp; ✦ &nbsp; ✦</p>
+    <p style="font-family:var(--font-display);font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--brass-deep);margin-top:14px;">
+      <span data-lang="en">Cabinet Ludo · A Family Game Library · Est. 2024</span>
+      <span data-lang="fr">Cabinet Ludo · Une Bibliothèque Ludique de Famille · Fondée 2024</span>
+    </p>
+    <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--ivory-dim);margin-top:8px;">
+      <a href="index.html" style="color:var(--ivory-dim);" data-lang="en">← Back to the Map Room</a>
+      <a href="index.html" style="color:var(--ivory-dim);" data-lang="fr">← Retour à la Salle des Cartes</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ══ LANGUAGE TOGGLE SCRIPT ════════════════════════════════════ -->
+<script>
+  // Language toggle
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      document.documentElement.className = 'lang-' + lang;
+      langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    });
+  });
+</script>
+
+</body>
+</html>

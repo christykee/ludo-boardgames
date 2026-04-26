@@ -1,64 +1,70 @@
 /* ═══════════════════════════════════════════════════════════════════
-   CABINET LUDO — Master Stylesheet v3
-   Jules Verne · 20,000 Leagues Under the Sea · True Steampunk
+   CABINET LUDO — Master Stylesheet v4
+   Jules Verne · 20,000 Leagues Under the Sea · The Cartouche-Interior Sea
    ─────────────────────────────────────────────────────────────────
-   DESIGN LOGIC:
-   The body IS the ocean — deep, dark teal.
-   Cards and panels ARE the lit cabin of the Nautilus — warm cream
-   parchment floating inside heavy brass frames.
-   Gold ornament borders frame everything like a Victorian engraving.
+   DESIGN LOGIC (v4 PIVOT — 2026-04-26):
+   The body IS the SEA INSIDE THE CARTOUCHE on the Verne cover —
+   a lit, lived-in oceanic JADE, not the abyssal black-green of v3.
+   Cream parchment cards still float inside heavy brass frames, but
+   they now sit on jade water lit by sea-light, ornamented with kelp,
+   scallops, jellyfish, and Beaux-Arts foliate scrollwork.
+   The palette went up a full luminance step. The page is now alive.
    ═══════════════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
-/* ── JULES VERNE COLOUR PALETTE v3 ── */
+/* ── JULES VERNE COLOUR PALETTE v4 — THE LIT JADE SEA ── */
 :root {
-  /* === THE OCEAN (dark backgrounds — the dominant environment) === */
-  --ocean-deep:     #051410;   /* the abyss — darkest corners */
-  --ocean-mid:      #0A2A1C;   /* the sea floor — main body bg */
-  --ocean-surface:  #0D3828;   /* shallow water — section bg */
-  --ocean-bright:   #145038;   /* where light filters through */
-  --ocean-teal:     #1A7060;   /* the bright Nautilus teal */
-  --ocean-light:    #28A090;   /* turquoise gleam */
-  --ocean-pale:     #5AC0B0;   /* pale aquamarine highlight */
+  /* === THE OCEAN (oceanic jade — lit and alive, not abyssal) === */
+  --ocean-deep:     #0d3535;   /* the deepest hull tone — used for nav + footer only */
+  --ocean-mid:      #1f5f5d;   /* MAIN page bg — the foundational lit sea (was #0A2A1C) */
+  --ocean-surface:  #2a7270;   /* brighter sea — section panels (was #0D3828) */
+  --ocean-bright:   #3a8a87;   /* the bright water inside the Verne cartouche */
+  --ocean-teal:     #4ea6a0;   /* the Nautilus teal — accent / pills */
+  --ocean-light:    #7fc4be;   /* turquoise gleam */
+  --ocean-pale:     #b3dfd9;   /* pale aquamarine highlight — quiet emphasis */
 
-  /* === THE CABIN (cream panels — lit interiors, the Nautilus salon) === */
-  --cream:          #FAF0D5;   /* aged parchment — card background */
-  --cream-bright:   #FFFDF0;   /* bright cream — modal body */
-  --cream-mid:      #F0E4C0;   /* medium parchment — section dividers */
-  --cream-warm:     #E8D8A8;   /* warm parchment — darker cream areas */
-  --cream-dark:     #C8B880;   /* deep parchment — borders on cream */
+  /* === THE CABIN (cream panels — warmly lit interiors of the Nautilus salon) === */
+  --cream:          #FAF0D5;
+  --cream-bright:   #FFFDF0;
+  --cream-mid:      #F0E4C0;
+  --cream-warm:     #E8D8A8;
+  --cream-dark:     #C8B880;
 
-  /* === THE BRASS (gold ornament — borders, titles, instruments) === */
-  --brass:          #C8960C;   /* aged brass — primary gold */
-  --brass-bright:   #E8C030;   /* polished brass — highlights */
-  --brass-deep:     #906810;   /* tarnished brass — shadows */
-  --brass-pale:     #F0D878;   /* pale gold — glow */
-  --brass-glow:     rgba(200,150,12,0.14);
-  --brass-border:   rgba(200,150,12,0.40);
-  --brass-border-hi: rgba(232,192,48,0.70);
-  --brass-border-lo: rgba(144,104,16,0.30);
+  /* === THE BRASS — warm amber gold === */
+  --brass:          #d4a52e;   /* warmer amber (was #C8960C) */
+  --brass-bright:   #f0cc55;   /* polished — highlights */
+  --brass-deep:     #9c7820;   /* tarnished — shadows */
+  --brass-pale:     #f6e08d;   /* glow */
+  --brass-glow:     rgba(212,165,46,0.18);
+  --brass-border:   rgba(212,165,46,0.45);
+  --brass-border-hi: rgba(240,204,85,0.75);
+  --brass-border-lo: rgba(156,120,32,0.35);
 
-  /* === TEXT — ink on parchment OR ivory on ocean === */
+  /* === TEXT === */
   --ink:            #1A1008;   /* pure dark ink — on cream */
-  --ink-mid:        #2A2010;   /* medium ink — body text on cream */
-  --ink-light:      #5A4A30;   /* faded ink — secondary on cream */
-  --ink-faint:      #8A7A58;   /* very faded — captions on cream */
+  --ink-mid:        #2A2010;
+  --ink-light:      #5A4A30;
+  --ink-faint:      #8A7A58;
 
-  --ivory:          #F0E4C0;   /* ivory — primary text on ocean */
-  --ivory-bright:   #FFF8E8;   /* bright ivory — headings on ocean */
-  --ivory-mid:      #C8B878;   /* warm ivory — secondary on ocean */
-  --ivory-dim:      #908050;   /* dim ivory — muted on ocean */
+  --ivory:          #F2E8C8;   /* ivory — primary text on ocean (slightly warmer) */
+  --ivory-bright:   #FFF8E8;
+  --ivory-mid:      #DCCC92;   /* lifted from #C8B878 to read better on lighter sea */
+  --ivory-dim:      #A89870;   /* lifted from #908050 */
 
-  /* === NAVIGATION (darkest — the hull of the Nautilus) === */
-  --nav-bg:         #040C08;   /* near black — darkest element */
-  --nav-border:     rgba(200,150,12,0.50);
+  /* === NAVIGATION (the Nautilus hull — deeper than the sea) === */
+  --nav-bg:         #0d3535;   /* deep teal hull (was near-black) */
+  --nav-border:     rgba(212,165,46,0.55);
 
-  /* === BORDERS & STRUCTURE === */
-  --border-brass:   rgba(200,150,12,0.40);
-  --border-brass-hi: rgba(232,192,48,0.65);
-  --border-ocean:   rgba(26,112,96,0.35);
-  --border-cream:   rgba(200,180,120,0.50);
+  /* === BORDERS === */
+  --border-brass:   rgba(212,165,46,0.45);
+  --border-brass-hi: rgba(240,204,85,0.70);
+  --border-ocean:   rgba(78,166,160,0.40);
+  --border-cream:   rgba(200,180,120,0.55);
+
+  /* === DECORATIVE SHADOW LAYERS === */
+  --panel-shadow:   0 4px 18px rgba(13,53,53,0.45);
+  --panel-shadow-hi: 0 8px 36px rgba(13,53,53,0.55);
 
   /* === TYPOGRAPHY === */
   --font-display:  'Cinzel', Georgia, serif;
@@ -75,9 +81,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* THE OCEAN — deep dark teal is the page itself */
+/* THE OCEAN — lit jade sea is the page itself (v4) */
 body {
-  background: var(--ocean-mid);
+  /* Lifted, layered jade — sea-light wash from the surface, deepening toward the hull */
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%,   rgba(179,223,217,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(13,53,53,0.55)    0%, transparent 60%),
+    linear-gradient(180deg, var(--ocean-mid) 0%, var(--ocean-surface) 60%, var(--ocean-mid) 100%);
   color: var(--ivory);
   font-family: var(--font-body);
   font-size: 1.05rem;
@@ -86,18 +96,43 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ocean depth texture — subtle deep-sea grid, barely visible */
+/* Ambient sea-life: drifting kelp + bubble glints — fixed, low-opacity */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40h80M40 0v80' stroke='%2328A090' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(26,112,96,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(5,20,16,0.6) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(5,20,16,0.6) 0%, transparent 70%);
+    /* Kelp fronds — large, drifting, low-opacity brass silhouettes */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='720' viewBox='0 0 420 720'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1.1' stroke-linecap='round' opacity='0.10'%3E%3Cpath d='M60,720 C72,640 48,560 60,480 C72,400 48,320 60,240 C72,160 48,80 60,0'/%3E%3Cpath d='M60,640 q24,-10 36,-26'/%3E%3Cpath d='M60,560 q-24,-12 -36,-30'/%3E%3Cpath d='M60,480 q24,-10 36,-26'/%3E%3Cpath d='M60,400 q-24,-12 -36,-30'/%3E%3Cpath d='M60,320 q24,-10 36,-26'/%3E%3Cpath d='M60,240 q-24,-12 -36,-30'/%3E%3Cpath d='M60,160 q24,-10 36,-26'/%3E%3Cpath d='M360,720 C348,640 372,560 360,480 C348,400 372,320 360,240 C348,160 372,80 360,0'/%3E%3Cpath d='M360,600 q-24,-10 -36,-26'/%3E%3Cpath d='M360,520 q24,-12 36,-30'/%3E%3Cpath d='M360,440 q-24,-10 -36,-26'/%3E%3Cpath d='M360,360 q24,-12 36,-30'/%3E%3Cpath d='M360,280 q-24,-10 -36,-26'/%3E%3Cpath d='M360,200 q24,-12 36,-30'/%3E%3Cpath d='M360,120 q-24,-10 -36,-26'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Bubble glints — tiny pale-aqua dots scattered */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='%23b3dfd9' opacity='0.10'%3E%3Ccircle cx='30' cy='80' r='1.4'/%3E%3Ccircle cx='160' cy='40' r='1'/%3E%3Ccircle cx='190' cy='180' r='1.6'/%3E%3Ccircle cx='80' cy='200' r='1'/%3E%3Ccircle cx='210' cy='110' r='1.2'/%3E%3Ccircle cx='10' cy='160' r='1'/%3E%3Ccircle cx='110' cy='130' r='1.4'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Quiet caustic light shimmer — sea light from above */
+    radial-gradient(ellipse 70% 30% at 50% 0%, rgba(179,223,217,0.10) 0%, transparent 60%);
+  background-repeat: repeat-y, repeat, no-repeat;
+  background-position: left top, 0 0, top center;
+  background-size: 420px 720px, 220px 220px, 100% 100%;
   pointer-events: none;
   z-index: 0;
+}
+
+/* Drifting sea-life — slow ambient sway on the kelp layer */
+@keyframes drift-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background-image:
+    /* Jellyfish silhouette top-right */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='200' viewBox='0 0 140 200'%3E%3Cg fill='none' stroke='%23f6e08d' stroke-width='1' stroke-linecap='round' opacity='0.12'%3E%3Cpath d='M30,60 q40,-50 80,0 q-3,12 -10,18 l-60,0 q-7,-6 -10,-18 z'/%3E%3Cpath d='M70,40 q-12,-12 -30,-8 M70,40 q12,-12 30,-8'/%3E%3Cpath d='M44,80 q-4,30 -10,60 q-2,12 6,18'/%3E%3Cpath d='M58,82 q-2,40 -8,80 q-2,18 4,28'/%3E%3Cpath d='M70,82 q0,40 0,80 q0,20 6,32'/%3E%3Cpath d='M82,82 q2,40 8,80 q2,18 -4,28'/%3E%3Cpath d='M96,80 q4,30 10,60 q2,12 -6,18'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Scallop shell silhouette bottom-left */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='140' viewBox='0 0 160 140'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1' stroke-linecap='round' opacity='0.10'%3E%3Cpath d='M80,15 C30,30 10,90 80,125 C150,90 130,30 80,15 Z'/%3E%3Cpath d='M80,15 L80,125'/%3E%3Cpath d='M80,15 C70,40 65,80 60,125'/%3E%3Cpath d='M80,15 C90,40 95,80 100,125'/%3E%3Cpath d='M80,15 C58,38 45,80 40,120'/%3E%3Cpath d='M80,15 C102,38 115,80 120,120'/%3E%3Cpath d='M80,15 C50,30 30,80 24,116'/%3E%3Cpath d='M80,15 C110,30 130,80 136,116'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat;
+  background-position: calc(100% - 32px) 96px, 28px calc(100% - 80px);
+  background-size: 140px 200px, 160px 140px;
+  animation: drift-slow 14s ease-in-out infinite;
 }
 
 /* ── TYPOGRAPHY ── */
@@ -155,7 +190,7 @@ img { display: block; max-width: 100%; }
   height: var(--nav-h);
   background: var(--nav-bg);
   border-bottom: 1px solid var(--brass-deep);
-  box-shadow: 0 2px 0 rgba(200,150,12,0.25), 0 4px 20px rgba(4,12,8,0.8);
+  box-shadow: 0 2px 0 rgba(212,165,46,0.30), 0 4px 20px rgba(13,53,53,0.65);
   display: flex; align-items: center;
 }
 /* Double-line gold border under nav */
@@ -190,11 +225,12 @@ img { display: block; max-width: 100%; }
 .lang-btn.active { background: var(--brass); color: var(--nav-bg); }
 .lang-btn:hover:not(.active) { color: var(--brass-bright); }
 
-/* ── HERO — The Nautilus surfaces ── */
+/* ── HERO — The Nautilus surfaces into lit jade water ── */
 .hero {
   min-height: calc(100vh - var(--nav-h));
   background:
-    linear-gradient(170deg, var(--nav-bg) 0%, var(--ocean-surface) 45%, var(--ocean-bright) 100%);
+    radial-gradient(ellipse 60% 40% at 50% 105%, rgba(78,166,160,0.30) 0%, transparent 70%),
+    linear-gradient(170deg, var(--ocean-deep) 0%, var(--ocean-mid) 35%, var(--ocean-bright) 100%);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; padding: 80px 28px; position: relative; overflow: hidden;
 }
@@ -204,19 +240,26 @@ img { display: block; max-width: 100%; }
   position: absolute; inset: 20px;
   border: 1px solid var(--brass-border);
   box-shadow:
-    inset 0 0 0 3px rgba(4,12,8,0.8),
+    inset 0 0 0 3px rgba(13,53,53,0.65),
     inset 0 0 0 4px var(--brass-border-lo),
-    0 0 60px rgba(4,12,8,0.5);
+    0 0 60px rgba(13,53,53,0.45);
   pointer-events: none;
 }
-/* Radial ocean glow */
+/* Radial ocean glow + corner cartouches */
 .hero::after {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 110%, rgba(26,112,96,0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 20% at 15% 50%, rgba(200,150,12,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 30% 20% at 85% 50%, rgba(200,150,12,0.06) 0%, transparent 50%);
+    /* TL cartouche flourish — fern + scroll */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round' opacity='0.45'%3E%3Cpath d='M20,20 L70,20'/%3E%3Cpath d='M20,20 L20,70'/%3E%3Cpath d='M30,30 q20,-4 36,-12 M30,30 q-4,20 -12,36'/%3E%3Cpath d='M40,40 q24,8 60,4 q-32,4 -56,28 q24,-32 -4,-56 q-4,32 -28,60 q32,-24 56,-4'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+    /* TR mirror */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round' opacity='0.45' transform='translate(180,0) scale(-1,1)'%3E%3Cpath d='M20,20 L70,20'/%3E%3Cpath d='M20,20 L20,70'/%3E%3Cpath d='M30,30 q20,-4 36,-12 M30,30 q-4,20 -12,36'/%3E%3Cpath d='M40,40 q24,8 60,4 q-32,4 -56,28 q24,-32 -4,-56 q-4,32 -28,60 q32,-24 56,-4'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse 80% 50% at 50% 110%, rgba(78,166,160,0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 20% at 15% 50%, rgba(212,165,46,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 20% at 85% 50%, rgba(212,165,46,0.10) 0%, transparent 50%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: 28px 28px, calc(100% - 28px) 28px, center, left center, right center;
+  background-size: 180px 180px, 180px 180px, 100% 100%, 100% 100%, 100% 100%;
   pointer-events: none;
 }
 
@@ -237,7 +280,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--font-display); font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 700; letter-spacing: 0.12em; color: var(--ivory-bright);
   line-height: 1.05; margin-bottom: 8px; position: relative; z-index: 1;
-  text-shadow: 0 2px 30px rgba(4,12,8,0.8);
+  text-shadow: 0 2px 30px rgba(13,53,53,0.65);
 }
 .hero-title em {
   font-style: italic; color: var(--ocean-pale);
@@ -259,21 +302,22 @@ img { display: block; max-width: 100%; }
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1px; margin-top: 56px; position: relative; z-index: 1;
   border: 1px solid var(--brass-border-hi);
-  box-shadow: 0 0 0 3px rgba(4,12,8,0.9), 0 0 0 4px var(--brass-border-lo);
+  box-shadow: 0 0 0 3px rgba(13,53,53,0.85), 0 0 0 4px var(--brass-border-lo);
 }
 .gateway {
-  background: rgba(10,42,28,0.70); backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(13,53,53,0.88), rgba(31,95,93,0.92));
+  backdrop-filter: blur(6px);
   padding: 36px 30px; display: flex; flex-direction: column; gap: 12px;
-  cursor: pointer; text-align: left; transition: background var(--t);
+  cursor: pointer; text-align: left; transition: background var(--t), transform var(--t);
   text-decoration: none; color: inherit; position: relative; overflow: hidden;
-  border: 1px solid rgba(200,150,12,0.12);
+  border: 1px solid rgba(212,165,46,0.18);
 }
 .gateway::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: var(--accent-color, var(--brass)); transform: scaleX(0);
   transition: transform var(--t); transform-origin: left;
 }
-.gateway:hover { background: rgba(13,56,40,0.85); }
+.gateway:hover { background: linear-gradient(180deg, rgba(13,53,53,0.78), rgba(42,114,112,0.95)); }
 .gateway:hover::before { transform: scaleX(1); }
 .gateway:hover .gateway-arrow { transform: translateX(6px); color: var(--brass-bright); }
 .gateway-icon { font-size: 1.8rem; margin-bottom: 4px; }
@@ -284,13 +328,200 @@ img { display: block; max-width: 100%; }
 .gateway[data-accent="gold"]   { --accent-color: var(--brass); }
 .gateway[data-accent="teal"]   { --accent-color: var(--ocean-pale); }
 .gateway[data-accent="indigo"] { --accent-color: #7A9ABA; }
+.gateway[data-accent="brass"]  { --accent-color: #E8B860; }
 
-/* ── PAGE HERO (inner pages) ── */
+/* ── "WHAT TO PLAY TONIGHT" filter bar — Collection ── */
+.tonight-bar {
+  margin: 0 0 28px;
+  padding: 22px 24px 20px;
+  background: linear-gradient(180deg, rgba(13,53,53,0.92), rgba(31,95,93,0.95));
+  border: 1px solid var(--brass-border-lo);
+  position: relative;
+}
+.tonight-bar::before, .tonight-bar::after {
+  content: ''; position: absolute; width: 16px; height: 16px;
+  border: 1px solid var(--brass);
+}
+.tonight-bar::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.tonight-bar::after  { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.tonight-eyebrow {
+  font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.28em;
+  color: var(--brass); text-transform: uppercase; text-align: center;
+  margin: 0 0 16px;
+}
+.tonight-filters {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px;
+  justify-content: center;
+}
+.tonight-field {
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: var(--font-display);
+}
+.tonight-label {
+  font-size: 0.55rem; letter-spacing: 0.22em; color: var(--ivory-mid);
+  text-transform: uppercase;
+}
+.tonight-field select {
+  background: rgba(13,53,53,0.78); color: var(--ivory-bright);
+  border: 1px solid var(--brass-border-lo);
+  padding: 7px 12px; font-family: var(--font-body); font-size: 0.85rem;
+  min-width: 120px; cursor: pointer; transition: border-color var(--t);
+}
+.tonight-field select:hover, .tonight-field select:focus {
+  border-color: var(--brass); outline: none;
+}
+.tonight-reset {
+  background: transparent; color: var(--brass);
+  border: 1px solid var(--brass-border-lo);
+  padding: 7px 16px; font-family: var(--font-display);
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  cursor: pointer; transition: all var(--t);
+}
+.tonight-reset:hover {
+  background: rgba(212,165,46,0.14); border-color: var(--brass); color: var(--ivory-bright);
+}
+
+/* ── HERITAGE PAGE — ancient classics + antique hunting ── */
+.heritage-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px; margin-top: 32px;
+  border: 1px solid var(--brass-border-hi);
+  box-shadow: 0 0 0 3px rgba(13,53,53,0.85), 0 0 0 4px var(--brass-border-lo);
+}
+.heritage-card {
+  background: linear-gradient(180deg, rgba(13,53,53,0.88), rgba(31,95,93,0.92));
+  backdrop-filter: blur(6px);
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 10px;
+  text-decoration: none; color: inherit; transition: background var(--t), transform var(--t);
+  border: 1px solid rgba(212,165,46,0.20); position: relative;
+}
+.heritage-card:hover {
+  background: linear-gradient(180deg, rgba(13,53,53,0.78), rgba(42,114,112,0.95));
+  transform: translateY(-2px);
+}
+.heritage-card.is-stub { opacity: 0.62; cursor: default; }
+.heritage-card.is-stub:hover {
+  background: linear-gradient(180deg, rgba(13,53,53,0.88), rgba(31,95,93,0.92));
+  transform: none;
+}
+.heritage-era {
+  font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.28em;
+  color: var(--brass-deep); text-transform: uppercase;
+}
+.heritage-name {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--ivory-bright);
+}
+.heritage-orig {
+  font-family: var(--font-heading); font-style: italic; font-size: 0.85rem;
+  color: var(--ivory-mid);
+}
+.heritage-blurb {
+  font-family: var(--font-body); font-size: 0.85rem; color: var(--ivory-mid);
+  line-height: 1.65; flex: 1;
+}
+.heritage-status {
+  font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.28em;
+  color: var(--brass); text-transform: uppercase; margin-top: 4px;
+}
+.heritage-status.coming { color: var(--brass-deep); }
+
+/* ── ANTIQUE HUNTING GROUNDS — vendor / auction library ── */
+.hunt-intro {
+  font-family: var(--font-body); font-size: 0.95rem; color: var(--ivory-mid);
+  line-height: 1.75; max-width: 760px; margin: 0 auto 32px; text-align: center;
+}
+.hunt-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px; margin-top: 24px;
+}
+.hunt-card {
+  background: linear-gradient(180deg, rgba(13,53,53,0.92), rgba(31,95,93,0.95));
+  border: 1px solid var(--brass-border-lo);
+  padding: 26px 26px 22px; position: relative;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: border-color var(--t), transform var(--t);
+}
+.hunt-card::before, .hunt-card::after {
+  content: ''; position: absolute; width: 14px; height: 14px;
+  border: 1px solid var(--brass);
+}
+.hunt-card::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.hunt-card::after  { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.hunt-card:hover { border-color: var(--brass); transform: translateY(-2px); }
+.hunt-vendor {
+  font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--ivory-bright);
+}
+.hunt-meta {
+  font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.24em;
+  color: var(--brass-deep); text-transform: uppercase;
+}
+.hunt-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
+}
+.hunt-tag {
+  font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 3px 8px;
+  border: 1px solid var(--brass-border-lo); color: var(--brass);
+}
+.hunt-note {
+  font-family: var(--font-body); font-size: 0.85rem; color: var(--ivory-mid);
+  line-height: 1.65; flex: 1;
+}
+.hunt-link {
+  font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.18em;
+  color: var(--brass-bright); text-decoration: none; text-transform: uppercase;
+  margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;
+}
+.hunt-link:hover { color: #E8C97A; }
+.hunt-spotlight {
+  margin-top: 14px; padding: 12px 14px;
+  background: rgba(212,165,46,0.10);
+  border-left: 2px solid var(--brass);
+}
+.hunt-spotlight-label {
+  font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.24em;
+  color: var(--brass); text-transform: uppercase; margin-bottom: 4px;
+}
+.hunt-spotlight-text {
+  font-family: var(--font-heading); font-style: italic; font-size: 0.85rem;
+  color: var(--ivory-mid); line-height: 1.5;
+}
+.hunt-cta {
+  margin-top: 36px; padding: 24px 28px; text-align: center;
+  border: 1px dashed var(--brass-border-lo);
+  font-family: var(--font-heading); font-style: italic; font-size: 0.9rem;
+  color: var(--ivory-mid);
+}
+
+/* ── PAGE HERO (inner pages) — lit jade banner ── */
 .page-hero {
-  background: linear-gradient(135deg, var(--nav-bg) 0%, var(--ocean-surface) 100%);
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(127,196,190,0.22) 0%, transparent 70%),
+    linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-bright) 100%);
   padding: 52px 0 38px;
   border-bottom: 1px solid var(--brass-deep);
   position: relative;
+  overflow: hidden;
+}
+/* Page hero corner flourishes — botanical brass cartouches */
+.page-hero > .container::before,
+.page-hero > .container::after {
+  content: '';
+  position: absolute;
+  width: 72px; height: 72px;
+  background-repeat: no-repeat; background-size: contain;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.page-hero > .container::before {
+  top: 14px; left: 14px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M6,6 L30,6 M6,6 L6,30'/%3E%3Cpath d='M14,14 q12,2 22,-2 M14,14 q2,12 -2,22'/%3E%3Cpath d='M14,14 q18,8 30,2 q-22,4 -30,28 q4,-22 28,-30 q-22,4 -30,28'/%3E%3Ccircle cx='14' cy='14' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.page-hero > .container::after {
+  top: 14px; right: 14px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round' transform='translate(72,0) scale(-1,1)'%3E%3Cpath d='M6,6 L30,6 M6,6 L6,30'/%3E%3Cpath d='M14,14 q12,2 22,-2 M14,14 q2,12 -2,22'/%3E%3Cpath d='M14,14 q18,8 30,2 q-22,4 -30,28 q4,-22 28,-30 q-22,4 -30,28'/%3E%3Ccircle cx='14' cy='14' r='2'/%3E%3C/g%3E%3C/svg%3E");
 }
 .page-hero::after {
   content: '';
@@ -315,7 +546,7 @@ img { display: block; max-width: 100%; }
   background: var(--ocean-mid);
   padding-top: 20px;
   /* thin gold line at top of sticky bar */
-  box-shadow: 0 -1px 0 var(--brass-border-lo), 0 4px 20px rgba(4,12,8,0.6);
+  box-shadow: 0 -1px 0 var(--brass-border-lo), 0 4px 20px rgba(13,53,53,0.50);
 }
 .filter-btn {
   background: none; border: none; border-bottom: 2px solid transparent;
@@ -360,7 +591,7 @@ img { display: block; max-width: 100%; }
   box-shadow:
     0 0 0 3px var(--ocean-mid),
     0 0 0 4px var(--brass-border-lo),
-    4px 8px 28px rgba(4,12,8,0.70),
+    4px 8px 28px rgba(13,53,53,0.55),
     inset 0 0 0 1px rgba(200,180,120,0.30);
   display: flex; flex-direction: column;
   cursor: pointer;
@@ -378,8 +609,8 @@ img { display: block; max-width: 100%; }
   box-shadow:
     0 0 0 3px var(--ocean-mid),
     0 0 0 4px var(--brass-border),
-    6px 12px 40px rgba(4,12,8,0.80),
-    0 0 20px rgba(200,150,12,0.15),
+    6px 12px 40px rgba(13,53,53,0.75),
+    0 0 20px rgba(212,165,46,0.20),
     inset 0 0 0 1px rgba(200,180,120,0.40);
   transform: translateY(-4px);
 }
@@ -412,7 +643,7 @@ img { display: block; max-width: 100%; }
 .card-img-inner img.loaded  { opacity: 1; }
 .card-img::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(to top, rgba(10,42,28,0.70) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(13,53,53,0.55) 0%, transparent 100%);
   pointer-events: none;
 }
 .card-img-bg {
@@ -471,7 +702,7 @@ img { display: block; max-width: 100%; }
 
 /* ── GAME MODAL — illuminated expedition journal ── */
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(4,12,8,0.88);
+  position: fixed; inset: 0; background: rgba(13,53,53,0.85);
   z-index: 200;
   display: flex; align-items: center; justify-content: center; padding: 20px;
   backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -481,10 +712,10 @@ img { display: block; max-width: 100%; }
   background: var(--cream-bright);
   border: 1px solid var(--brass-border-hi);
   box-shadow:
-    0 0 0 3px rgba(4,12,8,0.95),
+    0 0 0 3px rgba(13,53,53,0.90),
     0 0 0 5px var(--brass-border-lo),
-    0 20px 80px rgba(4,12,8,0.90),
-    0 0 40px rgba(200,150,12,0.12);
+    0 20px 80px rgba(13,53,53,0.85),
+    0 0 40px rgba(212,165,46,0.16);
   max-width: 780px; width: 100%; max-height: 90vh; overflow-y: auto;
   position: relative; transform: translateY(20px); transition: transform 0.3s ease;
 }
@@ -515,7 +746,7 @@ img { display: block; max-width: 100%; }
 .modal-title    { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; letter-spacing: 0.06em; color: var(--ivory-bright); }
 .modal-subtitle { font-family: var(--font-heading); font-style: italic; color: var(--ivory-mid); font-size: 1rem; margin-top: 4px; }
 .modal-stats    { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.modal-stats .stat-pill { background: rgba(26,112,96,0.25); border-color: rgba(26,112,96,0.55); color: var(--ocean-pale); }
+.modal-stats .stat-pill { background: rgba(78,166,160,0.30); border-color: rgba(78,166,160,0.65); color: var(--ocean-pale); }
 
 /* ── IMAGE GALLERY ── */
 .modal-gallery { padding: 0; margin: 0; }
@@ -538,7 +769,7 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 .gallery-nav-btn {
-  background: rgba(4,12,8,0.75); border: 1px solid var(--brass-border-hi);
+  background: rgba(13,53,53,0.70); border: 1px solid var(--brass-border-hi);
   color: var(--brass-bright); font-size: 1.1rem; width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: all var(--t); pointer-events: all;
@@ -547,7 +778,7 @@ img { display: block; max-width: 100%; }
 .gallery-nav-btn:hover { background: var(--brass); color: var(--nav-bg); }
 .gallery-counter {
   position: absolute; bottom: 10px; right: 12px;
-  background: rgba(4,12,8,0.80); border: 1px solid var(--brass-border);
+  background: rgba(13,53,53,0.75); border: 1px solid var(--brass-border);
   padding: 2px 8px; font-family: var(--font-display); font-size: 0.6rem;
   letter-spacing: 0.15em; color: var(--brass-bright);
 }
@@ -600,13 +831,13 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--brass-border-hi);
   border-left: 4px solid var(--ocean-teal);
   padding: 16px 20px;
-  box-shadow: inset 0 0 0 1px rgba(200,150,12,0.08);
+  box-shadow: inset 0 0 0 1px rgba(212,165,46,0.12);
 }
 .quick-start-text { font-family: var(--font-body); font-size: 0.95rem; color: var(--ink); line-height: 1.82; }
 
 /* Artisan note — brass-bordered */
 .artisan-note {
-  background: linear-gradient(135deg, var(--cream-warm), rgba(200,150,12,0.08));
+  background: linear-gradient(135deg, var(--cream-warm), rgba(212,165,46,0.12));
   border: 1px solid var(--brass-border-hi);
   padding: 14px 18px; display: flex; gap: 12px; align-items: flex-start;
 }
@@ -631,7 +862,7 @@ img { display: block; max-width: 100%; }
 .framework-item {
   background: var(--cream); border: 1px solid var(--brass-border);
   padding: 24px 22px;
-  box-shadow: 2px 4px 16px rgba(4,12,8,0.50),
+  box-shadow: 2px 4px 16px rgba(13,53,53,0.40),
               inset 0 0 0 1px rgba(200,180,120,0.20);
   color: var(--ink-mid);
 }
@@ -642,11 +873,11 @@ img { display: block; max-width: 100%; }
 .scout-card {
   background: var(--cream); border: 1px solid var(--brass-border);
   padding: 28px; display: flex; flex-direction: column; gap: 14px;
-  box-shadow: 2px 4px 16px rgba(4,12,8,0.50);
+  box-shadow: 2px 4px 16px rgba(13,53,53,0.40);
   transition: border-color var(--t), box-shadow var(--t);
   color: var(--ink-mid);
 }
-.scout-card:hover { border-color: var(--brass-bright); box-shadow: 4px 8px 28px rgba(4,12,8,0.70); }
+.scout-card:hover { border-color: var(--brass-bright); box-shadow: 4px 8px 28px rgba(13,53,53,0.55); }
 .scout-badge {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.2em;
@@ -686,7 +917,7 @@ img { display: block; max-width: 100%; }
 .site-footer {
   background: var(--nav-bg);
   border-top: 1px solid var(--brass-deep);
-  box-shadow: 0 -2px 0 rgba(200,150,12,0.25);
+  box-shadow: 0 -2px 0 rgba(212,165,46,0.30);
   padding: 36px 0; text-align: center;
 }
 .footer-brand { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--brass-bright); letter-spacing: 0.18em; margin-bottom: 10px; }
@@ -707,6 +938,126 @@ main.section {
   color: var(--ivory-dim); font-family: var(--font-heading); font-style: italic; font-size: 1.1rem;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   ORNAMENTAL FLOURISHES (v4 — Beaux-Arts sea-life)
+   Reusable decorative components: cartouche dividers, scallop bullets,
+   botanical frames, jellyfish footers, kelp side panels.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Sea Divider — horizontal ornamental rule with central scallop ── */
+.sea-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin: 48px 0; padding: 0 24px;
+  position: relative;
+}
+.sea-divider::before, .sea-divider::after {
+  content: ''; flex: 1; height: 24px;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 80px 24px;
+  opacity: 0.55;
+}
+.sea-divider::before {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 24'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M0,12 L24,12'/%3E%3Cpath d='M40,12 q-8,-4 -16,0 q8,4 16,0 z'/%3E%3Cpath d='M40,12 L80,12'/%3E%3C/g%3E%3C/svg%3E");
+}
+.sea-divider::after {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 24'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M0,12 L40,12'/%3E%3Cpath d='M40,12 q8,-4 16,0 q-8,4 -16,0 z'/%3E%3Cpath d='M56,12 L80,12'/%3E%3C/g%3E%3C/svg%3E");
+}
+.sea-divider-icon {
+  width: 36px; height: 36px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M18,4 C8,8 4,22 18,32 C32,22 28,8 18,4 Z'/%3E%3Cpath d='M18,4 L18,32'/%3E%3Cpath d='M18,4 C14,12 12,22 11,30'/%3E%3Cpath d='M18,4 C22,12 24,22 25,30'/%3E%3Cpath d='M18,4 C10,10 7,22 6,28'/%3E%3Cpath d='M18,4 C26,10 29,22 30,28'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: contain;
+  flex-shrink: 0;
+}
+
+/* ── Botanical Frame — wraps a section with kelp side panels ── */
+.botanical-frame {
+  position: relative;
+  padding-left: 56px;
+  padding-right: 56px;
+}
+.botanical-frame::before, .botanical-frame::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 40px;
+  background-repeat: repeat-y; background-size: 40px 200px;
+  opacity: 0.30;
+  pointer-events: none;
+}
+.botanical-frame::before {
+  left: 4px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 200'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M20,0 C28,40 12,80 20,120 C28,160 12,200 20,200'/%3E%3Cpath d='M20,30 q10,-4 16,-12'/%3E%3Cpath d='M20,60 q-10,-4 -16,-12'/%3E%3Cpath d='M20,90 q10,-4 16,-12'/%3E%3Cpath d='M20,120 q-10,-4 -16,-12'/%3E%3Cpath d='M20,150 q10,-4 16,-12'/%3E%3Cpath d='M20,180 q-10,-4 -16,-12'/%3E%3C/g%3E%3C/svg%3E");
+}
+.botanical-frame::after {
+  right: 4px; transform: scaleX(-1);
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 200'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M20,0 C28,40 12,80 20,120 C28,160 12,200 20,200'/%3E%3Cpath d='M20,30 q10,-4 16,-12'/%3E%3Cpath d='M20,60 q-10,-4 -16,-12'/%3E%3Cpath d='M20,90 q10,-4 16,-12'/%3E%3Cpath d='M20,120 q-10,-4 -16,-12'/%3E%3Cpath d='M20,150 q10,-4 16,-12'/%3E%3Cpath d='M20,180 q-10,-4 -16,-12'/%3E%3C/g%3E%3C/svg%3E");
+}
+@media (max-width: 768px) {
+  .botanical-frame { padding-left: 0; padding-right: 0; }
+  .botanical-frame::before, .botanical-frame::after { display: none; }
+}
+
+/* ── Cartouche Header — for section titles that should read as banner cartouches ── */
+.cartouche-title {
+  position: relative;
+  display: inline-block;
+  padding: 14px 56px 16px;
+  margin: 0 auto 32px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: var(--brass-bright);
+  text-transform: uppercase;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(13,53,53,0.6);
+}
+.cartouche-title::before, .cartouche-title::after {
+  content: '';
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 28px;
+  background-repeat: no-repeat; background-size: contain;
+  background-position: center;
+}
+.cartouche-title::before {
+  left: 0;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 28'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M40,14 L20,14'/%3E%3Cpath d='M20,14 q-4,-8 -12,-4 q-4,4 0,8 q8,4 12,-4 z'/%3E%3Ccircle cx='6' cy='14' r='1.5' fill='%23f0cc55'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cartouche-title::after {
+  right: 0; transform: translateY(-50%) scaleX(-1);
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 28'%3E%3Cg fill='none' stroke='%23f0cc55' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M40,14 L20,14'/%3E%3Cpath d='M20,14 q-4,-8 -12,-4 q-4,4 0,8 q8,4 12,-4 z'/%3E%3Ccircle cx='6' cy='14' r='1.5' fill='%23f0cc55'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Scallop bullet for lists ── */
+.scallop-list { list-style: none; padding-left: 0; }
+.scallop-list li {
+  position: relative; padding-left: 28px; margin-bottom: 10px;
+  line-height: 1.6;
+}
+.scallop-list li::before {
+  content: ''; position: absolute; left: 0; top: 4px;
+  width: 18px; height: 18px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M9,2 C3,4 1,11 9,16 C17,11 15,4 9,2 Z'/%3E%3Cpath d='M9,2 L9,16'/%3E%3Cpath d='M9,2 C7,6 6,11 5,15'/%3E%3Cpath d='M9,2 C11,6 12,11 13,15'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: contain;
+  opacity: 0.85;
+}
+
+/* ── Footer flourish — small octopus + cartouche scrolls ── */
+.site-footer {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--nav-bg) 0%, var(--ocean-deep) 100%);
+}
+.site-footer::before {
+  content: '';
+  position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 40px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Cg fill='none' stroke='%23d4a52e' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M0,30 L36,30'/%3E%3Cpath d='M84,30 L120,30'/%3E%3Cpath d='M60,8 q-12,4 -18,16 q-2,6 4,6 M60,8 q12,4 18,16 q2,6 -4,6'/%3E%3Cpath d='M50,28 q4,4 0,8 M55,30 q2,5 -2,9 M60,30 q0,6 0,10 M65,30 q-2,5 2,9 M70,28 q-4,4 0,8'/%3E%3Cellipse cx='60' cy='14' rx='14' ry='10'/%3E%3Ccircle cx='56' cy='14' r='1.5' fill='%23d4a52e'/%3E%3Ccircle cx='64' cy='14' r='1.5' fill='%23d4a52e'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center bottom;
+  background-size: contain;
+  opacity: 0.50;
+  pointer-events: none;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -715,4 +1066,295 @@ main.section {
   .filter-btn { padding: 10px 11px; font-size: 0.57rem; }
   .gallery-main { height: 220px; }
   .hero::before { inset: 8px; }
+  body::after { display: none; } /* hide ambient sea-life on small screens */
+  .sea-divider { margin: 32px 0; }
+  .page-hero > .container::before, .page-hero > .container::after { width: 48px; height: 48px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   v5 PIVOT — THE LIT VERNE SEA · CORAL FLORA · ART NOUVEAU LIFE
+   ─────────────────────────────────────────────────────────────────
+   The 20,000 Leagues cover is a LUMINOUS lit jade sea — not a forest
+   gloom. Coral-red and blush-pink frilly seaweed wraps the brass
+   cartouche; cream parchment glows in lit water. v4 was still too
+   austere. v5 lifts the body sea two full luminance steps, adds
+   the missing coral/blush warm accent, and pours in dense
+   Art-Nouveau botanical ornament: lily scrolls, coral fronds, kelp
+   blades. The page is no longer somber. It is a Beaux-Arts aquarium.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* === THE LIT JADE SEA (two steps brighter than v4) === */
+  --ocean-deep:     #2d6a66;   /* deepest tone — nav hull, footers */
+  --ocean-mid:      #52ada4;   /* MAIN body — luminous lit jade */
+  --ocean-surface:  #6cc1b6;   /* bright surface gleam */
+  --ocean-bright:   #84d3c8;   /* radiant water inside cartouche */
+  --ocean-teal:     #97dccf;   /* lagoon teal */
+  --ocean-light:    #b9e5d9;   /* turquoise gleam */
+  --ocean-pale:     #e0f0e6;   /* sea-foam */
+
+  /* === CORAL & BLUSH — the warm flora of the cover (NEW) === */
+  --coral:          #e57d68;   /* coral red — "UNDER THE SEA" red */
+  --coral-soft:     #f09a85;
+  --coral-pale:     #f7c9b6;   /* blush petal */
+  --coral-bloom:    #fbd9c8;   /* dawn blush */
+  --coral-glow:     rgba(229,125,104,0.18);
+  --coral-border:   rgba(229,125,104,0.40);
+
+  /* === Brass — slightly warmer & brighter === */
+  --brass:          #dcad34;
+  --brass-bright:   #f3d166;
+  --brass-pale:     #f9e69a;
+  --brass-border:   rgba(220,173,52,0.50);
+  --brass-border-hi: rgba(243,209,102,0.78);
+  --brass-border-lo: rgba(156,120,32,0.32);
+  --brass-glow:     rgba(220,173,52,0.18);
+
+  /* === Cream — slightly brighter parchment === */
+  --cream:          #fcf2d4;
+  --cream-bright:   #fffaeb;
+  --cream-mid:      #f4e6c2;
+  --cream-warm:     #ecd9a8;
+
+  /* === Ivory text — re-tuned for lit sea === */
+  --ivory:          #fff6dc;
+  --ivory-bright:   #fffce8;
+  --ivory-mid:      #f5e7b4;
+  --ivory-dim:      #d8c896;
+
+  /* === Nav — lit hull (no longer abyssal) === */
+  --nav-bg:         #2d6a66;
+  --nav-border:     rgba(220,173,52,0.55);
+
+  /* === Shadows re-tuned for the lit sea === */
+  --panel-shadow:    0 4px 20px rgba(45,106,102,0.30);
+  --panel-shadow-hi: 0 8px 36px rgba(45,106,102,0.40);
+}
+
+/* === BODY — luminous lit jade with sea-light wash + coral edge bloom === */
+body {
+  background:
+    /* sea-light cascading from above */
+    radial-gradient(ellipse 100% 55% at 50% -3%,  rgba(224,240,230,0.45) 0%, transparent 65%),
+    /* coral edge bloom — left & right */
+    radial-gradient(ellipse 22% 38% at 0% 50%,    rgba(229,125,104,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 22% 38% at 100% 50%,  rgba(229,125,104,0.10) 0%, transparent 60%),
+    /* deeper water at base */
+    radial-gradient(ellipse 80% 45% at 50% 105%,  rgba(45,106,102,0.30)  0%, transparent 65%),
+    /* foundational luminous jade */
+    linear-gradient(180deg, #52ada4 0%, #6cc1b6 50%, #52ada4 100%) !important;
+}
+
+/* === BODY::BEFORE — Art Nouveau wallpaper: lily + iris + foliate scrollwork + bubbles === */
+body::before {
+  background-image:
+    /* LEFT EDGE — Art Nouveau iris stem with curling fronds (cream-gold) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='480' viewBox='0 0 180 480'%3E%3Cg fill='none' stroke='%23f5e7b4' stroke-width='1.2' stroke-linecap='round' opacity='0.22'%3E%3Cpath d='M40,480 C30,400 50,340 35,260 C20,180 50,100 35,20'/%3E%3Cpath d='M40,440 C28,432 18,418 12,400 C20,406 30,406 38,402'/%3E%3Cpath d='M38,380 C50,376 62,366 66,348 C58,354 48,356 40,352'/%3E%3Cpath d='M36,310 C24,302 14,288 8,270 C16,278 26,278 34,274'/%3E%3Cpath d='M34,240 C46,232 58,222 64,204 C56,212 46,214 38,210'/%3E%3Cpath d='M36,170 C24,162 14,148 8,130 C16,138 26,138 34,134'/%3E%3Cpath d='M36,100 C48,92 60,82 66,64 C58,72 48,74 40,70'/%3E%3C!-- top lily bloom --%3E%3Cpath d='M30,40 C26,30 28,20 36,16 C44,12 52,18 50,28 C58,24 64,30 60,40 C66,48 60,58 50,56 C50,66 40,70 34,62 C26,68 18,60 22,50 C14,46 16,36 24,34 Z'/%3E%3Ccircle cx='38' cy='38' r='2.5'/%3E%3C/g%3E%3C/svg%3E"),
+    /* RIGHT EDGE — mirrored iris stem (cream-gold) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='480' viewBox='0 0 180 480'%3E%3Cg fill='none' stroke='%23f5e7b4' stroke-width='1.2' stroke-linecap='round' opacity='0.22' transform='translate(180,0) scale(-1,1)'%3E%3Cpath d='M40,480 C30,400 50,340 35,260 C20,180 50,100 35,20'/%3E%3Cpath d='M40,440 C28,432 18,418 12,400 C20,406 30,406 38,402'/%3E%3Cpath d='M38,380 C50,376 62,366 66,348 C58,354 48,356 40,352'/%3E%3Cpath d='M36,310 C24,302 14,288 8,270 C16,278 26,278 34,274'/%3E%3Cpath d='M34,240 C46,232 58,222 64,204 C56,212 46,214 38,210'/%3E%3Cpath d='M36,170 C24,162 14,148 8,130 C16,138 26,138 34,134'/%3E%3Cpath d='M36,100 C48,92 60,82 66,64 C58,72 48,74 40,70'/%3E%3Cpath d='M30,40 C26,30 28,20 36,16 C44,12 52,18 50,28 C58,24 64,30 60,40 C66,48 60,58 50,56 C50,66 40,70 34,62 C26,68 18,60 22,50 C14,46 16,36 24,34 Z'/%3E%3Ccircle cx='38' cy='38' r='2.5'/%3E%3C/g%3E%3C/svg%3E"),
+    /* BUBBLE GLINTS — pale aqua dots */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%23e0f0e6' opacity='0.28'%3E%3Ccircle cx='30' cy='80' r='1.6'/%3E%3Ccircle cx='160' cy='40' r='1.2'/%3E%3Ccircle cx='200' cy='180' r='1.8'/%3E%3Ccircle cx='80' cy='200' r='1'/%3E%3Ccircle cx='220' cy='110' r='1.4'/%3E%3Ccircle cx='10' cy='160' r='1.2'/%3E%3Ccircle cx='110' cy='130' r='1.6'/%3E%3Ccircle cx='180' cy='90' r='0.9'/%3E%3Ccircle cx='60' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E"),
+    /* SEA-LIGHT shimmer */
+    radial-gradient(ellipse 70% 30% at 50% 0%, rgba(224,240,230,0.18) 0%, transparent 60%) !important;
+  background-repeat: repeat-y, repeat-y, repeat, no-repeat !important;
+  background-position: left top, right top, 0 0, top center !important;
+  background-size: 180px 480px, 180px 480px, 240px 240px, 100% 100% !important;
+  opacity: 1 !important;
+}
+
+/* === BODY::AFTER — drifting jellyfish + coral seaweed rising from bottom corners === */
+body::after {
+  background-image:
+    /* TOP-RIGHT — jellyfish silhouette (pale cream) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='220' viewBox='0 0 160 220'%3E%3Cg fill='none' stroke='%23fff6dc' stroke-width='1.1' stroke-linecap='round' opacity='0.28'%3E%3Cpath d='M30,68 q50,-58 100,0 q-4,14 -12,22 l-76,0 q-8,-8 -12,-22 z'/%3E%3Cpath d='M80,46 q-14,-14 -34,-10 M80,46 q14,-14 34,-10'/%3E%3Cpath d='M48,90 q-6,32 -12,66 q-2,14 8,20'/%3E%3Cpath d='M64,92 q-2,42 -8,86 q-2,20 6,32'/%3E%3Cpath d='M80,92 q0,42 0,86 q0,22 8,34'/%3E%3Cpath d='M96,92 q2,42 8,86 q2,20 -4,32'/%3E%3Cpath d='M112,90 q6,32 12,66 q2,14 -8,20'/%3E%3C/g%3E%3C/svg%3E"),
+    /* BOTTOM-LEFT — CORAL FRONDS rising (coral-pink) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='280' viewBox='0 0 220 280'%3E%3Cg fill='none' stroke='%23f09a85' stroke-width='1.4' stroke-linecap='round' opacity='0.40'%3E%3C!-- main branch --%3E%3Cpath d='M40,280 C46,240 38,200 50,160 C62,120 50,80 56,40'/%3E%3Cpath d='M50,250 q12,-6 18,-16 q-4,12 -10,20'/%3E%3Cpath d='M48,210 q-12,-6 -18,-16 q4,12 10,20'/%3E%3Cpath d='M52,170 q14,-8 22,-20 q-4,14 -12,24'/%3E%3Cpath d='M52,130 q-14,-8 -22,-20 q4,14 12,24'/%3E%3Cpath d='M54,90 q14,-6 20,-18 q-4,14 -12,22'/%3E%3C!-- secondary branch --%3E%3Cpath d='M120,280 C112,230 130,180 116,130 C102,90 130,50 118,20'/%3E%3Cpath d='M118,240 q-14,-6 -20,-18'/%3E%3Cpath d='M122,200 q14,-6 20,-18'/%3E%3Cpath d='M118,160 q-14,-6 -20,-18'/%3E%3Cpath d='M122,120 q14,-6 20,-18'/%3E%3Cpath d='M120,80 q-14,-6 -20,-18'/%3E%3C!-- tertiary --%3E%3Cpath d='M180,280 C172,240 188,200 178,160 C168,120 188,80 178,40'/%3E%3Cpath d='M178,240 q12,-6 16,-16'/%3E%3Cpath d='M180,200 q-12,-6 -16,-16'/%3E%3Cpath d='M180,160 q12,-6 16,-16'/%3E%3Cpath d='M180,120 q-12,-6 -16,-16'/%3E%3C/g%3E%3C/svg%3E"),
+    /* BOTTOM-RIGHT — mirrored CORAL FRONDS (coral-red) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='280' viewBox='0 0 220 280'%3E%3Cg fill='none' stroke='%23e57d68' stroke-width='1.4' stroke-linecap='round' opacity='0.36' transform='translate(220,0) scale(-1,1)'%3E%3Cpath d='M40,280 C46,240 38,200 50,160 C62,120 50,80 56,40'/%3E%3Cpath d='M50,250 q12,-6 18,-16'/%3E%3Cpath d='M48,210 q-12,-6 -18,-16'/%3E%3Cpath d='M52,170 q14,-8 22,-20'/%3E%3Cpath d='M52,130 q-14,-8 -22,-20'/%3E%3Cpath d='M54,90 q14,-6 20,-18'/%3E%3Cpath d='M120,280 C112,230 130,180 116,130 C102,90 130,50 118,20'/%3E%3Cpath d='M118,240 q-14,-6 -20,-18'/%3E%3Cpath d='M122,200 q14,-6 20,-18'/%3E%3Cpath d='M118,160 q-14,-6 -20,-18'/%3E%3Cpath d='M122,120 q14,-6 20,-18'/%3E%3Cpath d='M120,80 q-14,-6 -20,-18'/%3E%3Cpath d='M180,280 C172,240 188,200 178,160 C168,120 188,80 178,40'/%3E%3Cpath d='M178,240 q12,-6 16,-16'/%3E%3Cpath d='M180,200 q-12,-6 -16,-16'/%3E%3Cpath d='M180,160 q12,-6 16,-16'/%3E%3Cpath d='M180,120 q-12,-6 -16,-16'/%3E%3C/g%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+  background-position: calc(100% - 36px) 110px, 16px calc(100% - 24px), calc(100% - 16px) calc(100% - 24px) !important;
+  background-size: 160px 220px, 220px 280px, 220px 280px !important;
+}
+
+/* === LIT-OCEAN PANELS — gateway, heritage, hunt, tonight bar === */
+/* The cards stop being abyssal and become LIT panels of bright sea */
+.gateway {
+  background: linear-gradient(180deg, rgba(45,106,102,0.78), rgba(82,173,164,0.78)) !important;
+}
+.gateway:hover {
+  background: linear-gradient(180deg, rgba(45,106,102,0.65), rgba(108,193,182,0.92)) !important;
+}
+.heritage-card {
+  background: linear-gradient(180deg, rgba(45,106,102,0.78), rgba(82,173,164,0.80)) !important;
+}
+.heritage-card:hover {
+  background: linear-gradient(180deg, rgba(45,106,102,0.62), rgba(108,193,182,0.95)) !important;
+}
+.heritage-card.is-stub:hover {
+  background: linear-gradient(180deg, rgba(45,106,102,0.78), rgba(82,173,164,0.80)) !important;
+}
+.hunt-card {
+  background: linear-gradient(180deg, rgba(45,106,102,0.85), rgba(82,173,164,0.85)) !important;
+}
+.tonight-bar {
+  background: linear-gradient(180deg, rgba(45,106,102,0.85), rgba(82,173,164,0.88)) !important;
+}
+.tonight-field select {
+  background: rgba(45,106,102,0.78) !important;
+}
+.search-input {
+  background: rgba(45,106,102,0.55) !important;
+  color: var(--ivory-bright) !important;
+}
+
+/* === HERO + PAGE-HERO — lit jade banner with brighter water === */
+.hero {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 105%, rgba(151,220,207,0.40) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 0% 50%,   rgba(229,125,104,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 100% 50%, rgba(229,125,104,0.10) 0%, transparent 60%),
+    linear-gradient(170deg, #2d6a66 0%, #52ada4 38%, #84d3c8 100%) !important;
+}
+.page-hero {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(151,220,207,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 50% at 0% 50%,   rgba(229,125,104,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 25% 50% at 100% 50%, rgba(229,125,104,0.10) 0%, transparent 60%),
+    linear-gradient(135deg, #2d6a66 0%, #6cc1b6 100%) !important;
+  border-bottom: 1px solid var(--brass) !important;
+}
+
+/* === FILTER BAR — lit, no longer abyssal === */
+.filter-bar {
+  background: linear-gradient(180deg, rgba(45,106,102,0.92), rgba(82,173,164,0.95)) !important;
+}
+
+/* === FAMILY SECTION — bright lit panel === */
+.family-section {
+  background: linear-gradient(180deg, var(--ocean-mid), var(--ocean-surface)) !important;
+}
+
+/* === MAIN — sit on the lit sea, not on the abyss === */
+main.section {
+  background: transparent !important;
+}
+
+/* === CORAL ACCENTS — eyebrows, dividers, bloom highlights === */
+.eyebrow,
+.hero-eyebrow .eyebrow,
+.page-hero .eyebrow,
+.tonight-eyebrow,
+.modal-eyebrow {
+  /* Brass stays brass, but coral now appears as a sister accent on hover/active */
+}
+/* Sea-divider center icon: tint with coral on alternating dividers */
+.sea-divider.coral .sea-divider-icon {
+  filter: hue-rotate(-90deg) saturate(1.2) brightness(1.05);
+}
+/* Coral micro-accent line at the top of game-card frame */
+.game-card::before {
+  background: linear-gradient(to right, var(--brass-deep), var(--brass-bright), var(--coral-soft), var(--brass-bright), var(--brass-deep)) !important;
+}
+/* Coral border accent on hover for hunt-card, heritage-card */
+.hunt-card:hover { border-color: var(--coral-soft) !important; }
+.heritage-card:hover { border-color: var(--brass-bright) !important; box-shadow: 0 4px 24px rgba(229,125,104,0.18); }
+
+/* === ART NOUVEAU TOP BANNER ORNAMENT — drifts under the nav === */
+.site-nav::before {
+  content: '';
+  position: absolute; top: 100%; left: 0; right: 0; height: 14px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='14' viewBox='0 0 220 14'%3E%3Cg fill='none' stroke='%23dcad34' stroke-width='1' stroke-linecap='round' opacity='0.55'%3E%3Cpath d='M0,7 L84,7'/%3E%3Cpath d='M110,7 q-6,-4 -12,0 q6,4 12,0'/%3E%3Cpath d='M110,7 q6,-4 12,0 q-6,4 -12,0'/%3E%3Cpath d='M104,7 L116,7'/%3E%3Cpath d='M136,7 L220,7'/%3E%3Ccircle cx='98' cy='7' r='1.2'/%3E%3Ccircle cx='122' cy='7' r='1.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 220px 14px;
+  background-position: center;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* === LIT TYPOGRAPHY — text reads brighter on the lit sea === */
+body { color: var(--ivory) !important; }
+.gateway-desc, .heritage-blurb, .hunt-note, .scout-card .scout-tag,
+.page-subtitle, .hero-subtitle, .filter-btn:not(.active),
+.nav-links a:not(.active):not(:hover) { color: var(--ivory-mid) !important; }
+.gateway-title, .heritage-name, .hunt-vendor, .page-title, .hero-title {
+  color: var(--ivory-bright) !important;
+}
+
+/* === RIPPLE AT THE FOOT OF EVERY PAGE-HERO — brass + coral === */
+.page-hero::after {
+  background: linear-gradient(to right, transparent, var(--brass), var(--coral-soft), var(--ocean-pale), var(--coral-soft), var(--brass), transparent) !important;
+  opacity: 0.7 !important;
+  height: 3px !important;
+}
+
+/* === SOFT BLUSH WASH UNDER MAIN SECTIONS — barely-there warmth === */
+main.section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 30% at 50% 0%, rgba(247,201,182,0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+main.section { position: relative; }
+main.section > * { position: relative; z-index: 1; }
+
+/* === RESPONSIVE — keep ornament visible on mobile but lighter === */
+@media (max-width: 768px) {
+  body::before { background-size: 120px 320px, 120px 320px, 200px 200px, 100% 100% !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v5 HERITAGE CARDS — historic painting at the top of every card
+   Edge-to-edge image, sea-tinted overlay, brass caption strip,
+   text content padded inside .heritage-text wrapper.
+   Falls back gracefully to gradient + name if image 404s.
+   ═══════════════════════════════════════════════════════════════════ */
+.heritage-card {
+  padding: 0 !important;
+  overflow: hidden;
+}
+.heritage-img {
+  position: relative; width: 100%; height: 200px;
+  overflow: hidden; flex-shrink: 0;
+  /* gradient fallback if image fails — shows through */
+  background:
+    linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 60%, var(--ocean-surface) 100%);
+  border-bottom: 1px solid var(--brass-border-lo);
+  margin: 0;
+}
+.heritage-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  filter: saturate(0.88) brightness(0.96);
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  display: block;
+}
+.heritage-card:hover .heritage-img img { transform: scale(1.05); }
+.heritage-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(45,106,102,0.10) 0%, rgba(45,106,102,0.55) 100%),
+    radial-gradient(ellipse at center, transparent 45%, rgba(45,106,102,0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.heritage-img-caption {
+  position: absolute; bottom: 8px; left: 14px; right: 14px;
+  font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.16em;
+  color: rgba(255,250,235,0.94); text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  z-index: 2;
+  margin: 0;
+}
+.heritage-img-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.08em;
+  color: rgba(255,250,235,0.32); text-transform: uppercase;
+  z-index: 0; pointer-events: none;
+}
+.heritage-text {
+  padding: 22px 26px 26px;
+  display: flex; flex-direction: column; gap: 10px; flex: 1;
 }

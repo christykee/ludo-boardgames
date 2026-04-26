@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<title>Ticket to Ride — All Versions Reviewed & Ranked | Ludo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b1410;
+    --ink-soft: #3a2e26;
+    --paper: #f6efe3;
+    --paper-dim: #ede3d2;
+    --rail: #7a3b27;        /* oxblood rail */
+    --brass: #b08a4a;
+    --forest: #2f4a36;
+    --plum: #5a2a3d;
+    --teal: #2a4d5c;
+    --gold: #c9a454;
+    --line: #cdbfa8;
+    --shadow: 0 2px 8px rgba(30,20,10,0.08), 0 8px 24px rgba(30,20,10,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-weight: 400;
+    font-size: 16.5px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  /* Hero */
+  header.hero {
+    background:
+      radial-gradient(1200px 400px at 20% 10%, rgba(176,138,74,0.22), transparent 60%),
+      radial-gradient(1000px 400px at 80% 90%, rgba(122,59,39,0.22), transparent 60%),
+      linear-gradient(160deg, #241a12 0%, #3a2418 60%, #4a2d1d 100%);
+    color: #f3e7cf;
+    padding: 72px 0 60px;
+    border-bottom: 1px solid rgba(176,138,74,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0 22px, rgba(201,164,84,0.08) 22px 23px),
+      repeating-linear-gradient(0deg, transparent 0 22px, rgba(201,164,84,0.05) 22px 23px);
+    pointer-events: none;
+  }
+  header.hero .wrap { position: relative; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  header.hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.08;
+    margin: 0 0 18px 0;
+    letter-spacing: -0.01em;
+  }
+  header.hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  header.hero p.lede {
+    max-width: 780px;
+    font-size: 18px;
+    color: #e7d7b5;
+    margin: 0 0 28px 0;
+  }
+  .meta-strip {
+    display: flex; flex-wrap: wrap; gap: 14px 28px;
+    font-size: 13px; color: #d5c39b;
+    padding-top: 18px;
+    border-top: 1px solid rgba(201,164,84,0.25);
+  }
+  .meta-strip span strong { color: var(--gold); font-weight: 600; letter-spacing: 0.06em; }
+
+  /* Section headings */
+  section { padding: 64px 0 24px; }
+  section.alt { background: var(--paper-dim); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3vw, 38px);
+    margin: 0 0 8px 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  h2 + .sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 820px;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+
+  /* Framework block */
+  .framework {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    margin: 12px 0 8px 0;
+  }
+  .framework .axis {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .framework .axis h4 {
+    font-family: 'Playfair Display', serif;
+    margin: 0 0 6px 0;
+    font-size: 17px;
+    color: var(--rail);
+  }
+  .framework .axis p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+  /* Edition cards */
+  .editions { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 12px; }
+  .edition {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    gap: 28px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .edition .media {
+    background: #1c1410;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 22px;
+    min-height: 280px;
+    gap: 14px;
+  }
+  .edition .media .main-image-wrap {
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 0;
+  }
+  .edition .media .main-image {
+    max-width: 100%;
+    max-height: 360px;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    background: #eee;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+  }
+  .edition .media .main-image.loading { opacity: 0.4; }
+  .edition .media .thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    width: 100%;
+  }
+  .edition .media .thumbs button {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: 2px solid rgba(201,164,84,0.25);
+    border-radius: 3px;
+    background: #2a1e18;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .edition .media .thumbs button:hover {
+    border-color: rgba(201,164,84,0.7);
+    transform: translateY(-1px);
+  }
+  .edition .media .thumbs button.active {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+  .edition .media .thumbs button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .edition .body { padding: 28px 30px 28px 0; }
+  .edition .rank {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .edition .subtitle { color: var(--ink-soft); margin: 2px 0 14px 0; font-size: 14.5px; font-style: italic; }
+  .stats { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 16px; }
+  .stat {
+    background: var(--paper-dim);
+    color: var(--ink-soft);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--line);
+  }
+  .stat strong { color: var(--rail); font-weight: 600; margin-right: 4px; }
+  .edition h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--rail);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 18px 0 4px 0;
+    font-weight: 600;
+  }
+  .edition p { margin: 0 0 10px 0; color: var(--ink-soft); font-size: 14.5px; }
+  .score-row { display: flex; gap: 18px; margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); flex-wrap: wrap; }
+  .score { font-size: 12px; color: var(--ink-soft); }
+  .score strong { display: block; font-family: 'Playfair Display', serif; font-size: 22px; color: var(--ink); line-height: 1; margin-bottom: 2px; font-weight: 700; }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .pill {
+    padding: 3px 10px; font-size: 11px; border-radius: 100px;
+    font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .pill.forest { background: #e2ead9; color: var(--forest); }
+  .pill.rail { background: #f1dbd2; color: var(--rail); }
+  .pill.plum { background: #ecd6dd; color: var(--plum); }
+  .pill.teal { background: #d5e2e8; color: var(--teal); }
+  .pill.brass { background: #f1e5c8; color: #6e5421; }
+
+  /* Ranking */
+  .tier {
+    margin-bottom: 36px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .tier-head {
+    padding: 18px 26px;
+    color: #f3e7cf;
+    display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+  }
+  .tier.sss .tier-head { background: linear-gradient(90deg, #3d2213, #6a3a1d); }
+  .tier.ss .tier-head  { background: linear-gradient(90deg, #2f4a36, #446d4f); }
+  .tier.s .tier-head   { background: linear-gradient(90deg, #2a4d5c, #3c6b7c); }
+  .tier.a .tier-head   { background: linear-gradient(90deg, #5a2a3d, #7c3b55); }
+  .tier-head .label {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+  }
+  .tier-head .sub { font-size: 13px; color: rgba(243,231,207,0.85); font-style: italic; }
+  .tier-body { padding: 20px 26px 22px; }
+  .tier-body ol { margin: 0; padding-left: 22px; }
+  .tier-body ol li { padding: 10px 0; border-bottom: 1px dashed var(--line); color: var(--ink-soft); font-size: 14.5px; }
+  .tier-body ol li:last-child { border-bottom: 0; }
+  .tier-body ol li strong { color: var(--ink); font-family: 'Playfair Display', serif; font-size: 17.5px; font-weight: 700; letter-spacing: -0.005em; }
+  .tier-body ol li em { color: var(--rail); font-style: normal; font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 8px; }
+
+  /* Verdict */
+  .verdict {
+    background: linear-gradient(160deg, #1e150f, #3a241a);
+    color: #f3e7cf;
+    padding: 44px 36px;
+    border-radius: 14px;
+    margin: 8px 0 48px 0;
+    box-shadow: var(--shadow);
+  }
+  .verdict h3 { color: var(--gold); font-size: 22px; margin-top: 0; }
+  .verdict p { color: #e7d7b5; font-size: 15.5px; margin: 10px 0; }
+  .verdict .shelf {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px;
+  }
+  .verdict .shelf div {
+    border: 1px solid rgba(201,164,84,0.35);
+    border-radius: 10px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.03);
+  }
+  .verdict .shelf h5 {
+    margin: 0 0 6px 0; color: var(--gold); font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+  }
+  .verdict .shelf p { margin: 0; color: #e7d7b5; font-size: 14px; }
+
+  /* Footer */
+  footer { padding: 40px 0 60px; font-size: 13px; color: var(--ink-soft); border-top: 1px solid var(--line); margin-top: 24px; background: var(--paper-dim); }
+  footer a { color: var(--rail); }
+  footer .sources { margin-top: 14px; }
+  footer .sources li { margin-bottom: 4px; }
+
+  @media (max-width: 860px) {
+    .edition { grid-template-columns: 1fr; }
+    .edition .body { padding: 0 24px 24px; }
+    .edition .media { min-height: 220px; }
+    .framework { grid-template-columns: 1fr 1fr; }
+    .verdict .shelf { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .framework { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Ludo &nbsp;·&nbsp; The Rochat Boardgame Library &nbsp;·&nbsp; April 2026</div>
+    <h1>The Complete <em>Ticket to Ride</em><br/>Atlas &amp; Ranking</h1>
+    <p class="lede">Twelve canonical maps — from Alan R. Moon's original 1910 North American crossing to the Daviau/Leacock <em>Legends of the West</em> legacy campaign. What each board actually <em>does</em> to the game, how its rules reshape the decision space, and where each earns its place on the shelf.</p>
+    <div class="meta-strip">
+      <span><strong>CATEGORY</strong> Family Competitive Strategy (Cat. 3)</span>
+      <span><strong>DESIGNER</strong> Alan R. Moon (2004&ndash;)</span>
+      <span><strong>PUBLISHER</strong> Days of Wonder</span>
+      <span><strong>RANKING LENS</strong> Strategic depth · Aesthetic &amp; production</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>How the maps actually differ</h2>
+    <p class="sub">Every Ticket to Ride shares the same elegant spine: draw cards, claim routes, complete tickets. What the maps vary is far more interesting — they change the <em>shape of the decision</em>. Here's the analytical framework I use to compare them.</p>
+    <div class="framework">
+      <div class="axis">
+        <h4>Map geometry</h4>
+        <p>Routes per city, parallel options, bottleneck density. Dense parallel networks (USA) reward tempo; sparse networks (UK, Nordic) punish a missed ticket.</p>
+      </div>
+      <div class="axis">
+        <h4>The rule twist</h4>
+        <p>What each map layers on top: tunnels, ferries, passengers, stations, terrain cards, tolls, tech trees, ships, legacy unlocks. This is where strategic depth lives.</p>
+      </div>
+      <div class="axis">
+        <h4>Interaction pressure</h4>
+        <p>How often you step on each other's plans. A board with few redundant routes turns social — the classic Rochat table tension.</p>
+      </div>
+      <div class="axis">
+        <h4>Aesthetic grounding</h4>
+        <p>Illustration, palette, period authenticity. Most Ticket to Ride boards are handsome; a few (Legends of the West, Märklin, India) are genuinely beautiful objects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>The canonical set — twelve maps, reviewed</h2>
+    <p class="sub">Every major standalone or map-collection release that significantly alters play. City micro-games (New York, London, Berlin, Paris, San Francisco), kids' editions, and minor expansions are deliberately set aside.</p>
+
+    <div class="editions">
+
+      <!-- 1. Ticket to Ride (USA) -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_BANNER_1920x1239.webp" alt="Ticket to Ride USA map and components" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_BANNER_1920x1239.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_BANNER_1920x1239.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2RV2-3Dbox-left_EN.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2RV2-3Dbox-left_EN.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/03-1.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/03-1.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/12-2.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/12-2.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2004 · The Origin</span>
+          <h3>Ticket to Ride</h3>
+          <p class="subtitle">The cross-continental North American map — 1910</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 1.84</span>
+            <span class="stat"><strong>Age</strong> 8+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>None — and that's the point. Pure route-building in its cleanest form, with one coast-to-coast longest-route bonus that shapes the whole game.</p>
+          <h4>What it does to the table</h4>
+          <p>Wide, generous map with many parallel routes. Everyone can follow their own plan for the first half; tension arrives late, when someone hoards the last Chicago–Denver link. Low conflict, high onboarding. <em>This is the version for teaching a five-year-old and a fifty-year-old at the same table.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Julien Delval's original illustration is warm sepia Americana. The 10th and 15th Anniversary editions (with painted metal trains and fabric ticket pouches) are the only USA versions worth collecting as objects.</p>
+          <div class="pills">
+            <span class="pill forest">Gateway</span>
+            <span class="pill brass">Anniversary editions exist</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★☆☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★☆☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Onboarding</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Ticket to Ride Europe -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72x2-T2RE-Background.webp" alt="Ticket to Ride Europe map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72x2-T2RE-Background.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72x2-T2RE-Background.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/7202-T2RE-Spreadbox-EN.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/7202-T2RE-Spreadbox-EN.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Europe_04.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Europe_04.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Europe_11.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Europe_11.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2005 · The Evolution</span>
+          <h3>Ticket to Ride: Europe</h3>
+          <p class="subtitle">Edinburgh to Constantinople — the turn-of-the-century grand tour</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 1.95</span>
+            <span class="stat"><strong>Age</strong> 8+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>Three additions change everything: <strong>tunnels</strong> (claim cost is probabilistic — you may need to pay extra cards), <strong>ferries</strong> (require at least one locomotive wild), and <strong>train stations</strong> (pay to piggy-back on a rival's route to complete your ticket). Also: longest route renamed to longest continuous rail, still game-deciding.</p>
+          <h4>What it does to the table</h4>
+          <p>Stations neutralise the cruelty of getting blocked — the game becomes less zero-sum, more negotiable. Tunnels add a satisfying push-your-luck moment. Ferries force you to bank locomotives early. The net effect: slightly more strategic friction, more forgiving of new players. <em>This is the version most collectors quietly consider the "correct" Ticket to Ride.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Julien Delval again, but richer — borders, illuminated cities, a 1912-ish sepia that ages beautifully. The 15th Anniversary edition (2021) is the collector's pick, with larger cards and cloth bag.</p>
+          <div class="pills">
+            <span class="pill forest">Gateway-plus</span>
+            <span class="pill rail">Stations soften blocking</span>
+            <span class="pill brass">15th Anniversary available</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Replayability</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Märklin / Germany -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.34.00.webp" alt="Ticket to Ride Germany / Märklin map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.34.00.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.34.00.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tg-box-462.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tg-box-462.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/TicketToRide-Germany.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/TicketToRide-Germany.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx15-T2RG-setup-layers.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx15-T2RG-setup-layers.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2006 (as Märklin) · 2012 reissue as Germany</span>
+          <h3>Ticket to Ride: Märklin / Germany</h3>
+          <p class="subtitle">Two billion annual rail passengers — now on the board</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.3</span>
+            <span class="stat"><strong>Age</strong> 8+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>The <strong>passenger meeple</strong> system. Cities hold stacks of passenger tokens representing trade goods; when you complete a route you move a passenger along your network and collect points from every city they pass through. The result: routes have two values — the base train score, plus a passenger-harvesting dimension.</p>
+          <h4>What it does to the table</h4>
+          <p>This is the <em>deepest</em> of the "still teachable in five minutes" versions. You now choose routes on three criteria (card matching, your tickets, and passenger value), and the order you complete them in genuinely matters — you harvest passengers once. Interaction spikes because everyone's eyeing the same juicy big-city stacks (Berlin, München). <em>A serious strategist's Ticket to Ride that still welcomes newcomers.</em></p>
+          <h4>Aesthetic</h4>
+          <p>The original 2006 <strong>Märklin edition</strong> co-branded with the legendary German model-train firm — its box included upgraded passenger meeples and was a genuine object. The 2012 Germany reissue kept the rules but lost the Märklin polish. Track down the original Märklin for the Artisan shelf.</p>
+          <div class="pills">
+            <span class="pill plum">Passenger system</span>
+            <span class="pill brass">Märklin ed. = collector</span>
+            <span class="pill teal">DE/FR/EN editions</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★☆</strong>Aesthetic (Märklin ed.)</div>
+            <div class="score"><strong>★★★★★</strong>Replayability</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Nordic Countries -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.24.04.webp" alt="Ticket to Ride Nordic Countries map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.24.04.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Capture-decran-2024-07-23-a-12.24.04.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/91xRtUV36nL-Photoroom.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/91xRtUV36nL-Photoroom.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/7208-T2RNC-Title-EN.webp" aria-label="Title art"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/7208-T2RNC-Title-EN.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tn-inside-680.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tn-inside-680.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Design-sans-titre-5.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/Design-sans-titre-5.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2007 · The Tight Two-Player</span>
+          <h3>Ticket to Ride: Nordic Countries</h3>
+          <p class="subtitle">Denmark, Norway, Sweden, Finland — designed for 2–3 players only</p>
+          <div class="stats">
+            <span class="stat"><strong>2–3</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.0</span>
+            <span class="stat"><strong>Age</strong> 8+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>Tunnels and ferries carry over from Europe, but with a sharp rule change: <strong>locomotives are wild only on tunnel and ferry routes</strong>. On a regular track, a locomotive is dead weight. This forces you into the mountainous north and the Baltic crossings rather than avoiding them.</p>
+          <h4>What it does to the table</h4>
+          <p>Because the map is designed for exactly 2–3 players, every route matters and the blocking is brutal. Unlike the generous USA map, there is usually <em>one</em> viable way to complete a given ticket. This is the Ticket to Ride that plays like a chess problem. <em>The best two-player TtR ever made; the go-to after-dinner game for two.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Cold palette, lighthouse illustrations, Nordic typography. Handsome but not ornate — genuinely evokes the fjords.</p>
+          <div class="pills">
+            <span class="pill teal">2–3 player only</span>
+            <span class="pill rail">Tight, cutthroat</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★☆☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Two-player value</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Asia -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx13-T2RMC1-background_box.webp" alt="Ticket to Ride Asia — Team Asia and Legendary Asia maps" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx13-T2RMC1-background_box.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx13-T2RMC1-background_box.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720113-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720113-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720113-T2RMC1-spreadbox-ML.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720113-T2RMC1-spreadbox-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Asia_01.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Asia_01.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Asia_03.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Asia_03.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2011 · Map Collection Vol. 1</span>
+          <h3>Ticket to Ride: Asia</h3>
+          <p class="subtitle">Two maps — <em>Team Asia</em> (teams of two) and <em>Legendary Asia</em> (solo across mountains)</p>
+          <div class="stats">
+            <span class="stat"><strong>2–6</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.2</span>
+            <span class="stat"><strong>Requires</strong> USA or Europe base</span>
+          </div>
+          <h4>The twist</h4>
+          <p><strong>Team Asia</strong> is the only officially supported team game in the series — 4 or 6 players split into pairs with a shared hand/private hand split. <strong>Legendary Asia</strong> adds <em>mountain routes</em> (costing an extra piece that is set aside permanently) — a route-scarcity mechanic that compounds over the game.</p>
+          <h4>What it does to the table</h4>
+          <p>Team Asia is the rare version that works at 6 players without fragmenting the table — the whispered hand-coordination is genuinely fun and novel. Legendary Asia feels punishing because you're losing trains, not just spending them — every Himalayan crossing is a real cost decision. <em>The Team format alone justifies the box for larger family gatherings.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Illustrator Julien Delval signature style — warm, atmospheric, with elephants and mountain passes. Less iconic than Europe but period-appropriate.</p>
+          <div class="pills">
+            <span class="pill forest">Team play (4–6)</span>
+            <span class="pill plum">Mountain routes</span>
+            <span class="pill brass">Needs base game</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★☆☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Big-group value</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. India -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx14-T2RMC2-Background_box.webp" alt="Ticket to Ride India and Switzerland maps" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx14-T2RMC2-Background_box.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx14-T2RMC2-Background_box.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720114-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720114-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720114-T2RMC2-spreadbox-ML.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720114-T2RMC2-spreadbox-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_India_06.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_India_06.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_India_09.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_India_09.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2011 · Map Collection Vol. 2</span>
+          <h3>Ticket to Ride: India (&amp; Switzerland)</h3>
+          <p class="subtitle">The Mandala bonus — elegant geometric scoring</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players (India)</span>
+            <span class="stat"><strong>2–3</strong> players (Switzerland)</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>Requires</strong> base game</span>
+          </div>
+          <h4>The twist</h4>
+          <p>India introduces <strong>Mandalas</strong>: earn a bonus if you complete a destination ticket via <em>two different</em> non-overlapping routes. It rewards network redundancy — the opposite of every other Ticket to Ride instinct. The flip-side Switzerland map (designed for 2–3 players) restricts locomotive wilds to tunnels, much like Nordic.</p>
+          <h4>What it does to the table</h4>
+          <p>The Mandala rule is genuinely novel — it creates the only TtR map where you're <em>happy</em> about drawing duplicate tickets, and where spending extra turns reinforcing an existing connection is correct play. It also defuses some of the brutality: aggressive blocking is less punishing because you can loop around. <em>A subtle, mathematically elegant twist.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Ian Vincent's illustration is a standout — palace domes, brightly coloured borders, hand-drawn routes. Genuinely the most <em>beautiful</em> map in the collection alongside Legends of the West.</p>
+          <div class="pills">
+            <span class="pill plum">Mandala bonus</span>
+            <span class="pill forest">Fits historical-India preference</span>
+            <span class="pill brass">Needs base game</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★★</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★☆</strong>Novelty</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. Africa -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx17-T2RMC3-background.webp" alt="Ticket to Ride The Heart of Africa map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx17-T2RMC3-background.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx17-T2RMC3-background.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720117-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720117-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720117-T2R-T2RMC3-spreadbox-ML.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720117-T2R-T2RMC3-spreadbox-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Africa_01.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Africa_01.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Africa_07.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Africa_07.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2012 · Map Collection Vol. 3</span>
+          <h3>Ticket to Ride: The Heart of Africa</h3>
+          <p class="subtitle">Terrain cards — the colour-matching hand becomes a strategic resource</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.3</span>
+            <span class="stat"><strong>Requires</strong> base game</span>
+          </div>
+          <h4>The twist</h4>
+          <p><strong>Terrain cards</strong>. Certain routes are designated as crossing Savanna, Jungle, or Mountain terrain. If you play train cards <em>matching the terrain</em>, you score double points on that route. If not, you score normal. You earn terrain cards by drawing from a parallel deck — creating a second currency and a real tension between colour-collecting and terrain-collecting.</p>
+          <h4>What it does to the table</h4>
+          <p>Deceptively rich. Terrain cards triple the decision space on every card draw — do I take that visible blue train, or the terrain card that doubles my jungle routes? Route selection also becomes a puzzle: the same Nairobi–Cairo line is worth vastly different points depending on whose terrain colours you hold. Probably the most strategically interesting single-map release after Märklin. <em>Rewards players who think two steps ahead.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Vibrant, savanna-yellow board with hand-drawn wildlife illustrations. One of the warmer palettes in the collection.</p>
+          <div class="pills">
+            <span class="pill plum">Terrain card system</span>
+            <span class="pill forest">Deep route-choice layer</span>
+            <span class="pill brass">Needs base game</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★☆</strong>Novelty</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Nederland -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx20-T2RMC4-background.webp" alt="Ticket to Ride Nederland map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx20-T2RMC4-background.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx20-T2RMC4-background.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720120-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720120-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720120-T2RMC4-spreadbox-ML.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720120-T2RMC4-spreadbox-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Nederland_06.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_Nederland_06.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2013 · Map Collection Vol. 4</span>
+          <h3>Ticket to Ride: Nederland</h3>
+          <p class="subtitle">Bridge tolls — the first "economy" in Ticket to Ride</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.6</span>
+            <span class="stat"><strong>Requires</strong> base game</span>
+          </div>
+          <h4>The twist</h4>
+          <p>Because all of Nederland is canals, every route is a bridge. When you claim a bridge, you <strong>pay a toll in coins</strong> — equal to the number of trains used. Those coins go to the bank or to opponents who already have routes at that city. End-game bonus: whoever has the most toll revenue wins a big prize; whoever has the least is penalised. A genuine auction/economy layer.</p>
+          <h4>What it does to the table</h4>
+          <p>This is the most "euro-strategy" Ticket to Ride. You're now managing a second resource (coins), and the blocking calculus flips — now you <em>want</em> rivals to build through your city because they pay you. It produces the most negotiation/trash-talk of any Ticket to Ride. <em>For the Rochat table's adversarial energy, this is probably the perfect variant.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Cool palette of blues and greys, ornate canal illustrations. Less visually striking than India, but historically faithful.</p>
+          <div class="pills">
+            <span class="pill plum">Toll economy</span>
+            <span class="pill rail">High interaction</span>
+            <span class="pill brass">Needs base game</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★☆☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Interaction</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. UK -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx23-T2RMC5-background.webp" alt="Ticket to Ride United Kingdom and Pennsylvania maps" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx23-T2RMC5-background.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx23-T2RMC5-background.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720123-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720123-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720123-T2RMC5-spreadbox-ML.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720123-T2RMC5-spreadbox-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_UK_04.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_UK_04.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_UK_06.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R_UK_06.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2015 · Map Collection Vol. 5</span>
+          <h3>Ticket to Ride: United Kingdom &amp; Pennsylvania</h3>
+          <p class="subtitle">Technology cards (UK) and railway shares (Pennsylvania)</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.6</span>
+            <span class="stat"><strong>Requires</strong> base game</span>
+          </div>
+          <h4>The twist</h4>
+          <p>The most ambitious rule-stack of any map pack. <strong>UK</strong>: you can't claim certain routes until you've purchased the appropriate <em>technology card</em> (Steam Engine, Signalling, Brunel's Broad Gauge) — a mini tech-tree that unlocks the map in stages. <strong>Pennsylvania</strong>: every route you claim gives you a <em>share</em> in one of the regional railway companies; end-game scoring rewards the majority shareholder of each line — a hidden-points layer that rewires what routes are worth taking.</p>
+          <h4>What it does to the table</h4>
+          <p>UK turns Ticket to Ride into a light engine-builder — the first few turns are spent buying tech rather than laying track, which is divisive. Pennsylvania's share-majority scoring is genuinely clever: an opponent's "worthless" one-train route might actually be stealing a majority share worth 30 points at game end. <em>Pennsylvania is arguably the best-balanced map in the series; UK is the most cerebral but the slowest to start.</em></p>
+          <h4>Aesthetic</h4>
+          <p>UK uses a Victorian engineering motif — brass gears, period cartography. Pennsylvania is folksier, period American. Both boards are handsome if less ornate than India.</p>
+          <div class="pills">
+            <span class="pill plum">Tech tree (UK)</span>
+            <span class="pill plum">Share majorities (PA)</span>
+            <span class="pill brass">Needs base game</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★☆</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★☆</strong>Weight</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. Japan & Italy -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx32-T2RMC7-Japan-Background.webp" alt="Ticket to Ride Japan and Italy maps" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx32-T2RMC7-Japan-Background.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx32-T2RMC7-Japan-Background.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720132-T2RMC7-elevation-left-ML.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720132-T2RMC7-elevation-left-ML.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720132-T2RMC7-Title-border-EN.webp" aria-label="Title"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720132-T2RMC7-Title-border-EN.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tt_mc7_japan-inside-940.webp" aria-label="Japan detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tt_mc7_japan-inside-940.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tt_mc7_italy-inside-680.webp" aria-label="Italy detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/tt_mc7_italy-inside-680.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2019 · Map Collection Vol. 7</span>
+          <h3>Ticket to Ride: Japan &amp; Italy</h3>
+          <p class="subtitle">Two very different philosophies in one box</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>30–60</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.4</span>
+            <span class="stat"><strong>Requires</strong> base game</span>
+          </div>
+          <h4>The twist</h4>
+          <p><strong>Japan</strong>: introduces the <em>Bullet Train</em>, a shared network of high-speed routes that every player can contribute to. At game-end, players who've contributed most to the shared network earn bonuses; those who ignored it are penalised. A cooperative-competitive hybrid. <strong>Italy</strong>: ferries cross the Mediterranean and connect Sicily/Sardinia; ticket tiers reward you for hitting destinations across multiple regions of the peninsula.</p>
+          <h4>What it does to the table</h4>
+          <p>Japan's shared bullet network is the <em>only</em> TtR mechanic with a true cooperative dimension — you actively help opponents (and hope they overpay for the privilege). It fundamentally changes the social contract. Italy is more conventional but the regional ticket scoring creates nice tension between breadth and depth. <em>Fits Chris's preferences: Italy for historical Mediterranean period charm; Japan for feudal/Meiji-to-modern aesthetics.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Two distinct art styles in one box: Japan uses ukiyo-e-inspired line work with reds and golds; Italy uses warm renaissance tones. Both strong.</p>
+          <div class="pills">
+            <span class="pill forest">Shared network (JP)</span>
+            <span class="pill plum">Regional bonuses (IT)</span>
+            <span class="pill brass">Two maps, one box</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★☆</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★★</strong>Aesthetic</div>
+            <div class="score"><strong>★★★★★</strong>Value (two maps)</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. Rails & Sails -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/ticket-to-ride-sail.webp" alt="Ticket to Ride Rails and Sails world map" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/ticket-to-ride-sail.webp" aria-label="Full map"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/ticket-to-ride-sail.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/rs-box-462.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/rs-box-462.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/RailsandSails-1.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/RailsandSails-1.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R-Rails-and-Sails_06.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/T2R-Rails-and-Sails_06.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/DS8_7583.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/DS8_7583.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2016 · The Grand Standalone</span>
+          <h3>Ticket to Ride: Rails &amp; Sails</h3>
+          <p class="subtitle">Global map with ocean routes — the biggest box in the series</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>90–120</strong> min</span>
+            <span class="stat"><strong>BGG weight</strong> 2.9</span>
+            <span class="stat"><strong>Age</strong> 10+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>Two card decks (trains and ships), double-sided board (World / Great Lakes), and player-purchased <strong>harbours</strong> that unlock bonus scoring for ship-to-city connections. Ships come in single- and double-value. You can rebalance your starting train/ship ratio. End-game heavily rewards commercial hubs.</p>
+          <h4>What it does to the table</h4>
+          <p>This is the longest, heaviest Ticket to Ride — a full two hours with decisions to match. Ocean crossings have real cost; the World map rewards <em>imperial</em> thinking (Constantinople as hub, Singapore as node, etc). Harbours are where the strategy lives: a well-placed harbour can double your ship points. <em>A legitimate two-hour strategy evening, not a filler.</em></p>
+          <h4>Aesthetic</h4>
+          <p>Gorgeous world-map illustration with art-deco cartouches. The box is enormous; the table presence is excellent. Arguably the most visually impressive non-legacy edition.</p>
+          <div class="pills">
+            <span class="pill teal">Ships + harbours</span>
+            <span class="pill forest">Standalone (no base needed)</span>
+            <span class="pill plum">2-hour commitment</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★★</strong>Aesthetic</div>
+            <div class="score"><strong>★★★☆☆</strong>Onboarding</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12. Legends of the West -->
+      <article class="edition">
+        <div class="media">
+          <div class="main-image-wrap">
+            <img class="main-image" src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/06/TTR-Cover-.webp" alt="Ticket to Ride Legends of the West cover" />
+          </div>
+          <div class="thumbs">
+            <button type="button" class="active" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/06/TTR-Cover-.webp" aria-label="Box cover"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/06/TTR-Cover-.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720036-T2RL-Spreadbox-EN-1.webp" aria-label="Box contents"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/720036-T2RL-Spreadbox-EN-1.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx36-T2RL-WelcomeSheet-Layers-1-1.webp" aria-label="Welcome sheet"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/72xx36-T2RL-WelcomeSheet-Layers-1-1.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/05.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/05.webp" alt="" /></button>
+            <button type="button" data-src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/18.webp" aria-label="Detail"><img src="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/image-converter/2024/07/18.webp" alt="" /></button>
+          </div>
+        </div>
+        <div class="body">
+          <span class="rank">2023 · The Legacy Campaign</span>
+          <h3>Ticket to Ride: Legacy — Legends of the West</h3>
+          <p class="subtitle">Moon + Daviau + Leacock, twelve linked sessions, one transformed game</p>
+          <div class="stats">
+            <span class="stat"><strong>2–5</strong> players</span>
+            <span class="stat"><strong>20–90</strong> min per session</span>
+            <span class="stat"><strong>12</strong> sessions total</span>
+            <span class="stat"><strong>Age</strong> 10+</span>
+          </div>
+          <h4>The twist</h4>
+          <p>A twelve-session legacy campaign. The map starts small (east coast) and <em>unfurls</em> west across the Mississippi, through the Rockies, to the Pacific. Each session introduces new mechanics via sealed "frontier boxes": money as a second resource, California gold rushes, event cards, transatlantic routes, even earthquakes that destroy rail. Stickers go on the board. Cards get torn up. Between sessions, the temporary leader gets permanent (ish) advantages and the last-place player gets a catch-up boon.</p>
+          <h4>What it does to the table</h4>
+          <p>Legacy games only work with a committed group of the same 3–5 players for 12 sessions — not casual. When it works, the opening-a-new-box ritual is genuinely thrilling and the gradual complexity growth means even hardened players are learning new things in session 9. The co-design pedigree (Daviau = <em>Pandemic Legacy</em>, <em>Risk Legacy</em>; Leacock = <em>Pandemic</em>) shows in the pacing. <em>Best played with the immediate family as a winter-evening ritual, not the strategic circle.</em></p>
+          <h4>Aesthetic</h4>
+          <p>The production is the richest in the series: illustrated Americana in the style of 1870s frontier chromolithographs, thick card, varnished postcards, a "Conductor's Toolbox" for storing game-state. Easily the most <em>object-like</em> Ticket to Ride ever produced, though once used it's no longer resaleable — that's the legacy bargain.</p>
+          <div class="pills">
+            <span class="pill plum">12-session campaign</span>
+            <span class="pill forest">Designer superstars</span>
+            <span class="pill rail">One-way (legacy)</span>
+          </div>
+          <div class="score-row">
+            <div class="score"><strong>★★★★★</strong>Strategic depth</div>
+            <div class="score"><strong>★★★★★</strong>Aesthetic</div>
+            <div class="score"><strong>★★☆☆☆</strong>Replayability (by design)</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The ranking — weighted on strategic depth and aesthetic production</h2>
+    <p class="sub">Tier lists are opinions with confidence. These are mine, using the lens Chris set: how much does each map's rule twist <em>change the decision space</em>, and how handsome is it as an object on the shelf. Onboarding and casual fit get a secondary nod.</p>
+
+    <div class="tier sss">
+      <div class="tier-head">
+        <span class="label">S TIER — The Benchmarks</span>
+        <span class="sub">The maps where the rules twist genuinely rewrites how you think about Ticket to Ride</span>
+      </div>
+      <div class="tier-body">
+        <ol>
+          <li><strong>Märklin / Germany</strong> <em>Depth benchmark</em> — passenger meeples are the single best rules layer in the series. Adds a whole new scoring axis without complicating onboarding. The Märklin edition is a collector object in its own right.</li>
+          <li><strong>Legends of the West</strong> <em>Aesthetic benchmark</em> — the most beautiful, most narratively ambitious Ticket to Ride ever produced. The legacy format is its own category; nothing else delivers this much novelty, but it's one-and-done.</li>
+          <li><strong>Nederland</strong> <em>Most strategic map pack</em> — the toll economy is the most genuinely euro-strategic rule twist, and the trash-talk-per-hour ratio is the highest in the series. Perfect fit for an adversarial family table.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tier ss">
+      <div class="tier-head">
+        <span class="label">A TIER — Deep &amp; Beautiful</span>
+        <span class="sub">Excellent rule layers and strong aesthetic grounding; any of these deserves shelf space</span>
+      </div>
+      <div class="tier-body">
+        <ol>
+          <li><strong>The Heart of Africa</strong> <em>Hidden depth</em> — terrain cards triple the decision space at every card draw. Underrated; arguably deeper than Nederland.</li>
+          <li><strong>United Kingdom &amp; Pennsylvania</strong> <em>Most cerebral</em> — UK's tech tree is polarising; Pennsylvania's share-majority scoring is quietly brilliant. Engineering-era aesthetic suits Chris's period preferences.</li>
+          <li><strong>Rails &amp; Sails</strong> <em>Grandest standalone</em> — the two-hour evening version. Gorgeous world map, ship/train balance gives real strategic width. Stands alone; no base game required.</li>
+          <li><strong>Europe</strong> <em>The defining edition</em> — stations, tunnels, ferries. The version most veterans default to. The 15th Anniversary edition is a serious collector's pick.</li>
+          <li><strong>Japan &amp; Italy</strong> <em>Aesthetic pair</em> — the shared Bullet Train network in Japan is a genuine mechanical novelty; Italy is the better fit with Mediterranean period aesthetics.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tier s">
+      <div class="tier-head">
+        <span class="label">B TIER — Specialists &amp; Solid</span>
+        <span class="sub">Excellent in their niche, but less essential if you already have the A-tier</span>
+      </div>
+      <div class="tier-body">
+        <ol>
+          <li><strong>Nordic Countries</strong> <em>Best 2-player</em> — the definitive couple's Ticket to Ride. Punishingly tight, genuinely replayable, but only at 2–3 players.</li>
+          <li><strong>India</strong> <em>Most beautiful map</em> — Mandala bonus is mathematically elegant and the illustration is gorgeous. Aesthetically an A-tier entry, but the mechanical twist is narrower than the others.</li>
+          <li><strong>Asia</strong> <em>Team play</em> — Team Asia is the only proper team variant in the series. Essential if the extended family-plus-partners count regularly climbs to 6; optional otherwise.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tier a">
+      <div class="tier-head">
+        <span class="label">C TIER — The Origin &amp; the Unnecessary</span>
+        <span class="sub">Historically important, but mechanically superseded by everything above</span>
+      </div>
+      <div class="tier-body">
+        <ol>
+          <li><strong>Ticket to Ride (USA)</strong> <em>The gateway</em> — still the best teaching edition, still a fine family game, but mechanically the thinnest of the lot. The 10th and 15th Anniversary editions (metal trains, fabric bag) are the only versions worth the shelf space if you already own Europe.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Verdict — curation for the Rochat library</h2>
+
+    <div class="verdict">
+      <h3>The shortlist, if you want the whole family of Ticket to Ride to live on one shelf</h3>
+      <p>The canonical set of twelve is too many for a lifetime collection — most households reach their ceiling at three or four. Given the Rochat family's adversarial-but-fun energy, mixed-experience tables, and taste for historically grounded production, here's the shelf I'd actually build:</p>
+
+      <div class="shelf">
+        <div>
+          <h5>Keep — already on the shelf</h5>
+          <p><strong>Ticket to Ride (USA)</strong> — the onboarding standard. Upgrade the wooden wagons as you already have. Consider the <strong>15th Anniversary edition</strong> down the line for the Artisan shelf.</p>
+        </div>
+        <div>
+          <h5>Acquire first — the strategic upgrade</h5>
+          <p><strong>Märklin edition (hunt on the secondary market)</strong> for the passenger meeple system. If unavailable, the <strong>Germany reissue</strong>. This is the single biggest strategic upgrade available in the series.</p>
+        </div>
+        <div>
+          <h5>Acquire second — two-player &amp; aesthetic</h5>
+          <p><strong>Nordic Countries</strong> for the quiet two-player evenings, and <strong>India / Switzerland</strong> for the Mandala twist plus the most beautiful board in the collection.</p>
+        </div>
+        <div>
+          <h5>Consider — the big table</h5>
+          <p><strong>Nederland</strong> if the Rochat adversarial energy wants a toll economy to argue about; <strong>Asia</strong> if 6-player team nights become a regular thing.</p>
+        </div>
+        <div>
+          <h5>One evening only</h5>
+          <p><strong>Rails &amp; Sails</strong> for the annual two-hour "grand tour" evening; <strong>Legends of the West</strong> as a twelve-session winter ritual with the immediate family — start in December, finish in spring.</p>
+        </div>
+        <div>
+          <h5>Skip, unless a gift</h5>
+          <p><strong>UK / Pennsylvania</strong> is excellent but skews cerebral in a way that competes with the Pax Pamir / John Company slot on the shelf. <strong>Japan &amp; Italy</strong> is beautiful but overlaps with Europe mechanically.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 12px;">A closing note on aesthetics</h2>
+    <p class="sub">None of the Ticket to Ride editions reach Wehrlegig territory — the cloth boards, chalk pieces, and historical footnotes of Pax Pamir are simply a different register. But the series has genuine highs: the original Märklin edition (for co-branded upgraded components), Legends of the West (for production value), Rails &amp; Sails (for illustration), and India (for sheer beauty of board art) all merit the Artisan flag within their category. The 15th Anniversary Europe edition — painted metal trains, cloth ticket pouch, oversized cards — is the closest Ticket to Ride gets to an heirloom object.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Ludo — Board Game Companion for the Rochat Library</strong> &nbsp;·&nbsp; prepared April 2026 &nbsp;·&nbsp; Ticket to Ride is in the Rochat collection (Category 3: Family Competitive Strategy).</p>
+    <p>Imagery courtesy of Days of Wonder / Asmodee product pages. Rule descriptions cross-referenced against published rulebooks and Alan R. Moon designer notes.</p>
+    <p><em>For rules arbitrations on the USA edition already in the collection, the current rulebook PDF lives in the BOARDGAMES folder.</em></p>
+    <div class="sources">
+      <strong>Sources consulted:</strong>
+      <ul>
+        <li><a href="https://www.daysofwonder.com/universe/ticket-to-ride/">Days of Wonder — Ticket to Ride universe</a></li>
+        <li><a href="https://www.daysofwonder.com/universe/ticket-to-ride-map-collection/">Days of Wonder — Map Collection archive</a></li>
+        <li><a href="https://www.daysofwonder.com/game/ticket-to-ride-legends-of-the-west/">Days of Wonder — Legends of the West</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Ticket_to_Ride_(board_game)">Wikipedia — Ticket to Ride</a></li>
+        <li><a href="https://boardgamegeek.com/wiki/page/Ticket_to_Ride_series">BoardGameGeek — Ticket to Ride series</a></li>
+        <li><a href="https://boardgamegeek.com/geeklist/253000/ticket-to-ride-completist-list">BGG — Ticket to Ride Completist List</a></li>
+        <li><a href="https://www.meeplemountain.com/reviews/ticket-to-ride-legacy-legends-of-the-west/">Meeple Mountain — Legends of the West review</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  document.querySelectorAll('.edition .media').forEach(function(media) {
+    var mainImg = media.querySelector('.main-image');
+    var thumbs = media.querySelectorAll('.thumbs button');
+    if (!mainImg || !thumbs.length) return;
+
+    thumbs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var src = btn.getAttribute('data-src');
+        if (!src) return;
+        if (mainImg.getAttribute('src') === src) return;
+
+        mainImg.classList.add('loading');
+        var onReady = function() {
+          mainImg.classList.remove('loading');
+          mainImg.removeEventListener('load', onReady);
+          mainImg.removeEventListener('error', onReady);
+        };
+        mainImg.addEventListener('load', onReady);
+        mainImg.addEventListener('error', onReady);
+        mainImg.src = src;
+
+        thumbs.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+
+    // Graceful handling: hide any thumb whose image fails to load
+    thumbs.forEach(function(btn) {
+      var thumbImg = btn.querySelector('img');
+      if (thumbImg) {
+        thumbImg.addEventListener('error', function() {
+          btn.style.display = 'none';
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

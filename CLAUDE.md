@@ -1,6 +1,61 @@
 # BOARDGAMES Project — Context & Instructions
+# ▒▒▒ CABINET LUDO · BOARD GAMES ONLY ▒▒▒
+# This `CLAUDE.md` ONLY governs the Cabinet Ludo board game project.
+# It is auto-loaded by Claude Code whenever this directory is the working scope.
+# Do not rename — auto-loading depends on the filename. Folder name `_CLAUDE_BOARDGAMES/` and this banner do the scoping work.
 
 This folder is a personal board game library and curation project for Chris (chris@tykee.ventures).
+
+---
+
+## ⚑ Directory Structure — Read This First
+
+```
+/Users/CDW-home/My Drive/BOARDGAMES/              ← ROOT (game rules & references only)
+│
+├── *.pdf                                          ← All rulebooks (PDFs) live here
+├── DIPLOMACY/                                     ← Diplomacy resources folder
+├── Sherlock Holmes/                               ← SH Consulting Detective resources
+├── WARHAMMER/                                     ← Warhammer resources
+├── ludo-ticket-to-ride/                           ← Standalone Ticket to Ride site (separate Netlify deploy)
+│
+└── _CLAUDE_BOARDGAMES/                            ← CLAUDE'S WORKING DIRECTORY (all website outputs + brand)
+    ├── CLAUDE.md                                  ← This file
+    ├── _SCOUTING_TEMPLATE.md                      ← Template for new game evaluations
+    ├── _brand/                                    ← Brand assets (kept INSIDE the project to prevent accidents)
+    │   └── jules-verne-nautilus-cover.png         ← Visual anchor — do not delete, do not duplicate
+    ├── css/
+    │   └── ludo.css                               ← Master stylesheet (Jules Verne / Nautilus theme)
+    ├── cheatsheets/
+    │   └── _source/                               ← Structured EN/FR source for one-page cheat sheets
+    │       └── pax-pamir_fr_source.md             ← Pax Pamir FR (extracted from legacy HTMLs)
+    ├── index.html                                 ← Cabinet Ludo home — The Map Room
+    ├── collection.html                            ← The Game Library (with modal cards + tonight filters)
+    ├── heritage.html                              ← The Vitrine — ancient classics + antique hunting grounds
+    ├── editions.html                              ← Atlas of Editions — game families with multiple variants
+    ├── scouting.html                              ← Scouting & Discovery
+    ├── draughts.html                              ← Draughts deep-history chronicle (linked from Heritage)
+    ├── Ticket_to_Ride_All_Versions_Review.html   ← TtR atlas chapter (linked from Editions)
+    ├── games-data.js                              ← All game data (powers collection.html)
+    ├── ludo.js                                    ← Site JavaScript
+    ├── ludo.skill                                 ← Ludo skill definition (ZIP bundle of SKILL.md)
+    └── netlify.toml                               ← Netlify deployment config
+```
+
+### Rules for Claude working in this project:
+- **ALL website outputs** go in `_CLAUDE_BOARDGAMES/` — HTML pages, JS, CSS, brand assets
+- **ALL rulebook lookups** come from the ROOT (`/BOARDGAMES/*.pdf` and subfolders)
+- **CSS path** in all HTML: `css/ludo.css` (relative, same directory as HTML files)
+- **Brand image path:** `_brand/jules-verne-nautilus-cover.png` (now scoped inside the project folder)
+- **Never write outputs to the ROOT** — it's read-only reference material
+- **Chris drops input files** (screenshots, PDFs, references) into `_CLAUDE_BOARDGAMES/` for Claude to use
+
+### Files cleanup status:
+- 2026-04-26 — Cabinet Ludo restructure: duplicates removed, 4-section architecture built.
+- 2026-04-26 — Pax Pamir legacy HTMLs deleted; FR content extracted to `cheatsheets/_source/pax-pamir_fr_source.md`.
+- 2026-04-26 — `_brand/` folder relocated from `/BOARDGAMES/_brand/` → `_CLAUDE_BOARDGAMES/_brand/` so the visual anchor lives inside the project.
+
+---
 
 ---
 
@@ -148,3 +203,70 @@ When working in this project:
 8. **New Game Scouting folder** is the working space for researching and evaluating new games before acquisition. Use the scouting template (`_SCOUTING_TEMPLATE.md`) for all new game evaluations.
 
 9. **Don't oversimplify.** Chris is an experienced gamer. Rules explanations, strategy discussion, and game comparisons can be at an advanced level.
+
+---
+
+## ✦ Cabinet Ludo — Architectural Mandates (added 2026-04-26)
+
+These mandates supersede any earlier shorter directives. They are non-negotiable and apply to every working session in this project.
+
+### A. STRICT RULES MODE (hardwired)
+
+When answering ANY rules question — about turn order, edge cases, exceptions, scoring, eligibility, timing, sequencing, or anything resolvable by a printed rulebook — Ludo MUST behave as follows:
+
+1. **Read the rulebook PDF first.** Use the Read tool on the relevant PDF in `/Users/CDW-home/My Drive/BOARDGAMES/`. Do not answer from memory.
+2. **Quote verbatim.** When stating a rule, quote the rulebook text directly and cite the source (filename + page or section).
+3. **Never paraphrase a contested rule.** If the rule is being argued at the table, the verbatim quote settles it.
+4. **Never invent.** If the rulebook does not address the situation, say so explicitly: *"The rulebook does not address this. Possible house rule interpretations: [...]"*. Then offer interpretations clearly labelled as house rules, not as rules.
+5. **Edge-case escalation.** Genuinely ambiguous edge cases get escalated by phrasing them as: *"This is an edge case. The rulebook says X. The most defensible reading is Y. A house ruling could be Z."*
+6. **Bilingual rulebook handling.** If a rule has both EN and FR rulebooks in the library, cross-check translations when a passage matters. Note any translation drift.
+
+This mode is the FIRST priority on every rules question. It overrides brevity, conversational warmth, or any desire to "just give the answer".
+
+### B. The 4-Section Site Architecture
+
+Cabinet Ludo is structured as four — and only four — top-level sections. Quick Start is dissolved into Collection filters.
+
+**I. Collection** (`collection.html`) — Owned games. Each game has: photo, BGG weight, player count, play time, category badge, rulebook PDF link, **one-page printable cheat-sheet PDF link** (EN + FR), and an **Ask Ludo** button. Filter UI for "what to play today": players / time / weight / new-player friendliness.
+
+**II. Heritage** (`heritage.html`) — Ancient and classical games across centuries. Includes deep history pages, antique edition references, and provenance notes. Confirmed list: Draughts (built — `draughts.html`), Chess, Backgammon, Go, Senet, Pachisi, Tafl, Nine Men's Morris, Mancala, Patolli, Xiangqi, Shogi, Royal Game of Ur. Heritage = museum vitrine register.
+
+**III. Editions Atlas** (`editions.html`) — Modern game families that exist in multiple versions. The intellectual exercise is comparing/ranking editions. Confirmed inhabitants: Ticket to Ride (built — `Ticket_to_Ride_All_Versions_Review.html`), Diplomacy (deep dive parked — will live here), Catan, Pandemic, Risk. Atlas = Michelin guide register.
+
+**IV. Scouting & Discovery** (`scouting.html`) — Weekly new game finds, evaluations against the scouting template, candidates for acquisition.
+
+### C. Bilingual Mandate (EN / FR)
+
+The site is bilingual. Every page MUST:
+
+- Carry an EN/FR flag toggle in the top-right corner.
+- Use `data-lang="en"` and `data-lang="fr"` attributes on every translatable text node, with JS swapping visibility based on the active language.
+- Default to the user's last choice (stored in-memory for session — no localStorage in artifacts; in deployed site, free to use a cookie).
+- Cheat sheets and rulebook references should be available in both languages where the source exists.
+
+### D. One-Page Cheat-Sheet PDF System
+
+Every game in the Collection gets a one-page cheat-sheet PDF (EN + FR), printable, designed to sit next to the box. Cheat sheets are NOT rule summaries — they are: setup checklist, turn structure (one column), scoring (one column), end-game trigger, plus a "house rules / common confusions" panel.
+
+Cheat sheets live in `_CLAUDE_BOARDGAMES/cheatsheets/[game]_en.pdf` and `[game]_fr.pdf`. They are linked from the game's collection card and from the Ask Ludo modal.
+
+### E. Ask Ludo — Dual Mode
+
+Ask Ludo is the conversational rules-and-curation companion exposed on the site.
+
+**Global mode:** A floating button on the home page and section indexes. Open question scope across the whole library.
+**Per-game mode:** A button on every collection card. Pre-loads the rulebook PDF as context so questions are scoped and accurate. Strict Rules Mode applies in this scope.
+
+### F. Directory Hardwiring (also enforced in skill file)
+
+- **Rulebook PDFs:** `/Users/CDW-home/My Drive/BOARDGAMES/` (root) — read-only reference.
+- **Site outputs:** `/Users/CDW-home/My Drive/BOARDGAMES/_CLAUDE_BOARDGAMES/` — all HTML, JS, CSS, cheat-sheets, assets.
+- **Brand reference:** `/Users/CDW-home/My Drive/BOARDGAMES/_CLAUDE_BOARDGAMES/_brand/jules-verne-nautilus-cover.png` — canonical visual anchor (Jules Verne Nautilus cover, modern illustrated edition; teal + brass + Beaux-Arts cartouches). Lives INSIDE the project folder so it cannot be deleted by mistake. Do not duplicate.
+
+### G. Visual Brand — Jules Verne Nautilus Register (v4 — 2026-04-26 pivot)
+
+The site honours the Jules Verne 20,000 Leagues Nautilus cover. **The foundational background is the LIT JADE SEA inside the cover's central cartouche — not the abyssal dark green of the outer hull.** Earlier iterations went too dark; the v4 palette lifted the body bg from `#0A2A1C` to `#1f5f5d` (mid jade), with `#2a7270` for section panels and `#3a8a87` for the brighter sea inside cartouches. Brass is warmer amber (`#d4a52e`); cream stays warm; ivory is slightly warmer for readability on the lighter sea.
+
+Decorative ornaments are mandatory, not optional. The page carries ambient kelp silhouettes (left & right edges), drifting jellyfish (top-right), scallop shells (bottom-left), Beaux-Arts cartouche corners on every page hero, and brass scallop bullets/dividers throughout. Use `.cartouche-title`, `.sea-divider`, `.botanical-frame`, and `.scallop-list` utility classes from `css/ludo.css` to keep ornament consistent.
+
+Section title plates read as banner cartouches, not flat web headers. Game covers sit in framed niches. Don't be shy about richness of illustration — this is a curated cabinet of wonders lit from above, not a minimalist dashboard. Lit, generous, breathing — never austere.

@@ -25,6 +25,26 @@
   status = 200
 
 [[redirects]]
+  from = "/heritage"
+  to = "/heritage.html"
+  status = 200
+
+[[redirects]]
+  from = "/editions"
+  to = "/editions.html"
+  status = 200
+
+[[redirects]]
   from = "/scouting"
   to = "/scouting.html"
+  status = 200
+
+[[redirects]]
+  from = "/draughts"
+  to = "/draughts.html"
+  status = 200
+
+[[redirects]]
+  from = "/ticket-to-ride"
+  to = "/Ticket_to_Ride_All_Versions_Review.html"
   status = 200

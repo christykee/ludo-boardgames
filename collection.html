@@ -13,9 +13,11 @@
   <div class="container nav-inner">
     <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="collection.html" class="active">Collection</a></li>
-      <li><a href="scouting.html">Scouting</a></li>
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html" class="active"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
     </ul>
     <div class="nav-actions">
       <div class="lang-toggle">
@@ -47,6 +49,54 @@
 <!-- ══ MAIN CONTENT ═════════════════════════════════════════════ -->
 <main class="section" id="quick-start">
   <div class="container">
+
+    <!-- "What to play tonight" filters — replaces dissolved Quick Start section -->
+    <div class="tonight-bar">
+      <p class="tonight-eyebrow">
+        <span data-lang="en">★ What to play tonight</span>
+        <span data-lang="fr">★ Que jouer ce soir</span>
+      </p>
+      <div class="tonight-filters">
+        <label class="tonight-field">
+          <span class="tonight-label"><span data-lang="en">Players</span><span data-lang="fr">Joueurs</span></span>
+          <select id="filterPlayers" onchange="applyTonightFilters()">
+            <option value="">—</option>
+            <option value="2">2</option><option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option><option value="7">7+</option>
+          </select>
+        </label>
+        <label class="tonight-field">
+          <span class="tonight-label"><span data-lang="en">Time</span><span data-lang="fr">Durée</span></span>
+          <select id="filterTime" onchange="applyTonightFilters()">
+            <option value="">—</option>
+            <option value="30"><span data-lang="en">≤ 30 min</span></option>
+            <option value="60">≤ 60 min</option>
+            <option value="120">≤ 2 h</option>
+            <option value="999"><span data-lang="en">Long evening</span></option>
+          </select>
+        </label>
+        <label class="tonight-field">
+          <span class="tonight-label"><span data-lang="en">Weight</span><span data-lang="fr">Poids</span></span>
+          <select id="filterWeight" onchange="applyTonightFilters()">
+            <option value="">—</option>
+            <option value="1.5"><span data-lang="en">Light (≤1.5)</span></option>
+            <option value="2.5"><span data-lang="en">Medium (≤2.5)</span></option>
+            <option value="3.5"><span data-lang="en">Heavy (≤3.5)</span></option>
+            <option value="5"><span data-lang="en">Anything</span></option>
+          </select>
+        </label>
+        <label class="tonight-field">
+          <span class="tonight-label"><span data-lang="en">Newcomers</span><span data-lang="fr">Néophytes</span></span>
+          <select id="filterNewcomer" onchange="applyTonightFilters()">
+            <option value="">—</option>
+            <option value="yes"><span data-lang="en">Easy to teach</span></option>
+          </select>
+        </label>
+        <button type="button" class="tonight-reset" onclick="resetTonight()">
+          <span data-lang="en">Reset</span><span data-lang="fr">Réinitialiser</span>
+        </button>
+      </div>
+    </div>
 
     <!-- Filter tabs -->
     <div class="filter-bar" id="filterBar">
@@ -164,14 +214,32 @@
   </div>
 </footer>
 
-<script src="js/games-data.js"></script>
-<script src="js/ludo.js"></script>
+<script src="games-data.js"></script>
+<script src="ludo.js"></script>
 <script>
   let activeFilter = 'all';
   let searchQuery = '';
+  let tonight = { players: '', time: '', weight: '', newcomer: '' };
 
   function filterAndSearch() {
     searchQuery = document.getElementById('searchInput').value.trim();
+    renderGames();
+  }
+
+  function applyTonightFilters() {
+    tonight.players  = document.getElementById('filterPlayers').value;
+    tonight.time     = document.getElementById('filterTime').value;
+    tonight.weight   = document.getElementById('filterWeight').value;
+    tonight.newcomer = document.getElementById('filterNewcomer').value;
+    renderGames();
+  }
+
+  function resetTonight() {
+    document.getElementById('filterPlayers').value  = '';
+    document.getElementById('filterTime').value     = '';
+    document.getElementById('filterWeight').value   = '';
+    document.getElementById('filterNewcomer').value = '';
+    tonight = { players: '', time: '', weight: '', newcomer: '' };
     renderGames();
   }
 
@@ -184,6 +252,30 @@
       filtered = GAMES.filter(g => g.artisan);
     } else if (activeFilter !== 'all') {
       filtered = GAMES.filter(g => g.category === activeFilter);
+    }
+
+    // Apply "tonight" filters
+    if (tonight.players) {
+      const p = parseInt(tonight.players, 10);
+      filtered = filtered.filter(g => g.players && g.players.min <= p && g.players.max >= p);
+    }
+    if (tonight.time) {
+      const maxT = parseInt(tonight.time, 10);
+      if (maxT < 999) {
+        filtered = filtered.filter(g => g.duration && (g.duration.max || g.duration.min || 0) <= maxT);
+      } else {
+        filtered = filtered.filter(g => g.duration && (g.duration.max || g.duration.min || 0) > 120);
+      }
+    }
+    if (tonight.weight) {
+      const maxW = parseFloat(tonight.weight);
+      filtered = filtered.filter(g => (g.bggWeight || 0) <= maxW);
+    }
+    if (tonight.newcomer === 'yes') {
+      filtered = filtered.filter(g =>
+        (g.bggWeight || 0) <= 2.0 ||
+        (g.tags || []).some(t => ['travel','quick','family-favourite'].includes(t))
+      );
     }
 
     // Apply search
@@ -203,7 +295,7 @@
 
     if (filtered.length === 0) {
       grid.innerHTML = `<div class="no-results">
-        ${currentLang === 'fr' ? 'Aucun jeu trouvé. Essayez un autre terme.' : 'No games found. Try a different search.'}
+        ${currentLang === 'fr' ? 'Aucun jeu ne correspond. Réinitialisez les filtres ou essayez un autre terme.' : 'No games match. Reset filters or try a different search.'}
       </div>`;
       return;
     }

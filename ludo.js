@@ -55,22 +55,32 @@ async function fetchBGGCover(bggId) {
   const stored = sessionStorage.getItem(key);
   if (stored) { imgCache[key] = stored; return stored; }
 
-  try {
-    const res = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${bggId}`, {
-      mode: 'cors', cache: 'default'
-    });
-    if (!res.ok) throw new Error('BGG fetch failed');
-    const text = await res.text();
-    const doc = new DOMParser().parseFromString(text, 'text/xml');
-    const raw = doc.querySelector('image')?.textContent?.trim();
-    const url = raw ? (raw.startsWith('//') ? 'https:' + raw : raw) : null;
-    imgCache[key] = url;
-    if (url) sessionStorage.setItem(key, url);
-    return url;
-  } catch {
-    imgCache[key] = null;
-    return null;
+  // BGG xmlapi2 sometimes returns 202 ("Accepted, please retry") while it
+  // generates the response — retry with backoff up to 5 attempts.
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      const res = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${bggId}`, {
+        mode: 'cors', cache: 'default'
+      });
+      if (res.status === 202) {
+        await new Promise(r => setTimeout(r, 700 + attempt * 500));
+        continue;
+      }
+      if (!res.ok) break;
+      const text = await res.text();
+      const doc = new DOMParser().parseFromString(text, 'text/xml');
+      const raw = doc.querySelector('image')?.textContent?.trim()
+              || doc.querySelector('thumbnail')?.textContent?.trim();
+      const url = raw ? (raw.startsWith('//') ? 'https:' + raw : raw) : null;
+      imgCache[key] = url;
+      if (url) sessionStorage.setItem(key, url);
+      return url;
+    } catch {
+      break;
+    }
   }
+  imgCache[key] = null;
+  return null;
 }
 
 async function fetchBGGGallery(bggId, limit = 8) {
@@ -108,7 +118,10 @@ async function fetchBGGGallery(bggId, limit = 8) {
 /* Inject real cover image into an existing card element */
 async function loadCardImage(cardEl, game) {
   const imgEl = cardEl.querySelector('.card-real-img');
-  if (!imgEl || !game.bggId) return;
+  if (!imgEl) return;
+  // If a static cover is already injected, skip BGG fetch
+  if (imgEl.dataset.staticCover === '1') return;
+  if (!game.bggId) return;
 
   const url = await fetchBGGCover(game.bggId);
   if (!url) return;
@@ -346,17 +359,25 @@ function buildGameCard(game) {
   const cat = CATEGORIES[game.category];
   const desc = t(game, 'description');
 
+  // Use a static cover URL if curated, else leave blank for BGG async fetch
+  const hasImg = !!(game.cover || game.bggId);
+  const staticAttr = game.cover ? ' data-static-cover="1"' : '';
+  const initialSrc = game.cover || '';
+  const initialClass = game.cover ? 'card-real-img loaded' : 'card-real-img loading';
+  const bgFallbackStyle = game.cover
+    ? `background:${game.gradient};position:absolute;inset:0;display:none;`
+    : `background:${game.gradient};position:absolute;inset:0;`;
   const cardHTML = `
     <article class="game-card" onclick="openGameModal('${game.id}')" data-game-id="${game.id}">
       ${game.artisan ? '<div class="artisan-badge">✦ Artisan</div>' : ''}
       <div class="card-img">
         <div class="card-img-inner">
-          <!-- Gradient fallback (always shown, hidden when image loads) -->
-          <div class="card-img-bg" style="background:${game.gradient};position:absolute;inset:0;">
+          <!-- Gradient fallback (hidden when a static cover is provided) -->
+          <div class="card-img-bg" style="${bgFallbackStyle}">
             <div class="card-img-title">${game.name}${game.subtitle ? '<br>' + game.subtitle : ''}</div>
           </div>
-          <!-- Real image (loaded async from BGG) -->
-          ${game.bggId ? `<img class="card-real-img loading" src="" alt="${game.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">` : ''}
+          <!-- Real image (static cover or async BGG load) -->
+          ${hasImg ? `<img class="${initialClass}" src="${initialSrc}" alt="${game.name}"${staticAttr} onerror="this.style.display='none';this.previousElementSibling.style.display='flex';" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">` : ''}
         </div>
       </div>
       <div class="card-body">
