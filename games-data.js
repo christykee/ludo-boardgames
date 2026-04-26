@@ -12,8 +12,8 @@
    missing here. */
 const BGG_COVERS = {
   13:     'https://images.weserv.nl/?url=cf.geekdo-images.com/0XODRpReiZBFUffEcqT5-Q__opengraph/img/ARkyerUcE8vdJx0U5S0eVM0RTzY=/0x0:1000x525/fit-in/1200x630/filters:strip_icc()/pic9156909.png',
-  38:     'https://images.weserv.nl/?url=cf.geekdo-images.com/kazoS3z-rZ4RFBvAHMKbzA__opengraph/img/TLllrG14IYc3FyVYguU9eiBM2z8=/0x0:1531x804/fit-in/1200x630/filters:strip_icc()/pic6274530.jpg',
-  42:     'https://images.weserv.nl/?url=cf.geekdo-images.com/t-cfSQs4Ic3SAzCSxTigLg__opengraph/img/hb0KRf4FhBZpB725ehiln26_LPc=/0x48:1560x867/fit-in/1200x630/filters:strip_icc()/pic9203204.png',
+  325:    'https://images.weserv.nl/?url=cf.geekdo-images.com/v8ll_1CxVGP-KN-NqkoQsg__opengraph/img/wiBswy3cYMLF7D2gk4x-lxcyWUI=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8828019.jpg',
+  926:    'https://images.weserv.nl/?url=cf.geekdo-images.com/CQHOCJI6EFUUsQiGXS9oHg__opengraph/img/ULdEQYJuVN32uVpcJv2OAjxnqrM=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8828016.jpg',
   171:    'https://images.weserv.nl/?url=cf.geekdo-images.com/0_RWFMNapgr5yCrdhvGi_Q__opengraph/img/K7-MKIaTowM-QZjFCzpMbuO38pI=/0x18:6478x3419/fit-in/1200x630/filters:strip_icc()/pic8785991.jpg',
   181:    'https://images.weserv.nl/?url=cf.geekdo-images.com/Oem1TTtSgxOghRFCoyWRPw__opengraph/img/UcmKPcJUUscy7ikWw1Ew8_Y-tu8=/0x0:889x467/fit-in/1200x630/filters:strip_icc()/pic4916782.jpg',
   220:    'https://images.weserv.nl/?url=cf.geekdo-images.com/lNRG273h6gkd3szSY3EswQ__opengraph/img/GWbNcp24PacF53OMuHSU9SGEYNw=/0x591:2835x2079/fit-in/1200x630/filters:strip_icc()/pic9202764.png',
@@ -24,17 +24,17 @@ const BGG_COVERS = {
   9209:   'https://images.weserv.nl/?url=cf.geekdo-images.com/kdWYkW-7AqG63HhqPL6ekA__opengraph/img/dQRVo1f0UIX-QxlmItn6syEn1a4=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic8937637.jpg',
   11330:  'https://images.weserv.nl/?url=cf.geekdo-images.com/aTzHfe4DVgNvHPmGYThWuw__opengraph/img/0CtvbT41bhEVfoM4ssF-DHcoCxU=/0x492:698x935/fit-in/1200x630/filters:fill(blur):strip_icc()/pic9110087.jpg',
   30549:  'https://images.weserv.nl/?url=cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__opengraph/img/fNu5AeI1nPD73l9_KNPEurNwBuI=/0x655:976x1167/fit-in/1200x630/filters:strip_icc()/pic1534148.jpg',
-  55584:  'https://images.weserv.nl/?url=cf.geekdo-images.com/rfZLgeT1PYojpW3WfsSruA__opengraph/img/wCEqxxHZIS4NoEbzz84Cf9d68zU=/0x838:792x1254/fit-in/1200x630/filters:strip_icc()/pic673213.jpg',
+  67877:  'https://images.weserv.nl/?url=cf.geekdo-images.com/OvOpd-Lhl7t3h9fF_qi6lQ__opengraph/img/b4tzFBPPu88LBeOKaCkOmGU608w=/0x187:2245x1365/fit-in/1200x630/filters:strip_icc()/pic2527529.jpg',
   92415:  'https://images.weserv.nl/?url=cf.geekdo-images.com/GVbKORueiHezUaLfVZKlfQ__opengraph/img/0-SrNslW3qHoB8iIJoZMmexInAo=/0x0:900x473/fit-in/1200x630/filters:strip_icc()/pic9315848.jpg',
   103343: 'https://images.weserv.nl/?url=cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__opengraph/img/tF5c-5cy78b5F7SsfckjKaZSTQI=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic1077906.jpg',
-  116985: 'https://images.weserv.nl/?url=cf.geekdo-images.com/D9m0sE_WBgS-WVYoeQT2nw__opengraph/img/tNJS4j7A2wEow8bJ-Sg5gbyoxzc=/0x0:420x221/fit-in/1200x630/filters:strip_icc()/pic1304355.jpg',
+  188188: 'https://images.weserv.nl/?url=cf.geekdo-images.com/xxeCjCjznn8wh5p8CSx5jA__opengraph/img/e46vqphHq5SKiONS13TaRUteJVA=/0x499:1108x1081/fit-in/1200x630/filters:strip_icc()/pic1896477.jpg',
   128882: 'https://images.weserv.nl/?url=cf.geekdo-images.com/LPa6rsGcv8S0-OeNjCOAEQ__opengraph/img/dioop3_JeqcZjKy_ccNs8-cG8G8=/0x0:700x368/fit-in/1200x630/filters:strip_icc()/pic1398895.jpg',
   129622: 'https://images.weserv.nl/?url=cf.geekdo-images.com/T1ltXwapFUtghS9A7_tf4g__opengraph/img/Q-TYFTvpmXb1QogiEl0udcOtXPU=/0x0:1364x716/fit-in/1200x630/filters:strip_icc()/pic1401448.jpg',
   131357: 'https://images.weserv.nl/?url=cf.geekdo-images.com/MWhSY_GOe2-bmlQ2rntSVg__opengraph/img/JxPFbyoilhY-P5helyOKI5Bw7LM=/0x0:399x209/fit-in/1200x630/filters:strip_icc()/pic2016054.jpg',
   173346: 'https://images.weserv.nl/?url=cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__opengraph/img/EyT9R-od6g-49iIzr8TeWpTg94g=/0x0:720x378/fit-in/1200x630/filters:strip_icc()/pic2576399.jpg',
   188834: 'https://images.weserv.nl/?url=cf.geekdo-images.com/rAQ3hIXoH6xDcj41v9iqCg__opengraph/img/ae8mg6V5TH2WKatln7JHz3BIi8I=/8x0:693x360/fit-in/1200x630/filters:strip_icc()/pic5164305.jpg',
   199792: 'https://images.weserv.nl/?url=cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__opengraph/img/LaoNUvWBEx8UQuHyXjStN_0wwL8=/0x42:1600x882/fit-in/1200x630/filters:strip_icc()/pic3918905.png',
-  227935: 'https://images.weserv.nl/?url=cf.geekdo-images.com/bUbrvlY6Dw1cdb-sNrnkew__opengraph/img/DxlvVMrQztjss2gXPH2TIrYlCKA=/0x1853:3900x3900/fit-in/1200x630/filters:strip_icc()/pic5188761.jpg',
+  227072: 'https://images.weserv.nl/?url=cf.geekdo-images.com/-uBkiypUVyRKxNuOI_-ZpQ__opengraph/img/WJY75yualZKr9U1G1sixKKLRpxA=/0x37:851x484/fit-in/1200x630/filters:strip_icc()/pic3552344.png',
   256960: 'https://images.weserv.nl/?url=cf.geekdo-images.com/oSM_AuKYfGIwOtKbVEsoVg__opengraph/img/k_2lbdBwtB2TlxSjnL-P2luonIo=/0x80:1673x958/fit-in/1200x630/filters:strip_icc()/pic4503733.png',
   257499: 'https://images.weserv.nl/?url=cf.geekdo-images.com/09KeqyJEtu2qcskbtlOhqw__opengraph/img/Z-G4SyC61wOiDt1HK9KV6lHgMLc=/0x0:1500x788/fit-in/1200x630/filters:strip_icc()/pic5726297.jpg',
   332686: 'https://images.weserv.nl/?url=cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__opengraph/img/gRepsbz9DFvDSrjf49vBfoCL8t8=/0x415:2333x1640/fit-in/1200x630/filters:strip_icc()/pic6601629.jpg'
@@ -93,6 +93,7 @@ const GAMES = [
 
   {
     id: 'oracle', name: 'Oracle', subtitle: null,
+    cover: 'covers/oracle.jpg',
     category: 'quick-social',
     publisher: 'Self-published · James Walden (AU)', designer: 'James Walden', year: 2019,
     players: { min:2, max:5, ideal:4, display:'2–5' },
@@ -111,6 +112,7 @@ const GAMES = [
 
   {
     id: 'high-society', name: 'High Society', subtitle: null,
+    cover: 'covers/high-society.jpg',
     category: 'quick-social',
     publisher: 'Osprey Games', designer: 'Reiner Knizia', year: 1995,
     players: { min:3, max:5, ideal:4, display:'3–5' },
@@ -129,11 +131,12 @@ const GAMES = [
 
   {
     id: 'anomia', name: 'Anomia', subtitle: null,
+    cover: 'covers/anomia.jpg',
     category: 'quick-social',
     publisher: 'Anomia Press', designer: 'Andrew Innes', year: 2009,
     players: { min:3, max:6, ideal:5, display:'3–6' },
     duration: { min:15, max:30, display:'15–30 min' },
-    bggWeight: 1.0, bggId: 55584,
+    bggWeight: 1.0, bggId: 67877,
     description: 'When two players\' symbols match, they race to shout an example of the other\'s category. The brain freezes on demand. Hilarious, chaotic, completely frictionless to teach to anyone of any age.',
     descriptionFr: 'Quand deux joueurs ont le même symbole, ils s\'affrontent pour crier un exemple de la catégorie de l\'autre. Le cerveau se bloque à la demande. Hilarant et chaotique.',
     quickStart: 'Players simultaneously flip cards onto personal face-up piles. When your symbol matches another player\'s exposed symbol → face-off: first to name an example of the other\'s category wins their top card. Wild cards create chain face-offs.',
@@ -147,11 +150,12 @@ const GAMES = [
 
   {
     id: 'complots', name: 'Complots', subtitle: null,
+    cover: 'covers/complots.jpg',
     category: 'quick-social',
     publisher: 'Games Factory', designer: 'Claude Lucchini', year: 2012,
     players: { min:2, max:8, ideal:5, display:'2–8' },
     duration: { min:15, max:20, display:'15–20 min' },
-    bggWeight: 1.5, bggId: 116985,
+    bggWeight: 1.5, bggId: 188188,
     description: 'The French cousin of Coup — hidden influence and political intrigue in a corrupt medieval court. Similar bluffing mechanics with different role abilities and a distinctly European flavour. Works beautifully for large groups.',
     descriptionFr: 'Le cousin français de Coup — influence cachée et intrigues politiques dans une cour médiévale corrompue. Parfait pour les grands groupes.',
     quickStart: '2 face-down influence cards each. Claim role actions or bluff. Challenged on a lie → lose a card. Lose both → eliminated. Role powers differ from Coup — check the COMPLOTS.pdf card reference. Play until one player remains.',
@@ -165,6 +169,7 @@ const GAMES = [
 
   {
     id: 'blend-in', name: 'Blend In', subtitle: null,
+    cover: 'covers/blend-in.jpg',
     category: 'quick-social',
     publisher: '—', designer: '—', year: 2020,
     players: { min:3, max:8, ideal:6, display:'3–8' },
@@ -320,7 +325,7 @@ const GAMES = [
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1998,
     players: { min:3, max:4, ideal:4, display:'3–4 (5–6 with expansion)' },
     duration: { min:90, max:150, display:'90–150 min' },
-    bggWeight: 3.0, bggId: 42,
+    bggWeight: 3.0, bggId: 926,
     description: 'The crown jewel of Catan expansions. Adds knights to defend against barbarians, three commodity chains (Cloth, Coin, Paper), progress cards across three development tracks, and the potential Metropolis — worth 2 VP and denying the city upgrade to opponents. Current family favourite expansion. Significantly more rewarding than the base game.',
     descriptionFr: 'Le joyau des extensions Catan. Ajoute des chevaliers contre les barbares, trois filières de marchandises (Tissu, Pièce, Parchemin), des cartes de progrès et la Métropole. Extension favorite de la famille.',
     quickStart: 'Requires base Catan. New elements: Red die (Event die, not resource). Commodities: Cloth (upgrading forests), Coin (mines), Paper (mountains). Knights: activate with Grain, move anywhere connected. Barbarians advance each turn. If barbarians sack Catan → weakest active knight player loses a city. Progress cards (3 tracks: Trade/Politics/Science) replace standard Dev cards. Metropolis (Trade or Science, 4 improvements) = 2 bonus VP + blocks opponents from City there.',
@@ -338,7 +343,7 @@ const GAMES = [
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1997,
     players: { min:3, max:4, ideal:4, display:'3–4 (5–6 with expansion)' },
     duration: { min:90, max: 120, display: '90–120 min' },
-    bggWeight: 2.5, bggId: 38,
+    bggWeight: 2.5, bggId: 325,
     description: 'Adds ships, sailing, and multiple islands. Several scenario maps included — from simple archipelagos to Viking colonisation scenarios. Transforms Catan from a single island into an explorable ocean world. Accessible complexity jump.',
     descriptionFr: 'Ajoute navires, navigation et îles multiples. Plusieurs scénarios inclus. Transforme Catan en un monde océanique explorable.',
     quickStart: 'Build ships (Wood + Sheep) instead of roads to cross sea hexes. Ships connect like roads but can be rerouted if one end is free. Explore and settle new islands for bonus VP tokens. Gold Field hexes = choose any resource when dice match. Pirates block shipping lanes.',
@@ -431,7 +436,7 @@ const GAMES = [
     publisher: 'Big Potato Games', designer: 'Rikki Tahta', year: 2017,
     players: { min:3, max:8, ideal:6, display:'3–8' },
     duration: { min:15, max:30, display:'15–30 min' },
-    bggWeight: 1.3, bggId: 227935,
+    bggWeight: 1.3, bggId: 227072,
     description: 'One player secretly doesn\'t know the topic — the Chameleon. Everyone gives one word to prove they know the secret word. The Chameleon has to bluff convincingly. Then everyone accuses. Fast, hilarious, completely replayable.',
     descriptionFr: 'Un joueur ne connaît pas le sujet — le Caméléon. Tout le monde donne un mot pour prouver sa connaissance. Le Caméléon doit bluffer. Puis tout le monde accuse.',
     quickStart: 'Reveal the topic grid. All players flip encrypted code cards simultaneously. One player gets the Chameleon card (no secret word — only the grid). Each player says ONE word connected to the topic (not too obvious). Everyone votes to accuse someone of being the Chameleon. If Chameleon is found → they get one chance to guess the secret word and survive.',
