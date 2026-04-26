@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Hunt Log · Chess Set Inventory &amp; Assessments</title>
+  <meta name="description" content="Cabinet Ludo's working hunt log — every chess set we have evaluated, with photo, description, vendor link, price, and a Cabinet Ludo verdict. A persistent panorama for the Anglo-Indian chess hunt and adjacent traditions.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+
+    /* ── PAGE-SPECIFIC: HUNT LOG / INVENTORY ──────────────────────── */
+
+    /* Language visibility */
+    html.lang-en [data-lang="fr"] { display: none; }
+    html.lang-fr [data-lang="en"] { display: none; }
+
+    /* Hero */
+    .cab-hero {
+      padding: 88px 0 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .cab-hero .eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 18px;
+    }
+    .cab-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ivory);
+      margin-bottom: 22px;
+    }
+    .cab-hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--brass-bright);
+    }
+    .cab-hero p.lede {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      line-height: 1.65;
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--ivory-soft);
+    }
+    .cab-meta {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-soft);
+    }
+    .cab-meta .meta-num {
+      color: var(--brass-bright);
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* "How to read prices" panel */
+    .read-prices {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .section-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--ivory);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .section-heading em { font-style: italic; color: var(--brass-bright); }
+    .section-sub {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ivory-soft);
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .tier-card {
+      border: 1px solid var(--brass-line);
+      padding: 26px 22px;
+      background: rgba(31, 95, 93, 0.18);
+    }
+    .tier-card .tier-label {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 8px;
+    }
+    .tier-card .tier-band {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--ivory);
+      margin-bottom: 12px;
+    }
+    .tier-card .tier-desc {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--ivory-soft);
+    }
+    .price-drivers {
+      max-width: 760px;
+      margin: 56px auto 0;
+      padding: 28px 32px;
+      border-top: 1px solid var(--brass-line);
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .price-drivers h3 {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .price-drivers ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .price-drivers li {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--ivory-soft);
+      padding: 10px 0 10px 22px;
+      position: relative;
+      border-bottom: 1px dotted rgba(212, 165, 46, 0.18);
+    }
+    .price-drivers li:last-child { border-bottom: none; }
+    .price-drivers li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--brass-bright);
+      font-size: 0.7rem;
+      top: 13px;
+    }
+    .price-drivers li strong {
+      color: var(--brass-bright);
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    /* Top picks ribbon */
+    .top-picks {
+      padding: 72px 0;
+      background: rgba(31, 95, 93, 0.12);
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .top-picks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pick-card {
+      border: 1px solid var(--brass-bright);
+      padding: 28px 24px;
+      background: var(--ocean-deeper);
+      position: relative;
+    }
+    .pick-rank {
+      position: absolute;
+      top: -14px;
+      left: 24px;
+      background: var(--brass-bright);
+      color: var(--ocean-deep);
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+    }
+    .pick-stars {
+      color: var(--brass-bright);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      margin: 12px 0 6px;
+    }
+    .pick-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 8px;
+    }
+    .pick-card .pick-meta {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-soft);
+      margin-bottom: 14px;
+    }
+    .pick-card p {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--ivory-soft);
+      margin-bottom: 14px;
+    }
+    .pick-card .pick-link {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-decoration: none;
+      border-bottom: 1px solid var(--brass-bright);
+      padding-bottom: 2px;
+    }
+
+    /* Group sections */
+    .group {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .group-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .group-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 14px;
+    }
+    .group-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 12px;
+    }
+    .group-title em { font-style: italic; color: var(--brass-bright); }
+    .group-blurb {
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--ivory-soft);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Item card */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+    }
+    .item {
+      border: 1px solid var(--brass-line);
+      background: var(--ocean-deeper);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s ease;
+    }
+    .item:hover { border-color: var(--brass-bright); }
+    .item-img-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      display: block;
+      background: var(--ocean-deep);
+      position: relative;
+      border-bottom: 1px solid var(--brass-line);
+    }
+    .item-img-wrap img,
+    .item-img-wrap .item-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 2;
+      background: var(--ocean-deep);
+    }
+    .item-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--ocean-deeper) 0%, var(--ocean-deep) 100%);
+      padding: 28px;
+      text-align: center;
+    }
+    .item-ph-orn {
+      color: var(--brass-bright);
+      font-size: 1.4rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 6px;
+    }
+    .item-ph-style {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+    }
+    .item-ph-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--ivory);
+      font-style: italic;
+      max-width: 86%;
+      line-height: 1.25;
+    }
+    .item-ph-stock {
+      font-family: var(--font-display);
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-soft);
+      margin-top: 6px;
+    }
+    .item-body {
+      padding: 22px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .item-rating {
+      color: var(--brass-bright);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .item-rating .star-off { color: rgba(212, 165, 46, 0.25); }
+    .item-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-soft);
+      margin-bottom: 8px;
+    }
+    .item-title {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .item-vendor {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      color: var(--brass-soft);
+      margin-bottom: 14px;
+    }
+    .item-vendor a { color: var(--brass-bright); text-decoration: none; border-bottom: 1px dotted var(--brass-bright); }
+    .item-price { color: var(--ivory); font-weight: 600; }
+    .status-sold {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid rgba(212, 165, 46, 0.4);
+      color: var(--brass-soft);
+      margin-left: 6px;
+    }
+    .status-stock {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid var(--brass-bright);
+      color: var(--brass-bright);
+      margin-left: 6px;
+    }
+    .item-blurb {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--ivory-soft);
+      margin-bottom: 12px;
+    }
+    .item-detail {
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--ivory-faint);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .item-verdict {
+      border-top: 1px dotted rgba(212, 165, 46, 0.3);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .item-verdict-label {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 6px;
+    }
+    .item-verdict-text {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--ivory);
+      margin-bottom: 14px;
+    }
+    .item-link {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-decoration: none;
+      border: 1px solid var(--brass-bright);
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+    .item-link:hover { background: var(--brass-bright); color: var(--ocean-deep); }
+
+    /* Closing essay */
+    .closing {
+      padding: 80px 0 96px;
+      text-align: center;
+    }
+    .closing .closing-orn {
+      color: var(--brass-bright);
+      font-size: 1.2rem;
+      letter-spacing: 0.4em;
+      margin-bottom: 22px;
+    }
+    .closing h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--ivory);
+      max-width: 700px;
+      margin: 0 auto 22px;
+      line-height: 1.2;
+      font-style: italic;
+    }
+    .closing p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ivory-soft);
+      max-width: 660px;
+      margin: 0 auto 18px;
+    }
+    .closing .closing-cta {
+      display: inline-flex;
+      gap: 18px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .closing-cta a {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-decoration: none;
+      border: 1px solid var(--brass-bright);
+      padding: 12px 22px;
+      transition: all 0.3s ease;
+    }
+    .closing-cta a:hover { background: var(--brass-bright); color: var(--ocean-deep); }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .cab-meta { gap: 18px; }
+      .item-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ════════════════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html" class="active"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ═══════════════════════════════════════════════════════ -->
+<section class="cab-hero">
+  <div class="container">
+    <p class="eyebrow">
+      <span data-lang="en">Heritage · Hunt Log · The Working Inventory</span>
+      <span data-lang="fr">Patrimoine · Carnet de Chasse · Inventaire Vivant</span>
+    </p>
+    <h1>
+      <span data-lang="en">The Cabinet · <em>Hunt Log</em></span>
+      <span data-lang="fr">Le Cabinet · <em>Carnet de Chasse</em></span>
+    </h1>
+    <p class="lede">
+      <span data-lang="en">A working panorama of every chess set we have evaluated together — what it is, what it costs, what it is worth, and whether it deserves a place in the cabinet. A persistent reference, not a snapshot.</span>
+      <span data-lang="fr">Un panorama vivant de chaque jeu d'échecs que nous avons évalué ensemble — ce qu'il est, ce qu'il coûte, ce qu'il vaut, et s'il mérite sa place dans le cabinet. Une référence persistante, pas un instantané.</span>
+    </p>
+    <div class="cab-meta">
+      <span><span data-lang="en">Items logged</span><span data-lang="fr">Pièces consignées</span><span class="meta-num">27</span></span>
+      <span><span data-lang="en">Vendors</span><span data-lang="fr">Marchands</span><span class="meta-num">3</span></span>
+      <span><span data-lang="en">Five-star picks</span><span data-lang="fr">Coups de cœur</span><span class="meta-num">3</span></span>
+      <span><span data-lang="en">Last updated</span><span data-lang="fr">Mise à jour</span><span class="meta-num">2026-04-26</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW TO READ PRICES ═════════════════════════════════════════ -->
+<section class="read-prices">
+  <div class="container">
+    <p class="section-eyebrow">
+      <span data-lang="en">Reading the Numbers</span>
+      <span data-lang="fr">Lire les Chiffres</span>
+    </p>
+    <h2 class="section-heading">
+      <span data-lang="en">How to read these <em>prices</em></span>
+      <span data-lang="fr">Comment lire ces <em>prix</em></span>
+    </h2>
+    <p class="section-sub">
+      <span data-lang="en">A £850 set and a £19,995 set sit on the same shelf in the dealer's window — but they buy you completely different things. The price tag tells you which tier of the chess world you have walked into, and what the dealer is charging you <em>for</em>. Five tiers, then six factors that move a piece up or down within its tier.</span>
+      <span data-lang="fr">Un jeu à 850 £ et un jeu à 19 995 £ partagent la même vitrine — mais ils n'achètent pas la même chose. L'étiquette indique dans quel étage du monde des échecs on est entré, et ce que le marchand fait payer. Cinq étages, puis six facteurs qui font monter ou descendre une pièce.</span>
+    </p>
+
+    <div class="tier-grid">
+      <div class="tier-card">
+        <p class="tier-label"><span data-lang="en">Tier 1 · Wood</span><span data-lang="fr">Étage 1 · Bois</span></p>
+        <p class="tier-band">$200 – $1,000</p>
+        <p class="tier-desc">
+          <span data-lang="en">Modern reproductions in boxwood / ebony / sheesham. Machine-turned, weighted, perfect Stauntons. Beautiful to play with — zero collector value, will never appreciate.</span>
+          <span data-lang="fr">Reproductions modernes en buis / ébène / palissandre. Tournées machine, lestées, Stauntons parfaits. Belles à jouer — zéro valeur de collection.</span>
+        </p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-label"><span data-lang="en">Tier 2 · Bone</span><span data-lang="fr">Étage 2 · Os</span></p>
+        <p class="tier-band">£600 – £2,000</p>
+        <p class="tier-desc">
+          <span data-lang="en">Period bone sets — Selenus, Biedermeier, English Barleycorn, late Bengal export, Nuremberg toy. Genuine antique, decoratively pleasing, accessible. Modest appreciation; primarily decorative collecting.</span>
+          <span data-lang="fr">Jeux d'os d'époque — Selenus, Biedermeier, Barleycorn anglais, export bengali tardif, jouets de Nuremberg. Authentiques mais appréciation modeste.</span>
+        </p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-label"><span data-lang="en">Tier 3 · Ivory base</span><span data-lang="fr">Étage 3 · Ivoire de base</span></p>
+        <p class="tier-band">£2,000 – £5,000</p>
+        <p class="tier-desc">
+          <span data-lang="en">Real collecting territory. Named English makers (Hastilow, Lund, Calvert), fine Murshidabad / Bengal court-grade ivory, standard John Company sets, Vizagapatam compendia. Steady appreciation, real auction market.</span>
+          <span data-lang="fr">Vrai terrain de collection. Tourneurs anglais nommés, ivoire bengali fin, John Company standard, compendium Vizagapatam. Appréciation régulière, marché d'enchères réel.</span>
+        </p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-label"><span data-lang="en">Tier 4 · Ivory premium</span><span data-lang="fr">Étage 4 · Ivoire premium</span></p>
+        <p class="tier-band">£5,000 – £15,000</p>
+        <p class="tier-desc">
+          <span data-lang="en">Signed pieces with documentation, fine John Company c. 1830–60, fine Vizagapatam, Macao / Canton "King George" busts, Hoaching ivory. Investment-grade collecting; provenance matters as much as the piece.</span>
+          <span data-lang="fr">Pièces signées et documentées, John Company fin 1830–60, Vizagapatam fin, bustes "King George" Macao / Canton. Collection d'investissement, la provenance compte autant que l'objet.</span>
+        </p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-label"><span data-lang="en">Tier 5 · Museum-grade</span><span data-lang="fr">Étage 5 · Niveau musée</span></p>
+        <p class="tier-band">£15,000+</p>
+        <p class="tier-desc">
+          <span data-lang="en">Court-grade ivory in original case, exceptional makers (Charles Hastilow at his peak, signed William Lund cased), figural narrative sets, documented exhibition history. Vendor charges you for scholarship, not just the object.</span>
+          <span data-lang="fr">Ivoire de qualité de cour avec coffret d'origine, tourneurs exceptionnels, jeux figuratifs narratifs, historique d'exposition documenté. Le marchand vous fait payer l'érudition autant que l'objet.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="price-drivers">
+      <h3>
+        <span data-lang="en">Six factors that move a piece up or down within its tier</span>
+        <span data-lang="fr">Six facteurs qui déplacent une pièce dans son étage</span>
+      </h3>
+      <ul>
+        <li>
+          <strong><span data-lang="en">Material</span><span data-lang="fr">Matière</span></strong>
+          <span data-lang="en">Ivory commands 2–4× the bone equivalent. Mammoth ivory and camel bone are CITES-free; elephant ivory needs documentation. Bone equals decorative; ivory equals collectible.</span>
+          <span data-lang="fr">L'ivoire vaut 2–4× l'os équivalent. L'ivoire de mammouth et l'os de chameau sont libres de CITES ; l'ivoire d'éléphant nécessite des documents. L'os est décoratif, l'ivoire est de collection.</span>
+        </li>
+        <li>
+          <strong><span data-lang="en">Maker signature</span><span data-lang="fr">Signature du tourneur</span></strong>
+          <span data-lang="en">Signed &gt; attributed &gt; anonymous. A signed William Lund or stamped <em>JAQUES LONDON</em> doubles the price of an attributed equivalent. The signature is what survives the centuries of speculation.</span>
+          <span data-lang="fr">Signé &gt; attribué &gt; anonyme. Un Lund signé ou un Jaques poinçonné double le prix d'un équivalent attribué. La signature traverse les siècles d'incertitude.</span>
+        </li>
+        <li>
+          <strong><span data-lang="en">Documentation &amp; provenance</span><span data-lang="fr">Documentation &amp; provenance</span></strong>
+          <span data-lang="en">A piece sold at Bonhams in the Jeannin sale (2009) carries weight a flea-market piece never can. Catalogue references (Williams' <em>Master Pieces</em>, p. 100–101) move pieces an entire tier upward.</span>
+          <span data-lang="fr">Une pièce vendue chez Bonhams dans la vente Jeannin (2009) porte un poids qu'une pièce de brocante n'aura jamais. Les références bibliographiques font monter d'un étage.</span>
+        </li>
+        <li>
+          <strong><span data-lang="en">Original case</span><span data-lang="fr">Coffret d'origine</span></strong>
+          <span data-lang="en">A complete set in its original wooden box, sliding lid, transfer-print or trade label, is worth roughly 1.5× the same set without. Replacement leatherette case = a tell, not a deal-breaker.</span>
+          <span data-lang="fr">Un jeu complet dans son coffret d'époque (lid coulissant, étiquette du fabricant) vaut ≈ 1,5× le même jeu sans coffret. Coffret en simili = un signal, pas un veto.</span>
+        </li>
+        <li>
+          <strong><span data-lang="en">Completeness</span><span data-lang="fr">Intégrité</span></strong>
+          <span data-lang="en">32 original pieces vs 30 originals + 2 replacements is a serious value gap. A "complete set" claim should always be verified piece by piece — discount 25–40% for any silent restoration.</span>
+          <span data-lang="fr">32 pièces d'origine contre 30 + 2 remplacements crée un écart sérieux. Un "jeu complet" doit être vérifié pièce par pièce — abattement 25–40 % pour toute restauration silencieuse.</span>
+        </li>
+        <li>
+          <strong><span data-lang="en">Size &amp; CITES status</span><span data-lang="fr">Taille &amp; statut CITES</span></strong>
+          <span data-lang="en">Kings of 4½" and above command a premium. Pieces with cleared CITES paperwork or qualifying for the UK Ivory Act 2018 exemption are worth materially more than those in regulatory limbo — the certificate <em>is</em> part of the value.</span>
+          <span data-lang="fr">Les rois de 4½ pouces et plus se vendent une prime. Les pièces avec CITES en règle ou couvertes par l'Ivory Act 2018 valent matériellement plus que celles en zone grise — le certificat fait partie de la valeur.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TOP PICKS ══════════════════════════════════════════════════ -->
+<section class="top-picks">
+  <div class="container">
+    <p class="section-eyebrow">
+      <span data-lang="en">Cabinet Ludo · Top Picks</span>
+      <span data-lang="fr">Cabinet Ludo · Coups de Cœur</span>
+    </p>
+    <h2 class="section-heading">
+      <span data-lang="en">Three picks that <em>justify the hunt</em></span>
+      <span data-lang="fr">Trois pièces qui <em>justifient la chasse</em></span>
+    </h2>
+    <p class="section-sub">
+      <span data-lang="en">Of everything we have looked at, these three are the ones I would actually move on. Each is a different answer to a different question — the cornerstone, the contrast piece, and the playable companion.</span>
+      <span data-lang="fr">De tout ce que nous avons examiné, voici les trois pièces sur lesquelles je passerais à l'action. Chacune répond à une question différente — la pierre d'angle, la pièce de contraste, le compagnon de jeu.</span>
+    </p>
+
+    <div class="top-picks-grid">
+
+      <article class="pick-card">
+        <span class="pick-rank">★ The Cornerstone</span>
+        <p class="pick-stars">★★★★★</p>
+        <h4>Garrick Coleman Stock #400</h4>
+        <p class="pick-meta">William Lund · c.1840 · Signed · Cased</p>
+        <p>
+          <span data-lang="en">A signed William Lund chess set, c. 1840, with original case, at £2,350 — well below the £6k–£12k typical band for complete signed Lunds. The strongest single move in the entire pipeline.</span>
+          <span data-lang="fr">Un Lund signé c.1840 avec coffret d'origine, à 2 350 £ — très en dessous de la fourchette habituelle 6–12 k£. Le meilleur coup à jouer aujourd'hui.</span>
+        </p>
+        <a class="pick-link" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">→ antiquechess.co.uk</a>
+      </article>
+
+      <article class="pick-card">
+        <span class="pick-rank">★ The Contrast Piece</span>
+        <p class="pick-stars">★★★★☆</p>
+        <h4>Garrick Coleman Stock #793</h4>
+        <p class="pick-meta">Murshidabad ivory · c.1830 · K 4½" · Inlaid teak case</p>
+        <p>
+          <span data-lang="en">Bengal court-grade ivory in original inlaid teak storage box, c.1830, ≈ £3,000. The Indian counterpoint to the Lund — together they tell the East-West story you actually want on the shelf.</span>
+          <span data-lang="fr">Ivoire qualité cour bengalaise dans son coffret teck incrusté d'origine, c.1830, ≈ 3 000 £. Le contrepoint indien au Lund — ensemble, ils racontent l'histoire Est-Ouest que tu veux sur l'étagère.</span>
+        </p>
+        <a class="pick-link" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">→ antiquechess.co.uk</a>
+      </article>
+
+      <article class="pick-card">
+        <span class="pick-rank">★ The Playable Companion</span>
+        <p class="pick-stars">★★★★☆</p>
+        <h4>ChessAntiques Lot #371</h4>
+        <p class="pick-meta">Camaratta Lund repro · Boxwood &amp; ebony · $1,295</p>
+        <p>
+          <span data-lang="en">Frank Camaratta's Lund-pattern reproduction in boxwood/ebony, weighted, $1,295. The set you actually <em>play</em> with the kids while the antique Coleman #400 lives in its case under glass.</span>
+          <span data-lang="fr">La reproduction Lund de Camaratta en buis / ébène, lestée, 1 295 $. Le jeu avec lequel on joue vraiment avec les enfants pendant que le Coleman #400 reste sous vitrine.</span>
+        </p>
+        <a class="pick-link" href="https://chessantiques.com/" target="_blank" rel="noopener">→ chessantiques.com</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GROUP A — THE FOUR NARROWED ANGLO-INDIAN STYLES ════════════ -->
+<section class="group" id="anglo-indian">
+  <div class="container">
+    <header class="group-header">
+      <p class="group-eyebrow">
+        <span data-lang="en">Group A · The Four Narrowed Styles</span>
+        <span data-lang="fr">Groupe A · Les Quatre Styles Retenus</span>
+      </p>
+      <h2 class="group-title">
+        <span data-lang="en">Anglo-Indian &amp; Vizagapatam — <em>the core hunt</em></span>
+        <span data-lang="fr">Anglo-Indien &amp; Vizagapatam — <em>la chasse principale</em></span>
+      </h2>
+      <p class="group-blurb">
+        <span data-lang="en">Vizagapatam, Berhampur · Bengal, John Company, and Anglo-Indian Lund. The four styles narrowed from the thirteen-style atlas — every piece in this group is in scope for the cabinet.</span>
+        <span data-lang="fr">Vizagapatam, Berhampur · Bengale, John Company, Lund anglo-indien. Les quatre styles retenus parmi les treize de l'atlas — chaque pièce ici entre dans le périmètre du cabinet.</span>
+      </p>
+    </header>
+
+    <div class="item-grid">
+
+      <!-- 1. Garrick Coleman #400 Lund -->
+      <article class="item">
+        <a class="item-img-wrap" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/coleman-400-lund.jpg"
+               alt="Garrick Coleman Stock #400 — William Lund signed chess set, c. 1840"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Anglo-Indian Lund</span>
+            <span class="item-ph-title">Signed William Lund</span>
+            <span class="item-ph-stock">Stock #400 · c.1840 · Cased</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★★</p>
+          <p class="item-eyebrow"><span data-lang="en">The cornerstone</span><span data-lang="fr">La pierre d'angle</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">William Lund signed chess set, c. 1840</span>
+            <span data-lang="fr">Jeu signé William Lund, vers 1840</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">Garrick Coleman Antiques</a> ·
+            <span class="item-price">£2,350</span>
+            <span class="status-stock"><span data-lang="en">Make offer</span><span data-lang="fr">Faire offre</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Signed William Lund Cornhill London, full ivory, 32 pieces complete, in its period leather presentation case. The textbook entry into the Lund tier — and well below the £6k–£12k band for cased signed Lunds.</span>
+            <span data-lang="fr">Signé William Lund Cornhill London, ivoire complet, 32 pièces, dans son coffret en cuir d'époque. L'entrée modèle dans la catégorie Lund — bien en dessous des 6–12 k£ habituels.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Lund's hand-turned baluster stems, mitred bishops, knight heads in the early-Victorian convention. Garrick Coleman is a London specialist; verify the case is original (label inside) and the king/queen finials match. Email garrickcoleman@aim.com requesting additional photographs and provenance.</span>
+            <span data-lang="fr">Tournage main de Lund — fûts balustres, mitres fendues, cavaliers au modèle victorien. Vérifier l'étiquette au coffret et que les rois / reines ont leurs finials d'origine. Écrire à garrickcoleman@aim.com.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Buy.</strong> Best single move in the pipeline — signed, cased, fairly priced, period-correct. The piece against which everything else is measured.</span>
+              <span data-lang="fr"><strong>Acheter.</strong> Le meilleur mouvement à faire — signé, en coffret, juste prix, fidèle à l'époque. La pièce contre laquelle tout le reste se mesure.</span>
+            </p>
+            <a class="item-link" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">→ View on antiquechess.co.uk</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Garrick Coleman #793 Murshidabad -->
+      <article class="item">
+        <a class="item-img-wrap" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/coleman-793-murshidabad.jpg"
+               alt="Garrick Coleman Stock #793 — Murshidabad ivory chess set, c. 1830"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">VII · Berhampur · Bengal</span>
+            <span class="item-ph-title">Murshidabad Ivory</span>
+            <span class="item-ph-stock">Stock #793 · c.1830 · K 4½"</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">The Indian contrast</span><span data-lang="fr">Le contrepoint indien</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Murshidabad ivory chess set, c. 1830</span>
+            <span data-lang="fr">Jeu ivoire Murshidabad, vers 1830</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">Garrick Coleman Antiques</a> ·
+            <span class="item-price">≈ £3,000</span>
+            <span class="status-stock"><span data-lang="en">Available</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Bengal court-grade ivory carving, c. 1830, King 4½", complete with period inlaid teak storage box. Murshidabad — the high tradition of Bengal carving, served from one of London's most reputable specialists.</span>
+            <span data-lang="fr">Ivoire qualité de cour bengalaise, vers 1830, Roi 4½ po, complet avec son coffret teck incrusté d'époque. Murshidabad — la grande tradition bengali, chez l'un des meilleurs spécialistes londoniens.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">The Bengal export carving tradition — foliate finials, gadrooned bases, mitred bishops, horse-head knights. Original inlaid teak case adds 1.5× to value over a similar piece without case.</span>
+            <span data-lang="fr">La grande tradition d'export bengali — finials foliés, bases godronnées, mitres fendues, cavaliers à têtes de cheval. Le coffret teck incrusté d'origine multiplie la valeur par 1,5.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Buy alongside the Lund.</strong> The Bengal counterpoint to a London Lund — one cabinet, two traditions, one East-West story. Court-grade carving with original case is rare at this price.</span>
+              <span data-lang="fr"><strong>Acheter avec le Lund.</strong> Le pendant bengali du Lund londonien — un cabinet, deux traditions, une histoire Est-Ouest. La sculpture qualité de cour avec coffret d'origine est rare à ce prix.</span>
+            </p>
+            <a class="item-link" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">→ View on antiquechess.co.uk</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Garrick Coleman #774 Vizagapatam compendium -->
+      <article class="item">
+        <a class="item-img-wrap" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/coleman-774-vizagapatam-table.jpg"
+               alt="Garrick Coleman Stock #774 — Vizagapatam miniature chess table compendium"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Lund — Northern Upright (bone)</span>
+            <span class="item-ph-title">Miniature Compendium</span>
+            <span class="item-ph-stock">Stock #774 · c.1830</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">The Andhra coast</span><span data-lang="fr">La côte d'Andhra</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Vizagapatam miniature chess table compendium</span>
+            <span data-lang="fr">Compendium Vizagapatam, table d'échecs miniature</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">Garrick Coleman Antiques</a> ·
+            <span class="item-price">≈ £2,850</span>
+            <span class="status-stock"><span data-lang="en">Available</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">A miniature compendium — chess table with integrated ivory-inlay sandalwood top, drawer for pieces, chess + backgammon doubled. The form Vizagapatam workshops invented for the East India Company export trade.</span>
+            <span data-lang="fr">Un compendium miniature — table d'échecs à plateau santal incrusté d'ivoire, tiroir, échecs + tric-trac. La forme inventée par les ateliers de Vizagapatam pour l'export Compagnie des Indes.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Vizagapatam is uniquely about <em>the case</em> as much as the pieces — sandalwood substrate, ivory inlay in floral pattern, brass corners. A compendium piece is the "complete Vizagapatam answer" in furniture form.</span>
+            <span data-lang="fr">Vizagapatam, c'est autant <em>le coffret</em> que les pièces — santal, incrustation ivoire à motif floral, ferrures laiton. Un compendium est la "réponse Vizagapatam complète" en forme de meuble.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong if cabinet has space.</strong> Compendia are scene-stealers and hold their value. £2,850 is fair for a complete piece. Verify the inlay is original (not later French / Italian rework).</span>
+              <span data-lang="fr"><strong>Fort si l'on a la place.</strong> Les compendia volent la vedette et tiennent leur valeur. 2 850 £ est juste pour une pièce complète. Vérifier que l'incrustation est d'origine.</span>
+            </p>
+            <a class="item-link" href="http://www.antiquechess.co.uk/chess_sets.html" target="_blank" rel="noopener">→ View on antiquechess.co.uk</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Luke Honey Vizagapatam 1830 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/indian-vizagapatam-chess-set-circa-1830" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-vizagapatam-1830.jpg"
+               alt="Luke Honey — Antique Anglo-Indian Vizagapatam chess set, c. 1830"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">VI · Vizagapatam</span>
+            <span class="item-ph-title">Ivory &amp; Horn, c.1830</span>
+            <span class="item-ph-stock">Williams · <em>Master Pieces</em> p.100</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Published reference piece</span><span data-lang="fr">Pièce référencée</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Indian Vizagapatam chess set, c. 1830 — ivory &amp; horn</span>
+            <span data-lang="fr">Jeu Vizagapatam, vers 1830 — ivoire &amp; corne</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/indian-vizagapatam-chess-set-circa-1830" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Anglo-Indian export ivory and horn, kings surmounted with crosses, queens with crowns, bishops as mitres, knights as horses' heads, rooks as flagged turrets. K 11cm / P 4.9cm. Featured in Gareth Williams, <em>Master Pieces</em> (Quintet, 2000), pp. 100–101.</span>
+            <span data-lang="fr">Export anglo-indien ivoire et corne. Rois à croix, reines à couronnes, mitres pour les fous, chevaux pour cavaliers, tours à fanions. Roi 11 cm / pion 4,9 cm. Cité dans Gareth Williams, <em>Master Pieces</em> (Quintet, 2000), p. 100–101.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Bibliographic citation in <em>Master Pieces</em> moves this piece up an entire tier — the catalogue reference is part of the value. CITES export licence required outside the EU; cannot ship to USA under recent legislation.</span>
+            <span data-lang="fr">La citation dans <em>Master Pieces</em> fait monter la pièce d'un étage — la référence catalogue fait partie de la valeur. Licence CITES nécessaire hors UE ; impossible vers les USA.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong if priced fairly.</strong> A published Vizagapatam piece is worth ~1.3× a comparable orphan. Ask Luke Honey for the price and the bibliographic provenance documentation.</span>
+              <span data-lang="fr"><strong>Fort si prix juste.</strong> Une pièce Vizagapatam publiée vaut environ 1,3× son équivalent orphelin. Demander à Luke Honey le prix et la documentation bibliographique.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/indian-vizagapatam-chess-set-circa-1830" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Luke Honey Indian Export Anglo-Indian Bengal 1840 12.4cm -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/indian-export-chess-set-circa-1840" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-export-1840.jpg"
+               alt="Luke Honey — Anglo-Indian export chess set, c. 1840"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">VII · Berhampur · Bengal</span>
+            <span class="item-ph-title">Anglo-Indian Export</span>
+            <span class="item-ph-stock">c.1840 · K 12.4cm · Green / Brown</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Larger King size</span><span data-lang="fr">Roi de grande taille</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Anglo-Indian export chess set, c. 1840</span>
+            <span data-lang="fr">Jeu d'export anglo-indien, vers 1840</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/indian-export-chess-set-circa-1840" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">One side stained green, the other dark chocolate brown. Kings &amp; queens with large reeded knops under spire finials, bishops with pierced mitres, knights as horses' heads. K 12.4cm — at the top of Bengal export sizing.</span>
+            <span data-lang="fr">Un camp teinté vert, l'autre brun chocolat. Rois et reines à grands knops cannelés sous flèches, mitres ajourées, cavaliers à têtes de cheval. Roi 12,4 cm — en haut de la fourchette bengalaise.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">The 12.4cm king is meaningful — most Bengal export sets sit at 9–11cm. Larger pieces command an outsized premium in this category. Stained green is the giveaway it is Bengal export rather than Murshidabad court-grade. Antique elephant ivory: CITES, no USA.</span>
+            <span data-lang="fr">Le roi de 12,4 cm est significatif — la plupart des sets bengalis sont à 9–11 cm. Les pièces plus grandes voient leur prix multiplié dans cette catégorie. Le vert trahit l'export bengali plutôt que la qualité de cour Murshidabad.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong candidate.</strong> Bengal export at the top of its size band, mid-period (1840), with serious carving. If priced £2.5–4.5k it is a buy; above £5k start asking what justifies the premium.</span>
+              <span data-lang="fr"><strong>Fort candidat.</strong> Export bengali en haut de sa fourchette, période milieu (1840), sculpture sérieuse. Entre 2,5–4,5 k£ : à acheter ; au-dessus de 5 k£ : demander ce qui justifie la prime.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/indian-export-chess-set-circa-1840" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Luke Honey "Delhi" 1840 BCD 1113 (the one already rated) -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/an-indian-ivory-chess-set-delhi-circa-1840" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-delhi-bcd1113.jpg"
+               alt="Luke Honey BCD 1113 — Indian ivory chess set, Delhi c. 1840"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <img src="https://www.lukehoney.co.uk/cdn/shop/files/An_Indian_Ivory_Chess_Set_Delhi_circa_1840_-_Luke_Honey_Antiques_Chess_Backgammon_Games-2048925.jpg?v=1722554989&width=1200" alt="Indian Ivory Chess Set Delhi circa 1840" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='&lt;div class=&quot;item-placeholder&quot;&gt;&lt;span class=&quot;item-ph-orn&quot;&gt;✦&lt;/span&gt;&lt;span class=&quot;item-ph-style&quot;&gt;VII · Bengal Export&lt;/span&gt;&lt;span class=&quot;item-ph-title&quot;&gt;&quot;Delhi&quot; ivory&lt;/span&gt;&lt;span class=&quot;item-ph-stock&quot;&gt;BCD 1113 · c.1840&lt;/span&gt;&lt;/div&gt;';">
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Mislabelled "Delhi"</span><span data-lang="fr">Étiquette "Delhi" trompeuse</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Indian ivory chess set, "Delhi", c. 1840 — BCD 1113</span>
+            <span data-lang="fr">Jeu indien ivoire, "Delhi", vers 1840 — BCD 1113</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/an-indian-ivory-chess-set-delhi-circa-1840" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span class="item-price">£850</span>
+            <span class="status-sold"><span data-lang="en">Sold</span><span data-lang="fr">Vendu</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">One side stained red / one natural, kings 10.8cm with pierced foliate finials, gadrooned circular bases, knights as horses' heads. Sold by Luke Honey as "Delhi" — the formal vocabulary points squarely at Bengal export, not Delhi court work.</span>
+            <span data-lang="fr">Un côté teinté rouge, l'autre naturel, rois 10,8 cm à finials foliés ajourés, bases godronnées, cavaliers à têtes de cheval. Vendu par Luke Honey comme "Delhi" — le vocabulaire pointe vers l'export bengali, pas la cour de Delhi.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Red leatherette case: 20th-century replacement, almost certainly not the 1840s original. K 4¼" — modest size, below the 4½"+ premium threshold. "Delhi" attribution is speculative dealer-talk; it is Berhampur / Bengal grammar.</span>
+            <span data-lang="fr">Coffret simili rouge : remplacement du XX<sup>e</sup>, presque sûrement pas l'original de 1840. Roi 4¼ po — taille modeste, sous le seuil premium des 4½ po. "Delhi" est une attribution spéculative ; c'est de la grammaire Berhampur / Bengale.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Honest piece, honest price — but not the strongest.</strong> £850 was sensibly cheap for what it is, but Coleman #793 at ≈£3k is a meaningfully better Bengal example. Useful as a reference data point on Luke Honey's pricing, not as a target.</span>
+              <span data-lang="fr"><strong>Pièce honnête, prix honnête — mais pas le mieux.</strong> 850 £ était raisonnablement bon marché, mais Coleman #793 à ≈ 3 000 £ est un meilleur exemple bengali. Utile comme repère de prix Luke Honey, pas comme cible.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/an-indian-ivory-chess-set-delhi-circa-1840" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. Luke Honey Lund Pattern 1850 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/antique-lund-ivory-chess-set-circa-1850" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-lund-1850.jpg"
+               alt="Luke Honey — Antique Lund-pattern ivory chess set, c. 1850"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Anglo-Indian Lund</span>
+            <span class="item-ph-title">"Lund Pattern" Ivory</span>
+            <span class="item-ph-stock">c.1850 · Maltese cross kings</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Pattern, attributed</span><span data-lang="fr">Type, attribué</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">"Lund Pattern" ivory chess set, c. 1850</span>
+            <span data-lang="fr">Jeu ivoire "type Lund", vers 1850</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/antique-lund-ivory-chess-set-circa-1850" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Kings with Maltese crosses, queens with reeded ball finials surmounted by feathers, bishops as open split mitres, knights as arched horses' heads with flared nostrils, rooks as reeded turrets with battlements. The Lund vocabulary, expertly executed.</span>
+            <span data-lang="fr">Rois à croix de Malte, reines à finials cannelés surmontés de plumes, mitres fendues ouvertes, cavaliers à têtes cintrées aux naseaux dilatés, tours cannelées crénelées. Le vocabulaire Lund, exécuté avec brio.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">"Lund Pattern" rather than "by Lund" — attributed, not signed. Drops one tier from a signed example. Antique elephant ivory: CITES, no USA. The fact that the dealer flags "pattern" rather than "by" is honest and reassuring.</span>
+            <span data-lang="fr">"Type Lund" plutôt que "par Lund" — attribué, non signé. Descend d'un étage par rapport à un exemplaire signé. La franchise du marchand sur "type" plutôt que "par" est honnête.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Solid second-choice Lund.</strong> A well-executed Lund-pattern attributed piece. If priced £4–6k, fair; above £6k, the Coleman #400 signed example at £2,350 wins outright.</span>
+              <span data-lang="fr"><strong>Bon second choix Lund.</strong> Un type Lund attribué bien exécuté. Entre 4–6 k£ : juste ; au-dessus, le Coleman #400 signé à 2 350 £ gagne sans débat.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/antique-lund-ivory-chess-set-circa-1850" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Luke Honey "A Fine Lund" 1830 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-fine-lund-chess-set-circa-1830" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-fine-lund-1830.jpg"
+               alt="Luke Honey — A fine large Lund chess set, c. 1830"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Anglo-Indian Lund</span>
+            <span class="item-ph-title">A Fine Lund</span>
+            <span class="item-ph-stock">c.1830 · early period</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Pre-Staunton period</span><span data-lang="fr">Antérieur Staunton</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">A fine Lund chess set, c. 1830</span>
+            <span data-lang="fr">Beau jeu Lund, vers 1830</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-fine-lund-chess-set-circa-1830" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request · listing may be archived</span><span data-lang="fr">Prix sur demande · peut être archivé</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">An earlier Lund — c. 1830, predating Staunton's standardisation (1849). Listings from this slug were not currently retrievable; the URL may be archived. The 1830 dating, if accurate, is meaningful: it places the piece in the pre-Staunton turning tradition.</span>
+            <span data-lang="fr">Un Lund plus précoce — vers 1830, antérieur à la standardisation Staunton (1849). Le slug n'a pas été récupérable au moment de la recherche ; l'URL est peut-être archivée. La datation 1830, si exacte, est significative.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Pre-Staunton Lunds are scarcer than the post-1840 examples. Verify the URL is live; if archived, ask Luke Honey whether comparable c. 1830 stock is available. A signed pre-1840 Lund would be a major collector piece.</span>
+            <span data-lang="fr">Les Lund antérieurs à Staunton sont plus rares que les post-1840. Vérifier que l'URL est active ; sinon, demander à Luke Honey si du stock comparable c.1830 est disponible.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Worth a direct enquiry.</strong> URL not currently retrievable, but a signed pre-1840 Lund is a tier above the 1850 pattern pieces. Email Luke Honey directly to ask if comparable stock is available.</span>
+              <span data-lang="fr"><strong>Vaut une demande directe.</strong> URL non disponible, mais un Lund signé pré-1840 est d'un étage au-dessus des pièces "type" 1850. Écrire à Luke Honey directement.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-fine-lund-chess-set-circa-1830" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. Luke Honey Indian Export Ivory 19th century -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/indian-export-ivory-chess-set-19th-century" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-export-19c.jpg"
+               alt="Luke Honey — Indian export ivory chess set, 19th century"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">VIII · John Company / Bengal</span>
+            <span class="item-ph-title">Indian Export Ivory</span>
+            <span class="item-ph-stock">19th c. · ivory &amp; ebony</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Late or early?</span><span data-lang="fr">Tard ou tôt ?</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Indian export ivory chess set, 19th century</span>
+            <span data-lang="fr">Jeu d'export indien en ivoire, XIX<sup>e</sup> siècle</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/indian-export-ivory-chess-set-19th-century" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Ivory and ebony, kings with multi-knop baluster finials, bishops with open mitres, knights as horses' heads, rooks as monobloc turrets. The "19th century" dating is suspiciously vague — could be 1810 (premium) or 1880 (late tier-2 territory).</span>
+            <span data-lang="fr">Ivoire et ébène, rois à finials balustres multi-knops, mitres ouvertes, cavaliers à têtes de cheval, tours monoblocs. La datation "XIX<sup>e</sup>" est vague — peut être 1810 (premium) ou 1880 (tier 2 tardif).</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">When a dealer dates a piece "19th century" rather than "c. 1840", they are often hedging. Ask for the dealer's confidence interval; a piece worth full price comes with a tighter date. Monobloc rooks (versus turreted with brickwork) lean late.</span>
+            <span data-lang="fr">Quand un marchand date "XIX<sup>e</sup>" au lieu de "vers 1840", il prend souvent une marge. Demander un intervalle de confiance ; une pièce à plein prix se date plus serré. Les tours monoblocs penchent vers la fin du siècle.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Need price + tighter dating before judging.</strong> If priced sub-£2k it is fine as a Bengal export filler; if priced as a c.1830 piece it is over-reaching. Ask Luke Honey for the dating evidence.</span>
+              <span data-lang="fr"><strong>Besoin du prix et d'une datation plus précise.</strong> Sous 2 k£ : remplissage bengali correct ; au prix d'une pièce c.1830 : excessif. Demander les preuves de datation.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/indian-export-ivory-chess-set-19th-century" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. ChessAntiques V001 East India John Company -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://chessantiques.com/?s=1055" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/chessantiques-1055-john-company.jpg"
+               alt="ChessAntiques Lot #1055 — East Indian John Company Vizagapatam compendium"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">VIII · John Company</span>
+            <span class="item-ph-title">East India "John Company"</span>
+            <span class="item-ph-stock">Lot V001 · K 4¾"</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★★</p>
+          <p class="item-eyebrow"><span data-lang="en">The reference listing</span><span data-lang="fr">La référence du marché</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">East India "John Company" set, mid-19th c.</span>
+            <span data-lang="fr">Jeu "John Company" Inde de l'Est, milieu XIX<sup>e</sup></span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://chessantiques.com/?s=1055" target="_blank" rel="noopener">ChessAntiques.com (Frank Camaratta)</a> ·
+            <span class="item-price">$19,995</span>
+            <span class="status-sold"><span data-lang="en">Out of stock</span><span data-lang="fr">Épuisé</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Frank Camaratta's reference listing for the John Company style — kings 4¾", Berhampur attribution, mid-19th c. ivory. <em>Currently out of stock</em>; Frank knows when comparable pieces appear next.</span>
+            <span data-lang="fr">Le listing de référence de Camaratta pour le style John Company — rois 4¾ po, attribution Berhampur, ivoire milieu XIX<sup>e</sup>. <em>Actuellement épuisé</em> ; Frank saura quand un comparable apparaîtra.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">$19,995 is at the top of the John Company band — Camaratta is the most respected antique chess dealer in the US, so the price reflects his scholarship and authentication, not just the object. The category-defining piece, even if unavailable.</span>
+            <span data-lang="fr">19 995 $ est en haut de la fourchette John Company — Camaratta étant le plus respecté des marchands américains, le prix reflète son érudition autant que l'objet. La pièce qui définit la catégorie.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Aspirational reference, contact Frank for next.</strong> The benchmark for John Company-tier ivory. Email Frank to be notified when the next comparable surfaces. Save the listing as your John Company sanity-check.</span>
+              <span data-lang="fr"><strong>Référence aspirationnelle, écrire à Frank pour la suite.</strong> Le benchmark de la catégorie John Company. Demander à être prévenu de la prochaine pièce comparable.</span>
+            </p>
+            <a class="item-link" href="https://chessantiques.com/?s=1055" target="_blank" rel="noopener">→ View on chessantiques.com</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. ChessAntiques #977 Northern Upright Bone -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://chessantiques.com/?s=977" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/chessantiques-977-northern-upright-bone.jpg"
+               alt="ChessAntiques Lot #977 — Club Size Thomas Lund Style Bone Northern Upright"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Lund — Northern Upright (bone)</span>
+            <span class="item-ph-title">Northern Upright · bone</span>
+            <span class="item-ph-stock">Lot #977 · in stock</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Lund-style playing twin · bone</span><span data-lang="fr">Jumeau de jeu type Lund · os</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Club Size Thomas Lund Style Bone "Northern Upright" — Lot #977</span>
+            <span data-lang="fr">Tournoi style Thomas Lund — pièces "Northern Upright" en os, Lot #977</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://chessantiques.com/?s=977" target="_blank" rel="noopener">ChessAntiques.com (Frank Camaratta)</a> ·
+            <span class="item-price"><span data-lang="en">see page</span><span data-lang="fr">voir page</span></span>
+            <span class="status-stock"><span data-lang="en">In stock</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">A modern Camaratta-supervised reproduction of the Lund "Northern Upright" pattern in turned bone. Cleanly carved, Club Size, ready to play with — the rough peer to the Coleman #400 you keep under glass.</span>
+            <span data-lang="fr">Reproduction moderne, supervisée par Camaratta, du modèle Lund "Northern Upright" en os tourné. Sculpture nette, taille tournoi, prêt à jouer — le pendant pratique d'un Coleman #400 conservé sous vitrine.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">"Northern Upright" is the slender pre-Staunton English silhouette Lund signed in the 1830–40s. A bone repro in this pattern is the closest playable match to a real Lund antique without the CITES freight, the broken finial worry, or the £4–6k price.</span>
+            <span data-lang="fr">"Northern Upright" est la silhouette anglaise élancée pré-Staunton signée Lund vers 1830–40. Une repro en os dans ce motif est l'équivalent jouable le plus proche d'un Lund ancien — sans la contrainte CITES, sans la peur de casser un fleuron, sans le prix de 4–6 k£.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong "playing twin" candidate.</strong> If the antique cornerstone ends up being a Lund/Coleman #400, this is the matching daily-driver. Verify current price on the page before buying.</span>
+              <span data-lang="fr"><strong>Excellent candidat "jumeau de jeu".</strong> Si la pièce ancienne maîtresse devient un Lund / Coleman #400, c'est le compagnon quotidien assorti. Vérifier le prix actuel sur la page.</span>
+            </p>
+            <a class="item-link" href="https://chessantiques.com/?s=977" target="_blank" rel="noopener">→ View on chessantiques.com</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12. ChessAntiques #982 Northern Upright Ebony -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://chessantiques.com/?s=982" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/chessantiques-982-northern-upright-ebony.jpg"
+               alt="ChessAntiques Lot #982 — Club Size Thomas Lund Ebony Slender Northern Upright"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Lund — Northern Upright (ebony)</span>
+            <span class="item-ph-title">Northern Upright · ebony</span>
+            <span class="item-ph-stock">Lot #982 · in stock</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Lund-style playing twin · ebony</span><span data-lang="fr">Jumeau de jeu type Lund · ébène</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Club Size Thomas Lund Ebony Slender "Northern Upright" — Lot #982</span>
+            <span data-lang="fr">Tournoi style Thomas Lund — "Northern Upright" élancé en ébène, Lot #982</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://chessantiques.com/?s=982" target="_blank" rel="noopener">ChessAntiques.com (Frank Camaratta)</a> ·
+            <span class="item-price"><span data-lang="en">see page</span><span data-lang="fr">voir page</span></span>
+            <span class="status-stock"><span data-lang="en">In stock</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">The same Lund "Northern Upright" silhouette as Lot #977, but in ebony rather than bone — the more sober, English-country-house option. Slender turning, sharp finials, Club Size for proper play. The "manor library" aesthetic.</span>
+            <span data-lang="fr">La même silhouette Lund "Northern Upright" que le Lot #977, mais en ébène plutôt qu'en os — option plus sobre, de type "manoir anglais". Tournage élancé, fleurons nets, taille tournoi. Esthétique bibliothèque de manoir.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Ebony is the natural pairing for ivory or bone whites in a Lund-pattern set; this set is intended to mate with a creamy bone partner. Choose between #977 (bone vs bone darkened or stained) and #982 (ebony vs bone) depending on the contrast you prefer.</span>
+            <span data-lang="fr">L'ébène est l'appariement naturel d'un blanc en ivoire ou os pour un Lund ; ce jeu est conçu pour s'allier à des blancs crème. Choisir entre #977 (os vs os teinté) et #982 (ébène vs os) selon le contraste recherché.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Pick #977 OR #982, not both.</strong> Bone reads warmer and more "Anglo-Indian"; ebony reads more "English country house". Match the playing twin to the antique cornerstone you eventually buy.</span>
+              <span data-lang="fr"><strong>Choisir entre #977 et #982, pas les deux.</strong> Os = plus chaud, "anglo-indien" ; ébène = plus "manoir anglais". Faire correspondre le jumeau de jeu à la pièce ancienne maîtresse.</span>
+            </p>
+            <a class="item-link" href="https://chessantiques.com/?s=982" target="_blank" rel="noopener">→ View on chessantiques.com</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13. ChessAntiques #400 Lund repro camel bone -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://chessantiques.com/?s=400" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/chessantiques-400-lund-camelbone.jpg"
+               alt="ChessAntiques Lot #400 — Lund-pattern reproduction in camel bone"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Lund repro</span>
+            <span class="item-ph-title">Lund pattern · camel bone</span>
+            <span class="item-ph-stock">Lot #400 · in stock</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">The playable companion</span><span data-lang="fr">Le compagnon de jeu</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Lund-pattern reproduction in camel bone</span>
+            <span data-lang="fr">Reproduction type Lund en os de chameau</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://chessantiques.com/?s=400" target="_blank" rel="noopener">ChessAntiques.com</a> ·
+            <span class="item-price">$1,295</span>
+            <span class="status-stock"><span data-lang="en">In stock</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Camaratta's Lund-pattern repro in camel bone — CITES-free, weighted, ready to play. The set you put on the table for actual games while your antique cornerstone lives in its case.</span>
+            <span data-lang="fr">La repro Lund de Camaratta en os de chameau — libre CITES, lestée, prête à jouer. Le jeu posé sur la table pour les vraies parties pendant que la pièce ancienne reste sous vitrine.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Camel bone is durable and looks like ivory but with no CITES paperwork. Camaratta's Lund repro is well-researched and honestly executed. Pair with a wooden board (not the ivory board).</span>
+            <span data-lang="fr">L'os de chameau est durable et ressemble à l'ivoire sans paperasse CITES. La repro Lund de Camaratta est bien documentée et honnête. À associer à un échiquier bois (pas ivoire).</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Buy alongside the antique cornerstone.</strong> The "playing twin" of Coleman #400. $1,295 is fair for the carving quality, and you can ship it freely.</span>
+              <span data-lang="fr"><strong>À acheter avec la pièce ancienne.</strong> Le "jumeau de jeu" du Coleman #400. 1 295 $ est juste pour la qualité de sculpture, et expédiable sans entrave.</span>
+            </p>
+            <a class="item-link" href="https://chessantiques.com/?s=400" target="_blank" rel="noopener">→ View on chessantiques.com</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14. ChessAntiques #371 Lund repro boxwood/ebony -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://chessantiques.com/?s=371" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/chessantiques-371-lund-boxwood.jpg"
+               alt="ChessAntiques Lot #371 — Lund-pattern reproduction in boxwood and ebony"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">IX · Lund repro</span>
+            <span class="item-ph-title">Lund pattern · boxwood &amp; ebony</span>
+            <span class="item-ph-stock">Lot #371 · in stock</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Playable companion · wood</span><span data-lang="fr">Compagnon de jeu · bois</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Lund-pattern reproduction in boxwood &amp; ebony</span>
+            <span data-lang="fr">Reproduction type Lund en buis &amp; ébène</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://chessantiques.com/?s=371" target="_blank" rel="noopener">ChessAntiques.com</a> ·
+            <span class="item-price">$1,295</span>
+            <span class="status-stock"><span data-lang="en">In stock</span><span data-lang="fr">Disponible</span></span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Same Lund pattern as Lot #400, but in traditional boxwood and ebony — the ancestor material of nearly every Anglo-Indian set. More forgiving than bone, easier to maintain, equally elegant.</span>
+            <span data-lang="fr">Même pattern Lund que le Lot #400, mais en buis et ébène traditionnels — la matière ancestrale de presque tous les jeux anglo-indiens. Plus tolérant que l'os, entretien facile.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Boxwood/ebony Stauntons are the standard "every-day" play medium. Slight visual aging is acceptable here in a way it would not be on the ivory antique.</span>
+            <span data-lang="fr">Les Stauntons buis/ébène sont le format "tous les jours". Un léger vieillissement est acceptable ici, ce qu'il ne serait pas sur l'ancien ivoire.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Pick this OR Lot #400, not both.</strong> Camel bone (#400) reads more "Anglo-Indian"; boxwood/ebony (#371) reads more "English country house". Choose the one that matches the antique you eventually buy.</span>
+              <span data-lang="fr"><strong>Choisir entre #371 et #400, pas les deux.</strong> Os de chameau (#400) plus "anglo-indien" ; buis/ébène (#371) plus "manoir anglais". Choisir selon la pièce ancienne acquise.</span>
+            </p>
+            <a class="item-link" href="https://chessantiques.com/?s=371" target="_blank" rel="noopener">→ View on chessantiques.com</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GROUP B — ENGLISH PATTERNS ════════════════════════════════ -->
+<section class="group" id="english-patterns">
+  <div class="container">
+    <header class="group-header">
+      <p class="group-eyebrow">
+        <span data-lang="en">Group B · English Turning Tradition</span>
+        <span data-lang="fr">Groupe B · Tradition Anglaise du Tournage</span>
+      </p>
+      <h2 class="group-title">
+        <span data-lang="en">Hastilow, Barleycorn &amp; <em>Jaques Staunton</em></span>
+        <span data-lang="fr">Hastilow, Barleycorn &amp; <em>Jaques Staunton</em></span>
+      </h2>
+      <p class="group-blurb">
+        <span data-lang="en">The English turners — Charles Hastilow, John Calvert, William Lund, and the firm of Jaques of London — collectively defined the look of pre-Staunton and Staunton-era chess. Adjacent to the Anglo-Indian hunt, but the same craft DNA.</span>
+        <span data-lang="fr">Les tourneurs anglais — Charles Hastilow, John Calvert, William Lund, la maison Jaques — ont défini collectivement l'apparence des échecs pré-Staunton et Staunton. Adjacents à la chasse anglo-indienne, même ADN d'atelier.</span>
+      </p>
+    </header>
+
+    <div class="item-grid">
+
+      <!-- Hastilow -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/hastilow-chess-set-19th-century" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-hastilow-1850.jpg"
+               alt="Luke Honey — Hastilow chess set, 19th century"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">English · Hastilow</span>
+            <span class="item-ph-title">"Hastilow" pattern</span>
+            <span class="item-ph-stock">c.1850 · Fleur de Lys queens</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Named English maker</span><span data-lang="fr">Tourneur anglais nommé</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">"Hastilow" chess set, c. 1850</span>
+            <span data-lang="fr">Jeu "Hastilow", vers 1850</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/hastilow-chess-set-19th-century" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">A rare ivory chess set in the pattern of Charles Hastilow, the Victorian ivory turner. Kings and queens with elaborately carved crowns and bobbles, queens with Fleur de Lys, kings with crosses, rooks with extra-large flags. The Hastilow signature is the queen's Fleur de Lys.</span>
+            <span data-lang="fr">Un rare jeu d'ivoire au type de Charles Hastilow, le tourneur victorien. Couronnes finement sculptées avec bobbles, reines à Fleur de Lys, rois à croix, tours à fanions surdimensionnés. La signature Hastilow, c'est le Fleur de Lys de la reine.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Charles Hastilow's pattern is rarer than Lund — fewer pieces survive. A Hastilow at auction goes £4–10k depending on signature/attribution and condition. CITES, no USA. Worth pursuing if priced under £6k for a clean attributed example.</span>
+            <span data-lang="fr">Le type Hastilow est plus rare que Lund — moins de pièces survivantes. Aux enchères : 4–10 k£ selon signature et état. Vaut la peine sous 6 k£ pour un attribué propre.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong English option, parallel to Lund.</strong> If a Hastilow surfaces signed and well-cased under £6k, it is competitive with the Coleman #400 Lund — different pattern, equivalent prestige.</span>
+              <span data-lang="fr"><strong>Belle option anglaise, parallèle au Lund.</strong> Un Hastilow signé et en coffret sous 6 k£ serait concurrent du Coleman #400 — autre type, prestige équivalent.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/hastilow-chess-set-19th-century" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- English Bone Barleycorn 1850 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/english-bone-barleycorn-chess-set-circa-1850" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-barleycorn-1850.jpg"
+               alt="Luke Honey — English bone Barleycorn chess set, c. 1850"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">English · Barleycorn</span>
+            <span class="item-ph-title">English Bone Barleycorn</span>
+            <span class="item-ph-stock">c.1850 · chip-carved box</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Decorative tier</span><span data-lang="fr">Tier décoratif</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">English bone "Barleycorn" chess set, c. 1850</span>
+            <span data-lang="fr">Jeu anglais en os "Barleycorn", vers 1850</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/english-bone-barleycorn-chess-set-circa-1850" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Carved 'barleycorn' frieze on king/queen centres, mitred bishops with bobble decoration, knights as horse heads, rooks as turrets with brickwork and flags. Chip-carved hinged wooden box. The classic Victorian English popular pattern, parallel to but cheaper than Lund.</span>
+            <span data-lang="fr">Frise "barleycorn" sculptée au centre des rois et reines, mitres à bobbles, cavaliers à têtes de cheval, tours à brique et fanions. Coffret bois ciselé à charnières. Le pattern anglais populaire victorien, parallèle mais moins cher que Lund.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Barleycorn was the bread-and-butter pattern after Lund &amp; before Staunton dominance. Bone (not ivory) — sits in the £600–£1,800 band. The chip-carved box is original to the period and adds value.</span>
+            <span data-lang="fr">Le Barleycorn était le pattern courant entre Lund et la dominance Staunton. Os (pas ivoire) — fourchette 600–1 800 £. Le coffret ciselé d'origine apporte de la valeur.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Decorative, not core.</strong> Honest period bone set, fine for a study shelf, will not appreciate. Skip in favour of a Bengal export at the same price point — more aesthetic distance from your core Lund.</span>
+              <span data-lang="fr"><strong>Décoratif, pas central.</strong> Jeu d'os d'époque honnête, OK pour étagère, n'appréciera pas. Préférer un export bengali au même prix — plus de distance esthétique avec ton Lund.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/english-bone-barleycorn-chess-set-circa-1850" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Jaques Staunton with Cartonpierre Box -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-jaques-staunton-chess-set-with-cartonpierre-box-1880" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-jaques-cartonpierre-1880.jpg"
+               alt="Luke Honey — Jaques Staunton chess set with cartonpierre box, 1880"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">English · Jaques Staunton</span>
+            <span class="item-ph-title">Jaques · Cartonpierre Box</span>
+            <span class="item-ph-stock">c.1880 · stamped JAQUES LONDON</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">The signed standard</span><span data-lang="fr">Le standard signé</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Jaques Staunton ivory chess set with cartonpierre box, c. 1880</span>
+            <span data-lang="fr">Jaques Staunton ivoire avec coffret cartonpierre, vers 1880</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-jaques-staunton-chess-set-with-cartonpierre-box-1880" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Antique Jaques Staunton ivory, white king stamped <em>JAQUES LONDON</em>, K 7.5cm, in a Gothic papier-mâché "Cartonpierre" box with plum-coloured velveteen interior — the exact pairing in which Jaques shipped these sets. The signature alone moves it a tier.</span>
+            <span data-lang="fr">Jaques Staunton ivoire d'époque, roi blanc poinçonné <em>JAQUES LONDON</em>, roi 7,5 cm, dans un coffret cartonpierre gothique en papier mâché à intérieur velveteen prune — l'écrin exact dans lequel Jaques expédiait. La signature change tout.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">The Cartonpierre Gothic box is its own collector category — worth £600–1,200 alone if separated. The complete set in original box is worth £4–8k depending on king size. Verify the JAQUES LONDON stamp under the white king is original (not later restamping).</span>
+            <span data-lang="fr">Le coffret Cartonpierre gothique est lui-même une catégorie — 600–1 200 £ seul. Le jeu complet en coffret d'origine vaut 4–8 k£ selon taille du roi. Vérifier que le poinçon JAQUES LONDON est d'époque.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Adjacent to your hunt — buy if you want a "British canonical".</strong> A Jaques Staunton with original Cartonpierre is the canonical post-1849 English set. Not Anglo-Indian, but if the cabinet wants one English standard, this is it.</span>
+              <span data-lang="fr"><strong>Adjacent — à acheter si tu veux le "canonique britannique".</strong> Un Jaques Staunton avec son cartonpierre est l'étalon anglais post-1849. Pas anglo-indien, mais si le cabinet veut un standard anglais, c'est lui.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-jaques-staunton-chess-set-with-cartonpierre-box-1880" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GROUP C — CONTINENTAL: SELENUS &amp; BIEDERMEIER ═══════════ -->
+<section class="group" id="continental">
+  <div class="container">
+    <header class="group-header">
+      <p class="group-eyebrow">
+        <span data-lang="en">Group C · Continental Tradition</span>
+        <span data-lang="fr">Groupe C · Tradition Continentale</span>
+      </p>
+      <h2 class="group-title">
+        <span data-lang="en">Selenus, Biedermeier &amp; the <em>German Bone Tradition</em></span>
+        <span data-lang="fr">Selenus, Biedermeier &amp; la <em>tradition allemande de l'os</em></span>
+      </h2>
+      <p class="group-blurb">
+        <span data-lang="en">The Selenus pattern (named after Gustavus Selenus, the 1616 Brunswick chess treatise) ran through 17th–19th century Germany — bone turned in stacked galleries with crescent-moon rooks. Biedermeier sets are their refined 1820–50 cousin. Outside the Anglo-Indian hunt, but understanding them clarifies what makes Anglo-Indian distinct.</span>
+        <span data-lang="fr">Le type Selenus (du nom du traité de Gustavus Selenus, Brunswick 1616) court à travers l'Allemagne du XVII<sup>e</sup> au XIX<sup>e</sup> — os tourné en galeries empilées avec tours à croissant islamique. Le Biedermeier en est le cousin raffiné 1820–50. Hors chasse anglo-indienne, mais utile pour comprendre ce qui rend l'anglo-indien distinct.</span>
+      </p>
+    </header>
+
+    <div class="item-grid">
+
+      <!-- Fine Bone Selenus 1840 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/fine-bone-selenus-chess-set-circa-1840" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-selenus-bone-1840.jpg"
+               alt="Luke Honey — Fine bone Selenus chess set, c. 1840"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Selenus</span>
+            <span class="item-ph-title">Fine Bone Selenus</span>
+            <span class="item-ph-stock">c.1840 · transfer-print box</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Original-box specimen</span><span data-lang="fr">Coffret d'origine</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Fine bone Selenus chess set, c. 1840</span>
+            <span data-lang="fr">Beau jeu Selenus en os, vers 1840</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/fine-bone-selenus-chess-set-circa-1840" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">German "Selenus pattern" polished bone, red and natural, with kings/queens with pierced galleries, bishops with baluster knops, knights with carved horses' heads, rooks as turrets surmounted with Islamic crescent moons. <em>In the original box with sliding lid</em>, decorated with chess-players transfer print and simulated rosewood finish.</span>
+            <span data-lang="fr">Selenus allemand en os poli, rouge et naturel, rois et reines à galeries ajourées, mitres à knops balustres, cavaliers sculptés, tours à croissants islamiques. <em>Dans son coffret d'origine</em>, lid coulissant, transfert chess-players et faux palissandre.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">The original box with transfer print is the entire value-add — same set without the box drops 30–40%. The Islamic-crescent rook is the Selenus signature, a fossil of 1600s German imagery of Ottoman power. Sits firmly in Tier 2 (£800–1,800).</span>
+            <span data-lang="fr">Le coffret d'origine avec transfert est l'essentiel de la plus-value — sans coffret la pièce baisse de 30–40 %. La tour à croissant est la signature Selenus, fossile de l'imagerie allemande du XVII<sup>e</sup> sur la puissance ottomane.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Charming, not the hunt.</strong> A lovely original-box Selenus is a perfect Tier-2 decorative piece — but outside the Anglo-Indian narrowed scope. Skip unless the cabinet wants a "Continental contrast" later.</span>
+              <span data-lang="fr"><strong>Charmant, pas la chasse.</strong> Un Selenus en coffret d'origine, parfait décoratif niveau 2 — hors périmètre anglo-indien. À écarter sauf si le cabinet veut un "contraste continental" plus tard.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/fine-bone-selenus-chess-set-circa-1840" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Biedermeier Selenus with board -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/beidermeier-selenus-chess-set-board" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-selenus-board.jpg"
+               alt="Luke Honey — Biedermeier Selenus chess set with games board"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Biedermeier</span>
+            <span class="item-ph-title">Selenus + Games Board</span>
+            <span class="item-ph-stock">3-game board · chess / backgammon / morris</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Compendium board</span><span data-lang="fr">Plateau de jeux multiples</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Biedermeier Selenus chess set with games board</span>
+            <span data-lang="fr">Selenus Biedermeier avec plateau de jeux</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/beidermeier-selenus-chess-set-board" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Selenus pattern bone, one side red and one natural, with a wooden games board/box for chess, backgammon, and Nine Men Morris with a metal hook clasp — a classic Continental three-game compendium.</span>
+            <span data-lang="fr">Selenus en os, un camp rouge un camp naturel, avec plateau-coffret de jeux pour échecs, tric-trac, et marelle, fermoir métallique — un compendium continental trois-jeux classique.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Three-game compendium boards are a distinct sub-collectible category. £1,500–3,000 typical for a complete set + board in original condition. Game pieces should match the board's age (verify the bone tone &amp; turning style align with the board's wood).</span>
+            <span data-lang="fr">Les plateaux trois-jeux sont une sous-catégorie distincte. 1 500–3 000 £ pour un set + plateau complet et d'époque. Vérifier que les pièces correspondent à l'âge du plateau (ton de l'os, style de tournage cohérents).</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Adjacent — fun, not core.</strong> A three-game compendium is a beautiful "guest room" object but does not belong in the Anglo-Indian cabinet. If priced under £1,500 it could justify a separate "Continental compendia" shelf.</span>
+              <span data-lang="fr"><strong>Adjacent — sympa, pas central.</strong> Beau pour la chambre d'amis, pas pour le cabinet anglo-indien. Sous 1 500 £ : justifie une étagère "compendia continentaux".</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/beidermeier-selenus-chess-set-board" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Biedermeier spindle bone 19th c -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/biedermeier-spindle-bone-chess-set-19th-century" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-spindle-1850.jpg"
+               alt="Luke Honey — Biedermeier spindle-bone chess set, 19th century"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Biedermeier</span>
+            <span class="item-ph-title">Spindle Bone</span>
+            <span class="item-ph-stock">19th c. · K 7cm · inlaid box</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★☆☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Small travel set</span><span data-lang="fr">Petit jeu de voyage</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Biedermeier spindle-bone chess set, 19th century</span>
+            <span data-lang="fr">Jeu Biedermeier en os tourné, XIX<sup>e</sup> siècle</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/biedermeier-spindle-bone-chess-set-19th-century" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Small bone set, K 7cm, P 3.1cm, in a 21cm mahogany and metal-inlaid box. A travel/tabletop scale, decoratively pleasant but at the smaller end where collector value falls.</span>
+            <span data-lang="fr">Petit jeu en os, roi 7 cm, pion 3,1 cm, dans un coffret 21 cm en acajou incrusté de métal. Échelle voyage/table, décoratif mais à la limite basse où la valeur collection chute.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Sets with K &lt; 8cm are travel sets — gallery curators and collectors rate them lower than full-size 4"+ sets. A 7cm king is on the small side. The mahogany inlaid box is the saving grace.</span>
+            <span data-lang="fr">Les jeux avec roi &lt; 8 cm sont des jeux de voyage — moins cotés que les pleines tailles &gt; 4 po. Le coffret incrusté est le rachat.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Skip.</strong> Small + bone + uncertain dating = decorative-only, modest value. Better travel sets exist; better Biedermeier sets exist.</span>
+              <span data-lang="fr"><strong>À éviter.</strong> Petit + os + datation incertaine = décoratif seulement, valeur modeste. Mieux ailleurs.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/biedermeier-spindle-bone-chess-set-19th-century" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- German Selenus Polished Bone 1830 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-german-selenus-polished-bone-chess-set-circa-1830" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-selenus-polished-1830.jpg"
+               alt="Luke Honey — German Selenus polished bone chess set, c. 1830"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Selenus</span>
+            <span class="item-ph-title">Selenus Polished Bone</span>
+            <span class="item-ph-stock">c.1830 · K 10cm · mahogany caddy</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Standard Selenus</span><span data-lang="fr">Selenus standard</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">German "Selenus" polished bone, c. 1830</span>
+            <span data-lang="fr">Selenus allemand en os poli, vers 1830</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-german-selenus-polished-bone-chess-set-circa-1830" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Natural bone vs chocolate-patina sides, kings and queens with floral balustrades, bishops with ball finials, knights with horses' heads. K 10cm, P 4.5cm, with 19th c. mahogany caddy 26cm wide.</span>
+            <span data-lang="fr">Os naturel vs patine chocolat, rois et reines à balustrade florale, mitres à boules, cavaliers à têtes de cheval. Roi 10 cm, pion 4,5 cm, caddy acajou XIX<sup>e</sup> de 26 cm.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">A representative German Selenus c.1830 — the "library shelf" version of the type, well-formed but unremarkable. Mahogany caddy adds value (~+£200). Tier 2 territory: £800–1,500 fair, anything over £2k overreaching.</span>
+            <span data-lang="fr">Selenus allemand vers 1830 représentatif — la version "étagère bibliothèque", bien formé mais sans relief. Caddy acajou +200 £. Niveau 2 : 800–1 500 £ juste, au-dessus de 2 k£ excessif.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Skip — generic.</strong> A perfectly fine Selenus, but interchangeable with hundreds of others. Buy only if priced &lt; £1k and the caddy is genuinely period.</span>
+              <span data-lang="fr"><strong>À éviter — générique.</strong> Selenus correct, mais interchangeable avec des centaines d'autres. Acheter sous 1 k£ avec caddy d'époque seulement.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-german-selenus-polished-bone-chess-set-circa-1830" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Selenus 18th century box -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-and-box-18th-century" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-selenus-box-18c.jpg"
+               alt="Luke Honey — Selenus chess set and box, 18th century"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Selenus</span>
+            <span class="item-ph-title">18th c. Selenus + Box</span>
+            <span class="item-ph-stock">URL may be archived</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Earliest tier</span><span data-lang="fr">Date la plus haute</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">"Selenus" chess set and box, 18th century</span>
+            <span data-lang="fr">"Selenus" et coffret, XVIII<sup>e</sup> siècle</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-and-box-18th-century" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Listing may be archived · enquire</span><span data-lang="fr">Annonce peut-être archivée</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">An 18th-century Selenus is a tier above the 19th-c. examples — the pattern at its earliest tradition. URL not currently retrievable; the listing may be archived. Comparable Luke Honey 18th-c. Selenus sets do exist.</span>
+            <span data-lang="fr">Un Selenus du XVIII<sup>e</sup> est au-dessus des exemples du XIX<sup>e</sup> — type à son origine. URL non récupérable, peut-être archivée.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Late-1700s Selenus pieces command £2,000–4,500 for fine examples in original boxes — they cross from "decorative" into "early collectible". Worth a direct enquiry to Luke Honey for current 18th-c. Selenus stock.</span>
+            <span data-lang="fr">Les Selenus fin XVIII<sup>e</sup> en bel état avec coffret se vendent 2 000–4 500 £ — ils franchissent la frontière entre décoratif et collection précoce. Demander à Luke Honey son stock 18<sup>e</sup>.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Worth a direct enquiry.</strong> An 18th-c. Selenus is a tier above 1830 Selenus — but still outside the Anglo-Indian core hunt. Pursue only if the cabinet acquires a "Continental wing".</span>
+              <span data-lang="fr"><strong>Vaut une demande.</strong> Un Selenus XVIII<sup>e</sup> est au-dessus du 1830 — mais hors chasse principale. À poursuivre seulement si l'on ouvre une "aile continentale".</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-and-box-18th-century" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Selenus chess set + board 19th c -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-board-19th-century" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-selenus-board-19c.jpg"
+               alt="Luke Honey — Selenus chess set with board, 19th century"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">German · Selenus</span>
+            <span class="item-ph-title">Selenus + Games Board</span>
+            <span class="item-ph-stock">19th c. · K 10.3cm · 3-game board</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★☆☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Three-game compendium</span><span data-lang="fr">Compendium trois-jeux</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">"Selenus" chess set with board, 19th century</span>
+            <span data-lang="fr">"Selenus" avec plateau, XIX<sup>e</sup> siècle</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-board-19th-century" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Listing may be archived · enquire</span><span data-lang="fr">Peut être archivé</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">German Selenus, K 10.3cm / P 4.9cm, with a wooden games board/box for chess, backgammon, and Nine Men Morris (30.5cm closed, 61cm open flat). The complete Continental compendium.</span>
+            <span data-lang="fr">Selenus allemand, roi 10,3 cm / pion 4,9 cm, avec plateau-coffret 3 jeux (échecs, tric-trac, marelle ; 30,5 cm fermé, 61 cm ouvert). Le compendium continental complet.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Same compendium category as the Biedermeier+board entry above. The three-game format is satisfying as an object — board folds, pieces store, family game night ready. £1,500–2,500 fair if pieces and board are co-period.</span>
+            <span data-lang="fr">Même catégorie compendium que l'entrée Biedermeier+plateau ci-dessus. Format 3-jeux satisfaisant : plateau qui se replie, pièces rangées, prêt pour la soirée jeux. 1 500–2 500 £ juste si pièces et plateau d'époque cohérente.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Charming, not core.</strong> If the family wants one beautiful three-game Continental compendium for actual play (not display), this template is the right shape. But it competes with cheaper modern compendia.</span>
+              <span data-lang="fr"><strong>Charmant, pas central.</strong> Si la famille veut un beau compendium continental pour vraiment jouer (pas pour l'étagère), ce gabarit est le bon. Mais concurrence des compendia modernes moins chers.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-selenus-chess-set-board-19th-century" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Dutch / Danish Bone 1800 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/dutch-bone-chess-set-circa-1800" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-danish-bone-1800.jpg"
+               alt="Luke Honey — Antique Danish bone chess set, c. 1800"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">Northern European · Bone</span>
+            <span class="item-ph-title">Danish Bone (mislabelled "Dutch")</span>
+            <span class="item-ph-stock">c.1800 · Bonhams Jeannin 2009</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Documented provenance</span><span data-lang="fr">Provenance documentée</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Bone chess set, Denmark, c. 1800</span>
+            <span data-lang="fr">Jeu en os, Danemark, vers 1800</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/dutch-bone-chess-set-circa-1800" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Mislabelled "Dutch" — actually Danish. One side stained black with natural highlights, kings with multiple knops and reeded finials, queens smaller, bishops with baluster knops, knights as <em>large</em> horse heads over baluster columns. With key-locking lidded box.</span>
+            <span data-lang="fr">Étiquetée "Dutch" mais en fait danoise. Un camp noir à reflets naturels, rois multi-knops à finials cannelés, cavaliers à <em>grandes</em> têtes de cheval sur colonne balustre. Coffret à clé.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Crucial provenance: <em>ex Private British Chess Collection, sold Bonhams "Fine Chess Sets &amp; Games incl. the Martine Jeannin Collection", 29 April 2009, Lot 179</em>. Documented Bonhams provenance moves this an entire tier above an orphan equivalent.</span>
+            <span data-lang="fr">Provenance cruciale : ex collection privée britannique, vendue chez Bonhams "Fine Chess Sets &amp; Games incl. Martine Jeannin", 29 avril 2009, Lot 179. Cette provenance Bonhams fait monter d'un étage par rapport à un équivalent orphelin.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Strong if priced under £2,500.</strong> Documented Bonhams Jeannin provenance is real value. Out of Anglo-Indian scope but a genuinely interesting Northern European piece — pursue if Continental shelf opens.</span>
+              <span data-lang="fr"><strong>Fort sous 2 500 £.</strong> Provenance Bonhams Jeannin documentée = vraie valeur. Hors scope anglo-indien mais nordique intéressant — à poursuivre si l'on ouvre l'étagère continentale.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/dutch-bone-chess-set-circa-1800" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GROUP D — FAR EAST EXPORT ═════════════════════════════════ -->
+<section class="group" id="far-east">
+  <div class="container">
+    <header class="group-header">
+      <p class="group-eyebrow">
+        <span data-lang="en">Group D · Far East Export</span>
+        <span data-lang="fr">Groupe D · Export d'Extrême-Orient</span>
+      </p>
+      <h2 class="group-title">
+        <span data-lang="en">Macao, Canton &amp; <em>Burmese Pattern</em></span>
+        <span data-lang="fr">Macao, Canton &amp; <em>type birman</em></span>
+      </h2>
+      <p class="group-blurb">
+        <span data-lang="en">Chinese export ivory traded to Europe via Macao and Canton (Guangzhou). Figural "bust" sets feature Wellington vs Chinese Emperor, the Hoaching workshop, the Burmese pattern. Sister tradition to Anglo-Indian — same East-West collision, different geography.</span>
+        <span data-lang="fr">Ivoire chinois d'export vers l'Europe via Macao et Canton (Guangzhou). Jeux figuratifs "bustes" Wellington vs Empereur chinois, atelier Hoaching, type birman. Tradition sœur de l'anglo-indien — même choc Est-Ouest, autre géographie.</span>
+      </p>
+    </header>
+
+    <div class="item-grid">
+
+      <!-- Macao Ivory 1820 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/a-macao-ivory-chess-set-circa-1820" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-macao-1820.jpg"
+               alt="Luke Honey — Macao ivory chess set, c. 1820"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">Macao · Bust figural</span>
+            <span class="item-ph-title">Wellington vs Chinese</span>
+            <span class="item-ph-stock">c.1820 · ivory · figural</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Narrative figural</span><span data-lang="fr">Figuratif narratif</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Macao "bust" ivory chess set, c. 1820</span>
+            <span data-lang="fr">Jeu Macao ivoire à "bustes", vers 1820</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/a-macao-ivory-chess-set-circa-1820" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request</span><span data-lang="fr">Prix sur demande</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Macao or Cantonese export ivory, kings and queens as European monarchs, bishops as clerics or mandarins, knights as horses' heads. The "Wellington vs Chinese Emperor" figural narrative — one side as the Iron Duke, the other side as the Qing court.</span>
+            <span data-lang="fr">Export ivoire Macao ou cantonais, rois et reines en monarques européens, fous en clercs ou mandarins, cavaliers en chevaux. La narration figurative "Wellington vs Empereur chinois" — un camp en Iron Duke, l'autre en cour Qing.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">Figural sets occupy their own collector category — they are about the <em>narrative</em> as much as the carving. Wellington-vs-Chinese sets command £8–20k for fine examples; this Luke Honey listing is the right shape if priced under £12k.</span>
+            <span data-lang="fr">Les jeux figuratifs ont leur catégorie propre — ils sont autant sur la <em>narration</em> que la sculpture. Wellington-vs-Chinois : 8–20 k£ pour beaux exemples ; ce listing Luke Honey est juste sous 12 k£.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Compelling adjacent piece — pursue if cabinet wants a "story set".</strong> Different aesthetic from the Lund/Bengal core, but the East-West narrative is exactly the cabinet's theme. Strong if priced fairly.</span>
+              <span data-lang="fr"><strong>Pièce adjacente forte — à poursuivre pour un "jeu narratif".</strong> Esthétique distincte du noyau Lund/Bengale, mais narration Est-Ouest pile dans le thème du cabinet.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/a-macao-ivory-chess-set-circa-1820" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Canton Burmese Pattern 1836 -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/canton-burmese-pattern-chess-set-1836" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-hoaching-canton-1836.jpg"
+               alt="Luke Honey — Hoaching, Canton — Burmese pattern chess set, 1836"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">Canton · Hoaching</span>
+            <span class="item-ph-title">"Burmese pattern" 1836</span>
+            <span class="item-ph-stock">Box marked W.T. Copeland 1836</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★★</p>
+          <p class="item-eyebrow"><span data-lang="en">Maker, dated, named</span><span data-lang="fr">Tourneur, daté, nommé</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Canton "Burmese pattern" by Hoaching, 1836</span>
+            <span data-lang="fr">Canton "type birman" par Hoaching, 1836</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/canton-burmese-pattern-chess-set-1836" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request · top tier</span><span data-lang="fr">Prix sur demande · premier ordre</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Canton export ivory by <em>Hoaching</em>, the premier silversmith and ivory carver of Canton — original wooden sliding-lid box <em>marked "W.T. Copeland 1836" in pencil</em> with a Hoaching trade label inside. Carved kings &amp; queens with fleurs-de-lys, mitred bishops, etc.</span>
+            <span data-lang="fr">Export ivoire de Canton par <em>Hoaching</em>, le grand orfèvre et sculpteur d'ivoire cantonais — coffret bois à lid coulissant <em>marqué "W.T. Copeland 1836" au crayon</em>, étiquette Hoaching à l'intérieur. Rois et reines à fleurs de lys, mitres pour les fous.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">This is a <em>tier-5 / museum-grade</em> piece by every metric: named master maker, dated 1836, original box, original trade label, pencil-marked first owner. The kind of object that ends up in a museum loan exhibition. Likely £10–25k.</span>
+            <span data-lang="fr">C'est une pièce <em>niveau 5 / qualité musée</em> sur chaque critère : sculpteur nommé, datée 1836, coffret d'origine, étiquette Hoaching, marque au crayon du premier propriétaire. Objet qui finit en exposition de prêt muséal. Probablement 10–25 k£.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Outstanding piece — buy if affordable.</strong> Hoaching by name, dated 1836, with the trade label intact, is exceptional. Of everything we have logged, this is the most museum-grade piece with full documentation. Top of any cabinet, well above the cornerstone Lund.</span>
+              <span data-lang="fr"><strong>Pièce d'exception — à acheter si abordable.</strong> Hoaching nommé, daté 1836, étiquette du marchand intacte, exceptionnel. La plus muséale de notre inventaire avec documentation complète. Au-dessus du Lund pierre d'angle.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/canton-burmese-pattern-chess-set-1836" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GROUP E — BOARDS & COMPENDIA ══════════════════════════════ -->
+<section class="group" id="boards">
+  <div class="container">
+    <header class="group-header">
+      <p class="group-eyebrow">
+        <span data-lang="en">Group E · Boards &amp; Compendia</span>
+        <span data-lang="fr">Groupe E · Plateaux &amp; Compendia</span>
+      </p>
+      <h2 class="group-title">
+        <span data-lang="en">The other half of <em>any cabinet</em></span>
+        <span data-lang="fr">L'autre moitié de <em>tout cabinet</em></span>
+      </h2>
+      <p class="group-blurb">
+        <span data-lang="en">A chess set without its board is a half-built cabinet. Period boards in matching scale (squares 50–60mm for K 4½") are the unsung half of any acquisition.</span>
+        <span data-lang="fr">Un jeu d'échecs sans plateau, c'est un cabinet à moitié bâti. Les plateaux d'époque à l'échelle juste (cases 50–60 mm pour roi 4½ po) sont la moitié inavouée de toute acquisition.</span>
+      </p>
+    </header>
+
+    <div class="item-grid">
+
+      <!-- Jaques BCD board -->
+      <article class="item">
+        <a class="item-img-wrap" href="https://www.lukehoney.co.uk/products/rare-jaques-b-c-d-chess-board" target="_blank" rel="noopener">
+          <img class="item-img" src="img/cabinet/lukehoney-jaques-bcd-board.jpg"
+               alt="Luke Honey — Antique Jaques B.C.D. chess board"
+               loading="lazy"
+               onerror="this.style.display='none';">
+          <div class="item-placeholder">
+            <span class="item-ph-orn">✦</span>
+            <span class="item-ph-style">Jaques · B.C.D. board</span>
+            <span class="item-ph-title">Backgammon · Chess · Draughts</span>
+            <span class="item-ph-stock">1859 patent · red leather tube</span>
+          </div>
+        </a>
+        <div class="item-body">
+          <p class="item-rating">★★★★☆</p>
+          <p class="item-eyebrow"><span data-lang="en">Patented 3-game compendium</span><span data-lang="fr">Compendium 3-jeux breveté</span></p>
+          <h3 class="item-title">
+            <span data-lang="en">Rare Jaques B.C.D. (Backgammon · Chess · Draughts) board</span>
+            <span data-lang="fr">Rare plateau Jaques B.C.D.</span>
+          </h3>
+          <p class="item-vendor">
+            <a href="https://www.lukehoney.co.uk/products/rare-jaques-b-c-d-chess-board" target="_blank" rel="noopener">Luke Honey</a> ·
+            <span data-lang="en">Price on request · scarce object</span><span data-lang="fr">Prix sur demande · rare</span>
+          </p>
+          <p class="item-blurb">
+            <span data-lang="en">Jaques' patented (1859) Backgammon · Chess · Draughts compendium — three games ingeniously incorporated into a red leather tube. Jaques B.C.D. sets are <em>relatively rare</em> on the market and an interesting collector category in their own right.</span>
+            <span data-lang="fr">Le compendium breveté Jaques (1859) Backgammon · Échecs · Dames — trois jeux ingénieusement intégrés dans un tube de cuir rouge. Les Jaques B.C.D. sont <em>relativement rares</em> et constituent une catégorie de collection à part entière.</span>
+          </p>
+          <p class="item-detail">
+            <span data-lang="en">A working B.C.D. compendium with original red leather tube, complete with all three games' pieces, can fetch £1,500–4,000. Verify all three games' pieces are present and original; very common for one game's pieces to be missing or replaced.</span>
+            <span data-lang="fr">Un B.C.D. complet en tube cuir rouge avec les pièces des trois jeux : 1 500–4 000 £. Vérifier que les pièces des trois jeux sont présentes et d'origine ; courant qu'un jeu manque ou soit remplacé.</span>
+          </p>
+          <div class="item-verdict">
+            <p class="item-verdict-label">Cabinet Ludo verdict</p>
+            <p class="item-verdict-text">
+              <span data-lang="en"><strong>Object-of-curiosity tier — buy if it speaks to you.</strong> Not a chess board for the cornerstone Lund, but a fascinating Victorian gadget. Pursue if you also want a Jaques BCD historical artefact, not as a play board.</span>
+              <span data-lang="fr"><strong>Objet de curiosité — à acheter si on accroche.</strong> Pas un plateau pour le Lund pierre d'angle, mais un fascinant gadget victorien. À poursuivre comme artefact historique Jaques BCD, pas comme plateau de jeu.</span>
+            </p>
+            <a class="item-link" href="https://www.lukehoney.co.uk/products/rare-jaques-b-c-d-chess-board" target="_blank" rel="noopener">→ View on Luke Honey</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSING ════════════════════════════════════════════════════ -->
+<section class="closing">
+  <div class="container">
+    <p class="closing-orn">✦ ✦ ✦</p>
+    <h2>
+      <span data-lang="en">Three doors out of this room.</span>
+      <span data-lang="fr">Trois portes sortent de cette salle.</span>
+    </h2>
+    <p>
+      <span data-lang="en">First, the <strong>cornerstone door</strong>: email Garrick Coleman about Stock #400 — the signed William Lund at £2,350. Ask for additional photographs of the king, knight, and case label, plus weight, height, and any documented provenance. This remains the strongest single move in the pipeline.</span>
+      <span data-lang="fr">D'abord, la <strong>porte pierre d'angle</strong> : écrire à Garrick Coleman au sujet du Stock #400 — le Lund signé à 2 350 £. Demander des photos supplémentaires (roi, cavalier, étiquette du coffret), le poids, la hauteur, la provenance. Reste le meilleur mouvement à faire.</span>
+    </p>
+    <p>
+      <span data-lang="en">Second, the <strong>contrast door</strong>: confirm Coleman Stock #793 (Murshidabad ivory, c. 1830, K 4½", inlaid teak case ≈ £3,000) is still available. Together, #400 and #793 give you the East-West story the cabinet wants — a London Lund and a Bengal Murshidabad in dialogue.</span>
+      <span data-lang="fr">Ensuite, la <strong>porte du contraste</strong> : confirmer que le Coleman #793 (ivoire Murshidabad c.1830, roi 4½, coffret teck incrusté ≈ 3 000 £) est encore disponible. Ensemble, #400 et #793 racontent l'histoire Est-Ouest du cabinet.</span>
+    </p>
+    <p>
+      <span data-lang="en">Third, the <strong>watching door</strong>: keep an eye on the Hoaching Canton 1836 set at Luke Honey. If it surfaces priced under £15k, it is the single most museum-grade piece in this entire log — named maker, dated, original box, intact trade label. Not for the first acquisition; for the eventual capstone.</span>
+      <span data-lang="fr">Enfin, la <strong>porte de la veille</strong> : garder un œil sur le set Hoaching Canton 1836 chez Luke Honey. S'il apparaît sous 15 k£, c'est la pièce la plus muséale de tout cet inventaire — sculpteur nommé, datée, coffret d'origine, étiquette intacte. Pas pour la première acquisition ; pour le couronnement éventuel.</span>
+    </p>
+    <div class="closing-cta">
+      <a href="chess-styles.html"><span data-lang="en">← Atlas of Styles</span><span data-lang="fr">← Atlas des Styles</span></a>
+      <a href="chess-sources.html"><span data-lang="en">← Sources &amp; Dealers</span><span data-lang="fr">← Sources &amp; Marchands</span></a>
+      <a href="heritage.html"><span data-lang="en">← Heritage</span><span data-lang="fr">← Patrimoine</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="footer-mark">CABINET&nbsp;LUDO</p>
+      <p class="footer-tagline">
+        <span data-lang="en">A companion for great games &amp; the keeper of their rules.</span>
+        <span data-lang="fr">Un compagnon pour les grands jeux &amp; le gardien de leurs règles.</span>
+      </p>
+    </div>
+    <div class="footer-nav">
+      <a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a>
+      <a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a>
+      <a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a>
+      <a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a>
+      <a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Repérage</span></a>
+    </div>
+    <p class="footer-fineprint">
+      <span data-lang="en">Cabinet Ludo · Curated for the Wanner family · Hunt log updated 2026-04-26</span>
+      <span data-lang="fr">Cabinet Ludo · Composé pour la famille Wanner · Carnet mis à jour 2026-04-26</span>
+    </p>
+  </div>
+</footer>
+
+<script src="js/ludo.js" defer></script>
+
+</body>
+</html>

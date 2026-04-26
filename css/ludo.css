@@ -893,6 +893,178 @@ img { display: block; max-width: 100%; }
 .rating-pill.amber { color: var(--brass-deep); border-color: var(--brass-border); background: var(--brass-glow); }
 .rating-pill.red   { color: #8A2020; border-color: rgba(138,32,32,0.35); background: rgba(138,32,32,0.06); }
 
+/* ── SCOUT COVER PLATE — Verne cartouche frame for each scouted game ──
+   A bevelled frame echoing the Nautilus cover. Each card sets:
+   --cover-grad-a / --cover-grad-b / --cover-grad-c via inline style
+   to give the plate a thematic palette. If a real cover URL is
+   available, set --cover-img: url(...) — the painted plate disappears
+   under the photograph. */
+.scout-cover {
+  position: relative;
+  margin: -28px -28px 4px -28px;            /* break out of card padding */
+  height: 200px;
+  background:
+    var(--cover-img, none) center/cover no-repeat,
+    linear-gradient(135deg,
+      var(--cover-grad-a, #1f5f5d) 0%,
+      var(--cover-grad-b, #0d3535) 60%,
+      var(--cover-grad-c, #08252f) 100%);
+  border-bottom: 1px solid var(--brass-border-hi);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.scout-cover::before {                       /* gilded inner cartouche */
+  content: '';
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(232,201,122,0.55);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,0.20),
+    inset 0 0 24px rgba(0,0,0,0.30);
+  pointer-events: none;
+}
+.scout-cover::after {                        /* ornamental corner sparkles */
+  content: '✦      ✦';
+  position: absolute; top: 18px; left: 0; right: 0; text-align: center;
+  font-family: var(--font-display); font-size: 0.7rem;
+  color: rgba(232,201,122,0.55); letter-spacing: 3em;
+  pointer-events: none;
+}
+.scout-cover-inner {
+  position: relative; z-index: 1;
+  text-align: center; padding: 28px 30px;
+  max-width: 90%;
+}
+.scout-cover-title {
+  font-family: var(--font-heading);
+  font-size: 1.7rem; font-style: italic; font-weight: 400;
+  color: rgba(255,250,235,0.95); line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+  margin: 0;
+}
+.scout-cover-meta {
+  font-family: var(--font-display);
+  font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(232,201,122,0.85);
+  margin-top: 10px;
+}
+.scout-cover-imgmode .scout-cover-inner { display: none; }   /* hide title plate when photo cover present */
+
+/* ══ DECISION MATRIX — the Cabinet's planning instrument ══ */
+.matrix-toggles {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-top: 24px;
+}
+.matrix-toggles .toggle-label {
+  font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-right: 8px;
+}
+.toggle-btn {
+  font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent; color: var(--ivory-mid);
+  border: 1px solid var(--border-ocean); padding: 6px 12px; cursor: pointer;
+  transition: background var(--t), color var(--t), border-color var(--t);
+  font-weight: 500;
+}
+.toggle-btn[data-active="true"] { background: var(--gold); color: var(--ocean-deep); border-color: var(--gold); }
+.toggle-btn:hover:not([data-active="true"]) { border-color: var(--brass-bright); color: var(--ivory); }
+
+.matrix-frame {
+  margin-top: 24px;
+  padding: 28px 24px 20px 24px;
+  background: var(--ocean-deep, #0d3535);
+  border: 1px solid var(--brass-border);
+  position: relative;
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.55);
+}
+.matrix-frame::before {
+  content: ''; position: absolute; inset: 10px;
+  border: 1px solid rgba(232,201,122,0.30);
+  pointer-events: none;
+}
+.matrix-frame svg { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
+.matrix-axis-line { stroke: rgba(232,201,122,0.55); stroke-width: 1.2; }
+.matrix-tick-line { stroke: rgba(232,201,122,0.14); stroke-width: 1; stroke-dasharray: 2 4; }
+.matrix-axis-label {
+  fill: var(--gold); font-family: var(--font-display);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+}
+.matrix-axis-label-end {
+  fill: rgba(232,201,122,0.65); font-family: var(--font-display);
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.matrix-quadrant-label {
+  fill: rgba(232,201,122,0.55); font-family: var(--font-heading);
+  font-style: italic; font-size: 14px; font-weight: 400;
+}
+.matrix-bubble-group { cursor: pointer; }
+.matrix-bubble-group .matrix-bubble {
+  transition: transform 0.18s ease, opacity 0.25s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+  stroke: rgba(232,201,122,0.85); stroke-width: 1.5;
+}
+.matrix-bubble-group:hover .matrix-bubble { transform: scale(1.18); stroke: #f5d27a; stroke-width: 2; }
+.matrix-bubble-group.faded { opacity: 0.15; pointer-events: none; }
+.matrix-bubble-label {
+  fill: var(--ivory); font-family: var(--font-heading);
+  font-style: italic; font-size: 10.5px;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+  paint-order: stroke; stroke: rgba(0,0,0,0.6); stroke-width: 2;
+}
+
+.matrix-tooltip {
+  position: absolute;
+  background: rgba(13,53,53,0.96);
+  border: 1px solid rgba(232,201,122,0.75);
+  padding: 10px 14px;
+  font-family: var(--font-body); font-size: 0.78rem;
+  color: var(--ivory);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  max-width: 260px;
+  box-shadow: 4px 4px 22px rgba(0,0,0,0.7);
+  z-index: 5;
+}
+.matrix-tooltip.visible { opacity: 1; }
+.matrix-tooltip h5 {
+  font-family: var(--font-heading); font-style: italic;
+  margin: 0 0 4px 0; color: var(--gold); font-size: 1rem;
+}
+.matrix-tooltip .meta {
+  font-family: var(--font-display); font-size: 0.62rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(232,201,122,0.75);
+  margin-bottom: 6px;
+}
+.matrix-tooltip .desc { color: var(--ivory-mid); line-height: 1.45; }
+
+.matrix-legend {
+  display: flex; flex-wrap: wrap; gap: 18px;
+  margin-top: 20px; padding-top: 18px;
+  border-top: 1px solid var(--border-mid);
+}
+.matrix-legend .legend-item {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 0.85rem; color: var(--ivory-mid);
+}
+.matrix-legend .dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1px solid rgba(232,201,122,0.85); display: inline-block;
+}
+.matrix-legend .dot[data-fit="antonin"]        { background: #2a5d8a; }
+.matrix-legend .dot[data-fit="audrey"]         { background: #7a2a4a; }
+.matrix-legend .dot[data-fit="maud"]           { background: #5a7a4a; }
+.matrix-legend .dot[data-fit="audrey-partner"] { background: #c9a14a; }
+.matrix-legend .dot[data-fit="universal"]      { background: #d8c896; }
+.matrix-legend .size-note { color: rgba(232,201,122,0.6); font-style: italic; font-size: 0.78rem; }
+
+.scout-card.scout-card-flash { box-shadow: 0 0 0 3px var(--gold), 4px 8px 28px rgba(13,53,53,0.55) !important; }
+
 /* ── FAMILY SECTION — the crew manifest ── */
 .family-section {
   padding: 56px 0;

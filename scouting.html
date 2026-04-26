@@ -136,6 +136,258 @@
   </div>
 </section>
 
+<!-- ══ DECISION MATRIX ════════════════════════════════════════ -->
+<section class="section" id="matrix" style="border-bottom:1px solid var(--border-mid);">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:8px;">
+      <span data-lang="en">The Cabinet Ludo Decision Matrix</span>
+      <span data-lang="fr">La Matrice de Décision Cabinet Ludo</span>
+    </p>
+    <h2 style="font-family:var(--font-heading);font-style:italic;font-weight:400;font-size:1.35rem;color:var(--ivory);max-width:820px;margin-bottom:6px;">
+      <span data-lang="en">Every scouted game placed by social texture and learning effort. Bubble size = max player count. Bubble colour = the family member each game serves first.</span>
+      <span data-lang="fr">Chaque jeu placé selon sa texture sociale et son effort d'apprentissage. Taille = nombre maximum de joueurs. Couleur = le membre familial que le jeu sert en premier.</span>
+    </h2>
+    <p style="color:var(--ivory-mid);font-style:italic;font-size:0.95rem;max-width:760px;margin-bottom:0;">
+      <span data-lang="en">Toggle who is at tonight's table — bubbles fade when no-one wants the game. Click any bubble to jump to its scout brief below.</span>
+      <span data-lang="fr">Activez qui est à table ce soir — les bulles s'estompent quand personne ne veut le jeu. Cliquez sur une bulle pour atteindre la fiche correspondante.</span>
+    </p>
+
+    <div class="matrix-toggles">
+      <span class="toggle-label">
+        <span data-lang="en">Tonight's table:</span>
+        <span data-lang="fr">Table du soir :</span>
+      </span>
+      <button class="toggle-btn" data-fit="maud" data-active="true">Maud</button>
+      <button class="toggle-btn" data-fit="antonin" data-active="true">Antonin</button>
+      <button class="toggle-btn" data-fit="audrey" data-active="true">Audrey</button>
+      <button class="toggle-btn" data-fit="audrey-partner" data-active="true">
+        <span data-lang="en">Audrey's partner</span>
+        <span data-lang="fr">Comp. d'Audrey</span>
+      </button>
+      <button class="toggle-btn" data-fit="universal" data-active="true">
+        <span data-lang="en">Universal</span>
+        <span data-lang="fr">Universel</span>
+      </button>
+    </div>
+
+    <div class="matrix-frame" style="position:relative;">
+      <svg viewBox="0 0 900 540" id="ludoMatrix" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <!-- Quadrant labels -->
+        <text class="matrix-quadrant-label" x="265" y="90" text-anchor="middle">Long Cooperative Campaigns</text>
+        <text class="matrix-quadrant-label" x="675" y="90" text-anchor="middle">Strategic Wars</text>
+        <text class="matrix-quadrant-label" x="265" y="488" text-anchor="middle">Gentle Openers</text>
+        <text class="matrix-quadrant-label" x="675" y="488" text-anchor="middle">Coffee-Table Fights</text>
+
+        <!-- Tick gridlines at 25%, 50%, 75% -->
+        <line class="matrix-tick-line" x1="295" y1="60" x2="295" y2="460"/>
+        <line class="matrix-tick-line" x1="470" y1="60" x2="470" y2="460"/>
+        <line class="matrix-tick-line" x1="645" y1="60" x2="645" y2="460"/>
+        <line class="matrix-tick-line" x1="120" y1="160" x2="820" y2="160"/>
+        <line class="matrix-tick-line" x1="120" y1="260" x2="820" y2="260"/>
+        <line class="matrix-tick-line" x1="120" y1="360" x2="820" y2="360"/>
+
+        <!-- Axes -->
+        <line class="matrix-axis-line" x1="120" y1="460" x2="820" y2="460"/>
+        <line class="matrix-axis-line" x1="120" y1="60" x2="120" y2="460"/>
+
+        <!-- X-axis labels -->
+        <text class="matrix-axis-label" x="470" y="520" text-anchor="middle">
+          <tspan data-lang-x="en">Cooperative ←     Social Texture     → Adversarial</tspan>
+        </text>
+        <text class="matrix-axis-label" x="470" y="520" text-anchor="middle" style="display:none;" data-lang-fr="true">
+          <tspan>Coopératif ←     Texture Sociale     → Adverse</tspan>
+        </text>
+        <text class="matrix-axis-label-end" x="120" y="478" text-anchor="start">All Win Together</text>
+        <text class="matrix-axis-label-end" x="820" y="478" text-anchor="end">Pure Bluff &amp; Combat</text>
+
+        <!-- Y-axis labels -->
+        <text class="matrix-axis-label" x="-260" y="50" text-anchor="middle" transform="rotate(-90)">
+          Easy to Teach ←     Learning Effort     → Heavy to Teach
+        </text>
+        <text class="matrix-axis-label-end" x="115" y="465" text-anchor="end" transform="rotate(-90, 115, 465)">2-Min Teach</text>
+        <text class="matrix-axis-label-end" x="115" y="60" text-anchor="start" transform="rotate(-90, 115, 60)">Full Evening of Rules</text>
+
+        <!-- Corner ornaments -->
+        <text x="120" y="55" fill="rgba(232,201,122,0.55)" font-family="var(--font-display)" font-size="14" text-anchor="middle">✦</text>
+        <text x="820" y="55" fill="rgba(232,201,122,0.55)" font-family="var(--font-display)" font-size="14" text-anchor="middle">✦</text>
+        <text x="120" y="478" fill="rgba(232,201,122,0.55)" font-family="var(--font-display)" font-size="14" text-anchor="middle">✦</text>
+        <text x="820" y="478" fill="rgba(232,201,122,0.55)" font-family="var(--font-display)" font-size="14" text-anchor="middle">✦</text>
+
+        <!-- Bubbles will be injected here by JS -->
+        <g id="matrixBubbles"></g>
+      </svg>
+      <div class="matrix-tooltip" id="matrixTooltip"></div>
+    </div>
+
+    <div class="matrix-legend">
+      <span class="legend-item"><span class="dot" data-fit="antonin"></span>Antonin</span>
+      <span class="legend-item"><span class="dot" data-fit="audrey"></span>Audrey</span>
+      <span class="legend-item"><span class="dot" data-fit="maud"></span>Maud</span>
+      <span class="legend-item"><span class="dot" data-fit="audrey-partner"></span>
+        <span data-lang="en">Audrey's partner</span>
+        <span data-lang="fr">Compagnon d'Audrey</span>
+      </span>
+      <span class="legend-item"><span class="dot" data-fit="universal"></span>
+        <span data-lang="en">Universal</span>
+        <span data-lang="fr">Universel</span>
+      </span>
+      <span class="size-note">
+        <span data-lang="en">· bubble area scales with max player count (2 → 13)</span>
+        <span data-lang="fr">· la taille reflète le nombre maximum de joueurs (2 → 13)</span>
+      </span>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const FIT_COLORS = {
+      'antonin':        '#2a5d8a',
+      'audrey':         '#7a2a4a',
+      'maud':           '#5a7a4a',
+      'audrey-partner': '#c9a14a',
+      'universal':      '#d8c896'
+    };
+
+    // x: 0=cooperative, 10=adversarial.  y: 0=easy teach, 10=heavy teach.
+    const GAMES = [
+      { title:'Oath',                  match:'Oath: Chronicles of Empire & Exile',         x:8.0, y:9.0, players:6,  fit:'audrey',
+        desc:'Wehrle/Ferrin · Asymmetric political. Each session reshapes the next.' },
+      { title:'Root',                  match:'Root',                                         x:9.0, y:7.0, players:4,  fit:'audrey',
+        desc:'Wehrle/Ferrin · Four asymmetric factions. Audrey\'s natural habitat.' },
+      { title:'Sleeping Gods',         match:'Sleeping Gods',                                x:1.0, y:4.0, players:4,  fit:'maud',
+        desc:'Laukat · Hand-drawn campaign across a mythic ocean.' },
+      { title:'The Estates',           match:'The Estates (Il Vecchio)',                     x:9.0, y:3.0, players:5,  fit:'antonin',
+        desc:'Hatsumi · Brutal real-estate auction. Antonin\'s economic playground.' },
+      { title:'Carcassonne',           match:'Carcassonne',                                  x:5.0, y:2.0, players:5,  fit:'antonin',
+        desc:'Wrede · Five-minute teach, deep farmer endgame.' },
+      { title:'Ticket to Ride: Europe',match:'Ticket to Ride: Europe',                       x:4.0, y:2.0, players:5,  fit:'universal',
+        desc:'Moon · The European edition with tunnels and stations.' },
+      { title:'Hot Streak',            match:'Hot Streak',                                   x:6.5, y:1.0, players:6,  fit:'audrey',
+        desc:'Perry/CMYK · Mascot betting carnival. Audrey will ride the bluff.' },
+      { title:'LOTR: Fate',            match:'The Lord of the Rings: Fate of the Fellowship',x:1.5, y:5.5, players:5,  fit:'universal',
+        desc:'Leacock · Pandemic engine in Middle-earth. The cooperative pillar.' },
+      { title:'Toy Battle',            match:'Toy Battle',                                   x:8.5, y:1.0, players:2,  fit:'universal',
+        desc:'Mori/Zucchini · 15-min duel. Tin box, cartoon mascots.' },
+      { title:'Duel for Cardia',       match:'Duel for Cardia',                              x:8.0, y:3.0, players:2,  fit:'audrey-partner',
+        desc:'Rivero/Boughida · Simultaneous-reveal combo duel.' },
+      { title:'Eternal Decks',         match:'Eternal Decks',                                x:0.5, y:5.0, players:4,  fit:'audrey-partner',
+        desc:'Hiroken · Constraint-puzzle co-op deckbuilder. Audrey\'s partner\'s element.' },
+      { title:'Cyclades',              match:'Cyclades',                                     x:8.0, y:5.0, players:5,  fit:'antonin',
+        desc:'Cathala/Maublanc · Auction-driven mythological war.' },
+      { title:'Parks',                 match:'Parks',                                        x:3.0, y:3.0, players:5,  fit:'maud',
+        desc:'Audubon · A walk through the U.S. National Parks. Maud\'s game.' },
+      { title:'Rumble Nation',         match:'Rumble Nation (天下鳴動 · Tenka Meidou)',       x:7.0, y:3.0, players:4,  fit:'antonin',
+        desc:'Hobby Japan · Sengoku dice-and-area in 30 minutes.' },
+      { title:'Mascarade (+exp)',      match:'Mascarade',                                    x:7.5, y:0.5, players:13, fit:'audrey',
+        desc:'Faidutti · Hidden identity bluff. Audrey\'s signature.' }
+    ];
+
+    // SVG plot area: x ∈ [120, 820], y ∈ [60, 460]
+    const xScale = x => 120 + (x / 10) * 700;
+    const yScale = y => 460 - (y / 10) * 400;
+    const rScale = p => 9 + Math.sqrt(p / 13) * 18;   // sqrt scale so size ≈ area-proportional
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const root  = document.getElementById('matrixBubbles');
+    const tooltip = document.getElementById('matrixTooltip');
+    const frame   = document.querySelector('.matrix-frame');
+    if (!root || !frame) return;
+
+    function drawBubble(g) {
+      const grp = document.createElementNS(svgNS, 'g');
+      grp.setAttribute('class', 'matrix-bubble-group');
+      grp.setAttribute('data-fit', g.fit);
+      grp.setAttribute('data-match', g.match);
+
+      const cx = xScale(g.x), cy = yScale(g.y), r = rScale(g.players);
+
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('class', 'matrix-bubble');
+      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r);
+      c.setAttribute('fill', FIT_COLORS[g.fit] || '#888');
+      c.setAttribute('fill-opacity', '0.85');
+      grp.appendChild(c);
+
+      const t = document.createElementNS(svgNS, 'text');
+      t.setAttribute('class', 'matrix-bubble-label');
+      t.setAttribute('x', cx);
+      t.setAttribute('y', cy + r + 13);
+      t.setAttribute('text-anchor', 'middle');
+      t.textContent = g.title;
+      grp.appendChild(t);
+
+      grp.addEventListener('mouseenter', e => showTip(g, e));
+      grp.addEventListener('mousemove',  e => moveTip(e));
+      grp.addEventListener('mouseleave', () => hideTip());
+      grp.addEventListener('click', () => scrollToCard(g.match));
+
+      root.appendChild(grp);
+    }
+
+    function showTip(g, e) {
+      tooltip.innerHTML = `
+        <h5>${g.title}</h5>
+        <div class="meta">${g.players} players · ${labelFit(g.fit)}</div>
+        <div class="desc">${g.desc}</div>`;
+      tooltip.classList.add('visible');
+      moveTip(e);
+    }
+    function moveTip(e) {
+      const rect = frame.getBoundingClientRect();
+      const x = e.clientX - rect.left + 14;
+      const y = e.clientY - rect.top + 14;
+      tooltip.style.left = Math.min(x, rect.width - 280) + 'px';
+      tooltip.style.top  = Math.min(y, rect.height - 100) + 'px';
+    }
+    function hideTip() { tooltip.classList.remove('visible'); }
+
+    function labelFit(f) {
+      return ({
+        'antonin':'Antonin','audrey':'Audrey','maud':'Maud',
+        'audrey-partner':"Audrey's partner",'universal':'Universal'
+      })[f] || f;
+    }
+
+    function scrollToCard(matchTitle) {
+      const headers = document.querySelectorAll('.scout-card h3');
+      for (const h of headers) {
+        if (h.textContent.trim() === matchTitle) {
+          const card = h.closest('.scout-card');
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('scout-card-flash');
+          setTimeout(() => card.classList.remove('scout-card-flash'), 1800);
+          return;
+        }
+      }
+    }
+
+    // Toggle filter
+    function applyFilter() {
+      const active = new Set();
+      document.querySelectorAll('.toggle-btn').forEach(b => {
+        if (b.getAttribute('data-active') === 'true') active.add(b.getAttribute('data-fit'));
+      });
+      document.querySelectorAll('.matrix-bubble-group').forEach(grp => {
+        const fit = grp.getAttribute('data-fit');
+        // 'universal' always shows when *any* fit is on
+        const show = fit === 'universal' ? active.size > 0 : active.has(fit);
+        grp.classList.toggle('faded', !show);
+      });
+    }
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        const cur = b.getAttribute('data-active') === 'true';
+        b.setAttribute('data-active', cur ? 'false' : 'true');
+        applyFilter();
+      });
+    });
+
+    // Order bubbles big-to-small so small ones aren't hidden under big ones
+    GAMES.sort((a,b) => b.players - a.players).forEach(drawBubble);
+  })();
+  </script>
+</section>
+
 <!-- ══ SCOUT REPORTS ════════════════════════════════════════════ -->
 <section class="section" id="reports">
   <div class="container">
@@ -158,6 +410,12 @@
     <div class="game-grid" id="scoutGrid" style="margin-top:32px;">
 
       <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#7a3a3a;--cover-grad-b:#4d2025;--cover-grad-c:#2a1418;--cover-img:url('https://cf.geekdo-images.com/gTxav_KKQK1rDg-XuCjCSA__opengraph/img/Tt5tXspHAN4MXpIsL0w44gO5zQA=/0x33:2000x1083/fit-in/1200x630/filters:strip_icc()/pic5164812.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Oath</h4>
+            <p class="scout-cover-meta">2021 · Wehrle · Ferrin</p>
+          </div>
+        </div>
         <div class="scout-badge">🔭
           <span data-lang="en">Scouted · April 2026</span>
           <span data-lang="fr">Exploré · Avril 2026</span>
@@ -186,6 +444,12 @@
       </div>
 
       <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#3a5d3a;--cover-grad-b:#5d2c1a;--cover-grad-c:#2c1a0f;--cover-img:url('https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__opengraph/img/lnl-mnvbEge_7gtTD-sCxoI5NhY=/0x170:2048x1245/fit-in/1200x630/filters:strip_icc()/pic4254509.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Root</h4>
+            <p class="scout-cover-meta">2018 · Wehrle · Ferrin</p>
+          </div>
+        </div>
         <div class="scout-badge">🔭
           <span data-lang="en">Scouted · April 2026</span>
           <span data-lang="fr">Exploré · Avril 2026</span>
@@ -214,6 +478,12 @@
       </div>
 
       <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#1d4a7a;--cover-grad-b:#0d2845;--cover-grad-c:#061520;--cover-img:url('https://cf.geekdo-images.com/Zdt8l4oTBpFICsMyNof7Jg__opengraph/img/i8aCuhEL37jVY1QKADRILOOGyHM=/0x0:3000x1575/fit-in/1200x630/filters:strip_icc()/pic5975244.png');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Sleeping Gods</h4>
+            <p class="scout-cover-meta">2021 · Laukat</p>
+          </div>
+        </div>
         <div class="scout-badge">🔭
           <span data-lang="en">Scouted · April 2026 · ✦ Artisan</span>
           <span data-lang="fr">Exploré · Avril 2026 · ✦ Artisan</span>
@@ -248,6 +518,12 @@
       </div>
 
       <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#a47845;--cover-grad-b:#5d3520;--cover-grad-c:#2c1a0d;--cover-img:url('https://cf.geekdo-images.com/AvC3AzHo8JlcvgKtQ3PDWA__opengraph/img/ROYlGbtobv5Guqk7_Ulh0VzPhzI=/0x98:1000x623/fit-in/1200x630/filters:strip_icc()/pic4071903.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">The Estates</h4>
+            <p class="scout-cover-meta">2018 · Hatsumi</p>
+          </div>
+        </div>
         <div class="scout-badge">🔭
           <span data-lang="en">Scouted · April 2026</span>
           <span data-lang="fr">Exploré · Avril 2026</span>
@@ -271,6 +547,484 @@
         </div>
         <div style="margin-top:12px;">
           <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/249381" target="_blank">🎲 BGG →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ APRIL 2026 — BATCH II — TEN GAMES ══════════════════════════ -->
+    <div style="margin-top:64px;">
+      <p class="eyebrow" style="margin-bottom:6px;">
+        <span data-lang="en">April 2026 · Batch II — Ten Games Reviewed for the Table</span>
+        <span data-lang="fr">Avril 2026 · Lot II — Dix jeux évalués pour la table</span>
+      </p>
+      <h2 style="font-family:var(--font-heading);font-style:italic;font-weight:400;font-size:1.2rem;color:var(--ivory-mid);max-width:760px;">
+        <span data-lang="en">A wide-angle sweep — gateway classics, cooperative departures, two-player duels, and a Sengoku dice-throw. Each one assessed against Maud's quiet competition, Antonin's resource hunger, Audrey's love of guile, her partner's puzzle instinct, and the gentler onboarding Antonin's partner needs.</span>
+        <span data-lang="fr">Un panorama large — classiques d'entrée, escapades coopératives, duels à deux et un jet de dés Sengoku. Chacun évalué selon la compétition discrète de Maud, l'appétit de ressources d'Antonin, le goût d'Audrey pour la ruse, l'instinct de devinette du partenaire d'Audrey et l'apprentissage plus doux dont a besoin la compagne d'Antonin.</span>
+      </h2>
+    </div>
+
+    <div class="game-grid" style="margin-top:32px;">
+
+      <!-- ═════════ CARCASSONNE ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#8a6a3a;--cover-grad-b:#4d3a1f;--cover-grad-c:#2a1f10;--cover-img:url('https://cf.geekdo-images.com/peUgu3A20LRmAXAMyDQfpQ__opengraph/img/2FY-BKSh6ECWKt_u9Ny8isusQPk=/0x0:1037x544/fit-in/1200x630/filters:strip_icc()/pic8621446.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Carcassonne</h4>
+            <p class="scout-cover-meta">2000 · Wrede</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Gateway Classic</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Classique d'Entrée</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Carcassonne</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Hans im Glück · Klaus-Jürgen Wrede · 2000</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–5 Players</span>
+          <span class="stat-pill">⏱ 30–45 min</span>
+          <span class="stat-pill">⚖ Weight 1.9 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Twenty-five years on, Carcassonne remains the cleanest tile-laying engine ever built. Each turn you draw one square and place it — adding a road, a city wall, a meadow — and decide whether to commit a meeple as a knight, monk, or farmer. Simple to teach in five minutes, but the farmer endgame rewards Antonin's silent territorial accumulation, while Audrey will quietly insert thieves into half-built roads to harvest someone else's work. Every family collection earns its first credit by owning this game.</span>
+          <span data-lang="fr">Vingt-cinq ans plus tard, Carcassonne reste le moteur de pose de tuiles le plus pur jamais conçu. Chaque tour, vous piochez une tuile et la placez — route, muraille, prairie — puis décidez de placer un meeple en chevalier, moine ou paysan. Cinq minutes d'apprentissage, mais le décompte final des paysans récompense l'accumulation silencieuse d'Antonin, et Audrey glissera son voleur dans la route à demi-finie d'un autre pour récolter son travail.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★★☆☆☆ Five-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Lightly adversarial · Quiet land grab</span>
+          <span class="rating-pill amber">🎨 Aesthetic: ★★★☆☆ Functional · Wooden meeples charming</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Universal · 5-player sweet spot · Antonin & Maud favour it</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">The 20th Anniversary Edition (2020) carries refreshed art and the better river expansion baked in. Etsy artisans sell hand-painted meeples (£25–£60) and leather drawstring tile bags (£20–£40) — the kind of upgrade Cabinet Ludo notices.</span>
+            <span data-lang="fr">L'Édition du 20<sup>e</sup> anniversaire (2020) propose une iconographie rafraîchie et l'extension Rivière intégrée. Les artisans d'Etsy proposent des meeples peints à la main (25–60 £) et des sacs en cuir (20–40 £).</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/822/carcassonne" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.hans-im-glueck.de/carcassonne" target="_blank" style="margin-left:8px;">🛒 Hans im Glück →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ TICKET TO RIDE EUROPE ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#8a3a2a;--cover-grad-b:#4d1f15;--cover-grad-c:#2a100a;--cover-img:url('https://cf.geekdo-images.com/0K1AOciqlMVUWFPLTJSiww__opengraph/img/kOJ0_Q2Ve3ovNZ7albD37dSo-pk=/0x0:600x315/fit-in/1200x630/filters:strip_icc()/pic66668.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Ticket to Ride: Europe</h4>
+            <p class="scout-cover-meta">2005 · Moon</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Gateway Classic</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Classique d'Entrée</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Ticket to Ride: Europe</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Days of Wonder · Alan R. Moon · 2005</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–5 Players</span>
+          <span class="stat-pill">⏱ 30–60 min</span>
+          <span class="stat-pill">⚖ Weight 1.95 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">The European edition is the version to own — tunnels add risk, ferries demand locomotive cards, and the train stations let you piggyback on a rival's track when you've been blocked. That last mechanic alone fixes the original game's "Maud's been frozen out of Chicago" problem. Antonin will optimise long-haul routes; Audrey will hold the longest ticket secretly until the very last move; Antonin's partner can join with confidence — the rules fit on a single card. The map of Europe also gives the family a softly nostalgic reading; everyone has been to half these cities.</span>
+          <span data-lang="fr">L'édition européenne est la version à posséder — les tunnels ajoutent du risque, les ferries exigent des locomotives, et les gares permettent de squatter un rail adverse quand on est bloqué. Ce dernier mécanisme corrige à lui seul le problème "Maud verrouillée hors de Chicago". Antonin optimisera les longs trajets ; Audrey gardera secrètement le plus long billet jusqu'au dernier coup ; la compagne d'Antonin embarque sans peine — les règles tiennent sur une carte.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★★☆☆☆ Ten-minute teach</span>
+          <span class="rating-pill amber">⚔ Dynamic: Mildly competitive · Route blocking</span>
+          <span class="rating-pill amber">🎨 Aesthetic: ★★★☆☆ Plastic trains · Functional map</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent for 4–5 with partners · Antonin's partner welcome</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">Chris already owns the wooden train upgrades from Etsy — the Cabinet Ludo move is to retire the plastic trains permanently. The 15th Anniversary Edition (2019) ships with metallic trains and an oversized board if a fresh copy is wanted.</span>
+            <span data-lang="fr">Chris possède déjà les wagons en bois d'Etsy — le geste Cabinet Ludo est de retirer définitivement les trains en plastique. L'Édition 15<sup>e</sup> anniversaire (2019) propose des trains métalliques et un plateau surdimensionné.</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/14996/ticket-ride-europe" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.daysofwonder.com/tickettoride/en/europe/" target="_blank" style="margin-left:8px;">🛒 Days of Wonder →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ HOT STREAK ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#b54a7a;--cover-grad-b:#6a2348;--cover-grad-c:#2e0e1f;--cover-img:url('https://cf.geekdo-images.com/co36SqyPYlM1QwVW6XSwyQ__opengraph/img/brL9s6ukfkkCnAJozR-ouTiqv9g=/275x0:3513x1700/fit-in/1200x630/filters:strip_icc()/pic8933083.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Hot Streak</h4>
+            <p class="scout-cover-meta">2025 · Perry · CMYK</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Party Chaos</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Chaos Festif</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Hot Streak</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">CMYK Games · Jon Perry · 2025</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–6 Players</span>
+          <span class="stat-pill">⏱ 30–45 min</span>
+          <span class="stat-pill">⚖ Weight 1.5 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Imagine the racetrack at Royal Ascot — except the horses are a hot dog, an angler fish, a king, and a bear, and they all start running before anyone has placed a bet. CMYK's newest is a non-stop betting/racing screamfest with chunky mascot figures and an absurdly long pull-out track. Players draft betting tickets in two passes (first round forward, second round in reverse), choosing safe payouts or flipping for double-or-nothing. Then the deck rips through itself — mascots swerve lanes, knock each other over, occasionally sprint backwards. <strong>This one is for Audrey.</strong> She will love the risk-flip mechanic and the dopamine of a bluff payoff. <strong>Caveat for Antonin:</strong> outcomes are largely uncontrolled; he may resent the variance. Best deployed as a 30-minute warm-up before a longer game, or as the headline event with partners and friends present.</span>
+          <span data-lang="fr">Imaginez l'hippodrome de Royal Ascot — mais les chevaux sont un hot-dog, un poisson abyssal, un roi et un ours, et ils courent déjà avant que quiconque ait parié. Le dernier CMYK est une course-pari non-stop avec figurines mascottes et piste démesurée. <strong>Ce jeu est pour Audrey.</strong> Elle adorera le retournement de mise et le frisson du bluff payant. <strong>Réserve pour Antonin :</strong> les résultats échappent largement à son contrôle ; il risque d'en vouloir à la variance. À déployer en réchauffement de 30 minutes ou en tête d'affiche quand partenaires et amis sont présents.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★☆☆☆☆ Two-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Pure betting chaos · Adversarial</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★☆ Mascot sculpts · Carnival palette</span>
+          <span class="rating-pill amber">👨‍👩‍👧‍👦 Fit: Audrey's playground · Antonin uneasy with luck</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/446497/hot-streak" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.cmyk.games/products/hot-streak" target="_blank" style="margin-left:8px;">🛒 CMYK Games →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ LOTR FATE OF THE FELLOWSHIP ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#5a1a1a;--cover-grad-b:#2a0d0d;--cover-grad-c:#100505;--cover-img:url('https://cf.geekdo-images.com/scw36iBIad7l-rGzxPGcGg__opengraph/img/HMKBpaXU_iXiqUolUxhtk0sF-HE=/0x0:2000x1050/fit-in/1200x630/filters:strip_icc()/pic8662670.png');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">LOTR: Fate of the Fellowship</h4>
+            <p class="scout-cover-meta">2025 · Leacock</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Cooperative Headline</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Tête d'Affiche Coopérative</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">The Lord of the Rings: Fate of the Fellowship</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Z-Man Games · Matt Leacock · 2025</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 1–5 Players</span>
+          <span class="stat-pill">⏱ 60–90 min</span>
+          <span class="stat-pill">⚖ Weight 2.9 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Three years in the making. Matt Leacock — the architect of Pandemic — applies the same rising-tide engine to Middle-earth. Each player runs two of thirteen heroes, defending the havens against advancing Shadow troops while Frodo creeps toward Mount Doom hunted by Nazgûl. Twenty-four objectives shuffle the campaign every play; a constructible eleven-inch Barad-dûr serves as the dice tower; the solo mode was specifically designed by Leacock himself. <strong>This is the cooperative pillar this collection is missing.</strong> Audrey's partner — the puzzle-cracker — will quickly find the optimal turn sequence; Audrey will run a flanking hero like Aragorn or Boromir; Maud will quietly play the keystone roles that hold the Fellowship together. Antonin must accept that he cannot win at his teammates' expense — the game's most useful feature, as a corrective to his usual instincts.</span>
+          <span data-lang="fr">Trois années de conception. Matt Leacock — l'architecte de Pandémie — applique son moteur de marée montante à la Terre du Milieu. Chaque joueur dirige deux des treize héros, défendant les havres contre les troupes de l'Ombre pendant que Frodon avance vers la Montagne du Destin, traqué par les Nazgûl. <strong>C'est le pilier coopératif qui manque à cette collection.</strong> Le partenaire d'Audrey trouvera vite la séquence optimale ; Audrey jouera un héros de flanc comme Aragorn ; Maud tiendra discrètement les rôles pivot. Antonin doit accepter qu'il ne peut pas gagner aux dépens de ses partenaires — le correctif le plus utile que ce jeu apporte à ses instincts habituels.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill amber">🎓 Learning: ★★★☆☆ Pandemic veterans skip ahead</span>
+          <span class="rating-pill green">⚔ Dynamic: Fully cooperative · Crisis management</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★★ Barad-dûr tower · Nazgûl miniatures</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent · 4-player sweet spot · Tolkien anchor</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">The retail edition already includes the constructible dice tower and miniatures — no premium upgrade is needed. For a French-speaking table, wait for the Asmodee FR distribution; the localisation lands cleanly on Tolkien's vocabulary.</span>
+            <span data-lang="fr">L'édition commerciale inclut déjà la tour à dés constructible et les figurines — aucune mise à niveau premium nécessaire. Pour une table francophone, attendre la distribution Asmodée FR ; la localisation respecte le vocabulaire tolkiénien.</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/436217/the-lord-of-the-rings-fate-of-the-fellowship" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.zmangames.com/game/the-lord-of-the-rings-fate-of-the-fellowship/" target="_blank" style="margin-left:8px;">🛒 Z-Man Games →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ TOY BATTLE ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#3a8a4a;--cover-grad-b:#2a4d8a;--cover-grad-c:#1a2a4d;--cover-img:url('https://cf.geekdo-images.com/GuhpuTKFteZEIhPTFvEpJw__opengraph/img/Ki2OFA2egNk4Hsj7aWLgsvlLqBA=/0x548:3060x2155/fit-in/1200x630/filters:strip_icc()/pic8589750.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Toy Battle</h4>
+            <p class="scout-cover-meta">2024 · Mori &amp; Zucchini</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · 2-Player Duel</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Duel à Deux</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Toy Battle</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Repos Production · Paolo Mori &amp; Alessandro Zucchini · 2024</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2 Players</span>
+          <span class="stat-pill">⏱ 15 min</span>
+          <span class="stat-pill">⚖ Weight 1.5 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Paolo Mori (designer of Libertalia and Blitzkrieg) collaborates with Alessandro Zucchini for a featherweight 15-minute two-player territorial duel. Pirate ships, dinosaurs, knights, robots and unicorns clash on land, sea, sky and space. Each turn you either draw two toy troops or place one and trigger its effect. Win by reaching the enemy HQ or controlling more territory. Repos Production's signature tin packaging with high-quality components. <strong>This is the perfect coffee-table opener for couples</strong> — Audrey vs. her partner, or Maud vs. Antonin while waiting for dinner. Easy to teach Antonin's partner; deep enough that Audrey's partner will find the optimal counter to every troop reveal within three games.</span>
+          <span data-lang="fr">Paolo Mori (Libertalia, Blitzkrieg) collabore avec Alessandro Zucchini pour un duel territorial à deux, plume de 15 minutes. Pirates, dinosaures, chevaliers, robots et licornes s'affrontent sur terre, mer, ciel et espace. Boîte métallique signature Repos. <strong>L'ouvreur idéal pour les couples</strong> — Audrey contre son partenaire, ou Maud contre Antonin avant le dîner. Facile à enseigner à la compagne d'Antonin ; assez profond pour que le partenaire d'Audrey trouve le contre optimal à chaque révélation après trois parties.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★☆☆☆☆ Five-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Tight 2-player adversarial · Tactical</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★☆ Tin box · Bold cartoon art</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent · Couple play · Fast travel game</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/434654/toy-battle" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.rprod.com/en/our-games/toy-battle" target="_blank" style="margin-left:8px;">🛒 Repos Production →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ DUEL FOR CARDIA ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#4a3a7a;--cover-grad-b:#2a1f4d;--cover-grad-c:#15102a;--cover-img:url('https://cf.geekdo-images.com/e-Xx7mz_tgisEx2Aq4Wa6w__opengraph/img/C09szRaAXhaQFzC_Wkl8cjQUTJw=/0x1703:2194x2855/fit-in/1200x630/filters:strip_icc()/pic8910865.png');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Duel for Cardia</h4>
+            <p class="scout-cover-meta">2025 · Rivero · Boughida</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · 2-Player Duel</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Duel à Deux</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Duel for Cardia</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Hans im Glück · Mathieu Rivero &amp; Faouzi Boughida · 2025</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2 Players</span>
+          <span class="stat-pill">⏱ 15–20 min</span>
+          <span class="stat-pill">⚖ Weight 1.8 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Both players start with the same 16-card deck — numbered 1 to 16, four factions (Rebellion, Academy, Guild, Dynasty), each card carrying its own ability. Players reveal simultaneously; the higher number wins the encounter and claims a signet, but the loser's card triggers its ability. Sometimes losing pays better than winning — abilities can rewrite past encounters or steal your opponent's hand. Win five signets, hit a Djinn auto-win, or starve your opponent of cards. <strong>This is Audrey's partner's home turf:</strong> simultaneous-reveal duels with branching combos are exactly the puzzle space he excels in. Pair this with Toy Battle as the cabinet's two go-to 2-player duels — Toy Battle for raw territory, Cardia for combo discovery and bluff.</span>
+          <span data-lang="fr">Les deux joueurs partent avec le même deck de 16 cartes — numérotées 1 à 16, quatre factions (Rébellion, Académie, Guilde, Dynastie), chaque carte portant son pouvoir. Révélation simultanée ; le numéro supérieur remporte la rencontre et un sceau, mais la carte perdante déclenche son effet. Parfois perdre rapporte plus que gagner — les pouvoirs réécrivent les rencontres passées ou volent la main adverse. <strong>Terrain de prédilection du partenaire d'Audrey :</strong> les duels à révélation simultanée avec combinaisons branchantes sont exactement l'espace de devinettes où il excelle. À jumeler avec Toy Battle comme paire 2-joueurs du cabinet.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★★☆☆☆ Ten-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Combo-driven · Mind game</span>
+          <span class="rating-pill amber">🎨 Aesthetic: ★★★☆☆ Standard fantasy art · Functional</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent · Audrey's partner's puzzle</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/447243/duel-for-cardia" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://en.boardgamearena.com/gamepanel?game=cardia" target="_blank" style="margin-left:8px;">🎮 Try on BGA →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ ETERNAL DECKS ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#3a1a4a;--cover-grad-b:#1f0d2a;--cover-grad-c:#0d0515;--cover-img:url('https://cf.geekdo-images.com/Bo6QYIQWzRRcn7KyO3AIPg__opengraph/img/YYdiQg1goNb3A5XHXbm0-tu5NiI=/0x0:1200x630/fit-in/1200x630/filters:strip_icc()/pic8512516.png');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Eternal Decks</h4>
+            <p class="scout-cover-meta">2025 · Hiroken</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Cooperative Puzzle</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Puzzle Coopératif</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Eternal Decks</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Hiroaki Yamamoto (Hiroken) · 2025</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 1–4 Players</span>
+          <span class="stat-pill">⏱ 30–40 min</span>
+          <span class="stat-pill">⚖ Weight 2.5 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">A cooperative deckbuilder with a difference — players begin with a tiny five-card deck and acquire cards as they progress through six escalating stages: collect points, survive a ghost town, navigate a labyrinth, defeat a boss. Cards must be placed into three rows under strict colour and numbering constraints, demanding spatial logic and tight communication limits between players. The black-on-purple woodcut art is the most distinctive visual direction of any 2025 release — folk-illustration density, almost broadside-poster in feel. <strong>Audrey's partner will love this game:</strong> the constraint puzzle is exactly his idiom. Antonin will engage as long as he is allowed to lead the deck-acquisition strategy. A natural complement to Sleeping Gods on the cooperative shelf — shorter, more puzzle-driven, less narrative.</span>
+          <span data-lang="fr">Un deckbuilder coopératif particulier — les joueurs débutent avec un mini-deck de cinq cartes et acquièrent de nouvelles cartes à travers six étapes croissantes : collecter des points, survivre dans une ville fantôme, traverser un labyrinthe, vaincre un boss. Les cartes doivent être placées sur trois rangées sous contraintes strictes de couleur et de numérotation, exigeant logique spatiale et communication limitée. L'art en xylogravure noir-sur-violet est la direction visuelle la plus singulière de la cuvée 2025. <strong>Le partenaire d'Audrey adorera ce jeu :</strong> le puzzle contraint est son idiome. Antonin s'investira si on le laisse mener la stratégie d'acquisition. Complément naturel à Sleeping Gods sur l'étagère coopérative — plus court, plus puzzle, moins narratif.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill amber">🎓 Learning: ★★★☆☆ Spatial constraints take a stage</span>
+          <span class="rating-pill green">⚔ Dynamic: Cooperative · Constrained communication</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★★ Woodcut purple-black palette</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent · Audrey's partner's element · Solo-friendly</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/424981/eternal-decks" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.kickstarter.com/projects/tricktakers/eternal-decks/description" target="_blank" style="margin-left:8px;">🛒 Kickstarter →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ CYCLADES ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#3a7a9a;--cover-grad-b:#1f4a6a;--cover-grad-c:#0d2a45;--cover-img:url('https://cf.geekdo-images.com/g4bC44H7rdrl0KLW7LGV5A__opengraph/img/ols7ckWKIhJCaPG4vBoLpt52Nv4=/0x0:3793x1991/fit-in/1200x630/filters:strip_icc()/pic7566828.png');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Cyclades</h4>
+            <p class="scout-cover-meta">Legendary Ed. 2023 · Cathala &amp; Maublanc</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Family Headline</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Tête d'Affiche Familiale</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Cyclades</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Matagot · Bruno Cathala &amp; Ludovic Maublanc · 2009 (Legendary Edition 2023)</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–5 Players</span>
+          <span class="stat-pill">⏱ 60–90 min</span>
+          <span class="stat-pill">⚖ Weight 2.7 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Bruno Cathala — half of the Bruno-Bruno duo behind Mr. Jack and Five Tribes — and Ludovic Maublanc deliver one of the cleanest auction-driven war games ever made. Each round, players bid on the favour of five Greek gods: Zeus (priests and temples), Ares (armies), Poseidon (fleets), Athena (wisdom and philosophers), Apollo (gold). Whoever wins the god takes their action; everyone else must redirect. Build two metropolises and you win — but they can be taken from you by force. <strong>This is Antonin's perfect game.</strong> The auction is pure economic optimisation, gold management is constant, and the path to victory rewards stockpiling. Audrey will read the table, hold back, and steal a metropolis on the final turn. Maud will quietly assemble a philosopher-and-temple combo while no one is looking. The 2023 Legendary Edition consolidates all expansions and ships with vastly upgraded miniatures — this is the version to buy.</span>
+          <span data-lang="fr">Bruno Cathala — moitié du duo Bruno-Bruno (Mr. Jack, Cinq Tribus) — et Ludovic Maublanc livrent l'un des jeux de guerre par enchères les plus propres jamais conçus. Chaque tour, les joueurs enchérissent sur les faveurs des cinq dieux grecs : Zeus (prêtres et temples), Arès (armées), Poséidon (flottes), Athéna (philosophes), Apollon (or). Construire deux métropoles donne la victoire — mais elles peuvent être prises par la force. <strong>Le jeu parfait pour Antonin.</strong> L'enchère est de l'optimisation économique pure, la gestion de l'or est constante, le chemin vers la victoire récompense l'accumulation. Audrey lit la table, attend, et vole une métropole au dernier tour. Maud assemble discrètement la combinaison philosophe-temple. <strong>L'Édition Legendary 2023</strong> consolide toutes les extensions avec des figurines très améliorées — c'est cette version qu'il faut.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill amber">🎓 Learning: ★★★☆☆ Auction structure takes one round</span>
+          <span class="rating-pill green">⚔ Dynamic: Auction · Combat · Mythological adversarial</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★★ (Legendary Ed.) · Mediterranean palette</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Outstanding · Antonin's auction game · 4–5 sweet spot</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">The Legendary Edition (Studio H, 2023) is the version to acquire — sculpted gods, redrawn islands, all five expansions baked in. Don't settle for the 2009 original now that the Legendary exists. Etsy artisans sell hand-painted god figures (€30–€80 per god) for those wanting to push it further.</span>
+            <span data-lang="fr">L'Édition Legendary (Studio H, 2023) est la version à acquérir — dieux sculptés, îles redessinées, les cinq extensions intégrées. Ne pas se contenter du jeu original de 2009 maintenant que la Legendary existe.</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/380619/cyclades-legendary-edition" target="_blank">🎲 BGG (Legendary) →</a>
+          <a class="btn btn-ghost" href="https://www.studio-h.fr/jeux/cyclades-legendary-edition/" target="_blank" style="margin-left:8px;">🛒 Studio H →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ PARKS ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#3a6a3a;--cover-grad-b:#6a4a2a;--cover-grad-c:#2a2a1a;--cover-img:url('https://cf.geekdo-images.com/mF2cSNRk2O6HtE45Sl9TcA__opengraph/img/KMLn-uDyHRdqfyZ3wIm-lH58FY8=/0x0:2000x1050/fit-in/1200x630/filters:strip_icc()/pic4852372.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Parks</h4>
+            <p class="scout-cover-meta">2019 · Audubon · Keymaster</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · ✦ Artisan Production</span>
+          <span data-lang="fr">Exploré · Avril 2026 · ✦ Production Artisanale</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Parks</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Keymaster Games · Henry Audubon · 2019</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 1–5 Players</span>
+          <span class="stat-pill">⏱ 30–60 min</span>
+          <span class="stat-pill">⚖ Weight 2.0 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">A walk through the U.S. National Parks system, designed in collaboration with the <em>Fifty-Nine Parks Print Series</em> — every park card carries an actual silkscreen poster from the project. Two hikers walk a seasonal trail that resets every round; each space lets you collect resources (sun, water, mountain, forest, wildlife) which you then spend to visit named parks. The illustrated park cards alone justify the box. <strong>This is Maud's game.</strong> Quiet, contemplative, never directly hostile — but the timing of when to camp, when to hike, when to spend a photograph token rewards the kind of patient counting she enjoys. Audrey will play it well too, but her instinct for combat will be unsatisfied. A natural after-dinner game; gentle enough that Antonin's partner can pick it up immediately, beautiful enough that everyone will want to keep playing.</span>
+          <span data-lang="fr">Une marche à travers les parcs nationaux américains, conçue en collaboration avec le <em>Fifty-Nine Parks Print Series</em> — chaque carte de parc porte une véritable sérigraphie issue du projet. Deux randonneurs parcourent un sentier saisonnier qui se réinitialise à chaque manche ; chaque case fait collecter des ressources (soleil, eau, montagne, forêt, faune) à dépenser pour visiter des parcs. <strong>Le jeu de Maud.</strong> Calme, contemplatif, jamais frontalement hostile — mais le timing du camping, de la randonnée, de la dépense d'un jeton photographie récompense le décompte patient qu'elle apprécie. Jeu d'après-dîner naturel ; assez doux pour la compagne d'Antonin, assez beau pour que tout le monde veuille rejouer.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★★☆☆☆ Twenty-minute teach</span>
+          <span class="rating-pill amber">⚔ Dynamic: Indirectly competitive · Resource racing</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★★ Silkscreen park posters · Gallery-grade</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Maud's natural game · Universal entry · 4-player ideal</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">Keymaster sells matching <em>Trails</em> and <em>Memories</em> expansions, but the Wildlife expansion adds the strongest mechanical depth. The original park-card poster set is also sold separately as framed prints by Fifty-Nine Parks Print Series — a Cabinet Ludo wall-art opportunity.</span>
+            <span data-lang="fr">Keymaster propose les extensions <em>Trails</em> et <em>Memories</em>, mais Wildlife apporte la plus forte profondeur. Les sérigraphies originales sont aussi vendues encadrées par Fifty-Nine Parks Print Series — une occasion d'art mural pour le Cabinet Ludo.</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/266524/parks" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://keymastergames.com/products/parks" target="_blank" style="margin-left:8px;">🛒 Keymaster Games →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ RUMBLE NATION ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#5a1a1a;--cover-grad-b:#2a0d10;--cover-grad-c:#0d0505;--cover-img:url('https://cf.geekdo-images.com/B0V2pKNNy32oC53CC9b0NA__opengraph/img/3K8KAIa6KdrZEe1anDM4lMEFqqw=/0x416:1031x958/fit-in/1200x630/filters:strip_icc()/pic8828234.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Rumble Nation</h4>
+            <p class="scout-cover-meta">天下鳴動 · 2018 · Hobby Japan</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Sengoku Dice</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Dés Sengoku</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Rumble Nation (天下鳴動 · Tenka Meidou)</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Hobby Japan · 2018 · Tokyo Game Market Grand Prize Winner</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–4 Players</span>
+          <span class="stat-pill">⏱ 30 min</span>
+          <span class="stat-pill">⚖ Weight 2.0 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">A Sengoku-era area-control game that does extraordinary work in 30 minutes. Each turn you roll three dice, with one optional reroll. You then split them: a pair (sum 2–12) names the territory, the third die (1–6) determines how many soldiers you place there (1–2 = 1 soldier, 3–4 = 2, 5–6 = 3). Tactic cards bend the rules; reinforcement during castle resolution is everything. The dice constraint forces brutal trade-offs — do you commit to the territory you wanted, or take the better troop count for a worse spot? <strong>This is the perfect 30-minute mid-evening filler.</strong> Antonin will calibrate his dice splits like a Swiss accountant; Audrey will hold back her tactic cards for the final castle resolution; Maud will quietly accumulate footholds across the map. The 2018 Grand Prize at Tokyo Game Market is well-earned. The English/Japanese co-edition is the one to buy — Japanese title plate makes the box collectable.</span>
+          <span data-lang="fr">Un jeu de contrôle de zones de l'ère Sengoku qui accomplit un travail extraordinaire en 30 minutes. Chaque tour, vous lancez trois dés (un relancer possible) puis les divisez : une paire (somme 2–12) désigne le territoire, le troisième dé (1–6) détermine le nombre de soldats placés (1–2 = 1 soldat, 3–4 = 2, 5–6 = 3). Les cartes Tactique tordent les règles ; les renforts lors de la résolution des châteaux changent tout. <strong>Le filler parfait de 30 minutes en milieu de soirée.</strong> Antonin calibrera ses divisions de dés comme un comptable suisse ; Audrey retiendra ses cartes Tactique pour la résolution finale ; Maud accumulera discrètement des points d'appui. Grand Prix 2018 du Tokyo Game Market mérité. La co-édition anglais/japonais est celle à acquérir — la plaque titre japonaise rend la boîte collectionnable.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★★☆☆☆ Fifteen-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Dice + area control · Adversarial · Tactical</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★☆ Sumi-e map · Restrained palette</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Excellent · Antonin loves the optimisation · 4 ideal</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/266722/rumble-nation" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://en.boardgamearena.com/gamepanel?game=rumblenation" target="_blank" style="margin-left:8px;">🎮 Try on BGA →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ MASCARADE ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#5a2a7a;--cover-grad-b:#2a1145;--cover-grad-c:#150a25;--cover-img:url('https://cf.geekdo-images.com/OS3ckk3rZbwFi8en1rjiGQ__opengraph/img/yvyDdiHZndVwNeDXxTL5wBblqTc=/0x0:2076x1090/fit-in/1200x630/filters:strip_icc()/pic1762410.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Mascarade</h4>
+            <p class="scout-cover-meta">2013 · Faidutti</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Audrey's Signature Game</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Le Jeu Signature d'Audrey</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Mascarade</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Repos Production · Bruno Faidutti · 2013</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 2–13 Players (best 6–8)</span>
+          <span class="stat-pill">⏱ 30 min</span>
+          <span class="stat-pill">⚖ Weight 1.5 / 5</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Bruno Faidutti's masterpiece of Venetian deception. Each player receives a hidden character card; on your turn you may either claim a character's power (truthfully or not) and dare anyone else to challenge you, OR secretly swap your card with a neighbour's — but you may not even look. Within three rounds nobody is sure who they are. The first player to thirteen ducats wins, but everyone is bluffing about everything from the second turn onward. <strong>This is Audrey's home game.</strong> Hidden-identity bluffing with permission to lie about who you are is precisely the territory where she dominates the family table — Coup is its tactical cousin, but Mascarade is wider, looser, more theatrical. Plays from three up to thirteen players, scaling all the way to a Christmas-table headline event. <strong>Critical for Antonin's partner:</strong> the rules can be taught in five minutes; the depth comes from reading the table, not from system mastery.</span>
+          <span data-lang="fr">Le chef-d'œuvre vénitien de Bruno Faidutti. Chaque joueur reçoit une carte personnage cachée ; à votre tour vous pouvez soit revendiquer le pouvoir d'un personnage (sincèrement ou non) et défier les autres de vous contredire, soit échanger secrètement votre carte avec celle d'un voisin — sans même la regarder. En trois tours, personne ne sait plus qui il est. Premier à treize ducats l'emporte, mais tout le monde bluffe sur tout dès le deuxième tour. <strong>Le jeu signature d'Audrey.</strong> Le bluff d'identité cachée avec licence de mentir sur qui on est, c'est précisément le terrain où elle domine la table — Coup en est le cousin tactique, mais Mascarade est plus large, plus libre, plus théâtral. Jouable de trois à treize joueurs, jusqu'à devenir l'événement de la table de Noël. <strong>Pour la compagne d'Antonin :</strong> règles enseignées en cinq minutes ; la profondeur vient de la lecture de table, pas de la maîtrise du système.</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★☆☆☆☆ Five-minute teach</span>
+          <span class="rating-pill green">⚔ Dynamic: Pure bluff · Hidden identity · Adversarial</span>
+          <span class="rating-pill green">🎨 Aesthetic: ★★★★☆ Venetian carnival · Jacqui Davis art</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Outstanding · Audrey's signature · Scales to 13</span>
+        </div>
+        <div class="artisan-note" style="margin-top:8px;">
+          <span class="artisan-note-icon">✦</span>
+          <p class="artisan-note-text">
+            <span data-lang="en">The 2024 Hobby Japan re-release is not a true new edition — the rules are the original 2013 design. Pair this with the Expansion (next card) for thirteen extra characters and depth. The base box is small, light, and travels anywhere — natural in a leather pouch.</span>
+            <span data-lang="fr">La réédition Hobby Japan 2024 n'est pas une nouvelle édition — les règles sont du design original 2013. À jumeler avec l'Extension (carte suivante) pour treize personnages supplémentaires. La boîte de base est petite, légère, voyage partout — naturelle dans une pochette en cuir.</span>
+          </p>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/139030/mascarade" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.rprod.com/en/our-games/mascarade" target="_blank" style="margin-left:8px;">🛒 Repos Production →</a>
+        </div>
+      </div>
+
+      <!-- ═════════ MASCARADE: EXPANSION ═════════ -->
+      <div class="scout-card">
+        <div class="scout-cover scout-cover-imgmode" style="--cover-grad-a:#7a2a5a;--cover-grad-b:#45112a;--cover-grad-c:#250a15;--cover-img:url('https://cf.geekdo-images.com/GQ6-WvndMSMc7STP_Rs7vA__opengraph/img/Ofusn_J4b1BdfjdtrlDxD1TQwMQ=/0x22:974x533/fit-in/1200x630/filters:strip_icc()/pic2286087.jpg');">
+          <div class="scout-cover-inner">
+            <h4 class="scout-cover-title">Mascarade: Expansion</h4>
+            <p class="scout-cover-meta">2014 · Faidutti</p>
+          </div>
+        </div>
+        <div class="scout-badge">🔭
+          <span data-lang="en">Scouted · April 2026 · Companion Set</span>
+          <span data-lang="fr">Exploré · Avril 2026 · Coffret Compagnon</span>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:var(--ivory);">Mascarade: Expansion</h3>
+        <p style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;">Repos Production · Bruno Faidutti · 2014</p>
+        <div class="card-stats">
+          <span class="stat-pill">👥 Requires Mascarade</span>
+          <span class="stat-pill">+ 13 new characters</span>
+          <span class="stat-pill">⚖ Adds depth, not weight</span>
+        </div>
+        <p style="font-size:0.92rem;color:var(--ivory-mid);line-height:1.7;">
+          <span data-lang="en">Thirteen additional characters that recombine into the base game's deck — Alchemist, Actress, Courtesan, Gambler, Puppet Master, Damned, Patron, Beggar, Bear Tamer, Necromancer, Princess, Sage, Usurper. Each adds a new lever for bluff and counter-bluff; rotate them in and out per session so the table can never settle into a fixed reading of who claims what. <strong>Buy this with the base game.</strong> The expansion is what turns Mascarade from a gateway bluff into a long-running family signature — Audrey will rotate which thirteen characters are in play to keep her partner and Antonin from solving the system. Particularly recommended: the Princess (auto-wins ties), the Damned (penalises challengers), and the Puppet Master (forces other players' actions).</span>
+          <span data-lang="fr">Treize personnages supplémentaires recombinables avec le deck de base — Alchimiste, Actrice, Courtisane, Joueur, Marionnettiste, Damnée, Mécène, Mendiant, Dresseur d'Ours, Nécromancien, Princesse, Sage, Usurpateur. Chacun ajoute un nouveau levier de bluff et contre-bluff ; à faire tourner d'une partie à l'autre pour que la table ne fige jamais sa lecture de qui revendique quoi. <strong>À acheter avec le jeu de base.</strong> L'extension transforme Mascarade d'un bluff d'entrée en signature familiale durable — Audrey fera tourner les treize personnages pour empêcher son partenaire et Antonin de résoudre le système. Particulièrement recommandés : la Princesse (gagne automatiquement les égalités), la Damnée (punit les contesteurs), le Marionnettiste (force les actions adverses).</span>
+        </p>
+        <div class="scout-rating-row">
+          <span class="rating-pill green">🎓 Learning: ★☆☆☆☆ One new card per game</span>
+          <span class="rating-pill green">⚔ Dynamic: Deepens base bluff · Same DNA</span>
+          <span class="rating-pill amber">🎨 Aesthetic: ★★★☆☆ Same Davis style · Companion box</span>
+          <span class="rating-pill green">👨‍👩‍👧‍👦 Fit: Mandatory companion · Refreshes the system</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn btn-ghost" href="https://boardgamegeek.com/boardgame/163107/mascarade-expansion" target="_blank">🎲 BGG →</a>
+          <a class="btn btn-ghost" href="https://www.rprod.com/en/our-games/mascarade" target="_blank" style="margin-left:8px;">🛒 Repos Production →</a>
         </div>
       </div>
 
