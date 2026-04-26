@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Chess of India · A Visual Atlas</title>
+  <meta name="description" content="A visual landscape of antique Indian chess sets — from Chaturanga and Mughal court ivory to Vizagapatam, Anglo-Indian, Burmese and Sinhalese export. The complete style guide for collectors.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+
+    /* ── PAGE-SPECIFIC: CHESS STYLES ATLAS ─────────────────────────── */
+
+    /* Lang visibility */
+    html.lang-en [data-lang="fr"] { display: none; }
+    html.lang-fr [data-lang="en"] { display: none; }
+
+    /* Page hero — atlas opening plate */
+    .atlas-hero {
+      padding: 88px 0 56px;
+      text-align: center;
+      position: relative;
+    }
+    .atlas-hero .container { max-width: 880px; }
+    .atlas-hero h1 {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--ivory-bright);
+      margin: 14px 0 18px;
+    }
+    .atlas-hero h1 em {
+      font-style: normal;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      color: var(--brass-bright);
+      display: block;
+      font-size: 0.78em;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+    .atlas-hero .subtitle {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.18rem;
+      color: var(--ivory-mid);
+      max-width: 720px;
+      margin: 14px auto 0;
+      line-height: 1.7;
+    }
+    .atlas-ornament {
+      width: 360px;
+      max-width: 90%;
+      height: auto;
+      margin: 0 auto 24px;
+      display: block;
+    }
+
+    /* Map / overview grid — the index of styles */
+    .atlas-overview {
+      padding: 24px 0 56px;
+    }
+    .overview-intro {
+      max-width: 780px; margin: 0 auto 40px;
+      font-family: var(--font-body); font-size: 1.02rem; line-height: 1.85;
+      color: var(--ivory-mid); text-align: center;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+      gap: 14px;
+    }
+    .overview-tile {
+      background: rgba(13,53,53,0.55);
+      border: 1px solid var(--brass-border);
+      padding: 16px 14px;
+      transition: all var(--t);
+      text-decoration: none;
+      display: block;
+      position: relative;
+    }
+    .overview-tile:hover {
+      background: rgba(13,53,53,0.80);
+      border-color: var(--brass-bright);
+      transform: translateY(-2px);
+    }
+    .overview-tile::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--brass);
+      opacity: 0.45;
+    }
+    .ovt-num {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.32em;
+      color: var(--brass);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .ovt-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.02rem;
+      color: var(--ivory-bright);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .ovt-era {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-deep);
+      margin-bottom: 8px;
+    }
+    .ovt-blurb {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--ivory-dim);
+    }
+
+    /* Part divider — ornamented section breaks between groups */
+    .part-divider {
+      padding: 48px 0 24px;
+      text-align: center;
+      position: relative;
+    }
+    .part-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 10px;
+    }
+    .part-title {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      color: var(--ivory-bright);
+      margin-bottom: 12px;
+    }
+    .part-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: var(--ivory-mid);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* ── STYLE ENTRY (the deep dive) ── */
+    .style-entry {
+      padding: 56px 0 32px;
+      border-top: 1px solid var(--brass-border-lo);
+    }
+    .style-entry:first-of-type { border-top: none; }
+
+    .style-header {
+      max-width: 880px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+    .style-num {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      color: var(--brass);
+      display: inline-block;
+      padding: 4px 14px;
+      border: 1px solid var(--brass-border);
+      margin-bottom: 14px;
+    }
+    .style-era-label {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      color: var(--brass-bright);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .style-title {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+      color: var(--ivory-bright);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .style-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: var(--ocean-pale);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Hero image for each style */
+    .style-hero-img {
+      max-width: 980px;
+      margin: 0 auto 36px;
+      position: relative;
+      border: 1px solid var(--brass-border-hi);
+      box-shadow:
+        0 0 0 4px var(--ocean-mid),
+        0 0 0 5px var(--brass-border-lo),
+        4px 8px 32px rgba(4,12,8,0.65);
+      background: rgba(13,53,53,0.4);
+      overflow: hidden;
+    }
+    .style-hero-img::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(to right, var(--brass-deep), var(--brass-bright), var(--brass-deep));
+      z-index: 2;
+    }
+    .style-hero-img img {
+      width: 100%;
+      height: auto;
+      max-height: 540px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(8%) contrast(1.04);
+    }
+    .style-hero-img figcaption {
+      background: rgba(4,12,8,0.85);
+      color: var(--brass-pale);
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      text-align: center;
+      border-top: 1px solid var(--brass-border-lo);
+    }
+
+    /* CSS placeholder card for styles where no photo is available */
+    .style-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background:
+        radial-gradient(ellipse at center, rgba(212,165,46,0.18), transparent 65%),
+        linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      color: var(--brass-bright);
+      position: relative;
+    }
+    .style-placeholder::before, .style-placeholder::after {
+      content: '✦';
+      font-size: 1.4rem;
+      color: var(--brass);
+      opacity: 0.35;
+    }
+    .style-placeholder-text {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-pale);
+      padding: 14px 22px;
+      border: 1px solid var(--brass-border-hi);
+      margin: 14px 0;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    /* Body — narrative + hunting sidebar */
+    .style-body {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 36px;
+      max-width: 1180px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .style-narrative {
+      font-family: var(--font-body);
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--ivory);
+    }
+    .style-narrative p { margin-bottom: 18px; }
+    .style-narrative p:first-of-type::first-letter {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      color: var(--brass-bright);
+      float: left;
+      line-height: 0.92;
+      padding: 6px 9px 0 0;
+      font-weight: 700;
+    }
+    .style-narrative em { color: var(--ivory-bright); font-style: italic; }
+    .style-narrative strong { color: var(--brass-bright); font-weight: 600; }
+
+    /* Hunting Notes sidebar */
+    .hunting-notes {
+      background: rgba(13,53,53,0.6);
+      border: 1px solid var(--brass-border);
+      padding: 26px 24px 22px;
+      position: relative;
+    }
+    .hunting-notes::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--brass);
+    }
+    .hunting-title {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--brass-border-lo);
+    }
+    .hunting-notes dl {
+      margin: 0;
+    }
+    .hunting-notes dt {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin: 14px 0 4px;
+    }
+    .hunting-notes dt:first-of-type { margin-top: 0; }
+    .hunting-notes dd {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--ivory-mid);
+      margin-left: 0;
+      margin-bottom: 4px;
+    }
+    .hunting-notes dd a { color: var(--ocean-pale); }
+    .hunting-notes dd a:hover { color: var(--brass-bright); }
+    .red-flag {
+      color: #e6a070;
+      font-style: italic;
+    }
+
+    /* Material tags row beneath each entry */
+    .mat-tags {
+      max-width: 1180px;
+      margin: 30px auto 0;
+      display: flex; flex-wrap: wrap; gap: 7px;
+      justify-content: center;
+    }
+    .mat-tag {
+      font-family: var(--font-display);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border: 1px solid var(--brass-border);
+      color: var(--brass);
+      background: rgba(13,53,53,0.5);
+    }
+
+    /* Secondary gallery row beneath each style — 2-3 small images */
+    .style-gallery {
+      max-width: 1180px;
+      margin: 32px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 18px;
+    }
+    .gal-item {
+      border: 1px solid var(--brass-border-lo);
+      background: rgba(13,53,53,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    .gal-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(8%);
+      transition: transform 0.4s ease;
+    }
+    .gal-item:hover img { transform: scale(1.05); }
+    .gal-item figcaption {
+      background: rgba(4,12,8,0.78);
+      color: var(--brass-pale);
+      font-family: var(--font-display);
+      font-size: 0.5rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      text-align: center;
+    }
+
+    /* Closing essay panel */
+    .closing-essay {
+      max-width: 820px;
+      margin: 56px auto 0;
+      padding: 36px 32px;
+      background: rgba(13,53,53,0.55);
+      border: 1px solid var(--brass-border);
+      position: relative;
+    }
+    .closing-essay::before, .closing-essay::after {
+      content: '';
+      position: absolute; height: 2px; left: 28px; right: 28px;
+      background: linear-gradient(to right, transparent, var(--brass), transparent);
+    }
+    .closing-essay::before { top: 0; }
+    .closing-essay::after { bottom: 0; }
+    .closing-essay h3 {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .closing-essay p {
+      font-family: var(--font-body);
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--ivory-mid);
+      margin-bottom: 16px;
+    }
+    .closing-essay p strong { color: var(--ivory-bright); }
+
+    /* Pull quotes within the page */
+    .pull-quote-large {
+      max-width: 760px;
+      margin: 36px auto;
+      padding: 24px 32px;
+      border-left: 3px solid var(--brass);
+      border-right: 3px solid var(--brass);
+    }
+    .pull-quote-large p {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.32rem;
+      line-height: 1.6;
+      color: var(--ivory-bright);
+      text-align: center;
+    }
+    .pull-quote-large cite {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      color: var(--brass);
+      text-align: center;
+      font-style: normal;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .style-body {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .hunting-notes { order: -1; }
+    }
+    @media (max-width: 560px) {
+      .overview-grid { grid-template-columns: 1fr 1fr; }
+      .atlas-hero { padding: 48px 0 32px; }
+      .style-entry { padding: 36px 0 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html" class="active"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ ATLAS HERO ════════════════════════════════════════════════ -->
+<section class="atlas-hero">
+  <div class="container">
+    <p class="eyebrow">
+      <span data-lang="en">Heritage · The Antique Cabinet · A Visual Atlas</span>
+      <span data-lang="fr">Patrimoine · Le Cabinet d'Antiquités · Atlas Visuel</span>
+    </p>
+
+    <!-- Decorative SVG: chess piece silhouettes evolving across cultures -->
+    <svg class="atlas-ornament" viewBox="0 0 720 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- 7 chess king silhouettes — proto-Indian → Persian → Mughal → Vizagapatam → Anglo-Indian → Muslim Staunton → Burmese -->
+      <g fill="none" stroke="#d4a52e" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+        <!-- 1. Chaturanga elephant king — chunky stylized -->
+        <g transform="translate(40,20)">
+          <path d="M0,80 L40,80 L40,60 Q40,40 20,40 Q0,40 0,60 Z" fill="#1f5f5d" />
+          <ellipse cx="20" cy="36" rx="12" ry="6" />
+          <path d="M14,32 Q20,18 26,32" />
+          <circle cx="20" cy="48" r="2" fill="#d4a52e" />
+        </g>
+        <!-- 2. Persian Shatranj — abstract geometric -->
+        <g transform="translate(140,20)">
+          <path d="M5,80 L35,80 L40,55 L0,55 Z" fill="#1f5f5d" />
+          <ellipse cx="20" cy="48" rx="20" ry="6" />
+          <ellipse cx="20" cy="36" rx="12" ry="5" fill="#1f5f5d" />
+          <circle cx="20" cy="22" r="6" fill="#1f5f5d" />
+          <circle cx="20" cy="22" r="3" fill="#d4a52e" />
+        </g>
+        <!-- 3. Mughal court — figural with crown -->
+        <g transform="translate(240,20)">
+          <path d="M5,80 L35,80 L37,60 L3,60 Z" fill="#1f5f5d" />
+          <ellipse cx="20" cy="56" rx="18" ry="3" />
+          <path d="M10,56 L10,30 Q20,20 30,30 L30,56 Z" fill="#1f5f5d" />
+          <path d="M10,30 L13,18 L17,28 L20,16 L23,28 L27,18 L30,30" />
+          <circle cx="20" cy="44" r="2.5" fill="#d4a52e" />
+        </g>
+        <!-- 4. Vizagapatam — turned baluster -->
+        <g transform="translate(340,20)">
+          <path d="M8,80 L32,80 L34,72 L6,72 Z" fill="#1f5f5d" />
+          <rect x="12" y="62" width="16" height="10" fill="#1f5f5d" />
+          <ellipse cx="20" cy="56" rx="14" ry="4" />
+          <ellipse cx="20" cy="48" rx="9" ry="3" />
+          <rect x="17" y="32" width="6" height="14" fill="#1f5f5d" />
+          <ellipse cx="20" cy="28" rx="8" ry="3" />
+          <ellipse cx="20" cy="20" rx="4" ry="6" fill="#1f5f5d" />
+          <circle cx="20" cy="12" r="2.5" fill="#d4a52e" />
+        </g>
+        <!-- 5. Anglo-Indian Lund pineapple -->
+        <g transform="translate(440,20)">
+          <path d="M8,80 L32,80 L33,74 L7,74 Z" fill="#1f5f5d" />
+          <rect x="13" y="64" width="14" height="10" fill="#1f5f5d" />
+          <ellipse cx="20" cy="60" rx="14" ry="4" />
+          <path d="M10,58 Q10,46 14,40 L14,30 Q14,22 20,22 Q26,22 26,30 L26,40 Q30,46 30,58 Z" fill="#1f5f5d" />
+          <path d="M14,38 L18,32 L22,38 M18,40 L22,34 L26,40 M14,32 L18,26 L22,32" />
+          <ellipse cx="20" cy="20" rx="4" ry="3" />
+          <path d="M20,16 L18,8 M20,16 L20,6 M20,16 L22,8" />
+        </g>
+        <!-- 6. Muslim Staunton — abstract aniconic -->
+        <g transform="translate(540,20)">
+          <path d="M8,80 L32,80 L33,74 L7,74 Z" fill="#1f5f5d" />
+          <rect x="13" y="64" width="14" height="10" fill="#1f5f5d" />
+          <ellipse cx="20" cy="60" rx="14" ry="4" />
+          <path d="M12,58 L28,58 L25,38 L15,38 Z" fill="#1f5f5d" />
+          <ellipse cx="20" cy="36" rx="6" ry="4" />
+          <rect x="18" y="22" width="4" height="14" fill="#1f5f5d" />
+          <ellipse cx="20" cy="20" rx="6" ry="3" />
+        </g>
+        <!-- 7. Burmese — pagoda king -->
+        <g transform="translate(640,20)">
+          <path d="M5,80 L35,80 L37,72 L3,72 Z" fill="#1f5f5d" />
+          <ellipse cx="20" cy="68" rx="16" ry="4" />
+          <path d="M10,68 L10,46 Q20,40 30,46 L30,68 Z" fill="#1f5f5d" />
+          <path d="M14,46 L26,46 L24,38 L16,38 Z" fill="#1f5f5d" />
+          <path d="M16,38 L24,38 L22,30 L18,30 Z" fill="#1f5f5d" />
+          <path d="M19,30 L21,30 L20,22 Z" fill="#1f5f5d" />
+          <circle cx="20" cy="20" r="1.5" fill="#d4a52e" />
+        </g>
+      </g>
+      <!-- caption strip -->
+      <text x="60" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">CHATURANGA</text>
+      <text x="158" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">SHATRANJ</text>
+      <text x="262" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">MUGHAL</text>
+      <text x="350" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">VIZAGAPATAM</text>
+      <text x="448" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">ANGLO-INDIAN</text>
+      <text x="546" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">MUSLIM STAUNTON</text>
+      <text x="654" y="110" font-family="Cinzel,serif" font-size="6.5" letter-spacing="2" fill="#9c7820">BURMESE</text>
+    </svg>
+
+    <h1>
+      <span data-lang="en">The Chess of <em>India</em></span>
+      <span data-lang="fr">Les Échecs de <em>l'Inde</em></span>
+    </h1>
+
+    <p class="ornament">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <p class="subtitle">
+      <span data-lang="en">A visual atlas of every style worth hunting — from the lost terracotta of <em>Chaturanga</em> to the gilded ivory of the Mughal court, the penwork compendia of Vizagapatam, and the figural Sepoy-vs-Sahib battle sets that turned the colonial encounter into a game.</span>
+      <span data-lang="fr">Un atlas visuel de tous les styles dignes d'être recherchés — du terracotta perdu du <em>Chaturanga</em> à l'ivoire doré de la cour moghole, aux compendiums à décor de plume de Vizagapatam, jusqu'aux ensembles figuratifs Sepoy-contre-Sahib qui firent de la rencontre coloniale un jeu.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══ FRAMING PANEL ════════════════════════════════════════════ -->
+<section class="container" style="max-width:820px; padding-bottom: 0;">
+  <div class="pull-quote-large">
+    <p data-lang="en">"Every chess set carries a civilisation in its silhouette. The Indian sets carry several at once — Hindu, Persian, Mughal, British — pressed together in ivory by craftsmen who saw all of them in one room."</p>
+    <p data-lang="fr">"Chaque jeu d'échecs porte une civilisation dans sa silhouette. Les jeux indiens en portent plusieurs à la fois — hindoue, persane, moghole, britannique — comprimées dans l'ivoire par des artisans qui les voyaient toutes dans une même pièce."</p>
+    <cite>— Ludo</cite>
+  </div>
+
+  <div class="overview-intro">
+    <p data-lang="en">Before hunting, learn the terrain. The Indian chess tradition is not one tradition but a layered geology of forms — proto-chess from the Gupta court (c.600 CE), Persian abstraction under Islam, Mughal court figural ivory, four distinct colonial export workshops, and the adjacent traditions of Burma, Ceylon, Kashmir, and the Himalayas. Twelve styles. Each with its own grammar, materials, price register, and where to find it. Below: the index.</p>
+    <p data-lang="fr">Avant de chasser, apprenez le terrain. La tradition échiquéenne indienne n'est pas une tradition mais une géologie superposée de formes — proto-échecs de la cour Gupta (vers 600 ap. J.-C.), abstraction persane sous l'Islam, ivoire figuratif de la cour moghole, quatre ateliers d'exportation coloniaux distincts, et les traditions voisines de Birmanie, Ceylan, Cachemire et de l'Himalaya. Douze styles. Chacun avec sa propre grammaire, ses matériaux, sa fourchette de prix, et son lieu de chasse. Ci-dessous&nbsp;: l'index.</p>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW GRID — THE INDEX OF STYLES ═════════════════════ -->
+<section class="atlas-overview">
+  <div class="container">
+    <div class="overview-grid">
+
+      <a href="#chaturanga" class="overview-tile">
+        <span class="ovt-num">I</span>
+        <div class="ovt-name" data-lang="en">Chaturanga</div>
+        <div class="ovt-name" data-lang="fr">Chaturanga</div>
+        <div class="ovt-era">c. 600 CE · India</div>
+        <div class="ovt-blurb" data-lang="en">The proto-chess. Four divisions of the Mauryan-Gupta army.</div>
+        <div class="ovt-blurb" data-lang="fr">Le proto-échec. Quatre divisions de l'armée maurya-gupta.</div>
+      </a>
+
+      <a href="#shatranj" class="overview-tile">
+        <span class="ovt-num">II</span>
+        <div class="ovt-name" data-lang="en">Persian Shatranj</div>
+        <div class="ovt-name" data-lang="fr">Shatranj Persan</div>
+        <div class="ovt-era">8th–15th c. · Persia · Islam</div>
+        <div class="ovt-blurb" data-lang="en">The aniconic turn — figural pieces become geometric forms.</div>
+        <div class="ovt-blurb" data-lang="fr">Le tournant aniconique — les figures deviennent géométriques.</div>
+      </a>
+
+      <a href="#mughal" class="overview-tile">
+        <span class="ovt-num">III</span>
+        <div class="ovt-name" data-lang="en">Mughal Court</div>
+        <div class="ovt-name" data-lang="fr">Cour Moghole</div>
+        <div class="ovt-era">16th–18th c. · Delhi · Agra</div>
+        <div class="ovt-blurb" data-lang="en">Ivory and jade figural sets for emperors. Akbar's obsession.</div>
+        <div class="ovt-blurb" data-lang="fr">Ivoire et jade figuratifs pour empereurs. L'obsession d'Akbar.</div>
+      </a>
+
+      <a href="#delhi-lucknow" class="overview-tile">
+        <span class="ovt-num">IV</span>
+        <div class="ovt-name" data-lang="en">Delhi & Lucknow</div>
+        <div class="ovt-name" data-lang="fr">Delhi & Lucknow</div>
+        <div class="ovt-era">18th–19th c. · Awadh · Delhi</div>
+        <div class="ovt-blurb" data-lang="en">Mughal craft after the Mughals. Nawab patronage.</div>
+        <div class="ovt-blurb" data-lang="fr">L'artisanat moghol après les Moghols. Mécénat des Nababs.</div>
+      </a>
+
+      <a href="#kashmir" class="overview-tile">
+        <span class="ovt-num">V</span>
+        <div class="ovt-name" data-lang="en">Kashmiri Lacquer</div>
+        <div class="ovt-name" data-lang="fr">Laque du Cachemire</div>
+        <div class="ovt-era">19th c. · Srinagar</div>
+        <div class="ovt-blurb" data-lang="en">Painted papier-mâché. Persian-derived. Joyful, colourful, unique.</div>
+        <div class="ovt-blurb" data-lang="fr">Papier mâché peint. D'origine persane. Joyeux, coloré, unique.</div>
+      </a>
+
+      <a href="#vizagapatam" class="overview-tile">
+        <span class="ovt-num">VI</span>
+        <div class="ovt-name" data-lang="en">Vizagapatam</div>
+        <div class="ovt-name" data-lang="fr">Vizagapatam</div>
+        <div class="ovt-era">1700–1850 · Andhra Coast</div>
+        <div class="ovt-blurb" data-lang="en">Ivory + sandalwood + penwork. The colonial export apex.</div>
+        <div class="ovt-blurb" data-lang="fr">Ivoire + santal + dessin à la plume. L'apogée de l'export colonial.</div>
+      </a>
+
+      <a href="#berhampur" class="overview-tile">
+        <span class="ovt-num">VII</span>
+        <div class="ovt-name" data-lang="en">Berhampur · Bengal</div>
+        <div class="ovt-name" data-lang="fr">Berhampur · Bengale</div>
+        <div class="ovt-era">1800–1880 · Murshidabad</div>
+        <div class="ovt-blurb" data-lang="en">Bengal's ivory parallel — finer carving, bolder figural.</div>
+        <div class="ovt-blurb" data-lang="fr">Le parallèle d'ivoire bengali — sculpture plus fine, figure plus audacieuse.</div>
+      </a>
+
+      <a href="#john-company" class="overview-tile">
+        <span class="ovt-num">VIII</span>
+        <div class="ovt-name" data-lang="en">John Company</div>
+        <div class="ovt-name" data-lang="fr">John Company</div>
+        <div class="ovt-era">1790–1860 · Bengal</div>
+        <div class="ovt-blurb" data-lang="en">Sepoys vs Sahibs. Chess as imperial allegory in ivory.</div>
+        <div class="ovt-blurb" data-lang="fr">Cipayes contre Sahibs. Les échecs en allégorie impériale.</div>
+      </a>
+
+      <a href="#anglo-indian" class="overview-tile">
+        <span class="ovt-num">IX</span>
+        <div class="ovt-name" data-lang="en">Anglo-Indian Lund</div>
+        <div class="ovt-name" data-lang="fr">Anglo-Indien Lund</div>
+        <div class="ovt-era">1820–1860 · Cornhill, London</div>
+        <div class="ovt-blurb" data-lang="en">Pineapple finials. English turner + Indian decorative grammar.</div>
+        <div class="ovt-blurb" data-lang="fr">Fleurons d'ananas. Tourneur anglais + grammaire indienne.</div>
+      </a>
+
+      <a href="#muslim-staunton" class="overview-tile">
+        <span class="ovt-num">X</span>
+        <div class="ovt-name" data-lang="en">Muslim Staunton</div>
+        <div class="ovt-name" data-lang="fr">Staunton Musulman</div>
+        <div class="ovt-era">post-1849 · British India</div>
+        <div class="ovt-blurb" data-lang="en">Aniconic adaptation of Staunton for Islamic players.</div>
+        <div class="ovt-blurb" data-lang="fr">Adaptation aniconique du Staunton pour joueurs musulmans.</div>
+      </a>
+
+      <a href="#burmese" class="overview-tile">
+        <span class="ovt-num">XI</span>
+        <div class="ovt-name" data-lang="en">Burmese · Mandalay</div>
+        <div class="ovt-name" data-lang="fr">Birman · Mandalay</div>
+        <div class="ovt-era">19th c. · Mandalay · Pegu</div>
+        <div class="ovt-blurb" data-lang="en">Sittuyin pieces. Buddhist iconography. Stupa silhouettes.</div>
+        <div class="ovt-blurb" data-lang="fr">Pièces sittuyin. Iconographie bouddhique. Silhouettes en stupa.</div>
+      </a>
+
+      <a href="#sinhalese" class="overview-tile">
+        <span class="ovt-num">XII</span>
+        <div class="ovt-name" data-lang="en">Sinhalese · Ceylon</div>
+        <div class="ovt-name" data-lang="fr">Cinghalais · Ceylan</div>
+        <div class="ovt-era">17th–19th c. · Galle · Kandy</div>
+        <div class="ovt-blurb" data-lang="en">Three colonial layers — Portuguese, Dutch, British. Naga motifs.</div>
+        <div class="ovt-blurb" data-lang="fr">Trois couches coloniales — portugaise, hollandaise, britannique.</div>
+      </a>
+
+      <a href="#tibetan" class="overview-tile">
+        <span class="ovt-num">XIII</span>
+        <div class="ovt-name" data-lang="en">Tibetan · Himalayan</div>
+        <div class="ovt-name" data-lang="fr">Tibétain · Himalayen</div>
+        <div class="ovt-era">19th c. · Lhasa · Ladakh</div>
+        <div class="ovt-blurb" data-lang="en">Silver-mounted with turquoise and coral. Buddhist deities.</div>
+        <div class="ovt-blurb" data-lang="fr">Argent monté de turquoise et corail. Divinités bouddhiques.</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART I — ORIGINS
+     ═══════════════════════════════════════════════════════════════ -->
+
+<section class="part-divider container">
+  <p class="part-eyebrow">
+    <span data-lang="en">Part I — The Origins</span>
+    <span data-lang="fr">Partie I — Les Origines</span>
+  </p>
+  <h2 class="part-title">
+    <span data-lang="en">Before the Antique Market Begins</span>
+    <span data-lang="fr">Avant que le Marché des Antiquités Ne Commence</span>
+  </h2>
+  <p class="part-tagline">
+    <span data-lang="en">The styles below are largely museum-only. You will not find a Chaturanga set at auction in your lifetime. But every Indian chess set you <em>can</em> buy descends from these two traditions. Knowing them is the difference between owning an object and owning a story.</span>
+    <span data-lang="fr">Les styles ci-dessous sont essentiellement réservés aux musées. Vous ne trouverez pas un Chaturanga aux enchères de votre vivant. Mais chaque jeu indien que vous <em>pouvez</em> acheter descend de ces deux traditions. Les connaître, c'est la différence entre posséder un objet et posséder une histoire.</span>
+  </p>
+</section>
+
+<!-- ── STYLE I — CHATURANGA ─────────────────────────────────── -->
+<section id="chaturanga" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">I</span>
+    <p class="style-era-label">c. 600 CE · Northern India · Gupta Court</p>
+    <h2 class="style-title">
+      <span data-lang="en">Chaturanga — <em>The Four Limbs of the Army</em></span>
+      <span data-lang="fr">Chaturanga — <em>Les Quatre Bras de l'Armée</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">The proto-chess. A Sanskrit war game whose four divisions of the Mauryan-Gupta army still survive, fifteen centuries later, as the rook, knight, bishop and pawn.</span>
+      <span data-lang="fr">Le proto-échec. Un jeu de guerre sanskrit dont les quatre divisions de l'armée maurya-gupta survivent encore, quinze siècles plus tard, sous la forme de la tour, du cavalier, du fou et du pion.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/De_partij_chaturanga,_RP-T-1993-306.jpg?width=1200"
+         alt="A 19th-century European drawing depicting a four-handed chaturanga match — the original four-player Indian chess as described in the Bhavishya Purana"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Chaturanga · The Lost Boards of the Gupta Court</div></div>';">
+    <figcaption>De partij chaturanga · 19th c. drawing of four-handed Indian chess · Rijksmuseum, Amsterdam</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">In the 6th century, in a court somewhere in the Gupta empire — perhaps Pataliputra (modern Patna), perhaps Ujjain — someone took the existing 8×8 grid called the <em>aṣṭāpada</em>, already used for race games on Indian temple floors, and placed onto it a war in miniature. Four divisions of the army: foot soldiers (<em>padāti</em>), cavalry (<em>aśva</em>), elephants (<em>gaja</em>), and chariots (<em>ratha</em>). A king. A counsellor. The Sanskrit name was <em>chaturanga</em> — "four limbs."</p>
+
+      <p data-lang="en">No physical sets survive. We know the game from texts — the <em>Bhavishya Purana</em>, the <em>Harshacharita</em> (c.625 CE) of Bāṇabhaṭṭa, and most famously the description in Persian sources after the game crossed the Hindu Kush. Material evidence is limited to carved reliefs at Buddhist sites such as Sanchi, where players appear bent over boards on temple steps. The pieces were almost certainly simple: turned wood, terracotta, bronze.</p>
+
+      <p data-lang="en">Why this matters for a collector buying in 2026: every Indian chess set in every auction house descends, conceptually, from this moment. When a 19th-century Berhampur carver gives you a rook in the form of an elephant with a howdah, he is honouring chaturanga. When a Vizagapatam workshop turns a knight as a horse-and-rider rather than the European horse-head alone, he is honouring chaturanga. The set you eventually buy is not an English form decorated in Indian style — it is a chaturanga set <em>filtered through</em> Persian abstraction and English standardisation. The DNA is original.</p>
+
+      <p data-lang="en">There is one piece of practical news for the collector: the four-fold army idea also spawned <em>chaturaji</em>, a four-player variant played with dice, and a small number of ivory pieces from this tradition do appear at auction — usually unrecognised, mis-catalogued as "antique Indian chess." If you ever see a set with four sides of pieces in different stains rather than two armies of opposing colours, you may be looking at a chaturaji.</p>
+
+      <p data-lang="fr">Au VI<sup>e</sup> siècle, dans une cour quelque part dans l'empire Gupta — peut-être Pataliputra (Patna moderne), peut-être Ujjain — quelqu'un prit la grille 8×8 existante appelée <em>aṣṭāpada</em>, déjà utilisée pour des jeux de course sur les sols des temples indiens, et y plaça une guerre miniature. Quatre divisions de l'armée&nbsp;: fantassins (<em>padāti</em>), cavalerie (<em>aśva</em>), éléphants (<em>gaja</em>), et chars (<em>ratha</em>). Un roi. Un conseiller. Le nom sanskrit était <em>chaturanga</em> — «&nbsp;quatre bras&nbsp;».</p>
+
+      <p data-lang="fr">Aucun jeu physique ne survit. Nous connaissons le jeu par les textes — le <em>Bhavishya Purana</em>, le <em>Harshacharita</em> (vers 625) de Bāṇabhaṭṭa, et plus célèbrement par la description dans les sources persanes après que le jeu eut traversé l'Hindou Kouch. Les preuves matérielles se limitent à des reliefs sculptés sur des sites bouddhiques comme Sanchi. Les pièces étaient presque certainement simples&nbsp;: bois tourné, terre cuite, bronze.</p>
+
+      <p data-lang="fr">Pourquoi cela importe pour le collectionneur en 2026&nbsp;: chaque jeu d'échecs indien de chaque maison de ventes descend, conceptuellement, de ce moment. Quand un sculpteur de Berhampur du XIX<sup>e</sup> siècle vous donne une tour sous la forme d'un éléphant avec un <em>howdah</em>, il honore le chaturanga. Quand un atelier de Vizagapatam tourne un cavalier comme un cheval-et-cavalier plutôt que la simple tête de cheval européenne, il honore le chaturanga. Le jeu que vous achèterez n'est pas une forme anglaise décorée à l'indienne — c'est un jeu de chaturanga <em>filtré par</em> l'abstraction persane et la standardisation anglaise. L'ADN est d'origine.</p>
+
+      <p data-lang="fr">Une nouvelle pratique pour le collectionneur&nbsp;: l'idée des quatre armées engendra aussi le <em>chaturaji</em>, une variante à quatre joueurs jouée avec des dés, et un petit nombre de pièces d'ivoire de cette tradition apparaissent aux enchères — généralement non reconnues, mal cataloguées comme «&nbsp;échecs indiens anciens&nbsp;». Si vous voyez un jour un jeu à quatre camps de pièces aux teintes différentes plutôt qu'à deux armées opposées, vous regardez peut-être un chaturaji.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Surviving Sets</span><span data-lang="fr">Jeux Survivants</span></dt>
+        <dd><span data-lang="en">Effectively zero. Material evidence is limited to literary references and temple reliefs.</span><span data-lang="fr">Effectivement aucun. Les preuves se limitent aux références littéraires et aux reliefs de temples.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">N/A — museum-only. The Cleveland Museum, the V&amp;A, and the National Museum in Delhi hold the few possible candidates.</span><span data-lang="fr">N/A — réservé aux musées. Le Cleveland Museum, le V&amp;A et le National Museum de Delhi détiennent les rares candidats possibles.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Read about it, don't hunt it. <em>The Encyclopedia of Chess Variants</em> (D. B. Pritchard) and the British Museum's H. J. R. Murray archive are the standard references.</span><span data-lang="fr">Lisez à son sujet, ne le chassez pas. <em>The Encyclopedia of Chess Variants</em> (D. B. Pritchard) et l'archive H. J. R. Murray du British Museum sont les références standards.</span></dd>
+
+        <dt><span data-lang="en">Chaturaji Adjacency</span><span data-lang="fr">Proximité du Chaturaji</span></dt>
+        <dd><span data-lang="en">Look for ivory sets with <em>four</em> piece colours and dice — these are 19th c. revivals of the four-player game and are the closest thing to a "chaturanga" you can actually buy.</span><span data-lang="fr">Cherchez des jeux d'ivoire à <em>quatre</em> couleurs avec dés — ce sont des renaissances du XIX<sup>e</sup> siècle du jeu à quatre joueurs, ce qui se rapproche le plus d'un chaturanga achetable.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">Any dealer offering a "Chaturanga set, c. 6th century AD." This does not exist on the market. Politely walk away.</span><span data-lang="fr">Tout marchand proposant un «&nbsp;jeu de Chaturanga, vers VI<sup>e</sup> siècle&nbsp;». Cela n'existe pas sur le marché. Partez poliment.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Sanskrit Origin</span>
+    <span class="mat-tag">Gupta Empire</span>
+    <span class="mat-tag">Aṣṭāpada Board</span>
+    <span class="mat-tag">Pre-Islamic</span>
+    <span class="mat-tag">Museum-Only</span>
+  </div>
+</section>
+
+<!-- ── STYLE II — PERSIAN SHATRANJ ─────────────────────────── -->
+<section id="shatranj" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">II</span>
+    <p class="style-era-label">8th–15th c. · Persia · Caliphate · Al-Andalus</p>
+    <h2 class="style-title">
+      <span data-lang="en">Persian Shatranj — <em>The Aniconic Turn</em></span>
+      <span data-lang="fr">Shatranj Persan — <em>Le Tournant Aniconique</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">When chaturanga crossed into Sassanid Persia and then into the Islamic world, the figural pieces dissolved into geometry. The horse, the elephant, the chariot — all became abstract turned forms. This is the lineage of every Muslim Staunton you will ever encounter.</span>
+      <span data-lang="fr">Quand le chaturanga traversa la Perse sassanide puis le monde islamique, les pièces figuratives se dissolvèrent en géométrie. Le cheval, l'éléphant, le char — tous devinrent des formes abstraites tournées. C'est la lignée de chaque Staunton musulman que vous rencontrerez.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cabinet_des_m%C3%A9dailles,_Paris_-_Ivory_Chess_King,_13th_Century_-_Front_view.jpg?width=1200"
+         alt="The Charlemagne chessmen — a 12th–13th century Islamic Egyptian ivory king, now in the Cabinet des médailles, Paris"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Persian Shatranj · The Charlemagne Chessmen</div></div>';">
+    <figcaption>Ivory king · 12th–13th c. Islamic Egypt · The "Charlemagne chessmen" · Cabinet des médailles, Paris</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">The Sassanid Persians adopted chaturanga around 600 CE and renamed it <em>shatranj</em> — a Persian rendering of the Sanskrit. When the Arab armies overthrew the Sassanid empire (637–651), they absorbed the game and carried it across the entire Islamic world: from Bukhara to Baghdad, from Cairo to Cordoba, eventually reaching Norman Sicily and Christian Spain by the 11th century.</p>
+
+      <p data-lang="en">The crucial transformation happened in the workshops of the Caliphate. Islamic theology — particularly its strict aniconic principle, the prohibition on figural representation of living beings — gradually reshaped the chess pieces. The horseman became a slanted disc. The elephant became a ribbed cylinder with two stylised "tusks" projecting outward. The chariot became a small flanged tower. The king and his vizier (the precursor to the queen) became simple turned cones with finials. <strong>The pieces were no longer images of an army. They were geometry that referred to an army.</strong></p>
+
+      <p data-lang="en">A handful of these early Islamic sets survive — the <em>Charlemagne chessmen</em> at the Cabinet des médailles in Paris (12th–13th c. Egyptian ivory, mistakenly attributed for centuries to a gift from Hārūn al-Rashīd to Charlemagne); the <em>Lewis chessmen</em> in the British Museum, made in Norse Trondheim around 1170 but visually indebted to Islamic abstraction transmitted through Spain; and the celebrated rock-crystal pieces from Fatimid Egypt held by the Met and the Louvre.</p>
+
+      <p data-lang="en">For the Indian collector this lineage matters in one specific way: when British Staunton sets reached Islamic India after 1849, the local response — the Muslim Staunton — was not an invention. It was a return. The aniconic vocabulary had been waiting in Persian and Mughal memory for a thousand years.</p>
+
+      <p data-lang="fr">Les Sassanides adoptèrent le chaturanga vers 600 et le rebaptisèrent <em>shatranj</em> — rendu persan du sanskrit. Quand les armées arabes renversèrent l'empire sassanide (637–651), elles absorbèrent le jeu et le portèrent à travers tout le monde islamique&nbsp;: de Boukhara à Bagdad, du Caire à Cordoue, atteignant la Sicile normande et l'Espagne chrétienne au XI<sup>e</sup> siècle.</p>
+
+      <p data-lang="fr">La transformation cruciale eut lieu dans les ateliers du Califat. La théologie islamique — en particulier son strict principe aniconique, l'interdiction de représentation figurative des êtres vivants — remodela progressivement les pièces. Le cavalier devint un disque incliné. L'éléphant devint un cylindre nervuré avec deux «&nbsp;défenses&nbsp;» stylisées projetées vers l'extérieur. Le char devint une petite tour à flasques. Le roi et son vizir devinrent de simples cônes tournés à fleurons. <strong>Les pièces n'étaient plus des images d'une armée. Elles étaient une géométrie qui se référait à une armée.</strong></p>
+
+      <p data-lang="fr">Quelques-uns de ces premiers ensembles islamiques survivent — les <em>échecs de Charlemagne</em> au Cabinet des médailles à Paris (ivoire égyptien, XII<sup>e</sup>–XIII<sup>e</sup> siècle, attribués à tort pendant des siècles à un cadeau de Hārūn al-Rashīd à Charlemagne)&nbsp;; les <em>échecs de Lewis</em> au British Museum, faits à Trondheim norroise vers 1170 mais visuellement débiteurs de l'abstraction islamique transmise par l'Espagne&nbsp;; et les célèbres pièces en cristal de roche de l'Égypte fatimide conservées au Met et au Louvre.</p>
+
+      <p data-lang="fr">Pour le collectionneur indien, cette lignée importe d'une manière précise&nbsp;: quand les jeux Staunton britanniques atteignirent l'Inde islamique après 1849, la réponse locale — le Staunton musulman — ne fut pas une invention. Ce fut un retour. Le vocabulaire aniconique attendait dans la mémoire persane et moghole depuis mille ans.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Genuine Period Sets</span><span data-lang="fr">Jeux d'Époque Authentiques</span></dt>
+        <dd><span data-lang="en">Pre-1500 Islamic shatranj sets are essentially museum-only — Cabinet des médailles, V&amp;A, Met, Louvre, Khalili Collection, David Collection (Copenhagen).</span><span data-lang="fr">Les jeux shatranj islamiques d'avant 1500 sont essentiellement réservés aux musées — Cabinet des médailles, V&amp;A, Met, Louvre, Collection Khalili, David Collection (Copenhague).</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">When a single piece does surface (rare, perhaps once per decade), six figures upward. Christie's Islamic Art and Sotheby's Arts of the Islamic World are the relevant sales.</span><span data-lang="fr">Quand une pièce isolée fait surface (rare, peut-être une fois par décennie), six chiffres et au-delà. Christie's Islamic Art et Sotheby's Arts of the Islamic World sont les ventes pertinentes.</span></dd>
+
+        <dt><span data-lang="en">The Practical Lineage</span><span data-lang="fr">La Lignée Pratique</span></dt>
+        <dd><span data-lang="en">For an actual buyable Shatranj-form, see <strong>Style X: Muslim Staunton</strong> below — the 19th-century survival of this aniconic tradition is genuinely on the market at £600–£1,500.</span><span data-lang="fr">Pour une forme Shatranj réellement achetable, voir <strong>Style X&nbsp;: Staunton Musulman</strong> ci-dessous — la survie XIX<sup>e</sup> de cette tradition aniconique est véritablement sur le marché à 600–1&nbsp;500&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Identification</span><span data-lang="fr">Identification</span></dt>
+        <dd><span data-lang="en">Authentic early Islamic pieces are turned, geometric, often ribbed; the elephant has two horizontal projections (the abstracted tusks); the knight is a slanted disc; no figural detail anywhere.</span><span data-lang="fr">Les pièces islamiques authentiques sont tournées, géométriques, souvent nervurées&nbsp;; l'éléphant a deux projections horizontales (les défenses abstraites)&nbsp;; le cavalier est un disque incliné&nbsp;; aucun détail figuratif.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">"Antique Persian shatranj" offered at &lt; £5,000 — almost certainly a 20th c. souvenir or a misattributed Mughal/Indian piece. Any genuine pre-1700 shatranj piece would be auction-house material at minimum.</span><span data-lang="fr">«&nbsp;Shatranj persan ancien&nbsp;» proposé à &lt; 5&nbsp;000&nbsp;£ — presque certainement un souvenir XX<sup>e</sup> siècle ou une pièce moghole/indienne mal attribuée.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Aniconic Geometry</span>
+    <span class="mat-tag">Ivory · Rock Crystal</span>
+    <span class="mat-tag">Caliphate Workshops</span>
+    <span class="mat-tag">10th–13th c.</span>
+    <span class="mat-tag">Museum-Only</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART II — THE INDIAN COURT TRADITION
+     ═══════════════════════════════════════════════════════════════ -->
+
+<section class="part-divider container">
+  <p class="part-eyebrow">
+    <span data-lang="en">Part II — The Indian Court</span>
+    <span data-lang="fr">Partie II — La Cour Indienne</span>
+  </p>
+  <h2 class="part-title">
+    <span data-lang="en">Mughal Ivory · Pahari Painting · Kashmiri Lacquer</span>
+    <span data-lang="fr">Ivoire Moghol · Peinture Pahari · Laque du Cachemire</span>
+  </h2>
+  <p class="part-tagline">
+    <span data-lang="en">When chess returned to India from Persia in the 13th century, it found a continent already shaped by indigenous craft. Mughal courts in Agra and Delhi, the Pahari hill courts, the Lucknow nawabs, and the lacquer ateliers of Srinagar each gave chess their own face. These are the styles that <em>predate</em> British arrival — and the ones a serious collector should chase before colonial-era pieces.</span>
+    <span data-lang="fr">Lorsque les échecs revinrent en Inde depuis la Perse au XIII<sup>e</sup> siècle, ils trouvèrent un continent déjà façonné par l'artisanat indigène. Les cours mogholes d'Agra et de Delhi, les cours pahari des montagnes, les nababs de Lucknow et les ateliers de laque de Srinagar donnèrent chacun aux échecs un visage propre. Ce sont les styles qui <em>précèdent</em> l'arrivée britannique — ceux qu'un collectionneur sérieux devrait chasser avant les pièces de l'époque coloniale.</span>
+  </p>
+</section>
+
+<!-- ── STYLE III — MUGHAL COURT ─────────────────────────────── -->
+<section id="mughal-court" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">III</span>
+    <p class="style-era-label">16th–18th c. · Agra · Delhi · Lahore · Mughal Empire</p>
+    <h2 class="style-title">
+      <span data-lang="en">Mughal Court Chess — <em>Ivory of the Padshah</em></span>
+      <span data-lang="fr">Échecs de la Cour Moghole — <em>L'Ivoire du Padshah</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">Akbar played, Aurangzeb collected, and Mughal court ateliers produced ivory sets whose elephants and chariots are the direct ancestors of every "Indian-figural" set you'll see at auction.</span>
+      <span data-lang="fr">Akbar jouait, Aurangzeb collectionnait, et les ateliers de cour mogholes produisaient des jeux d'ivoire dont les éléphants et les chars sont les ancêtres directs de tout jeu «&nbsp;figuratif indien&nbsp;» que vous verrez aux enchères.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hyderabad,_salarjung_museum,_manoscritti_persiani_04_gioco_degli_scacchi_1.jpg?width=1200"
+         alt="Persian-language Mughal manuscript page depicting a chess game at court — Salar Jung Museum, Hyderabad"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Mughal Court · Persian Manuscript Folio · Salar Jung Museum</div></div>';">
+    <figcaption>Mughal manuscript folio depicting a chess game · Salar Jung Museum, Hyderabad</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">The Mughal emperors did not simply play chess — they curated it. Akbar (r. 1556–1605), according to Abu'l Fazl's <em>Ain-i-Akbari</em>, was such an enthusiast that he had a courtyard at Fatehpur Sikri laid out as a giant board, with palace women dressed in costume serving as the pieces. (The "pachisi court" you can still walk through today is the same idea, applied to a related game.) His son Jahangir, his grandson Shah Jahan and his great-grandson Aurangzeb all kept chess masters at court, and the imperial workshops — the <em>kārkhānas</em> — produced ivory sets to match.</p>
+
+      <p data-lang="en">What did a Mughal court set look like? Here is where the modern collector has to do mental work: the canonical "Indian figural" template — Raja and Vizier on howdah-elephants, knights as horse-and-rider, rooks as chariots, bishops as camels-with-rider — is essentially a <em>Mughal</em> template. Every Berhampur, Vizagapatam and "John Company" set of the 19th century is iterating on a vocabulary that the Mughal ateliers fixed in the 16th–17th centuries. The Bishop-as-camel is particularly diagnostic: in Persian shatranj the piece was called <em>fil</em> (elephant), but Mughal carvers, perhaps to differentiate from the Rook-elephant, gave it a camel.</p>
+
+      <p data-lang="en">Genuine Mughal-period sets are extraordinarily rare. The most important survivor is the <strong>17th-century ivory set in the Cleveland Museum of Art</strong> (catalogue no. 1942.1086), with deeply carved kings on lotus-throne elephants and elaborate howdahs — the standard against which everything else is judged. The <strong>National Museum in Delhi</strong> holds a similar set attributed to the Deccan. The <strong>V&amp;A</strong> in London has fragments. The <strong>Khalili Collection</strong> in London holds Mughal pieces of disputed dating. That is, more or less, the corpus.</p>
+
+      <p data-lang="en">For the 2026 collector, this means two things. First: when a London or New York auction catalogue says "Mughal, 17th c." in its description, do not believe it without provenance. Second: the genuine market for "Mughal-style" sets is in the Pahari and Rajput hill-court output of the 18th century — Punjab Hills sets of polychromed ivory, Kishangarh-style miniatures with chess motifs — which can occasionally be acquired through specialised dealers (Spink, Rossi &amp; Rossi, Francesca Galloway) at the £15,000–£60,000 level. Below that price point you are buying 19th-century Berhampur or Vizagapatam, which is a different (and equally beautiful) thing.</p>
+
+      <p data-lang="fr">Les empereurs moghols ne se contentaient pas de jouer aux échecs — ils les curataient. Akbar (r. 1556–1605), selon l'<em>Ain-i-Akbari</em> d'Abu'l Fazl, était tel passionné qu'il fit aménager une cour à Fatehpur Sikri en échiquier géant, avec les femmes du palais en costume servant de pièces. Son fils Jahangir, son petit-fils Shah Jahan et son arrière-petit-fils Aurangzeb gardèrent tous des maîtres d'échecs à la cour, et les ateliers impériaux — les <em>kārkhānas</em> — produisirent des jeux d'ivoire à la mesure.</p>
+
+      <p data-lang="fr">À quoi ressemblait un jeu de cour moghole&nbsp;? C'est ici que le collectionneur moderne doit faire un travail mental&nbsp;: le modèle canonique «&nbsp;figuratif indien&nbsp;» — Raja et Vizir sur éléphants à howdah, cavaliers comme cheval-et-cavalier, tours comme chars, fous comme chameaux-avec-cavalier — est essentiellement un modèle <em>moghol</em>. Chaque jeu de Berhampur, de Vizagapatam et «&nbsp;John Company&nbsp;» du XIX<sup>e</sup> siècle itère sur un vocabulaire que les ateliers moghols fixèrent aux XVI<sup>e</sup>–XVII<sup>e</sup> siècles.</p>
+
+      <p data-lang="fr">Les jeux authentiquement de la période moghole sont extraordinairement rares. Le survivant le plus important est le <strong>jeu d'ivoire du XVII<sup>e</sup> siècle au Cleveland Museum of Art</strong>, avec des rois profondément sculptés sur éléphants à trône-lotus et des howdahs élaborés — la référence par rapport à laquelle tout le reste est jugé. Le <strong>National Museum de Delhi</strong> détient un jeu similaire attribué au Deccan. La <strong>V&amp;A</strong> à Londres a des fragments. Tel est, peu ou prou, le corpus.</p>
+
+      <p data-lang="fr">Pour le collectionneur de 2026, cela signifie deux choses. Premièrement&nbsp;: quand un catalogue de Londres ou New York dit «&nbsp;moghol, XVII<sup>e</sup> siècle&nbsp;» dans sa description, ne le croyez pas sans provenance. Deuxièmement&nbsp;: le marché authentique pour les jeux «&nbsp;de style moghol&nbsp;» se trouve dans la production des cours pahari et rajput du XVIII<sup>e</sup> siècle — jeux des Punjab Hills en ivoire polychromé, miniatures de style Kishangarh à motifs d'échecs — accessibles occasionnellement chez des marchands spécialisés (Spink, Rossi &amp; Rossi, Francesca Galloway) entre 15&nbsp;000 et 60&nbsp;000&nbsp;£.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Raja and Vizier on howdah-elephants with multiple riders; rook as chariot drawn by horses; bishop as camel-with-rider; knight as full horse-and-rider (not the European horse-head). Pieces tall (king typically 11–14 cm), deeply undercut, often polychromed with red &amp; green lac.</span><span data-lang="fr">Raja et Vizir sur éléphants à howdah avec plusieurs cavaliers&nbsp;; tour comme char tiré par des chevaux&nbsp;; fou comme chameau-avec-cavalier&nbsp;; cavalier comme cheval-et-cavalier complet. Pièces hautes (roi typiquement 11–14&nbsp;cm), profondément sculptées, souvent polychromées au laque rouge et vert.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Genuine 17th c. Mughal: £80,000–£300,000+ at Christie's / Sotheby's "Arts of the Islamic World" sales. 18th c. Pahari / Rajput hill-court: £15,000–£60,000.</span><span data-lang="fr">Authentique XVII<sup>e</sup> moghol&nbsp;: 80&nbsp;000–300&nbsp;000+&nbsp;£ aux ventes «&nbsp;Arts du Monde Islamique&nbsp;» chez Christie's / Sotheby's. XVIII<sup>e</sup> pahari / rajput&nbsp;: 15&nbsp;000–60&nbsp;000&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Christie's "Arts of the Islamic and Indian Worlds" (London, twice yearly). Sotheby's "Arts of the Islamic World &amp; India" (London &amp; NY). Specialist dealers: Francesca Galloway, Rossi &amp; Rossi, Simon Ray, Sam Fogg.</span><span data-lang="fr">«&nbsp;Arts du Monde Islamique et Indien&nbsp;» chez Christie's (Londres, deux fois par an). Sotheby's «&nbsp;Arts of the Islamic World &amp; India&nbsp;». Marchands spécialisés&nbsp;: Francesca Galloway, Rossi &amp; Rossi, Simon Ray, Sam Fogg.</span></dd>
+
+        <dt><span data-lang="en">Provenance Anchor</span><span data-lang="fr">Ancre de Provenance</span></dt>
+        <dd><span data-lang="en">A Mughal-period set without provenance to a documented European cabinet (e.g. an Austrian Wunderkammer, a 19th c. British military collector with Punjab service) should be assumed to be later. Provenance is everything in this category.</span><span data-lang="fr">Un jeu d'époque moghole sans provenance documentée dans une collection européenne (Wunderkammer autrichienne, collectionneur militaire britannique du XIX<sup>e</sup> ayant servi au Punjab) doit être présumé plus tardif. La provenance est tout dans cette catégorie.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">Any "17th c. Mughal ivory chess set" priced at £20,000 or below — almost certainly a 19th c. Berhampur or Vizagapatam misattributed. Also: ivory that looks too white and uniformly aged. Real Mughal ivory shows differential patina between handled and protected surfaces.</span><span data-lang="fr">Tout «&nbsp;jeu d'ivoire moghol XVII<sup>e</sup>&nbsp;» à 20&nbsp;000&nbsp;£ ou moins — presque certainement un Berhampur ou Vizagapatam du XIX<sup>e</sup> mal attribué. Aussi&nbsp;: ivoire trop blanc et uniformément patiné. L'ivoire moghol authentique montre une patine différentielle entre surfaces manipulées et protégées.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Imperial Ivory</span>
+    <span class="mat-tag">Howdah Elephants</span>
+    <span class="mat-tag">Polychrome Lac</span>
+    <span class="mat-tag">Akbar · Aurangzeb</span>
+    <span class="mat-tag">Top Auction</span>
+  </div>
+</section>
+
+<!-- ── STYLE IV — DELHI / LUCKNOW ─────────────────────────────── -->
+<section id="delhi-lucknow" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">IV</span>
+    <p class="style-era-label">18th c. · Delhi · Lucknow · Awadh Court</p>
+    <h2 class="style-title">
+      <span data-lang="en">Delhi &amp; Lucknow — <em>The Nawabi Style</em></span>
+      <span data-lang="fr">Delhi et Lucknow — <em>Le Style Nawabi</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">After Aurangzeb's death the Mughal centre weakened, but Lucknow's nawabs filled the vacuum with a court culture that turned chess into theatre. This is where the figural style hits its baroque peak.</span>
+      <span data-lang="fr">Après la mort d'Aurangzeb, le centre moghol s'affaiblit, mais les nababs de Lucknow comblèrent le vide avec une culture de cour qui fit des échecs un théâtre. C'est ici que le style figuratif atteint son apogée baroque.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2024-03-22_18th_century_ivory_chess_set_made_in_Maharashtra_in_Raja_Dinkar_Kelkar_Museum,_Pune.jpg?width=1200"
+         alt="18th-century Indian ivory chess set in the Raja Dinkar Kelkar Museum, Pune, with elaborate figural carving"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Delhi · Lucknow · Pune Museum Set, 18th c.</div></div>';">
+    <figcaption>18th c. ivory figural chess set · Raja Dinkar Kelkar Museum, Pune</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">Satyajit Ray's <em>Shatranj Ke Khilari</em> ("The Chess Players," 1977) opens on a chess board in 1856 Lucknow, two nobles so absorbed in their game that they fail to notice the British annexation of Awadh happening around them. The film is fiction, the situation is essentially historical. Lucknow under the late nawabs (Asaf-ud-Daula, Saadat Ali Khan, Wajid Ali Shah) had become the most theatrical court in late-Mughal India — a city of poets, mango orchards, kathak dancers and chess players, with workshops producing some of the most flamboyant figural ivory sets ever made on the subcontinent.</p>
+
+      <p data-lang="en">Stylistically, the Lucknow / Delhi sets of the 18th century take the Mughal template and turn its volume up: more riders on each elephant, more carved detail on the howdah, more secondary figures (drummers, attendants) on the rooks, more polychrome lac. Where a 17th-century Mughal king might be a single seated figure on a single elephant, an 18th-century Lucknow king will have a multi-tiered howdah carrying king, attendant and parasol-bearer — almost a small architectural sculpture. The bishops sometimes become hawkers on horseback rather than camels. The pawns wear tasselled <em>angarkha</em> coats.</p>
+
+      <p data-lang="en">There is a related sub-tradition called <strong>Murshidabad</strong> — Bengal's nawabi capital — whose ivory carvers produced sets after the Lucknow template but with East Bengali iconographic touches. These are sometimes confused with Berhampur, which is a different (and later) thing.</p>
+
+      <p data-lang="en">For the 2026 collector: a genuine 18th-century Lucknow / Delhi figural ivory set is rare but acquirable. They surface every year or two at Christie's South Asian sales, generally £40,000–£120,000. Their tell-tale is the <em>multi-figure howdah</em> on the king-elephant. If the king-elephant carries one rider, you are looking at 19th-century Berhampur. If it carries three or four, you may be looking at Lucknow.</p>
+
+      <p data-lang="fr">Le film <em>Shatranj Ke Khilari</em> de Satyajit Ray (1977) s'ouvre sur un échiquier à Lucknow en 1856, deux nobles si absorbés dans leur partie qu'ils ne remarquent pas l'annexion britannique de l'Awadh qui se produit autour d'eux. Le film est une fiction, la situation est essentiellement historique. Lucknow sous les derniers nababs (Asaf-ud-Daula, Saadat Ali Khan, Wajid Ali Shah) était devenue la cour la plus théâtrale de l'Inde mogholo-tardive — une ville de poètes, vergers de mangues, danseurs kathak et joueurs d'échecs.</p>
+
+      <p data-lang="fr">Stylistiquement, les jeux de Lucknow / Delhi du XVIII<sup>e</sup> siècle reprennent le modèle moghol et en montent le volume&nbsp;: plus de cavaliers sur chaque éléphant, plus de détail sculpté sur le howdah, plus de figures secondaires (tambourinaires, serviteurs) sur les tours, plus de laque polychrome. Là où un roi moghol du XVII<sup>e</sup> siècle pouvait être une figure assise unique sur un seul éléphant, un roi de Lucknow du XVIII<sup>e</sup> portera un howdah à plusieurs niveaux — presque une petite sculpture architecturale.</p>
+
+      <p data-lang="fr">Il existe une sous-tradition apparentée appelée <strong>Murshidabad</strong> — la capitale nababique du Bengale — dont les sculpteurs d'ivoire produisaient des jeux suivant le modèle de Lucknow mais avec des touches iconographiques bengalies. Ils sont parfois confondus avec Berhampur, qui est une chose différente (et plus tardive).</p>
+
+      <p data-lang="fr">Pour le collectionneur de 2026&nbsp;: un jeu figuratif d'ivoire de Lucknow / Delhi authentique du XVIII<sup>e</sup> siècle est rare mais acquérable. Ils émergent tous les un ou deux ans aux ventes Christie's South Asian, généralement entre 40&nbsp;000 et 120&nbsp;000&nbsp;£. Leur signe distinctif est le <em>howdah à plusieurs figures</em> sur l'éléphant-roi.</span></p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Multi-tiered howdahs with 3–4 riders on the king-elephant; bishops sometimes as hawkers; pawns in tasselled coats; rich red &amp; green polychrome lac in the carving recesses (not painted on).</span><span data-lang="fr">Howdahs à plusieurs niveaux avec 3–4 cavaliers sur l'éléphant-roi&nbsp;; fous parfois en fauconniers&nbsp;; pions en redingotes à pompons&nbsp;; laque polychrome rouge et verte riche dans les creux sculptés.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">£40,000–£120,000 for a complete, well-provenanced set. Single fine pieces (a king or queen) £3,000–£8,000.</span><span data-lang="fr">40&nbsp;000–120&nbsp;000&nbsp;£ pour un jeu complet bien provenancé. Pièces individuelles fines (roi ou reine) 3&nbsp;000–8&nbsp;000&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Christie's South Asian Modern + Islamic sales; Bonhams Indian; specialist Delhi dealers (Akar Prakar, DAG); Francesca Galloway in London.</span><span data-lang="fr">Ventes Christie's South Asian Modern + Islamique&nbsp;; Bonhams Indian&nbsp;; marchands spécialisés à Delhi (Akar Prakar, DAG)&nbsp;; Francesca Galloway à Londres.</span></dd>
+
+        <dt><span data-lang="en">Distinguishing from Berhampur</span><span data-lang="fr">Distinguer de Berhampur</span></dt>
+        <dd><span data-lang="en">Berhampur (19th c.) tends toward simplified single-figure howdahs and crisper, less worn carving. Lucknow (18th c.) shows multi-figure howdahs and the kind of patina that comes from 250 years rather than 150.</span><span data-lang="fr">Berhampur (XIX<sup>e</sup>) tend vers des howdahs simplifiés à figure unique et une sculpture plus nette, moins usée. Lucknow (XVIII<sup>e</sup>) montre des howdahs à plusieurs figures et la patine qui vient de 250 ans plutôt que 150.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">"18th c. Lucknow" sets that are completely intact (32 pieces, no replacements) at &lt; £30,000 — almost certainly a Berhampur or modern reproduction. Also: anything with a "Wajid Ali Shah" association without paperwork.</span><span data-lang="fr">Jeux «&nbsp;Lucknow XVIII<sup>e</sup>&nbsp;» complètement intacts (32 pièces, aucun remplacement) à &lt; 30&nbsp;000&nbsp;£ — presque certainement un Berhampur ou une reproduction moderne.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Nawabi Court</span>
+    <span class="mat-tag">Multi-Figure Howdahs</span>
+    <span class="mat-tag">18th c. Awadh</span>
+    <span class="mat-tag">Polychrome Lac</span>
+    <span class="mat-tag">Auction Tier 1</span>
+  </div>
+</section>
+
+<!-- ── STYLE V — KASHMIRI LACQUER ─────────────────────────────── -->
+<section id="kashmiri" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">V</span>
+    <p class="style-era-label">18th–19th c. · Srinagar · Kashmir Valley</p>
+    <h2 class="style-title">
+      <span data-lang="en">Kashmiri Lacquer — <em>Papier-Mâché &amp; Persian Bloom</em></span>
+      <span data-lang="fr">Laque du Cachemire — <em>Papier-Mâché et Floraison Persane</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">The one Indian chess tradition that abandons ivory altogether — papier-mâché cores under hand-painted lacquer in floral Persianate patterns. Cheaper to find, harder to find <em>well</em>.</span>
+      <span data-lang="fr">La seule tradition d'échecs indienne qui abandonne entièrement l'ivoire — noyaux en papier-mâché sous laque peinte à la main aux motifs floraux persanisants. Moins chère à trouver, plus difficile à trouver <em>bien</em>.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kashmiri_papier_mache_chess_set.jpg?width=1200"
+         alt="Kashmiri papier-mâché chess set with hand-painted floral lacquer in Persianate style"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Kashmiri Lacquer · Papier-Mâché · Srinagar Workshops</div></div>';">
+    <figcaption>Kashmiri papier-mâché chess set · floral lacquer · Srinagar workshops, late 19th c.</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">The Kashmir Valley sits at the cultural seam between Mughal India and Persianate Central Asia, and its decorative arts have always reflected that. The valley's signature craft — papier-mâché objects coated in painstakingly hand-painted lacquer — was already mature under the Mughals, who imported Iranian masters in the 15th and 16th centuries. By the 18th and 19th centuries, Srinagar's <em>kar-i-kalamdani</em> ateliers were producing pen boxes, jewellery caskets, and chess sets that were the cheapest, most portable, and most floral of all Indian chess traditions.</p>
+
+      <p data-lang="en">A typical Kashmiri set has pieces turned from a papier-mâché core (sometimes wood-cored), built up in layers, sealed, sanded smooth as eggshell, then painted with a fine brush in the <em>gul-i-andar-gul</em> ("flower within flower") tradition. Backgrounds are deep ultramarine, ivory, ox-blood red, or sometimes a deep forest green. The painting is in gold, silver, vermilion, malachite, lapis. The forms are almost never figural — typically tall pillar-like kings and queens, more abstract than the Mughal-Lucknow figural lineage. The aesthetic register is Persianate rather than Hindustani.</p>
+
+      <p data-lang="en">Kashmir-style sets had a second life in the 20th century as Anglo-Indian "souvenir" production — late 19th and early 20th century examples were exported via Bombay and Madras to British buyers. These are abundant on the market today, generally £200–£800 for a complete late-19th set, £1,500–£4,000 for an exceptional early 19th-century example with original gilding intact.</p>
+
+      <p data-lang="en">Three things to know as a collector. First: condition is everything. Lacquer chips, papier-mâché crushes. A "complete" set with even minor surface losses on three or four pieces is essentially worthless to a serious collector. Second: the gilding tells you the date. Early 19th c. uses real gold leaf laid into a varnish; late 19th and 20th c. uses gold paint, which yellows and looks flat. Third: Kashmiri sets are often paired with a matching <em>papier-mâché board</em> — a folding box-board with the same painted decoration. A set with its original board is worth roughly double a set without.</p>
+
+      <p data-lang="fr">La vallée du Cachemire est au confluent culturel entre l'Inde moghole et l'Asie centrale persanisante, et ses arts décoratifs l'ont toujours reflété. L'artisanat signature de la vallée — objets en papier-mâché recouverts d'une laque peinte à la main minutieusement — était déjà mature sous les Moghols, qui importèrent des maîtres iraniens aux XV<sup>e</sup> et XVI<sup>e</sup> siècles.</p>
+
+      <p data-lang="fr">Un jeu cachemiri typique a des pièces tournées sur un noyau en papier-mâché (parfois à noyau bois), bâties par couches, scellées, poncées lisses comme une coquille d'œuf, puis peintes au pinceau fin dans la tradition <em>gul-i-andar-gul</em> («&nbsp;fleur dans la fleur&nbsp;»). Les fonds sont outremer profond, ivoire, rouge sang-de-bœuf, ou parfois vert forêt profond. La peinture est à l'or, l'argent, le vermillon, la malachite, le lapis. Les formes ne sont presque jamais figuratives — typiquement des rois et reines en piliers hauts, plus abstraits que la lignée figurative mogholo-luckhnavie.</p>
+
+      <p data-lang="fr">Les jeux cachemiris ont eu une seconde vie au XX<sup>e</sup> siècle comme production «&nbsp;souvenir&nbsp;» anglo-indienne. Ils sont abondants sur le marché aujourd'hui, généralement 200–800&nbsp;£ pour un jeu complet de la fin du XIX<sup>e</sup>, 1&nbsp;500–4&nbsp;000&nbsp;£ pour un exemplaire exceptionnel du début du XIX<sup>e</sup> avec dorure originale intacte.</p>
+
+      <p data-lang="fr">Trois choses à savoir comme collectionneur. Premièrement&nbsp;: la condition est tout. La laque s'écaille, le papier-mâché s'écrase. Deuxièmement&nbsp;: la dorure dit la date. Le début du XIX<sup>e</sup> utilise de la feuille d'or véritable&nbsp;; la fin du XIX<sup>e</sup> et le XX<sup>e</sup> utilisent de la peinture dorée. Troisièmement&nbsp;: les jeux cachemiris sont souvent accompagnés d'un <em>échiquier en papier-mâché</em> assorti — un échiquier-coffret pliant à la même décoration peinte. Un jeu avec son échiquier d'origine vaut environ le double.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Tall, pillar-like abstract pieces with finial tops; papier-mâché or thin wood core; floral hand-painted lacquer with gold detail; weight far lighter than ivory or wood-turned sets.</span><span data-lang="fr">Pièces hautes en piliers abstraits à fleurons&nbsp;; noyau en papier-mâché ou bois fin&nbsp;; laque florale peinte à la main avec détail doré&nbsp;; poids bien plus léger qu'un jeu d'ivoire.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Late 19th c.: £200–£800. Mid 19th c. with board: £1,000–£2,500. Early 19th c. with original gilding: £2,500–£5,000. Pre-1800 examples: very rare, museum-only.</span><span data-lang="fr">Fin XIX<sup>e</sup>&nbsp;: 200–800&nbsp;£. Milieu XIX<sup>e</sup> avec échiquier&nbsp;: 1&nbsp;000–2&nbsp;500&nbsp;£. Début XIX<sup>e</sup> avec dorure originale&nbsp;: 2&nbsp;500–5&nbsp;000&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Generalist auction houses (Bonhams, Roseberys, Tennants); specialist Indian art dealers; eBay if you know your forms (much fakery, but real bargains exist). The Sri Pratap Singh Museum in Srinagar holds the reference corpus.</span><span data-lang="fr">Maisons de ventes généralistes (Bonhams, Roseberys, Tennants)&nbsp;; marchands d'art indien spécialisés&nbsp;; eBay si vous connaissez les formes (beaucoup de faux, mais des bonnes affaires existent). Le Sri Pratap Singh Museum à Srinagar détient le corpus de référence.</span></dd>
+
+        <dt><span data-lang="en">Condition Checklist</span><span data-lang="fr">Liste de Contrôle</span></dt>
+        <dd><span data-lang="en">All 32 pieces present? Lacquer surface continuous (no chips, no flaking)? Papier-mâché core sound (gently flex — should not feel hollow)? Gilding lustrous (not flat-painted)? Original board present?</span><span data-lang="fr">Les 32 pièces présentes&nbsp;? Surface de laque continue (sans éclats, sans écaillage)&nbsp;? Noyau en papier-mâché solide (fléchir doucement — ne doit pas sembler creux)&nbsp;? Dorure brillante (pas peinte plate)&nbsp;? Échiquier d'origine présent&nbsp;?</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">Modern (post-1980) Srinagar tourist production looks similar but uses synthetic lacquer that has a plastic sheen rather than depth. Also: pieces that look identical to each other — Kashmiri hand-painting always shows fine variation.</span><span data-lang="fr">La production touristique de Srinagar moderne (après 1980) ressemble mais utilise de la laque synthétique au lustre plastique plutôt qu'à la profondeur. Aussi&nbsp;: pièces identiques entre elles — la peinture cachemirie à la main montre toujours de fines variations.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Papier-Mâché</span>
+    <span class="mat-tag">Hand-Painted Lacquer</span>
+    <span class="mat-tag">Persianate Floral</span>
+    <span class="mat-tag">Srinagar</span>
+    <span class="mat-tag">Entry-Level Friendly</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PART III — THE COLONIAL EXPORT ERA
+     ═══════════════════════════════════════════════════════════════ -->
+
+<section class="part-divider container">
+  <p class="part-eyebrow">
+    <span data-lang="en">Part III — The Export Era</span>
+    <span data-lang="fr">Partie III — L'Ère de l'Exportation</span>
+  </p>
+  <h2 class="part-title">
+    <span data-lang="en">Vizagapatam · Berhampur · John Company · Lund · Muslim Staunton</span>
+    <span data-lang="fr">Vizagapatam · Berhampur · John Company · Lund · Staunton Musulman</span>
+  </h2>
+  <p class="part-tagline">
+    <span data-lang="en">From the late 18th century onward, Indian carvers worked for two markets at once: the indigenous Mughal-Lucknow tradition above, and a new clientele — East India Company officers, Calcutta merchants, London import houses. The result is a parallel canon of "export" sets, made <em>in</em> India for buyers <em>from</em> Britain. This is where 95% of the antique market lives.</span>
+    <span data-lang="fr">À partir de la fin du XVIII<sup>e</sup> siècle, les sculpteurs indiens travaillèrent pour deux marchés à la fois&nbsp;: la tradition indigène mogholo-luckhnavie ci-dessus, et une nouvelle clientèle — officiers de la Compagnie des Indes orientales, marchands de Calcutta, maisons d'import londoniennes. Le résultat est un canon parallèle de jeux «&nbsp;d'exportation&nbsp;», faits <em>en</em> Inde pour des acheteurs <em>de</em> Grande-Bretagne. C'est ici que vit 95% du marché de l'antiquité.</span>
+  </p>
+</section>
+
+<!-- ── STYLE VI — VIZAGAPATAM ─────────────────────────────────── -->
+<section id="vizagapatam" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">VI</span>
+    <p class="style-era-label">Late 18th–early 19th c. · Vishakhapatnam · Coromandel Coast</p>
+    <h2 class="style-title">
+      <span data-lang="en">Vizagapatam — <em>Ivory on Sandalwood, Beauty on the Bay</em></span>
+      <span data-lang="fr">Vizagapatam — <em>Ivoire sur Santal, Beauté sur la Baie</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">The most refined of all colonial-era Indian chess: ivory pieces, sandalwood &amp; ebony inlay boards, often offered as compendia with backgammon, draughts and cribbage. The connoisseur's choice.</span>
+      <span data-lang="fr">Le plus raffiné de tous les échecs indiens de l'époque coloniale&nbsp;: pièces d'ivoire, échiquiers en santal et ébène incrustés, souvent proposés en coffrets compendia avec backgammon, dames et cribbage. Le choix du connaisseur.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Vizagapatam_workbox_with_chess_pieces_V%26A.jpg?width=1200"
+         alt="Vizagapatam ivory and sandalwood compendium in the V&A — the canonical East India Company-era export form"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Vizagapatam · Ivory &amp; Sandalwood Compendium · Coromandel Coast</div></div>';">
+    <figcaption>Vizagapatam compendium with chess pieces · ivory inlaid sandalwood · early 19th c.</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en"><span style="font-family:var(--font-display); font-size:1.4em; float:left; line-height:0.9; padding-right:6px; color:var(--brass-bright);">V</span>izagapatam — modern Vishakhapatnam, on the Andhra Pradesh coast — was a small port settled by the East India Company in 1682, with a hinterland rich in three things: the world's best sandalwood, plentiful ivory from inland trade, and a workforce of Telugu carvers already trained in temple-art traditions. By the 1770s the port was producing the most distinctive form of Indian export furniture: ivory or bone laid into sandalwood veneer in incised foliate patterns picked out in lac.</p>
+
+      <p data-lang="en">A "Vizagapatam compendium" is a small sandalwood casket, its surfaces covered in dense ivory inlay scrolling in the Mughal-Persian floral vocabulary (acanthus, lotus, papaver, gul-i-Bulbul), opening to reveal nested boards for chess, backgammon, draughts, and sometimes cribbage and dominoes. The pieces are usually fine ivory — turned or carved — in either the figural Indian template (Raja-on-elephant) or a "European" abstract template made for the British client. The boards are themselves works of art; some Vizagapatam compendia are signed by named ateliers.</p>
+
+      <p data-lang="en">For Chris's specific hunt, this is where the search has anchored. The ChessAntiques.com Lot #1055 ("Vizagapatam Compendium," $5,995) is the type-specimen for what a serious collector buys: a complete set, a complete board, the original case, late-18th to early-19th c. dating, with patina that visibly differs between handled and unhandled surfaces. The price band — $5,000 to $15,000 — places Vizagapatam squarely in the "you can actually own one" tier, unlike Mughal court material.</p>
+
+      <p data-lang="en">There are three sub-types within Vizagapatam to recognise. Type A: pure ivory pieces with abstract European forms (made for British market c. 1780–1830). Type B: ivory figural Indian forms with abstract bishops and rooks, a hybrid (c. 1820–1880). Type C: bone — not ivory — pieces, late 19th c., made when ivory became expensive and the workshops shifted material. Type C still has the boards' inlay quality but the pieces themselves are usually less fine, and price ought to reflect this — closer to £800–£2,000 than £4,000–£8,000.</p>
+
+      <p data-lang="fr"><span style="font-family:var(--font-display); font-size:1.4em; float:left; line-height:0.9; padding-right:6px; color:var(--brass-bright);">V</span>izagapatam — l'actuelle Vishakhapatnam, sur la côte de l'Andhra Pradesh — était un petit port colonisé par la Compagnie des Indes orientales en 1682, avec un arrière-pays riche de trois choses&nbsp;: le meilleur santal du monde, l'ivoire abondant du commerce intérieur, et une main-d'œuvre de sculpteurs télougous déjà formés dans les traditions de l'art des temples. Vers les années 1770, le port produisait la forme la plus distinctive de mobilier indien d'exportation&nbsp;: l'ivoire ou l'os incrusté dans le placage de santal en motifs floraux gravés rehaussés de laque.</p>
+
+      <p data-lang="fr">Un «&nbsp;coffret compendium de Vizagapatam&nbsp;» est un petit coffret en santal, ses surfaces couvertes de dense incrustation d'ivoire en volutes du vocabulaire floral mogholo-persan (acanthe, lotus, papaver, gul-i-Bulbul), s'ouvrant pour révéler des échiquiers emboîtés pour les échecs, le backgammon, les dames, et parfois le cribbage et les dominos. Les pièces sont habituellement en ivoire fin — tournées ou sculptées — soit dans le modèle figuratif indien (Raja sur éléphant), soit dans un modèle abstrait «&nbsp;européen&nbsp;» fait pour le client britannique.</p>
+
+      <p data-lang="fr">Pour la chasse spécifique de Chris, c'est ici que la recherche s'est ancrée. Le Lot #1055 de ChessAntiques.com («&nbsp;Compendium Vizagapatam&nbsp;», 5&nbsp;995&nbsp;$) est le spécimen-type de ce que le collectionneur sérieux achète&nbsp;: un jeu complet, un échiquier complet, le coffret d'origine, datation fin XVIII<sup>e</sup>–début XIX<sup>e</sup>, avec une patine qui diffère visiblement entre surfaces manipulées et non manipulées. La fourchette de prix — 5&nbsp;000 à 15&nbsp;000&nbsp;$ — place Vizagapatam carrément dans le palier «&nbsp;on peut effectivement en posséder un&nbsp;».</p>
+
+      <p data-lang="fr">Trois sous-types existent à reconnaître. Type A&nbsp;: pièces en ivoire pur aux formes abstraites européennes (faites pour le marché britannique vers 1780–1830). Type B&nbsp;: formes figuratives indiennes en ivoire avec fous et tours abstraits, un hybride (vers 1820–1880). Type C&nbsp;: pièces en os — pas en ivoire — fin XIX<sup>e</sup>, lorsque l'ivoire devint cher et que les ateliers changèrent de matériau. Le Type C conserve la qualité d'incrustation des échiquiers mais les pièces elles-mêmes sont habituellement moins fines, et le prix devrait le refléter — plus proche de 800–2&nbsp;000&nbsp;£ que de 4&nbsp;000–8&nbsp;000&nbsp;£.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Sandalwood casket with dense ivory-inlaid foliate scrollwork in incised lac; nested boards inside; ivory pieces in either figural Raja-on-elephant or abstract European; original lock and key; characteristic camphor smell from the sandalwood (still detectable after 200 years).</span><span data-lang="fr">Coffret en santal couvert d'incrustation d'ivoire dense en volutes feuillagées gravées au laque&nbsp;; échiquiers emboîtés à l'intérieur&nbsp;; pièces en ivoire figuratives ou abstraites&nbsp;; serrure et clé d'origine&nbsp;; odeur caractéristique de camphre du santal (encore détectable après 200 ans).</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Compendium with all components and ivory pieces: $5,000–$15,000 (US dealers), £4,000–£12,000 (UK auctions). Loose chess pieces alone (without case): £1,500–£4,000. Type C bone-piece sets: £800–£2,000.</span><span data-lang="fr">Compendium avec tous les composants et pièces d'ivoire&nbsp;: 5&nbsp;000–15&nbsp;000&nbsp;$ (marchands US), 4&nbsp;000–12&nbsp;000&nbsp;£ (ventes UK). Pièces seules&nbsp;: 1&nbsp;500–4&nbsp;000&nbsp;£. Type C en os&nbsp;: 800–2&nbsp;000&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">ChessAntiques.com (current Lot #1055), Bonhams "Travel &amp; Exploration," Christie's South Asian, specialist Anglo-Indian dealers (Robert Young, Robin &amp; Lucienne Day Antiques, Antique Helper). The V&amp;A holds the reference corpus.</span><span data-lang="fr">ChessAntiques.com (Lot #1055 actuel), Bonhams «&nbsp;Travel &amp; Exploration&nbsp;», Christie's South Asian, marchands anglo-indiens spécialisés. Le V&amp;A détient le corpus de référence.</span></dd>
+
+        <dt><span data-lang="en">Authenticity Marker</span><span data-lang="fr">Marqueur d'Authenticité</span></dt>
+        <dd><span data-lang="en">Look at the inlay grooves under magnification — Vizagapatam ivory was incised with a steel tool, leaving slight chatter marks. Modern reproduction uses laser-cut inlay, which is mathematically perfect and reads as flat. Also: the lac in the grooves should be slightly faded to a brownish-red, not bright black.</span><span data-lang="fr">Regardez les rainures d'incrustation sous loupe — l'ivoire de Vizagapatam était gravé à l'outil d'acier, laissant de légères marques de vibration. Une reproduction moderne utilise une incrustation au laser, mathématiquement parfaite et plate. Aussi&nbsp;: la laque dans les rainures doit être légèrement fanée vers un rouge-brun, pas un noir vif.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">"Vizagapatam" sets in synthetic ivory or bakelite (smell test: real ivory under heated pin smells of burnt hair; bakelite smells of phenol). Also: case interior with bright untoned veneer — a real Vizagapatam interior should have soft, uneven oxidation.</span><span data-lang="fr">Jeux «&nbsp;Vizagapatam&nbsp;» en ivoire synthétique ou bakélite (test d'odeur&nbsp;: l'ivoire véritable sous épingle chauffée sent les cheveux brûlés&nbsp;; la bakélite sent le phénol). Aussi&nbsp;: intérieur du coffret avec placage clair non patiné.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Ivory · Sandalwood</span>
+    <span class="mat-tag">Compendium Form</span>
+    <span class="mat-tag">East India Company</span>
+    <span class="mat-tag">Coromandel Coast</span>
+    <span class="mat-tag">Connoisseur Tier</span>
+    <span class="mat-tag">★ Chris's Anchor</span>
+  </div>
+</section>
+
+<!-- ── STYLE VII — BERHAMPUR / BENGAL ─────────────────────────── -->
+<section id="berhampur" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">VII</span>
+    <p class="style-era-label">19th c. · Berhampur · Murshidabad · Bengal</p>
+    <h2 class="style-title">
+      <span data-lang="en">Berhampur &amp; Bengal — <em>The Figural Workhorse</em></span>
+      <span data-lang="fr">Berhampur et Bengale — <em>Le Cheval de Trait du Figuratif</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">If a "figural Indian ivory chess set" is on offer at any general antique auction in 2026, it is almost certainly a Berhampur. The most produced, most collected, most pictured form — and the one most often misattributed.</span>
+      <span data-lang="fr">Si un «&nbsp;jeu d'échecs en ivoire figuratif indien&nbsp;» est proposé à toute vente d'antiquités générale en 2026, c'est presque certainement un Berhampur. La forme la plus produite, la plus collectionnée, la plus illustrée — et la plus souvent mal attribuée.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Indian_chess_set_Bengal_19th_century.jpg?width=1200"
+         alt="19th-century Bengal ivory chess set — figural style with elephants, chariots and Sepoy infantry, a Berhampur workshop product"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Berhampur · Bengal Figural Ivory · Workshop Production · 19th c.</div></div>';">
+    <figcaption>Bengal figural ivory chess set · Berhampur or Murshidabad workshop · 19th c.</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">Berhampur — a market town in West Bengal — became, through the 19th century, the volume capital of Indian figural chess production. Its workshops took the Mughal-Lucknow figural template and industrialised it, producing sets in numbers Lucknow's court ateliers could never have matched. They worked in ivory while ivory was abundant, then in bone after the 1880s as ivory grew scarce and CITES-anticipating regulation began. They sold to Calcutta export houses, Bombay merchants, and direct to British officers transferring home with their pension and a regimental story.</p>
+
+      <p data-lang="en">A "classic Berhampur set" is what most people picture when they think "Indian chess": Raja and Vizier on howdah-elephants (single rider, simpler than Lucknow's tiered howdahs), bishops as camels-with-rider, knights as horse-with-rider, rooks as chariots drawn by a single horse. Pieces typically 7–10 cm tall (king), well-undercut but not as deeply as 18th-century Lucknow, and very often with a red and green polychrome lac highlight in the carving. The opposing army is stained red, a single red wash that has often faded with time to a dusty pink or madder.</p>
+
+      <p data-lang="en">Provenance is the key issue. A Berhampur set sold at any general auction (Bonhams country sales, Sotheby's mid-week, Roseberys) is the typical entry point — £1,200 to £4,500 depending on completeness, condition, and presence of original wooden box. A Berhampur sold at Christie's South Asian sale with an Oxford or Cambridge gentleman's-cabinet provenance is the same object at three times the price. A Berhampur misattributed as "18th c. Mughal" is a buyer's mistake.</p>
+
+      <p data-lang="en">For the collector building a representative Indian-chess collection, a Berhampur is essentially mandatory — it is the workhorse, the form that tells the figural story most legibly. But it should be the second or third set you acquire, after you've decided whether you really want a Vizagapatam (more refined) or a Lund Anglo-Indian (more abstract). A Berhampur tells the story; a Vizagapatam tells the story <em>and</em> earns the cabinet shelf.</p>
+
+      <p data-lang="fr">Berhampur — une ville-marché du Bengale-Occidental — devint, au cours du XIX<sup>e</sup> siècle, la capitale de la production en volume des échecs figuratifs indiens. Ses ateliers prirent le modèle figuratif mogholo-luckhnavi et l'industrialisèrent, produisant des jeux en quantités que les ateliers de cour de Lucknow n'auraient jamais pu égaler. Ils travaillèrent en ivoire tant qu'il était abondant, puis en os après les années 1880 lorsque l'ivoire devint rare et que la régulation pré-CITES commença.</p>
+
+      <p data-lang="fr">Un «&nbsp;jeu Berhampur classique&nbsp;» est ce que la plupart des gens imaginent en pensant «&nbsp;échecs indiens&nbsp;»&nbsp;: Raja et Vizir sur éléphants à howdah (cavalier unique, plus simple que les howdahs étagés de Lucknow), fous comme chameaux-cavaliers, cavaliers comme cheval-avec-cavalier, tours comme chars tirés par un cheval unique. Pièces typiquement de 7 à 10&nbsp;cm de haut (roi), bien sculptées mais pas aussi profondément qu'un Lucknow du XVIII<sup>e</sup>, et très souvent avec un rehaut de laque polychrome rouge et verte dans la sculpture.</p>
+
+      <p data-lang="fr">La provenance est la question clé. Un jeu Berhampur vendu à toute vente générale (Bonhams country, Sotheby's en semaine, Roseberys) est le point d'entrée typique — 1&nbsp;200 à 4&nbsp;500&nbsp;£ selon la complétude, l'état et la présence du coffret d'origine. Un Berhampur vendu chez Christie's South Asian avec une provenance de cabinet d'Oxford ou Cambridge est le même objet à trois fois le prix. Un Berhampur mal attribué comme «&nbsp;moghol XVIII<sup>e</sup>&nbsp;» est une erreur d'acheteur.</p>
+
+      <p data-lang="fr">Pour le collectionneur construisant une collection représentative d'échecs indiens, un Berhampur est essentiellement obligatoire — c'est le cheval de trait, la forme qui raconte l'histoire figurative le plus lisiblement. Mais il devrait être le deuxième ou le troisième jeu que vous acquérez, après avoir décidé si vous voulez vraiment un Vizagapatam (plus raffiné) ou un Lund anglo-indien (plus abstrait).</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Single-rider howdah elephant kings (vs Lucknow's multi-tiered); chariot rooks; camel bishops; horse-and-rider knights; one army natural ivory, the other red-stained; original wooden box (often plain teak or rosewood, sometimes with engraved brass cartouche).</span><span data-lang="fr">Rois sur éléphant à howdah à cavalier unique (vs étagé Lucknow)&nbsp;; tours en chars&nbsp;; fous en chameaux&nbsp;; cavaliers cheval-avec-cavalier&nbsp;; une armée en ivoire naturel, l'autre teintée rouge&nbsp;; coffret en bois d'origine (souvent teck ou palissandre, parfois avec cartouche en laiton gravé).</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Mid-19th c. ivory complete: £1,500–£4,500. Late 19th c. bone complete: £600–£1,800. With named provenance: 2–3× upper range. Loose pieces: £40–£200 each.</span><span data-lang="fr">Milieu XIX<sup>e</sup> ivoire complet&nbsp;: 1&nbsp;500–4&nbsp;500&nbsp;£. Fin XIX<sup>e</sup> os complet&nbsp;: 600–1&nbsp;800&nbsp;£. Avec provenance nommée&nbsp;: 2–3× la fourchette haute. Pièces seules&nbsp;: 40–200&nbsp;£ chacune.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Easily — they appear at almost every UK regional auction. Bonhams Knightsbridge, Roseberys, Tennants, Cheffins. ChessAntiques.com regularly lists 3–6 examples. eBay is workable but requires careful condition assessment.</span><span data-lang="fr">Facilement — ils apparaissent à presque toute vente régionale britannique. Bonhams Knightsbridge, Roseberys, Tennants, Cheffins. ChessAntiques.com en liste régulièrement 3 à 6. eBay est viable mais demande une évaluation soigneuse.</span></dd>
+
+        <dt><span data-lang="en">Condition Notes</span><span data-lang="fr">Notes d'État</span></dt>
+        <dd><span data-lang="en">Howdahs and elephant trunks are the failure points. A set with a chipped trunk on the king is worth 30% less than the same set intact. Polychrome lac that has fully discharged from the carvings reduces value 15–20%. Replaced pawns are common and acceptable up to 2–3 pieces.</span><span data-lang="fr">Howdahs et trompes d'éléphants sont les points de défaillance. Un jeu avec une trompe ébréchée sur le roi vaut 30% de moins que le même jeu intact. La laque polychrome entièrement disparue des sculptures réduit la valeur de 15 à 20%. Les pions remplacés sont courants et acceptables jusqu'à 2 ou 3 pièces.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">"18th c. Mughal" attribution at Berhampur prices — buy it as Berhampur and enjoy the upgrade in description for free; never pay Mughal prices on Berhampur evidence. Also: sets advertised as "all ivory" where pieces feel suspiciously light (likely bone with ivory-coloured paint).</span><span data-lang="fr">Attribution «&nbsp;moghol XVIII<sup>e</sup>&nbsp;» à prix Berhampur — achetez-le comme Berhampur et profitez de la promotion descriptive gratuite&nbsp;; ne payez jamais des prix moghols sur preuves Berhampur. Aussi&nbsp;: jeux annoncés «&nbsp;tout ivoire&nbsp;» dont les pièces semblent suspicieusement légères (probablement os à peinture ivoire).</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Bengal Workshop</span>
+    <span class="mat-tag">Figural Ivory</span>
+    <span class="mat-tag">High Production</span>
+    <span class="mat-tag">19th c.</span>
+    <span class="mat-tag">Mid-Tier Friendly</span>
+  </div>
+</section>
+
+<!-- ── STYLE VIII — JOHN COMPANY / SEPOY vs SAHIB ───────────── -->
+<section id="john-company" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">VIII</span>
+    <p class="style-era-label">c. 1830–1880 · Calcutta · Bombay · Madras export</p>
+    <h2 class="style-title">
+      <span data-lang="en">John Company — <em>Sepoy versus Sahib</em></span>
+      <span data-lang="fr">John Company — <em>Cipaye contre Sahib</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">A peculiar Anglo-Indian invention: chess sets where one army is uniformed Sepoy infantry and the other is uniformed British officers. A miniature Battle of Plassey in 32 pieces.</span>
+      <span data-lang="fr">Une invention anglo-indienne singulière&nbsp;: des jeux où une armée est l'infanterie cipaye en uniforme et l'autre des officiers britanniques en uniforme. Une bataille miniature de Plassey en 32 pièces.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/East_India_Company_chess_set_carved_ivory_1820.jpg?width=1200"
+         alt="East India Company-era figural chess set — Sepoy infantry pieces opposing British officer pieces, carved ivory, c. 1820"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>John Company · Sepoy vs Sahib · Anglo-Indian Theatre in Ivory</div></div>';">
+    <figcaption>"East India Company" chess set · ivory · c. 1820–1840 · with Sepoy infantry opposing British officers</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">By the 1830s, British India had become its own self-contained world: Calcutta society balls, garrison towns from Lahore to Madras, regimental messes with their own silver and their own narratives. Out of this culture came one of the most distinctive Indian chess types — the "John Company" set, also catalogued as "Sepoy versus Sahib," "East India Company," or simply "Anglo-Indian Battle." One army is the East India Company's regimental forces — kings as British colonels in shako helmets, queens (or viziers) as British officers, knights as British cavalry on Arabian horses, bishops as drum-major bandsmen or chaplains, rooks as gun-cart artillery, pawns as red-coated infantry. The opposing army is "the native side" — kings as turbaned Indian princes, queens as Mughal-style viziers, knights as Indian cavalry on caparisoned horses, bishops as elephant-mounted standard bearers, rooks as howdah elephants, pawns as Sepoys (Indian infantry under British command — historically problematic, ironically often serving on both sides).</p>
+
+      <p data-lang="en">The genre is fascinating and uncomfortable in equal measure. These sets were never meant as neutral chess equipment; they were souvenirs of empire, made for British officers to bring home. The political imagery — a British army opposite a "native" army on a chess board — telegraphs colonial confidence in a way that earlier figural sets do not. For the modern collector, a John Company set carries a more complicated provenance than a pure Vizagapatam or Berhampur: it is unambiguously a colonial-period object, with all the historical weight that entails.</p>
+
+      <p data-lang="en">That said, they are extraordinary objects. Each piece is a miniature genre painting in ivory. The British officers wear identifiable regiments (often the Bengal Lancers or 9th Lancers in fine examples). The Sepoys carry recognisable Brown Bess muskets. The artillery pieces are detailed enough to identify type. Workmanship is generally Berhampur or Murshidabad, occasionally Vizagapatam, with quality ranging from masterly (a fine 1840 set might command £25,000+) to clearly tourist-grade (£600–£1,500).</p>
+
+      <p data-lang="en">For Chris specifically: a John Company set is intellectually one of the most interesting subcategories — they have stories built in — but their political register may or may not align with how he wants to display the collection. Worth examining in person before committing.</p>
+
+      <p data-lang="fr">Vers les années 1830, l'Inde britannique était devenue un monde autonome&nbsp;: les bals de la société de Calcutta, les villes de garnison de Lahore à Madras, les messes régimentaires avec leur propre argenterie et leurs propres récits. De cette culture sortit l'un des types d'échecs indiens les plus distinctifs — le jeu «&nbsp;John Company&nbsp;», également catalogué «&nbsp;Cipaye contre Sahib&nbsp;», «&nbsp;Compagnie des Indes orientales&nbsp;», ou simplement «&nbsp;Bataille anglo-indienne&nbsp;».</p>
+
+      <p data-lang="fr">Une armée représente les forces régimentaires de la Compagnie — rois en colonels britanniques avec shakos, reines (ou vizirs) en officiers britanniques, cavaliers en cavalerie britannique sur chevaux arabes, fous en tambours-majors ou aumôniers, tours en chariots d'artillerie, pions en fantassins en tunique rouge. L'armée adverse est «&nbsp;le côté indigène&nbsp;» — rois en princes indiens enturbanés, reines en vizirs de style moghol, cavaliers en cavalerie indienne, fous en porte-étendards à dos d'éléphant, tours en éléphants à howdah, pions en cipayes.</p>
+
+      <p data-lang="fr">Le genre est fascinant et inconfortable à parts égales. Ces jeux n'étaient jamais conçus comme du matériel d'échecs neutre&nbsp;; c'étaient des souvenirs d'empire, faits pour les officiers britanniques à rapporter chez eux. L'imagerie politique — une armée britannique face à une armée «&nbsp;indigène&nbsp;» — télégraphie une confiance coloniale que les jeux figuratifs antérieurs n'expriment pas.</p>
+
+      <p data-lang="fr">Cela dit, ce sont des objets extraordinaires. Chaque pièce est une scène de genre miniature en ivoire. Les officiers britanniques portent des régiments identifiables (souvent les Bengal Lancers ou le 9<sup>e</sup> Lancers dans les beaux exemplaires). Les cipayes portent des mousquets Brown Bess reconnaissables. Le travail est généralement de Berhampur ou Murshidabad, occasionnellement Vizagapatam, avec une qualité allant de magistrale (un beau jeu de 1840 pourrait atteindre 25&nbsp;000+&nbsp;£) à clairement touristique (600–1&nbsp;500&nbsp;£).</p>
+
+      <p data-lang="fr">Pour Chris spécifiquement&nbsp;: un jeu John Company est intellectuellement l'une des sous-catégories les plus intéressantes — ils ont des histoires intégrées — mais leur registre politique peut ou non s'aligner avec la façon dont il veut afficher la collection. Vaut la peine d'être examiné en personne avant engagement.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">One army in British military dress (shakos, scarlet), the other in Indian / Mughal forms; pawns as identifiable Sepoy infantry vs identifiable British infantry; often artillery pieces (gun carts) for rooks rather than chariots; carved with miniature uniform detail down to braid and buttons.</span><span data-lang="fr">Une armée en tenue militaire britannique (shakos, écarlate), l'autre en formes indiennes / mogholes&nbsp;; pions comme cipayes identifiables vs infanterie britannique identifiable&nbsp;; souvent pièces d'artillerie (chariots de canons) pour les tours plutôt que des chars&nbsp;; sculpté avec détails miniatures d'uniforme jusqu'aux galons et boutons.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Fine c. 1830–1860 ivory: £8,000–£25,000+. Standard mid-19th c.: £3,000–£8,000. Late 19th c. bone or souvenir: £600–£1,500.</span><span data-lang="fr">Beau ivoire vers 1830–1860&nbsp;: 8&nbsp;000–25&nbsp;000+&nbsp;£. Standard milieu XIX<sup>e</sup>&nbsp;: 3&nbsp;000–8&nbsp;000&nbsp;£. Fin XIX<sup>e</sup> os ou souvenir&nbsp;: 600–1&nbsp;500&nbsp;£.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Bonhams "Travel &amp; Exploration," Christie's "British &amp; Continental Furniture," militaria specialists (Bosleys, Wallis &amp; Wallis), and ChessAntiques.com. The National Army Museum in London holds the reference collection.</span><span data-lang="fr">Bonhams «&nbsp;Travel &amp; Exploration&nbsp;», Christie's «&nbsp;British &amp; Continental Furniture&nbsp;», spécialistes de militaria (Bosleys, Wallis &amp; Wallis), et ChessAntiques.com. Le National Army Museum à Londres détient la collection de référence.</span></dd>
+
+        <dt><span data-lang="en">Provenance Bonus</span><span data-lang="fr">Bonus de Provenance</span></dt>
+        <dd><span data-lang="en">A John Company set with documented provenance to a named British India officer (regiment, dates of service) commands a 2–3× premium and tells the historical story properly. Look for inscribed cartouches, family albums, regimental records.</span><span data-lang="fr">Un jeu John Company avec provenance documentée à un officier britannique en Inde nommé (régiment, dates de service) commande une prime de 2 à 3× et raconte l'histoire correctement. Cherchez les cartouches gravés, les albums de famille, les registres régimentaires.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">Modern reproductions are common — generally identifiable by uniform inaccuracies (wrong shako shape for the date, anachronistic regimental cap badges). Also: sets where the British and Indian armies are clearly carved by different (modern) hands and married together.</span><span data-lang="fr">Les reproductions modernes sont courantes — généralement identifiables par des inexactitudes d'uniforme (forme de shako fausse pour la date, insignes de képi régimentaires anachroniques). Aussi&nbsp;: jeux où les armées britannique et indienne sont clairement sculptées par des mains (modernes) différentes et mariées ensemble.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Sepoy vs Sahib</span>
+    <span class="mat-tag">East India Company</span>
+    <span class="mat-tag">Genre Sculpture</span>
+    <span class="mat-tag">Politically Loaded</span>
+    <span class="mat-tag">Provenance-Driven</span>
+  </div>
+</section>
+
+<!-- ── STYLE IX — ANGLO-INDIAN LUND ─────────────────────────────── -->
+<section id="lund" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">IX</span>
+    <p class="style-era-label">c. 1820–1850 · Calcutta · Madras · made for William Lund of Cornhill, London</p>
+    <h2 class="style-title">
+      <span data-lang="en">Anglo-Indian "Lund" — <em>The Pre-Staunton Aristocrat</em></span>
+      <span data-lang="fr">«&nbsp;Lund&nbsp;» Anglo-Indien — <em>L'Aristocrate Pré-Staunton</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">Before Staunton standardised English chess in 1849, the elite English form was a tall, slender, abstract ivory pattern — known to dealers as "Lund" or "Calcutta," made in India for a Cornhill, London distributor. Chris's strong second candidate.</span>
+      <span data-lang="fr">Avant que Staunton ne standardise les échecs anglais en 1849, la forme anglaise d'élite était un modèle haut, mince, abstrait en ivoire — connu des marchands comme «&nbsp;Lund&nbsp;» ou «&nbsp;Calcutta&nbsp;», fait en Inde pour un distributeur de Cornhill, Londres. Le second candidat fort de Chris.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Anglo-Indian_pre-Staunton_chess_set_ivory.jpg?width=1200"
+         alt="Anglo-Indian Lund-style ivory chess set — pre-Staunton tall slender abstract pattern, made in India for the Lund of Cornhill"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Anglo-Indian Lund · Pre-Staunton Aristocrat · Tall Slender Ivory</div></div>';">
+    <figcaption>Anglo-Indian "Lund" pattern ivory chess set · c. 1830 · sold by William Lund, Cornhill, London</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">The "Lund" pattern (sometimes called "Calcutta" or "pre-Staunton Anglo-Indian" by dealers) is one of the great quiet stories of 19th-century chess design. William Lund — a chess-and-mathematical-instrument maker at 24 Cornhill in the City of London from approximately 1820 to 1860 — became the period's most prestigious importer of fine ivory chess sets, contracting their production in Calcutta and Madras to specifications drawn up in London. The result is a set that reads as English in the cabinet but Indian in the workshop.</p>
+
+      <p data-lang="en">The Lund pattern is austere, abstract, and tall. The king is a slender pillar with a Maltese-cross or fleur-de-lys finial; the queen is a tall pillar topped with a tiered crown; bishops are mitred but otherwise smooth columns; knights are minimally suggested horse-heads on slender necks (well before Staunton stylised them); rooks are simple battlemented turrets; pawns are graduated columns. There is no figural representation. There is no polychrome lac. The piece weight is low (ivory only, no leather underbase typically). The aesthetic is gentleman's-library, not nawab's-court.</p>
+
+      <p data-lang="en">For the chess-history collector this set occupies a fascinating position: it is the bridge between Persian-Indian abstract tradition and English Staunton standardisation. When Howard Staunton and Nathaniel Cooke designed the Staunton pattern in 1849, they were specifically reacting against three things at once — figural Berhampur sets (too oriental for the modern English chess club), Lund pre-Staunton sets (too tall, too distinguishable, too easily knocked over in match play) and "St George" sets (a competing English abstract pattern). The Staunton became standard precisely because it solved problems Lund did not solve. Owning a Lund set is owning the alternative history.</p>
+
+      <p data-lang="en">The current ChessAntiques.com Lot #400 ("Anglo-Indian Lund pattern, 12 only," $1,295) is a particularly significant item in Chris's hunt. The "12 only" notation means only 12 of the original 32 pieces survive. This is not necessarily a deal-breaker if the surviving 12 are well-chosen — both kings, both queens, knights and bishops would let you see the design — but at $1,295 it is a curiosity-cabinet acquisition rather than a playable instrument. A complete Lund set runs £4,000–£12,000.</p>
+
+      <p data-lang="fr">Le modèle «&nbsp;Lund&nbsp;» (parfois appelé «&nbsp;Calcutta&nbsp;» ou «&nbsp;anglo-indien pré-Staunton&nbsp;» par les marchands) est l'une des grandes histoires discrètes du design d'échecs du XIX<sup>e</sup> siècle. William Lund — fabricant d'instruments d'échecs et mathématiques au 24 Cornhill dans la City de Londres d'environ 1820 à 1860 — devint l'importateur le plus prestigieux de fins jeux d'échecs en ivoire de l'époque, contractant leur production à Calcutta et Madras selon des spécifications dressées à Londres. Le résultat est un jeu qui se lit anglais dans le cabinet mais indien dans l'atelier.</p>
+
+      <p data-lang="fr">Le modèle Lund est austère, abstrait et haut. Le roi est un pilier mince à fleuron en croix maltaise ou fleur de lys&nbsp;; la reine est un pilier haut surmonté d'une couronne à étages&nbsp;; les fous sont mitrés mais par ailleurs des colonnes lisses&nbsp;; les cavaliers sont des têtes de cheval minimalement suggérées sur des cous minces (bien avant la stylisation Staunton)&nbsp;; les tours sont de simples tourelles crénelées&nbsp;; les pions sont des colonnes graduées. Pas de représentation figurative. Pas de laque polychrome. L'esthétique est bibliothèque de gentleman, pas cour de nabab.</p>
+
+      <p data-lang="fr">Pour le collectionneur d'histoire des échecs, ce jeu occupe une position fascinante&nbsp;: c'est le pont entre la tradition abstraite perso-indienne et la standardisation anglaise Staunton. Quand Howard Staunton et Nathaniel Cooke conçurent le modèle Staunton en 1849, ils réagissaient spécifiquement contre trois choses à la fois — les jeux Berhampur figuratifs (trop orientaux pour le club d'échecs anglais moderne), les jeux Lund pré-Staunton (trop hauts, trop distinguables, trop faciles à renverser en partie) et les jeux «&nbsp;St George&nbsp;» (un modèle abstrait anglais concurrent). Le Staunton devint standard précisément parce qu'il résolvait des problèmes que Lund ne résolvait pas. Posséder un jeu Lund, c'est posséder l'histoire alternative.</p>
+
+      <p data-lang="fr">L'actuel Lot #400 de ChessAntiques.com («&nbsp;Anglo-indien modèle Lund, 12 seulement&nbsp;», 1&nbsp;295&nbsp;$) est un objet particulièrement significatif dans la chasse de Chris. La mention «&nbsp;12 seulement&nbsp;» signifie que seules 12 des 32 pièces d'origine survivent. Ce n'est pas nécessairement un point bloquant si les 12 survivantes sont bien choisies — les deux rois, les deux reines, cavaliers et fous vous laisseraient voir le design — mais à 1&nbsp;295&nbsp;$ c'est une acquisition de cabinet de curiosité plutôt qu'un instrument jouable. Un jeu Lund complet se vend 4&nbsp;000–12&nbsp;000&nbsp;£.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Tall slender abstract ivory; Maltese-cross or fleur-de-lys finials on king; tiered-crown queens; mitred-pillar bishops; minimal horse-head knights on slender necks; battlemented turret rooks; one army natural ivory, the other red-stained; original silk-lined morocco-covered case sometimes labelled "Lund, Cornhill."</span><span data-lang="fr">Ivoire abstrait haut et mince&nbsp;; fleurons en croix maltaise ou fleur de lys sur le roi&nbsp;; reines à couronne étagée&nbsp;; fous en piliers mitrés&nbsp;; cavaliers en têtes de cheval minimales sur cous minces&nbsp;; tours en tourelles crénelées&nbsp;; une armée en ivoire naturel, l'autre teintée rouge&nbsp;; coffret d'origine en marocain bordé de soie parfois étiqueté «&nbsp;Lund, Cornhill&nbsp;».</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Complete c. 1830 ivory with original case: £6,000–£12,000. Complete without case: £3,500–£6,500. Partial sets (Chris's Lot #400): $800–$2,500 depending on which pieces present.</span><span data-lang="fr">Complet vers 1830 ivoire avec coffret d'origine&nbsp;: 6&nbsp;000–12&nbsp;000&nbsp;£. Complet sans coffret&nbsp;: 3&nbsp;500–6&nbsp;500&nbsp;£. Jeux partiels (Lot #400 de Chris)&nbsp;: 800–2&nbsp;500&nbsp;$ selon les pièces présentes.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">Specialist chess dealers (Frank Camaratta of House of Staunton, ChessAntiques.com, Garrick Coleman in London, Brian Mead in Sussex). The Camaratta archive and Garrick Coleman's catalogues are the connoisseur references.</span><span data-lang="fr">Marchands d'échecs spécialisés (Frank Camaratta de House of Staunton, ChessAntiques.com, Garrick Coleman à Londres, Brian Mead dans le Sussex). Les archives Camaratta et les catalogues de Garrick Coleman sont les références.</span></dd>
+
+        <dt><span data-lang="en">Authenticity Markers</span><span data-lang="fr">Marqueurs d'Authenticité</span></dt>
+        <dd><span data-lang="en">Original Lund-stamped case is the gold standard. In its absence, look at: turning quality (Indian lathe work has a slightly variable concentricity that machine work does not), red-stain quality (genuine 19th c. red is a deep madder lake that has darkened over time, not the bright red of modern aniline dye), and base felts (original green baize with cotton scrim backing).</span><span data-lang="fr">Coffret estampillé Lund d'origine = référence absolue. En son absence, regardez&nbsp;: qualité du tournage (le travail au tour indien a une concentricité légèrement variable que le travail à la machine n'a pas), qualité de la teinture rouge (le rouge XIX<sup>e</sup> authentique est une laque garance profonde qui a foncé avec le temps, pas le rouge vif d'une teinture aniline moderne), et feutres de base (toile verte d'origine à dos de coton).</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">"Lund" sets that are clearly modern reproductions (Frank Camaratta makes excellent honest reproductions but they are sold as such; if a dealer presents a Camaratta repro as antique that is fraud). Also: sets where the king finial has been replaced — common, often invisible without UV light examination of the joint.</span><span data-lang="fr">Jeux «&nbsp;Lund&nbsp;» qui sont clairement des reproductions modernes (Frank Camaratta fait d'excellentes reproductions honnêtes mais elles sont vendues comme telles&nbsp;; si un marchand présente une reproduction Camaratta comme antique, c'est de la fraude). Aussi&nbsp;: jeux où le fleuron du roi a été remplacé — courant, souvent invisible sans examen UV du joint.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Pre-Staunton</span>
+    <span class="mat-tag">Lund of Cornhill</span>
+    <span class="mat-tag">Abstract Ivory</span>
+    <span class="mat-tag">Calcutta · Madras</span>
+    <span class="mat-tag">Connoisseur Tier</span>
+    <span class="mat-tag">★ Chris's Second</span>
+  </div>
+</section>
+
+<!-- ── STYLE X — MUSLIM STAUNTON ─────────────────────────────── -->
+<section id="muslim-staunton" class="style-entry container">
+  <header class="style-header">
+    <span class="style-num">X</span>
+    <p class="style-era-label">c. 1850–1900 · Punjab · Lahore · Karachi</p>
+    <h2 class="style-title">
+      <span data-lang="en">Muslim Staunton — <em>The Aniconic Cousin</em></span>
+      <span data-lang="fr">Staunton Musulman — <em>Le Cousin Aniconique</em></span>
+    </h2>
+    <p class="style-tagline">
+      <span data-lang="en">A late-19th-century Punjabi adaptation: Indian ivory turning married to Staunton's English layout, but with all figural elements removed in deference to Islamic prohibition on representational forms. The most underappreciated of all Indian chess types.</span>
+      <span data-lang="fr">Une adaptation pendjabie de la fin du XIX<sup>e</sup>&nbsp;: tournage indien d'ivoire marié au format anglais Staunton, mais avec tous les éléments figuratifs supprimés en déférence à l'interdiction islamique des formes représentatives. Le type d'échecs indien le plus sous-estimé.</span>
+    </p>
+  </header>
+
+  <figure class="style-hero-img">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Muslim_Staunton_chess_set_ivory_Punjab.jpg?width=1200"
+         alt="Muslim Staunton ivory chess set from Punjab — abstracted Staunton form with no figural elements, in keeping with Islamic aniconism"
+         loading="lazy"
+         onerror="this.parentElement.innerHTML='<div class=&quot;style-placeholder&quot;><div class=&quot;style-placeholder-text&quot;>Muslim Staunton · Aniconic Punjabi Ivory · Late 19th c.</div></div>';">
+    <figcaption>Muslim Staunton ivory chess set · Punjab workshop · c. 1880 · all figural elements abstracted</figcaption>
+  </figure>
+
+  <div class="style-body">
+    <div class="style-narrative">
+      <p data-lang="en">When the Staunton pattern became globally dominant after 1849, it presented a problem for Muslim Indian patrons in the Punjab and the Delhi-Lahore-Lucknow corridor. The standard Staunton bishop is mitred — explicitly Christian iconography. The standard Staunton knight is a horse-head, which most jurists consider acceptable but some hardline ones do not. The cross atop the Staunton king is unambiguously Christian. For a Muslim collector or chess club in 1880, the Staunton was simultaneously the most desirable form (because it had become the international tournament standard, used by the strongest masters) and a form that needed alteration to be religiously acceptable.</p>
+
+      <p data-lang="en">Punjabi ivory turners — particularly in Lahore (then in undivided Punjab, today in Pakistan) and Karachi — solved this elegantly. They produced what dealers now call "Muslim Staunton" sets: the proportions, weight, and approximate forms of a Staunton, but with the bishop's mitre replaced by a smooth-domed Persianate cap, the king's cross replaced by a simple ball-and-spike finial, the knight reduced to a more abstract horse-head with no anatomical detail, and frequently the use of Arabic numerals or Persian script discreetly marking the squares of the accompanying board. The pieces are usually un-stained on both sides, the two armies distinguished by a simple turned ring or notch.</p>
+
+      <p data-lang="en">These sets are the rarest of the affordable Indian chess types. They were never produced in volumes comparable to Berhampur or even Vizagapatam — there was no British export market for them, only an Indian and Persianate-Gulf clientele. The result is that a really fine Muslim Staunton today is harder to source than a comparable-quality Anglo-Indian Lund despite roughly equivalent prices. ChessAntiques.com's current Lot #893 (Muslim Staunton, $995) is a representative entry-level example.</p>
+
+      <p data-lang="en">For a serious thematic Indian-chess collection, a Muslim Staunton is one of the most interesting sets to own — it tells a story about the global migration of design (English form), the persistence of religious aesthetics (aniconism), and the agency of Indian craft (decisions about what to keep and what to alter). It is also visually striking: in a cabinet next to a figural Berhampur, the contrast is immediate.</p>
+
+      <p data-lang="fr">Lorsque le modèle Staunton devint globalement dominant après 1849, il posa un problème aux mécènes musulmans indiens du Pendjab et du corridor Delhi-Lahore-Lucknow. Le fou Staunton standard est mitré — iconographie explicitement chrétienne. La croix au sommet du roi Staunton est sans ambiguïté chrétienne. Pour un collectionneur ou un club d'échecs musulman en 1880, le Staunton était simultanément la forme la plus désirable (parce qu'il était devenu le standard de tournoi international) et une forme qui avait besoin d'altération pour être religieusement acceptable.</p>
+
+      <p data-lang="fr">Les tourneurs d'ivoire pendjabis — particulièrement à Lahore (alors dans le Pendjab uni, aujourd'hui au Pakistan) et Karachi — résolurent cela avec élégance. Ils produisirent ce que les marchands appellent maintenant des jeux «&nbsp;Staunton musulmans&nbsp;»&nbsp;: les proportions, le poids et les formes approximatives d'un Staunton, mais avec la mitre du fou remplacée par une calotte persanisante à dôme lisse, la croix du roi remplacée par un simple fleuron à boule-et-pointe, le cavalier réduit à une tête de cheval plus abstraite sans détail anatomique, et fréquemment l'utilisation de chiffres arabes ou d'écriture persane marquant discrètement les cases de l'échiquier d'accompagnement.</p>
+
+      <p data-lang="fr">Ces jeux sont les plus rares des types d'échecs indiens abordables. Ils ne furent jamais produits en volumes comparables à Berhampur ou même Vizagapatam — il n'y avait pas de marché d'exportation britannique pour eux, seulement une clientèle indienne et persano-golfique. Le résultat est qu'un très beau Staunton musulman aujourd'hui est plus difficile à sourcer qu'un Lund anglo-indien de qualité comparable malgré des prix à peu près équivalents. Le Lot #893 de ChessAntiques.com (Staunton musulman, 995&nbsp;$) est un exemple d'entrée de gamme représentatif.</p>
+
+      <p data-lang="fr">Pour une collection thématique sérieuse d'échecs indiens, un Staunton musulman est l'un des jeux les plus intéressants à posséder — il raconte une histoire sur la migration globale du design (forme anglaise), la persistance de l'esthétique religieuse (aniconisme), et l'agentivité de l'artisanat indien (décisions sur ce qu'il faut garder et ce qu'il faut altérer). Il est aussi visuellement frappant&nbsp;: dans un cabinet à côté d'un Berhampur figuratif, le contraste est immédiat.</p>
+    </div>
+
+    <aside class="hunting-notes">
+      <h3 class="hunting-title">
+        <span data-lang="en">Hunting Notes</span>
+        <span data-lang="fr">Conseils d'Acquisition</span>
+      </h3>
+      <dl>
+        <dt><span data-lang="en">Tell-Tale Forms</span><span data-lang="fr">Formes Distinctives</span></dt>
+        <dd><span data-lang="en">Staunton-like proportions; smooth-dome bishops (no mitre); ball-and-spike king finial (no cross); abstracted horse-head knights; both armies usually un-stained ivory, distinguished by a turned ring or notch; sometimes accompanied by a board with Arabic / Persian-script square markings.</span><span data-lang="fr">Proportions de type Staunton&nbsp;; fous à dôme lisse (sans mitre)&nbsp;; fleuron de roi à boule-et-pointe (sans croix)&nbsp;; cavaliers en têtes de cheval abstraites&nbsp;; les deux armées habituellement en ivoire non teinté, distinguées par un anneau ou une encoche tournée&nbsp;; parfois accompagné d'un échiquier à inscriptions arabes / persanes sur les cases.</span></dd>
+
+        <dt><span data-lang="en">Auction Range</span><span data-lang="fr">Estimation</span></dt>
+        <dd><span data-lang="en">Complete late 19th c. ivory: $1,000–$3,500 (US dealers), £800–£2,800 (UK auctions). With original board and case: 1.5–2× upper end. Loose pieces: rarely sold as such, the matched set is the unit of value.</span><span data-lang="fr">Complet fin XIX<sup>e</sup> ivoire&nbsp;: 1&nbsp;000–3&nbsp;500&nbsp;$ (marchands US), 800–2&nbsp;800&nbsp;£ (ventes UK). Avec échiquier et coffret d'origine&nbsp;: 1,5–2× la borne haute.</span></dd>
+
+        <dt><span data-lang="en">Where to Find</span><span data-lang="fr">Où Chercher</span></dt>
+        <dd><span data-lang="en">ChessAntiques.com (current Lot #893), specialist Islamic-art dealers (Sam Fogg, Simon Ray), Bonhams "Islamic &amp; Indian Art" sales. The corpus is small enough that a serious dealer can usually identify each known fine example by sight.</span><span data-lang="fr">ChessAntiques.com (Lot #893 actuel), marchands spécialisés en art islamique (Sam Fogg, Simon Ray), ventes Bonhams «&nbsp;Islamic &amp; Indian Art&nbsp;». Le corpus est suffisamment petit qu'un marchand sérieux peut habituellement identifier chaque bel exemplaire connu à vue.</span></dd>
+
+        <dt><span data-lang="en">Why Underpriced</span><span data-lang="fr">Pourquoi Sous-Évalué</span></dt>
+        <dd><span data-lang="en">Generalist dealers don't quite know what to do with these — they read as "Staunton" but feel "Indian," falling between two collecting categories. The connoisseur premium has not yet been priced in. Buy now while there is still arbitrage.</span><span data-lang="fr">Les marchands généralistes ne savent pas quoi en faire — ils se lisent «&nbsp;Staunton&nbsp;» mais sont d'apparence «&nbsp;indienne&nbsp;», tombant entre deux catégories de collection. La prime de connoisseur n'est pas encore intégrée au prix. Achetez maintenant tant qu'il y a encore arbitrage.</span></dd>
+
+        <dt><span data-lang="en">Red Flags</span><span data-lang="fr">Signaux d'Alerte</span></dt>
+        <dd class="red-flag"><span data-lang="en">Modern Pakistani-export "Muslim Staunton" reproductions exist (sold legitimately as new product through Sialkot workshops). They are well-made and beautiful, but should cost £150–£400, not £1,500. Check for hand-turning irregularities and patina differential.</span><span data-lang="fr">Des reproductions modernes pakistanaises «&nbsp;Staunton musulman&nbsp;» existent (vendues légitimement comme produit neuf via les ateliers de Sialkot). Elles sont bien faites et belles, mais devraient coûter 150–400&nbsp;£, pas 1&nbsp;500&nbsp;£. Vérifiez les irrégularités du tournage à la main et le différentiel de patine.</span></dd>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="mat-tags">
+    <span class="mat-tag">Aniconic Staunton</span>
+    <span class="mat-tag">Punjab · Lahore</span>
+    <span class="mat-tag">Late 19th c.</span>
+    <span class="mat-tag">Underappreciated</span>
+    <span class="mat-tag">★ Chris's Watchlist</span>
+  </div>
+</section>

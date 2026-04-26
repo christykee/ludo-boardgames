@@ -129,6 +129,7 @@ async function loadCardImage(cardEl, game) {
   const loader = new Image();
   loader.onload = () => {
     imgEl.src = url;
+    imgEl.style.display = '';   // reset in case the empty-src onerror hid it earlier
     imgEl.classList.add('loaded');
     imgEl.classList.remove('loading');
     const bg = cardEl.querySelector('.card-img-bg');
@@ -359,10 +360,12 @@ function buildGameCard(game) {
   const cat = CATEGORIES[game.category];
   const desc = t(game, 'description');
 
-  // Use a static cover URL if curated, else leave blank for BGG async fetch
+  // Use a static cover URL if curated, else 1x1 transparent gif placeholder
+  // (empty src would resolve to the page URL and trigger onerror before BGG fetch).
+  const TRANSPARENT_PX = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
   const hasImg = !!(game.cover || game.bggId);
   const staticAttr = game.cover ? ' data-static-cover="1"' : '';
-  const initialSrc = game.cover || '';
+  const initialSrc = game.cover || TRANSPARENT_PX;
   const initialClass = game.cover ? 'card-real-img loaded' : 'card-real-img loading';
   const bgFallbackStyle = game.cover
     ? `background:${game.gradient};position:absolute;inset:0;display:none;`
