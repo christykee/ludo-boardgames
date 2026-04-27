@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — The Cabinet of Curiosities</title>
+  <meta name="description" content="A lifelong board game library, curated for one family. Twelve drawers of play — pull one open to begin.">
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       HOME v7 — THE CABINET OF CURIOSITIES
+       Hero is the Verne cover (inherited verbatim from v6).
+       Below it: a 19th-century cabinet wall — 12 drawers in a 3×4 grid,
+       each lacquered teal with brass cartouche labels and a brass pull.
+       Click any drawer: it slides forward, brass pull recedes, and the
+       drawer interior reveals three covers + a passage to that part of
+       the cabinet. One drawer can be open at a time.
+       ═══════════════════════════════════════════════════════════════════ */
+
+    body.home-v7 {
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%,   rgba(179,223,217,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(13,53,53,0.65)    0%, transparent 60%),
+        linear-gradient(180deg, #1f5f5d 0%, #2a7270 35%, #1f5f5d 65%, #133e3e 100%);
+    }
+
+    /* ── HERO CARTOUCHE — same brass-bound oval as v6 ─────────────── */
+    .verne-cover {
+      position: relative;
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding: 64px 56px 72px;
+      isolation: isolate;
+    }
+    .verne-cover::before {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 3px double rgba(212,165,46,0.55);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .verne-cover::after {
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(212,165,46,0.30);
+      pointer-events: none;
+    }
+    .corner {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .corner-tl { top: -10px; left: -10px; }
+    .corner-tr { top: -10px; right: -10px; transform: scaleX(-1); }
+    .corner-bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+    .corner-br { bottom: -10px; right: -10px; transform: scale(-1,-1); }
+
+    .cartouche-oval {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 48px 48px;
+      text-align: center;
+      z-index: 1;
+    }
+    .cartouche-frame {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .cartouche-frame svg { width: 100%; height: 100%; display: block; }
+
+    .verne-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 0 rgba(13,53,53,0.5);
+    }
+    .verne-mark {
+      display: inline-block;
+      margin: 4px 0 14px;
+      color: #f0cc55;
+      font-size: 1.1rem;
+      letter-spacing: 0.6em;
+      opacity: 0.85;
+    }
+    .verne-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: #FFF8E8;
+      text-shadow:
+        0 1px 0 rgba(13,53,53,0.6),
+        0 2px 12px rgba(13,53,53,0.45),
+        0 0 22px rgba(240,204,85,0.18);
+      margin: 4px 0 4px;
+    }
+    .verne-title em {
+      font-style: italic;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: #f0cc55;
+      letter-spacing: 0.03em;
+    }
+    .verne-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 22px 0 18px;
+      color: rgba(240,204,85,0.6);
+    }
+    .verne-rule .line {
+      flex: 0 0 110px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,204,85,0.55), transparent);
+    }
+    .verne-rule .star {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      color: #f0cc55;
+    }
+    .verne-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.18rem;
+      color: #F2E8C8;
+      margin: 0 0 6px;
+    }
+    .verne-author {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      color: #DCCC92;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ── FILIGREE DIVIDERS (kept from v6) ─────────────────────────── */
+    .filigree-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      max-width: 880px;
+      margin: 64px auto 0;
+      padding: 0 24px;
+      color: rgba(240,204,85,0.55);
+    }
+    .filigree-row .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,204,85,0.55), transparent);
+    }
+    .filigree-row svg { flex: 0 0 auto; height: 36px; opacity: 0.9; }
+
+    /* ════════════════════════════════════════════════════════════════
+       THE CABINET — 12 DRAWERS, 3 × 4
+       The whole cabinet is framed in a brass-bound mahogany surround.
+       ════════════════════════════════════════════════════════════════ */
+    .cabinet-wrap {
+      position: relative;
+      max-width: 1280px;
+      margin: 56px auto 0;
+      padding: 32px 32px 40px;
+    }
+    .cabinet-eyebrow {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cabinet-subtitle {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.08rem;
+      color: #DCCC92;
+      margin-bottom: 28px;
+      max-width: 42em;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* The cabinet body — a brass-framed deep-teal lacquer panel */
+    .cabinet {
+      position: relative;
+      padding: 26px;
+      border-radius: 4px;
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(240,204,85,0.10), transparent 60%),
+        radial-gradient(ellipse at 50% 110%, rgba(13,53,53,0.55), transparent 70%),
+        linear-gradient(180deg, #163e3e 0%, #1a4a4a 50%, #133636 100%);
+      box-shadow:
+        0 30px 70px rgba(13,53,53,0.6),
+        0 0 0 1px rgba(212,165,46,0.55) inset,
+        0 0 0 7px rgba(13,53,53,0.55) inset,
+        0 0 0 8px rgba(212,165,46,0.35) inset;
+    }
+
+    /* small brass corner caps on the outer cabinet frame */
+    .cabinet::before,
+    .cabinet::after {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      pointer-events: none;
+      border: 2px solid rgba(240,204,85,0.85);
+      background: radial-gradient(circle at 30% 30%, #f6e08d 0%, #d4a52e 60%, #9c7820 100%);
+      border-radius: 2px;
+    }
+    .cabinet::before { top: -6px; left: -6px; }
+    .cabinet::after  { top: -6px; right: -6px; }
+
+    .cabinet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 880px) {
+      .cabinet-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .cabinet-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── A SINGLE DRAWER ─────────────────────────────────────────── */
+    .drawer {
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* The face — what you see when the drawer is closed */
+    .drawer-face {
+      position: relative;
+      width: 100%;
+      min-height: 168px;
+      padding: 22px 22px 38px;
+      cursor: pointer;
+      text-align: center;
+      border: none;
+      border-radius: 3px;
+      color: #FFF8E8;
+      font: inherit;
+      background:
+        /* subtle wood-grain top highlight */
+        linear-gradient(180deg, rgba(240,204,85,0.10) 0%, transparent 14%),
+        /* lacquer mid */
+        linear-gradient(180deg, #1f5f5d 0%, #1d5454 50%, #163e3e 100%),
+        /* base */
+        #1d5454;
+      box-shadow:
+        /* outer brass keyline */
+        0 0 0 1px rgba(212,165,46,0.55) inset,
+        /* recessed bevel */
+        0 0 0 4px rgba(13,53,53,0.55) inset,
+        /* inner brass keyline */
+        0 0 0 5px rgba(212,165,46,0.32) inset,
+        /* drop-shadow giving the drawer mass */
+        0 6px 14px rgba(13,53,53,0.45),
+        0 1px 0 rgba(255,248,232,0.06) inset;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .drawer-face:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(240,204,85,0.85) inset,
+        0 0 0 4px rgba(13,53,53,0.55) inset,
+        0 0 0 5px rgba(240,204,85,0.55) inset,
+        0 10px 22px rgba(13,53,53,0.55),
+        0 1px 0 rgba(255,248,232,0.08) inset;
+    }
+
+    /* When open — drawer pulls forward & casts a heavier shadow */
+    .drawer.is-open .drawer-face {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 0 1px rgba(246,224,141,0.95) inset,
+        0 0 0 4px rgba(13,53,53,0.5) inset,
+        0 0 0 5px rgba(240,204,85,0.7) inset,
+        0 16px 32px rgba(13,53,53,0.7),
+        0 1px 0 rgba(255,248,232,0.10) inset;
+    }
+
+    /* drawer numeral */
+    .drawer-numeral {
+      font-family: var(--font-display);
+      font-size: 0.66rem;
+      letter-spacing: 0.4em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-shadow: 0 1px 0 rgba(13,53,53,0.7);
+    }
+
+    /* the small brass cartouche label inside each drawer face */
+    .drawer-cartouche {
+      position: relative;
+      display: inline-block;
+      padding: 10px 22px 9px;
+      margin: 4px 0 6px;
+      max-width: 100%;
+    }
+    .drawer-cartouche::before,
+    .drawer-cartouche::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      transform: translateY(-50%) rotate(45deg);
+      background: #1d5454;
+      border: 1px solid rgba(240,204,85,0.7);
+    }
+    .drawer-cartouche::before { left: -7px; }
+    .drawer-cartouche::after  { right: -7px; }
+    .drawer-cartouche-inner {
+      position: relative;
+      padding: 4px 10px;
+      border: 1px solid rgba(240,204,85,0.7);
+      background: linear-gradient(180deg, rgba(212,165,46,0.16), rgba(13,53,53,0.0));
+    }
+    .drawer-cartouche-inner::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border: 0.5px solid rgba(240,204,85,0.45);
+      pointer-events: none;
+    }
+
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.15;
+      color: #FFF8E8;
+      text-transform: uppercase;
+      text-shadow: 0 1px 0 rgba(13,53,53,0.6);
+    }
+    .drawer-title em {
+      font-style: italic;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      color: #f6e08d;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+    .drawer-tagline {
+      display: block;
+      margin-top: 6px;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.86rem;
+      color: #DCCC92;
+      letter-spacing: 0.01em;
+    }
+
+    /* the drawer icon (small thematic SVG above the cartouche) */
+    .drawer-icon {
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 4px;
+      display: block;
+      opacity: 0.92;
+    }
+    .drawer-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* the brass pull (handle) at the bottom-center of every drawer */
+    .drawer-pull {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      width: 56px;
+      height: 14px;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(ellipse at 50% 30%, #f6e08d 0%, #d4a52e 50%, #9c7820 100%);
+      border-radius: 8px;
+      box-shadow:
+        0 0 0 1px rgba(13,53,53,0.6),
+        0 1px 0 rgba(255,248,232,0.55) inset,
+        0 -2px 4px rgba(13,53,53,0.4) inset,
+        0 4px 8px rgba(13,53,53,0.45);
+      pointer-events: none;
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.4s ease;
+    }
+    .drawer-pull::before {
+      /* tiny brass screw/keyhole at the centre */
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #1f5f5d 0%, #0d2e2e 100%);
+      box-shadow: 0 0 0 1px rgba(13,53,53,0.6) inset;
+    }
+    .drawer.is-open .drawer-pull {
+      bottom: 7px;
+      opacity: 0.55;
+    }
+
+    /* ── DRAWER INTERIOR — slides open below the face ─────────────── */
+    .drawer-interior {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  margin 0.5s ease,
+                  opacity 0.4s ease 0.1s;
+      opacity: 0;
+      margin-top: 0;
+    }
+    .drawer.is-open .drawer-interior {
+      max-height: 460px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    .drawer-tray {
+      position: relative;
+      padding: 18px 18px 20px;
+      border-radius: 3px;
+      background:
+        /* parchment / aged ivory inside the drawer */
+        radial-gradient(ellipse at 50% 0%, rgba(255,248,232,0.95) 0%, rgba(242,232,200,0.92) 60%, rgba(220,204,146,0.88) 100%);
+      box-shadow:
+        0 0 0 1px rgba(212,165,46,0.7) inset,
+        0 0 0 4px rgba(13,53,53,0.5) inset,
+        0 0 0 5px rgba(212,165,46,0.35) inset,
+        0 -2px 6px rgba(13,53,53,0.35) inset;
+    }
+    /* pinhole for the brass pin "anchoring" the parchment */
+    .drawer-tray::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #f6e08d 0%, #d4a52e 60%, #9c7820 100%);
+      box-shadow: 0 0 0 1px rgba(13,53,53,0.7);
+    }
+
+    /* the strip of three cover thumbnails */
+    .drawer-covers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .drawer-cover {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 2px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow:
+        0 0 0 1px rgba(13,53,53,0.5) inset,
+        0 0 0 2px rgba(212,165,46,0.45) inset,
+        0 4px 10px rgba(13,53,53,0.35);
+    }
+    .drawer-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,53,53,0.0) 50%, rgba(13,53,53,0.5) 100%);
+    }
+
+    /* the CTA — brass plaque with arrow */
+    .drawer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 9px 18px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #1d5454;
+      text-decoration: none;
+      background: linear-gradient(180deg, #f6e08d 0%, #d4a52e 50%, #b78c20 100%);
+      border-radius: 2px;
+      box-shadow:
+        0 0 0 1px rgba(13,53,53,0.6) inset,
+        0 1px 0 rgba(255,248,232,0.6) inset,
+        0 -1px 0 rgba(13,53,53,0.35) inset,
+        0 4px 8px rgba(13,53,53,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .drawer-cta:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 0 1px rgba(13,53,53,0.6) inset,
+        0 1px 0 rgba(255,248,232,0.7) inset,
+        0 -1px 0 rgba(13,53,53,0.35) inset,
+        0 6px 12px rgba(13,53,53,0.45);
+    }
+    .drawer-cta svg { width: 22px; height: 12px; }
+
+    .drawer-cta-row {
+      text-align: center;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       PORTHOLE FAMILY SECTION (kept from v6)
+       ════════════════════════════════════════════════════════════════ */
+    .porthole-section {
+      max-width: 1180px;
+      margin: 56px auto 0;
+      padding: 56px 32px 32px;
+    }
+    .porthole-eyebrow {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      letter-spacing: 0.42em;
+      color: #f0cc55;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .porthole-title {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: #F2E8C8;
+      margin-bottom: 36px;
+      max-width: 38em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .portholes {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 880px) {
+      .portholes { grid-template-columns: repeat(2, 1fr); }
+    }
+    .porthole {
+      position: relative;
+      text-align: center;
+      padding: 22px 16px 20px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(240,204,85,0.10), transparent 60%),
+        linear-gradient(180deg, #1d5454 0%, #163e3e 100%);
+      border: 1px solid rgba(212,165,46,0.45);
+      border-radius: 3px;
+      box-shadow: 0 0 0 4px rgba(13,53,53,0.4) inset, 0 0 0 5px rgba(212,165,46,0.30) inset;
+    }
+    .porthole-disc {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #f6e08d 0%, #d4a52e 45%, #9c7820 100%);
+      box-shadow:
+        0 0 0 3px #1d5454,
+        0 0 0 4px rgba(212,165,46,0.6),
+        inset 0 6px 14px rgba(13,53,53,0.55),
+        inset 0 -4px 10px rgba(255,248,232,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1d5454;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 0 rgba(255,248,232,0.5);
+    }
+    .porthole-name {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #FFF8E8;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .porthole-role {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #DCCC92;
+      line-height: 1.45;
+    }
+
+    /* ── AUTHOR PLATE (kept from v6) ─────────────────────────────── */
+    .author-plate {
+      max-width: 720px;
+      margin: 64px auto 24px;
+      padding: 28px 36px;
+      text-align: center;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(212,165,46,0.10) 0%, rgba(13,53,53,0.0) 100%);
+      border: 1.5px solid rgba(212,165,46,0.55);
+      border-radius: 3px;
+      box-shadow: 0 0 0 4px rgba(13,53,53,0.45) inset, 0 0 0 5px rgba(212,165,46,0.30) inset;
+    }
+    .author-plate::before, .author-plate::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translateY(-50%) rotate(45deg);
+      border: 1.5px solid rgba(212,165,46,0.55);
+      background: #1f5f5d;
+      box-shadow: 0 0 0 3px rgba(13,53,53,0.45) inset;
+    }
+    .author-plate::before { left: -12px; }
+    .author-plate::after  { right: -12px; }
+    .author-plate p {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #F2E8C8;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .author-plate .signature {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      color: #f0cc55;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body class="home-v7">
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">
+      ✦ <span>CABINET LUDO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO — THE VERNE COVER (inherited verbatim from v6) ═════════ -->
+<section class="verne-cover">
+
+  <!-- Top-left ornament -->
+  <svg class="corner corner-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <path d="M48,52 a26,26 0 1,1 0.01,0 M52,52 a22,22 0 1,1 0.01,0 M56,52 a18,18 0 1,1 0.01,0 M60,52 a14,14 0 1,1 0.01,0 M62,52 a10,10 0 1,1 0.01,0 M64,52 a6,6 0 1,1 0.01,0"/>
+      <g stroke-width="0.9" opacity="0.7">
+        <path d="M48,52 L78,52"/>
+        <path d="M50,38 L64,42"/>
+        <path d="M50,66 L64,62"/>
+        <path d="M38,52 L26,52"/>
+        <path d="M62,38 L74,32"/>
+      </g>
+      <path d="M78,52 C100,52 110,40 130,40 S160,52 174,40"/>
+      <path d="M78,52 C100,52 110,64 130,64 S160,52 174,64"/>
+      <path d="M52,80 C52,100 40,110 40,130 S52,160 40,174"/>
+      <path d="M52,80 C52,100 64,110 64,130 S52,160 64,174"/>
+      <path d="M170,40 q12,-4 12,-12 q-8,2 -10,8" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M170,64 q12,4 12,12 q-8,-2 -10,-8" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M40,170 q-4,12 -12,12 q2,-8 8,-10" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M64,170 q4,12 12,12 q-2,-8 -8,-10" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M30,180 q-6,-30 8,-60 q-12,-26 4,-50 q-14,-20 0,-40" stroke-width="1.1" opacity="0.55"/>
+      <path d="M30,150 q14,-2 18,-12"/>
+      <path d="M30,110 q14,2 18,12"/>
+      <path d="M30,70  q14,-2 18,-12"/>
+    </g>
+    <circle cx="64" cy="52" r="3" fill="#f6e08d"/>
+  </svg>
+
+  <!-- Top-right ornament -->
+  <svg class="corner corner-tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <path d="M30,60 q34,-44 68,0" stroke-width="1.6"/>
+      <path d="M30,60 L98,60"/>
+      <g stroke-width="0.9" opacity="0.75">
+        <path d="M64,60 L64,22"/>
+        <path d="M50,60 L42,28"/>
+        <path d="M78,60 L86,28"/>
+        <path d="M40,60 L30,36"/>
+        <path d="M88,60 L98,36"/>
+      </g>
+      <circle cx="64" cy="62" r="2.4" fill="#f6e08d" stroke="none"/>
+      <path d="M30,60 C20,60 12,72 12,90 S20,130 12,150"/>
+      <path d="M52,60 C52,80 64,90 64,110 S52,150 64,170"/>
+      <path d="M98,60 q40,8 60,28"/>
+      <path d="M12,150 q-4,12 4,18 q4,-8 0,-14" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M64,170 q-4,12 4,18 q4,-8 0,-14" fill="#d4a52e" opacity="0.9" stroke="none"/>
+      <path d="M180,30 q-30,30 -30,80 q-20,30 -10,60" stroke-width="1.1" opacity="0.55"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.8">
+      <circle cx="160" cy="20" r="2"/>
+      <circle cx="170" cy="50" r="1.4"/>
+      <circle cx="148" cy="70" r="1.6"/>
+      <circle cx="178" cy="90" r="1"/>
+    </g>
+  </svg>
+
+  <!-- Bottom-left ornament -->
+  <svg class="corner corner-bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <path d="M30,90 q40,-50 80,0 q-6,8 -16,8 q-6,-6 -14,0 q-10,-8 -20,0 q-8,-6 -14,0 q-10,0 -16,-8 z" fill="#1f5f5d" stroke-width="1.4"/>
+      <g stroke-width="0.9" opacity="0.7">
+        <path d="M40,82 q30,-40 60,0"/>
+        <path d="M48,76 q22,-32 44,0"/>
+        <path d="M56,72 q14,-22 28,0"/>
+      </g>
+      <path d="M40,98 q-2,30 8,50 q-10,12 0,30"/>
+      <path d="M52,98 q4,30 -4,50 q10,12 -2,30"/>
+      <path d="M70,98 q-2,30 6,50 q-8,12 2,30"/>
+      <path d="M82,98 q4,30 -4,50 q10,12 -2,30"/>
+      <path d="M100,98 q-2,30 6,50 q-8,12 2,30"/>
+      <path d="M28,90 C18,80 18,60 28,40 S40,12 28,4"/>
+      <path d="M110,90 q40,8 60,28"/>
+      <path d="M150,30 a10,10 0 1,1 0.01,0 M152,30 a8,8 0 1,1 0.01,0 M154,30 a6,6 0 1,1 0.01,0"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.7">
+      <circle cx="22" cy="20" r="1.4"/>
+      <circle cx="42" cy="14" r="1"/>
+      <circle cx="160" cy="80" r="1.4"/>
+    </g>
+  </svg>
+
+  <!-- Bottom-right ornament -->
+  <svg class="corner corner-br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.4" stroke-linecap="round" opacity="0.85">
+      <path d="M30,120 q40,-30 90,-10 q12,-2 28,-12 q-8,14 -22,18 q-50,18 -96,4 z" fill="#1f5f5d" stroke-width="1.4"/>
+      <path d="M30,120 q-12,-8 -22,0 q12,4 22,8 q-12,8 -22,0"/>
+      <path d="M148,98 L182,68" stroke-width="1.6"/>
+      <g stroke-width="0.6" opacity="0.7">
+        <path d="M152,94 L176,72"/>
+        <path d="M156,90 L172,76"/>
+      </g>
+      <circle cx="132" cy="100" r="1.6" fill="#f6e08d" stroke="none"/>
+      <path d="M84,108 q6,-14 16,-12 q-2,10 -6,16"/>
+      <path d="M40,180 q-4,-30 12,-50 q-12,-20 4,-40 q-12,-16 0,-36"/>
+      <path d="M40,150 q12,-2 18,-10"/>
+      <path d="M40,110 q12,2 18,10"/>
+      <path d="M170,180 q-4,-30 -20,-50 q14,-12 28,-12"/>
+    </g>
+    <g fill="#b3dfd9" opacity="0.7">
+      <circle cx="172" cy="28" r="1.6"/>
+      <circle cx="186" cy="48" r="1"/>
+      <circle cx="160" cy="60" r="1"/>
+    </g>
+  </svg>
+
+  <!-- Central oval cartouche -->
+  <div class="cartouche-oval">
+    <div class="cartouche-frame">
+      <svg viewBox="0 0 720 460" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="brassGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f6e08d"/>
+            <stop offset="50%" stop-color="#d4a52e"/>
+            <stop offset="100%" stop-color="#9c7820"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="360" cy="230" rx="340" ry="210" fill="none" stroke="url(#brassGrad)" stroke-width="2.5"/>
+        <ellipse cx="360" cy="230" rx="332" ry="202" fill="none" stroke="rgba(240,204,85,0.55)" stroke-width="0.7"/>
+        <g fill="url(#brassGrad)" opacity="0.95">
+          <path d="M340,28 q20,-14 40,0 q-6,6 -14,4 q-6,4 -12,0 q-8,2 -14,-4 z"/>
+          <path d="M334,30 q-22,-2 -40,8 q14,-2 22,4 q4,-6 18,-4 z"/>
+          <path d="M386,30 q22,-2 40,8 q-14,-2 -22,4 q-4,-6 -18,-4 z"/>
+        </g>
+        <g fill="url(#brassGrad)" opacity="0.95">
+          <path d="M340,432 q20,14 40,0 q-6,-6 -14,-4 q-6,-4 -12,0 q-8,-2 -14,4 z"/>
+          <path d="M334,430 q-22,2 -40,-8 q14,2 22,-4 q4,6 18,4 z"/>
+          <path d="M386,430 q22,2 40,-8 q-14,2 -22,-4 q-4,6 -18,4 z"/>
+        </g>
+        <g fill="none" stroke="#f0cc55" stroke-width="1" opacity="0.85">
+          <circle cx="20" cy="230" r="9"/>
+          <circle cx="20" cy="230" r="5"/>
+          <circle cx="20" cy="230" r="2" fill="#f6e08d" stroke="none"/>
+          <circle cx="700" cy="230" r="9"/>
+          <circle cx="700" cy="230" r="5"/>
+          <circle cx="700" cy="230" r="2" fill="#f6e08d" stroke="none"/>
+        </g>
+        <g fill="none" stroke="#d4a52e" stroke-width="1" opacity="0.75">
+          <path d="M150,60 q40,-26 80,-6 q-30,-4 -50,10 q10,-18 -30,-4"/>
+          <path d="M570,60 q-40,-26 -80,-6 q30,-4 50,10 q-10,-18 30,-4"/>
+          <path d="M150,400 q40,26 80,6 q-30,4 -50,-10 q10,18 -30,4"/>
+          <path d="M570,400 q-40,26 -80,6 q30,4 50,-10 q-10,18 30,4"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="verne-eyebrow">
+      <span data-lang="en">The Family Game Library · Established 2024</span>
+      <span data-lang="fr">La Bibliothèque Ludique · Fondée 2024</span>
+    </p>
+    <div class="verne-mark">✦ ⚓ ✦</div>
+    <h1 class="verne-title">CABINET <em>Ludo</em></h1>
+    <div class="verne-rule">
+      <span class="line"></span><span class="star">✦ ⚓ ✦</span><span class="line"></span>
+    </div>
+    <p class="verne-tagline">
+      <span data-lang="en">A lifelong library of play, kept under brass and lit by sea-light.</span>
+      <span data-lang="fr">Une bibliothèque de jeu à vie, gardée sous le laiton et éclairée par la lumière marine.</span>
+    </p>
+    <p class="verne-author">— Curated &amp; Guarded by Ludo —</p>
+  </div>
+</section>
+
+<!-- ══ FILIGREE DIVIDER ════════════════════════════════════════════════ -->
+<div class="filigree-row" aria-hidden="true">
+  <span class="line"></span>
+  <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.1" stroke-linecap="round" opacity="0.9">
+      <path d="M40,18 C70,2 100,34 140,18 C180,2 210,34 240,18"/>
+      <path d="M40,18 C70,34 100,2 140,18 C180,34 210,2 240,18" opacity="0.5"/>
+      <circle cx="140" cy="18" r="6" fill="#d4a52e" stroke="none" opacity="0.9"/>
+      <circle cx="140" cy="18" r="2.4" fill="#1f5f5d" stroke="none"/>
+      <circle cx="60" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+      <circle cx="220" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+    </g>
+  </svg>
+  <span class="line"></span>
+</div>
+
+<!-- ══ THE CABINET OF CURIOSITIES — TWELVE DRAWERS ═════════════════════ -->
+<section class="cabinet-wrap">
+
+  <p class="cabinet-eyebrow">
+    <span data-lang="en">The Cabinet of Curiosities</span>
+    <span data-lang="fr">Le Cabinet de Curiosités</span>
+  </p>
+  <p class="cabinet-subtitle">
+    <span data-lang="en">Twelve drawers, each a chamber of play. Pull one open to see what is kept inside.</span>
+    <span data-lang="fr">Douze tiroirs, chacun une chambre de jeu. Tirez-en un pour voir ce qui s'y cache.</span>
+  </p>
+
+  <div class="cabinet">
+    <div class="cabinet-grid">
+
+      <!-- ═══ DRAWER I — QUICK SOCIAL & PARTY ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-1">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <rect x="4" y="4" width="22" height="22" rx="3"/>
+                <circle cx="10" cy="10" r="1.6" fill="#f0cc55"/>
+                <circle cx="20" cy="10" r="1.6" fill="#f0cc55"/>
+                <circle cx="15" cy="15" r="1.6" fill="#f0cc55"/>
+                <circle cx="10" cy="20" r="1.6" fill="#f0cc55"/>
+                <circle cx="20" cy="20" r="1.6" fill="#f0cc55"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— I —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Quick &amp; <em>Social</em></span>
+                <span data-lang="fr">Rapide &amp; <em>Social</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Drinks-in-hand. Twenty minutes.</span>
+            <span data-lang="fr">Verre en main. Vingt minutes.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-1">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/skull.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/anomia.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/high-society.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=quick-social">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER II — SOCIAL DEDUCTION ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-2">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <path d="M5,11 q0,-5 10,-5 q10,0 10,5 q0,8 -4,12 q-3,3 -6,3 q-3,0 -6,-3 q-4,-4 -4,-12 z"/>
+                <ellipse cx="11" cy="13" rx="2.4" ry="1.6" fill="#f0cc55"/>
+                <ellipse cx="19" cy="13" rx="2.4" ry="1.6" fill="#f0cc55"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— II —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Social <em>Deduction</em></span>
+                <span data-lang="fr">Déduction <em>Sociale</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Lies, votes, who is the spy.</span>
+            <span data-lang="fr">Mensonges, votes, qui est l'espion.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-2">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/avalon.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/secret-hitler.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/coup.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=social-deduction">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER III — COOPERATIVE ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-3">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <path d="M15,4 L25,8 L25,16 q0,7 -10,10 q-10,-3 -10,-10 L5,8 z"/>
+                <path d="M11,15 L14,18 L20,12" stroke-width="1.6"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— III —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">The <em>Cooperative</em></span>
+                <span data-lang="fr">La <em>Coopération</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">All hands. One enemy.</span>
+            <span data-lang="fr">Tous ensemble. Un seul ennemi.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-3">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/pandemic.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/sherlock-holmes.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/arkham-horror.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=cooperative">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER IV — FAMILY STRATEGY ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-4">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <rect x="6" y="9" width="14" height="10" rx="1"/>
+                <rect x="20" y="11" width="5" height="6"/>
+                <circle cx="10" cy="22" r="2.6"/>
+                <circle cx="20" cy="22" r="2.6"/>
+                <path d="M9,9 L9,5 L17,5 L17,9"/>
+                <path d="M22,7 L24,4" stroke-width="1.2"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— IV —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Family <em>Strategy</em></span>
+                <span data-lang="fr">Stratégie <em>Familiale</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Routes, trades, the long table.</span>
+            <span data-lang="fr">Routes, échanges, table longue.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-4">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/ticket-to-ride.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/catan.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/7-wonders-duel.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=family-strategy">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER V — EURO STRATEGY ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-5">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <circle cx="15" cy="15" r="6"/>
+                <circle cx="15" cy="15" r="2" fill="#f0cc55"/>
+                <g stroke-width="1.2">
+                  <path d="M15,3 L15,7"/>
+                  <path d="M15,23 L15,27"/>
+                  <path d="M3,15 L7,15"/>
+                  <path d="M23,15 L27,15"/>
+                  <path d="M6,6 L9,9"/>
+                  <path d="M21,21 L24,24"/>
+                  <path d="M24,6 L21,9"/>
+                  <path d="M9,21 L6,24"/>
+                </g>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— V —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Euro <em>Strategy</em></span>
+                <span data-lang="fr">Stratégie <em>Euro</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Engine. Tableau. Quiet brutality.</span>
+            <span data-lang="fr">Moteur. Tableau. Brutalité silencieuse.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-5">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/everdell.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/pax-pamir.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/john-company.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=euro-strategy">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER VI — HISTORICAL STRATEGY ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-6">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <path d="M5,26 L5,10 L9,12 L9,8 L13,10 L13,8 L17,10 L17,8 L21,10 L25,8 L25,26 z"/>
+                <path d="M5,26 L25,26" stroke-width="1.6"/>
+                <path d="M11,26 L11,18 L19,18 L19,26" />
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— VI —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Historical <em>Wars</em></span>
+                <span data-lang="fr">Guerres <em>Historiques</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Empires, betrayals, lost crowns.</span>
+            <span data-lang="fr">Empires, trahisons, couronnes perdues.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-6">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/diplomacy.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/game-of-thrones.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/risk.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="collection.html?cat=historical-strategy">
+                <span data-lang="en">Open the Drawer</span><span data-lang="fr">Ouvrir le Tiroir</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER VII — HERITAGE ABSTRACTS ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-7">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <!-- knight silhouette -->
+                <path d="M9,26 L21,26 L22,22 L20,20 q-1,-2 -3,-2 q-1,-3 1,-6 q1,-2 -1,-4 q-1,-2 -4,-2 q-2,2 -3,5 q-2,1 -3,4 l1,2 l3,-1 l1,3 l-2,3 z"/>
+                <circle cx="13" cy="11" r="0.8" fill="#f0cc55" stroke="none"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— VII —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Heritage <em>Abstracts</em></span>
+                <span data-lang="fr"><em>Abstraits</em> Antiques</span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Chess. Go. Draughts. Five thousand years.</span>
+            <span data-lang="fr">Échecs. Go. Dames. Cinq mille ans.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-7">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/heritage-chess.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-go.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-draughts.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="heritage.html#abstracts">
+                <span data-lang="en">Walk the Long Board</span><span data-lang="fr">Parcourir le Long Plateau</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER VIII — HERITAGE RACE & PURSUIT ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-8">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <!-- pawn -->
+                <circle cx="15" cy="9" r="3.5"/>
+                <path d="M11,14 L19,14 L18,18 L20,18 L20,22 L10,22 L10,18 L12,18 z"/>
+                <path d="M8,25 L22,25" stroke-width="1.6"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— VIII —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Race &amp; <em>Pursuit</em></span>
+                <span data-lang="fr">Course &amp; <em>Poursuite</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Backgammon, Senet, Pachisi.</span>
+            <span data-lang="fr">Backgammon, Sénet, Pachisi.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-8">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/heritage-backgammon.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-senet.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-pachisi.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="heritage.html#race">
+                <span data-lang="en">Roll the Astragali</span><span data-lang="fr">Lancer les Astragales</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER IX — HERITAGE ASYMMETRIC & HUNT ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-9">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <!-- hunting horn -->
+                <path d="M5,18 q0,-6 6,-9 q5,-2 10,-1 q3,1 4,4 q1,3 -1,5 q-2,2 -5,2 q-1,2 -3,3 q-3,1 -6,0 q-3,-1 -5,-4 z"/>
+                <path d="M21,12 L25,8" stroke-width="1.2"/>
+                <circle cx="9" cy="20" r="0.8" fill="#f0cc55" stroke="none"/>
+                <circle cx="14" cy="13" r="0.8" fill="#f0cc55" stroke="none"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— IX —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">The <em>Hunt</em></span>
+                <span data-lang="fr">La <em>Chasse</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Tafl, Royal Ur, Nine Men's Morris.</span>
+            <span data-lang="fr">Tafl, Jeu Royal d'Ur, Mérelles.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-9">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/heritage-tafl.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-ur.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-morris.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="heritage.html#asymmetric">
+                <span data-lang="en">Set the Trap</span><span data-lang="fr">Tendre le Piège</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER X — EDITIONS ATLAS ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-10">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <circle cx="15" cy="15" r="11"/>
+                <ellipse cx="15" cy="15" rx="5" ry="11"/>
+                <path d="M4,15 L26,15"/>
+                <path d="M5,9 q10,4 20,0"/>
+                <path d="M5,21 q10,-4 20,0"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— X —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Editions <em>Atlas</em></span>
+                <span data-lang="fr">Atlas des <em>Éditions</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Which version belongs here.</span>
+            <span data-lang="fr">Quelle édition mérite l'armoire.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-10">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/ticket-to-ride.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/catan-ck.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/diplomacy.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="editions.html">
+                <span data-lang="en">Unfold the Atlas</span><span data-lang="fr">Déplier l'Atlas</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER XI — SCOUTING LOG ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-11">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <!-- telescope -->
+                <path d="M3,22 L13,12 L19,18 L9,28 z" transform="translate(0,-3)"/>
+                <path d="M14,9 L20,15"/>
+                <circle cx="22" cy="7" r="2"/>
+                <path d="M24,5 L27,2" stroke-width="1.2"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— XI —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Scouting <em>Log</em></span>
+                <span data-lang="fr">Journal de <em>Reconnaissance</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">New releases. Rare finds. Trade routes.</span>
+            <span data-lang="fr">Nouveautés. Raretés. Routes du commerce.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-11">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/scout-oath.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/scout-root.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/scout-sleeping-gods.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="scouting.html">
+                <span data-lang="en">Raise the Periscope</span><span data-lang="fr">Lever le Périscope</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DRAWER XII — THE GAME MASTER'S DESK ═══ -->
+      <div class="drawer">
+        <button class="drawer-face" type="button" aria-expanded="false" aria-controls="drawer-12">
+          <span class="drawer-icon" aria-hidden="true">
+            <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="#f0cc55" stroke-width="1.4" stroke-linejoin="round">
+                <!-- open book + quill -->
+                <path d="M4,8 q5,-3 11,0 q6,-3 11,0 L26,22 q-5,-3 -11,0 q-6,-3 -11,0 z"/>
+                <path d="M15,8 L15,22" stroke-width="1.2"/>
+                <path d="M22,5 L26,1" stroke-width="1.4"/>
+              </g>
+            </svg>
+          </span>
+          <div class="drawer-numeral">— XII —</div>
+          <span class="drawer-cartouche">
+            <span class="drawer-cartouche-inner">
+              <span class="drawer-title">
+                <span data-lang="en">Game Master's <em>Desk</em></span>
+                <span data-lang="fr">Bureau du <em>Maître</em></span>
+              </span>
+            </span>
+          </span>
+          <span class="drawer-tagline">
+            <span data-lang="en">Long reads. Quick-starts. Case files.</span>
+            <span data-lang="fr">Longs essais. Démarrages. Dossiers.</span>
+          </span>
+          <span class="drawer-pull" aria-hidden="true"></span>
+        </button>
+        <div class="drawer-interior" id="drawer-12">
+          <div class="drawer-tray">
+            <div class="drawer-covers">
+              <div class="drawer-cover" style="background-image:url('covers/ticket-to-ride.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/pax-pamir.jpg');"></div>
+              <div class="drawer-cover" style="background-image:url('covers/heritage-draughts.jpg');"></div>
+            </div>
+            <div class="drawer-cta-row">
+              <a class="drawer-cta" href="Ticket_to_Ride_All_Versions_Review.html">
+                <span data-lang="en">Open the Ledger</span><span data-lang="fr">Ouvrir le Registre</span>
+                <svg viewBox="0 0 22 12" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 L18,6 M14,2 L18,6 L14,10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FILIGREE DIVIDER ════════════════════════════════════════════════ -->
+<div class="filigree-row" aria-hidden="true">
+  <span class="line"></span>
+  <svg viewBox="0 0 280 36" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#d4a52e" stroke-width="1.1" stroke-linecap="round" opacity="0.9">
+      <path d="M40,18 C70,2 100,34 140,18 C180,2 210,34 240,18"/>
+      <path d="M40,18 C70,34 100,2 140,18 C180,34 210,2 240,18" opacity="0.5"/>
+      <circle cx="140" cy="18" r="9" fill="none"/>
+      <path d="M140,9 L140,27 M131,18 L149,18" stroke-width="0.7"/>
+      <polygon points="140,11 142,18 140,25 138,18" fill="#d4a52e" stroke="none"/>
+      <circle cx="60" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+      <circle cx="220" cy="18" r="2" fill="#f6e08d" stroke="none"/>
+    </g>
+  </svg>
+  <span class="line"></span>
+</div>
+
+<!-- ══ THE PORTHOLES — FAMILY (kept from v6) ═══════════════════════════ -->
+<section class="porthole-section">
+  <p class="porthole-eyebrow">
+    <span data-lang="en">— The Crew of the Cabinet —</span>
+    <span data-lang="fr">— L'Équipage du Cabinet —</span>
+  </p>
+  <p class="porthole-title">
+    <span data-lang="en">One table. Five players. Infinite occasions for betrayal.</span>
+    <span data-lang="fr">Une table. Cinq joueurs. Des occasions infinies de trahison.</span>
+  </p>
+
+  <div class="portholes">
+    <div class="porthole">
+      <div class="porthole-disc">C</div>
+      <div class="porthole-name">Chris</div>
+      <div class="porthole-role">
+        <span data-lang="en">Collector · Diplomat · Architect of the evening</span>
+        <span data-lang="fr">Collectionneur · Diplomate · Architecte de la soirée</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">M</div>
+      <div class="porthole-name">Maud</div>
+      <div class="porthole-role">
+        <span data-lang="en">Gentle. Competitive. Do not underestimate.</span>
+        <span data-lang="fr">Douce. Compétitive. Ne pas sous-estimer.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">A</div>
+      <div class="porthole-name">Antonin</div>
+      <div class="porthole-role">
+        <span data-lang="en">Resource engine. Hates losing. Will not stop talking about it.</span>
+        <span data-lang="fr">Moteur à ressources. Déteste perdre. Ne cessera pas d'en parler.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">A</div>
+      <div class="porthole-name">Audrey</div>
+      <div class="porthole-role">
+        <span data-lang="en">The coup specialist. Always watching. Always smiling.</span>
+        <span data-lang="fr">La spécialiste du coup. Toujours à l'affût. Toujours souriante.</span>
+      </div>
+    </div>
+    <div class="porthole">
+      <div class="porthole-disc">+</div>
+      <div class="porthole-name">Partners</div>
+      <div class="porthole-role">
+        <span data-lang="en">One code-cracker. One gentle newcomer. Welcome aboard.</span>
+        <span data-lang="fr">Un décrypteur. Un néophyte bienvenu. Bienvenue à bord.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AUTHOR PLATE — Verne signature panel (kept from v6) ════════════ -->
+<div class="author-plate">
+  <p>
+    <span data-lang="en">"The best games are the ones that survive being passed down. The best collection is the one that grows with the people who play it."</span>
+    <span data-lang="fr">«&nbsp;Les meilleurs jeux sont ceux qui survivent à être transmis. La meilleure collection est celle qui grandit avec les gens qui y jouent.&nbsp;»</span>
+  </p>
+  <span class="signature">— Ludo —</span>
+</div>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* ── Drawer open / close — one open at a time ───────────────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+    var drawers = document.querySelectorAll('.drawer');
+    drawers.forEach(function (drawer) {
+      var face = drawer.querySelector('.drawer-face');
+      if (!face) return;
+      face.addEventListener('click', function (e) {
+        var isOpen = drawer.classList.contains('is-open');
+        // close all
+        drawers.forEach(function (d) {
+          d.classList.remove('is-open');
+          var f = d.querySelector('.drawer-face');
+          if (f) f.setAttribute('aria-expanded', 'false');
+        });
+        // toggle this one
+        if (!isOpen) {
+          drawer.classList.add('is-open');
+          face.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
+<script src="games-data.js"></script>
+<script src="ludo.js"></script>
+</body>
+</html>
