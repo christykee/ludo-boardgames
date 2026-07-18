@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Monopoly · Winning Strategy</title>
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    /* Page-local styling — Monopoly strategy guide */
+    .strat-lead {
+      font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.7;
+      color: var(--ivory); font-style: italic; max-width: 760px; margin: 0 auto 8px;
+      text-align: center;
+    }
+    .strat-section { max-width: 820px; margin: 0 auto; padding: 30px 0; border-bottom: 1px solid var(--brass-border-lo); }
+    .strat-section:last-of-type { border-bottom: none; }
+    .strat-h {
+      font-family: var(--font-display); font-size: 1.35rem; font-weight: 600;
+      letter-spacing: 0.05em; color: var(--brass-bright); margin-bottom: 6px;
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    .strat-num {
+      font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em;
+      color: var(--brass-deep); border: 1px solid var(--brass-border); border-radius: 50%;
+      width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .strat-p { font-family: var(--font-body); font-size: 1rem; line-height: 1.8; color: var(--ivory-mid); margin: 10px 0; }
+    .strat-p strong { color: var(--ivory-bright); }
+    .strat-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: var(--font-body); }
+    .strat-table th, .strat-table td { padding: 9px 12px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--brass-border-lo); color: var(--ivory-mid); }
+    .strat-table th { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean-teal); }
+    .strat-table tr.top td { color: var(--ivory-bright); }
+    .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; vertical-align: middle; border: 1px solid rgba(0,0,0,0.3); }
+    .callout-brass {
+      background: rgba(212,165,46,0.10); border: 1px solid var(--brass-border);
+      border-left: 4px solid var(--brass); padding: 16px 20px; margin: 18px 0;
+    }
+    .callout-brass .strat-p { color: var(--ivory); margin: 4px 0; }
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 8px; }
+    .cheat-card { background: rgba(13,53,53,0.55); border: 1px solid var(--brass-border-lo); padding: 14px 16px; }
+    .cheat-card .ct { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+    .cheat-card .cd { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.65; color: var(--ivory-mid); }
+    .back-link { display: inline-block; margin-top: 30px; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); }
+    .disclaimer { font-family: var(--font-body); font-size: 0.8rem; color: var(--ivory-dim); font-style: italic; max-width: 820px; margin: 24px auto 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html" class="active"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · Strategy Guide</span>
+      <span data-lang="fr">Cabinet Ludo · Guide Stratégique</span>
+    </p>
+    <h1 class="page-title display">Monopoly</h1>
+    <p class="page-subtitle">
+      <span data-lang="en">How to actually win the game everyone thinks is pure luck.</span>
+      <span data-lang="fr">Comment vraiment gagner au jeu que tout le monde croit livré au hasard.</span>
+    </p>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <p class="strat-lead">
+      <span data-lang="en">Monopoly rewards probability, cash-flow discipline, and ruthless trading far more than dice. Master six ideas and you will beat the family table almost every time.</span>
+      <span data-lang="fr">Monopoly récompense la probabilité, la gestion de trésorerie et la négociation impitoyable bien plus que les dés. Maîtrisez six idées et vous battrez la table familiale presque à chaque fois.</span>
+    </p>
+
+    <!-- 1 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">1</span>
+        <span data-lang="en">Buy aggressively in the opening</span>
+        <span data-lang="fr">Achetez agressivement en ouverture</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Property is the engine of the entire game, and idle cash earns nothing. In the early game, buy almost every unowned property you land on. Every square you leave unbought is one an opponent can take — and unowned property that goes to auction often sells below its printed price, so even bidding is usually worthwhile. You cannot win the game in the first lap, but you can lose it by hoarding money while others build board presence.</span>
+        <span data-lang="fr">La propriété est le moteur de toute la partie, et l'argent qui dort ne rapporte rien. En début de partie, achetez presque chaque propriété libre où vous tombez. Chaque case laissée libre est une case qu'un adversaire peut prendre — et une propriété mise aux enchères part souvent en dessous de son prix affiché, si bien qu'enchérir en vaut presque toujours la peine. On ne gagne pas la partie au premier tour, mais on peut la perdre en thésaurisant pendant que les autres occupent le plateau.</span>
+      </p>
+    </section>
+
+    <!-- 2 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">2</span>
+        <span data-lang="en">The game is won by trading, not by landing</span>
+        <span data-lang="fr">La partie se gagne par l'échange, pas par le hasard</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">You cannot build houses until you own a complete colour group, and you will almost never complete one by dice luck alone. Trades are where games are decided. Complete your own monopoly while never handing an opponent theirs — even a lopsided-looking trade is fine if it gives <strong>you</strong> a buildable group and gives them only a single property. When negotiating, factor in cash sweeteners, immunity deals ("no rent on this lap"), and future favours. The player who trades best almost always wins.</span>
+        <span data-lang="fr">Vous ne pouvez bâtir des maisons qu'en possédant un groupe de couleur complet, et vous ne le compléterez presque jamais par la seule chance des dés. C'est dans les échanges que tout se joue. Complétez votre propre monopole sans jamais offrir le sien à un adversaire — un échange qui paraît déséquilibré reste bon s'il <strong>vous</strong> donne un groupe constructible et ne leur laisse qu'une propriété isolée. En négociant, ajoutez des compléments en liquide, des accords d'immunité (« pas de loyer ce tour-ci ») et des faveurs futures. Le meilleur négociateur l'emporte presque toujours.</span>
+      </p>
+    </section>
+
+    <!-- 3 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">3</span>
+        <span data-lang="en">Target the orange and red groups</span>
+        <span data-lang="fr">Visez les groupes orange et rouge</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">This is the single biggest edge in the game, and it comes straight from probability. Jail is the most-landed-on square on the board — players are sent there constantly by the "Go to Jail" corner, by cards, and by rolling three doubles. When they leave, the most common two-dice totals (6, 7, 8) drop them squarely onto the <strong>orange</strong> group (St. James, Tennessee, New York). Illinois Avenue in the <strong>red</strong> group is the single most-landed-on property on the whole board. Both groups are cheap to develop relative to the rent they command.</span>
+        <span data-lang="fr">C'est le plus grand avantage du jeu, et il découle directement des probabilités. La Prison est la case la plus visitée du plateau — on y est envoyé sans cesse par le coin « Allez en prison », par les cartes et par trois doubles consécutifs. En sortant, les totaux de dés les plus fréquents (6, 7, 8) déposent le joueur en plein sur le groupe <strong>orange</strong> (St. James, Tennessee, New York). L'avenue Illinois, dans le groupe <strong>rouge</strong>, est la propriété la plus visitée de tout le plateau. Les deux groupes sont peu coûteux à développer au regard des loyers qu'ils rapportent.</span>
+      </p>
+      <table class="strat-table">
+        <thead>
+          <tr>
+            <th><span data-lang="en">Colour group</span><span data-lang="fr">Groupe de couleur</span></th>
+            <th><span data-lang="en">Verdict</span><span data-lang="fr">Verdict</span></th>
+            <th><span data-lang="en">Why</span><span data-lang="fr">Pourquoi</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="top">
+            <td><span class="swatch" style="background:#F7941D;"></span>Orange</td>
+            <td><span data-lang="en">Best</span><span data-lang="fr">Meilleur</span></td>
+            <td><span data-lang="en">Dice sweet-spot just past Jail; cheap houses; superb ROI.</span><span data-lang="fr">Zone idéale des dés après la Prison; maisons bon marché; rentabilité superbe.</span></td>
+          </tr>
+          <tr class="top">
+            <td><span class="swatch" style="background:#ED1B24;"></span>Red</td>
+            <td><span data-lang="en">Excellent</span><span data-lang="fr">Excellent</span></td>
+            <td><span data-lang="en">Illinois is the most-landed property; high traffic, fair cost.</span><span data-lang="fr">Illinois est la propriété la plus visitée; fort passage, coût raisonnable.</span></td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:#FEF200;"></span>Yellow</td>
+            <td><span data-lang="en">Good</span><span data-lang="fr">Bon</span></td>
+            <td><span data-lang="en">Solid traffic, a fine second monopoly to pair with orange/red.</span><span data-lang="fr">Bon passage, deuxième monopole idéal à associer à l'orange/rouge.</span></td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:#8B4513;"></span>Light blue</td>
+            <td><span data-lang="en">Good early</span><span data-lang="fr">Bon tôt</span></td>
+            <td><span data-lang="en">Cheap to complete and build; strong squeeze in the opening.</span><span data-lang="fr">Peu coûteux à compléter et bâtir; forte pression en ouverture.</span></td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:#0072BB;"></span>Dark blue</td>
+            <td><span data-lang="en">Overrated</span><span data-lang="fr">Surcoté</span></td>
+            <td><span data-lang="en">Only two squares, landed on less, very expensive to build.</span><span data-lang="fr">Seulement deux cases, moins visitées, très chères à bâtir.</span></td>
+          </tr>
+          <tr>
+            <td><span class="swatch" style="background:#1FB25A;"></span>Green</td>
+            <td><span data-lang="en">Weak ROI</span><span data-lang="fr">Rentabilité faible</span></td>
+            <td><span data-lang="en">Glamorous but the priciest to develop; slow payback.</span><span data-lang="fr">Prestigieux mais le plus cher à développer; retour lent.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">4</span>
+        <span data-lang="en">Build to three houses — fast</span>
+        <span data-lang="fr">Montez à trois maisons — vite</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Rent does not climb evenly. The jump from the second to the <strong>third</strong> house is the steepest increase in the whole rent table — it is the return-on-investment sweet spot. Get every property in your group to three houses before you even think about the fourth house or a hotel. Reaching three houses on the orange or red group as early as possible is the classic game-winning move.</span>
+        <span data-lang="fr">Le loyer ne monte pas de façon régulière. Le passage de la deuxième à la <strong>troisième</strong> maison est la plus forte hausse de toute la grille de loyers — c'est le point idéal de rentabilité. Amenez chaque propriété du groupe à trois maisons avant même de songer à la quatrième ou à un hôtel. Atteindre trois maisons sur l'orange ou le rouge le plus tôt possible est le coup gagnant classique.</span>
+      </p>
+    </section>
+
+    <!-- 5 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">5</span>
+        <span data-lang="en">Weaponise the housing shortage</span>
+        <span data-lang="fr">Faites de la pénurie de maisons une arme</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">There are only <strong>32 houses</strong> in the box — a hard limit most players never notice. If you hold your properties at three or four houses instead of upgrading to hotels, you keep those houses off the market and physically prevent opponents from building at all. This "no-hotel" tactic starves the board and is the move that separates skilled players from casual ones. When houses run out, players who need them are simply stuck.</span>
+        <span data-lang="fr">Il n'y a que <strong>32 maisons</strong> dans la boîte — une limite stricte que la plupart des joueurs ignorent. En maintenant vos propriétés à trois ou quatre maisons au lieu de passer aux hôtels, vous gardez ces maisons hors du marché et empêchez physiquement les adversaires de construire. Cette tactique « sans hôtel » assèche le plateau et distingue le joueur aguerri du joueur occasionnel. Quand les maisons manquent, ceux qui en ont besoin sont tout simplement bloqués.</span>
+      </p>
+    </section>
+
+    <!-- 6 -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">6</span>
+        <span data-lang="en">Manage cash — and love Jail late</span>
+        <span data-lang="fr">Gérez la trésorerie — et aimez la Prison sur la fin</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Keep a buffer of cash — roughly enough to survive one landing on a developed opponent property — so a single bad roll never bankrupts you. Timing on Jail flips through the game: <strong>early</strong>, you want out quickly so you can keep buying and building. <strong>Late</strong>, once the board is covered in houses and hotels, Jail becomes the safest square on the board — you sit still, risk no rent, and still collect from anyone who lands on your properties. Don't pay the $50 to leave when staying put is safer.</span>
+        <span data-lang="fr">Gardez une réserve de liquide — de quoi survivre à un passage sur une propriété adverse développée — pour qu'un seul mauvais lancer ne vous ruine jamais. Le rôle de la Prison s'inverse au fil de la partie : <strong>tôt</strong>, vous voulez en sortir vite pour continuer d'acheter et de bâtir. <strong>Tard</strong>, quand le plateau est couvert de maisons et d'hôtels, la Prison devient la case la plus sûre — vous restez immobile, ne risquez aucun loyer, et encaissez tout de même auprès de qui tombe sur vos propriétés. Ne payez pas les 50 $ pour sortir quand rester est plus sûr.</span>
+      </p>
+    </section>
+
+    <!-- Extra notes -->
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">+</span>
+        <span data-lang="en">A few sharp details</span>
+        <span data-lang="fr">Quelques détails pointus</span>
+      </h2>
+      <div class="callout-brass">
+        <p class="strat-p"><span data-lang="en"><strong>Railroads:</strong> a decent early-cash source (owning all four is genuinely strong), but you can't build on them, so they never win alone.</span><span data-lang="fr"><strong>Gares :</strong> bonne source de liquidités tôt (posséder les quatre est réellement fort), mais on n'y construit pas, elles ne gagnent donc jamais seules.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Utilities:</strong> weak. Buy them to trade away, not to keep.</span><span data-lang="fr"><strong>Compagnies :</strong> faibles. Achetez-les pour les échanger, pas pour les garder.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Mortgaging:</strong> late game, mortgage your undeveloped or low-traffic properties without hesitation to fund houses on your money-maker group.</span><span data-lang="fr"><strong>Hypothèques :</strong> en fin de partie, hypothéquez sans hésiter vos propriétés non développées ou peu passantes pour financer des maisons sur votre groupe rentable.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>The house-rule trap:</strong> the "Free Parking jackpot" is not official — it injects random cash and drags games out. Skip it for a sharper game.</span><span data-lang="fr"><strong>Le piège de la règle maison :</strong> le « jackpot du Parc Gratuit » n'est pas officiel — il injecte du liquide aléatoire et fait traîner les parties. À éviter pour un jeu plus tranchant.</span></p>
+      </div>
+    </section>
+
+    <!-- Cheat sheet -->
+    <section class="strat-section">
+      <h2 class="strat-h">
+        <span data-lang="en">Fast cheat sheet</span>
+        <span data-lang="fr">Aide-mémoire express</span>
+      </h2>
+      <div class="cheat-grid">
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Opening</span><span data-lang="fr">Ouverture</span></div>
+          <div class="cd"><span data-lang="en">Buy nearly everything. Bid at auctions. Don't hoard.</span><span data-lang="fr">Achetez presque tout. Enchérissez. Ne thésaurisez pas.</span></div>
+        </div>
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Priority sets</span><span data-lang="fr">Groupes prioritaires</span></div>
+          <div class="cd"><span data-lang="en">Orange &gt; Red &gt; Yellow / Light blue. Avoid over-paying for green.</span><span data-lang="fr">Orange &gt; Rouge &gt; Jaune / Bleu clair. Ne surpayez pas le vert.</span></div>
+        </div>
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Build to</span><span data-lang="fr">Construisez jusqu'à</span></div>
+          <div class="cd"><span data-lang="en">3 houses on every lot before hotels. Biggest rent jump.</span><span data-lang="fr">3 maisons par lot avant les hôtels. Plus gros bond de loyer.</span></div>
+        </div>
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Deny</span><span data-lang="fr">Privez</span></div>
+          <div class="cd"><span data-lang="en">Hold houses (32 total) to block rivals from building.</span><span data-lang="fr">Gardez les maisons (32 au total) pour bloquer les rivaux.</span></div>
+        </div>
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Cash</span><span data-lang="fr">Trésorerie</span></div>
+          <div class="cd"><span data-lang="en">Keep a survival buffer. Never over-leverage into a bad roll.</span><span data-lang="fr">Gardez une réserve de survie. Ne surexposez jamais.</span></div>
+        </div>
+        <div class="cheat-card">
+          <div class="ct"><span data-lang="en">Jail</span><span data-lang="fr">Prison</span></div>
+          <div class="cd"><span data-lang="en">Get out early; stay in late. Collect rent risk-free.</span><span data-lang="fr">Sortez tôt; restez tard. Encaissez sans risque.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      <span data-lang="en">These are strategy heuristics for the standard official rules (see the full Monopoly rulebook PDF in the collection). Probabilities assume the classic US board; dice are still dice — the edge shows over many games, not every one.</span>
+      <span data-lang="fr">Ce sont des heuristiques stratégiques pour les règles officielles standard (voir le PDF du règlement complet de Monopoly dans la collection). Les probabilités supposent le plateau américain classique; les dés restent les dés — l'avantage se voit sur de nombreuses parties, pas sur chacune.</span>
+    </p>
+
+    <a class="back-link" href="collection.html">
+      <span data-lang="en">← Back to the Collection</span>
+      <span data-lang="fr">← Retour à la Collection</span>
+    </a>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="ludo.js"></script>
+</body>
+</html>

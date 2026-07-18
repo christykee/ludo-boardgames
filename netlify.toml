@@ -48,3 +48,23 @@
   from = "/ticket-to-ride"
   to = "/Ticket_to_Ride_All_Versions_Review.html"
   status = 200
+
+[[redirects]]
+  from = "/monopoly-strategy"
+  to = "/monopoly-strategy.html"
+  status = 200
+
+[[redirects]]
+  from = "/catan-strategy"
+  to = "/catan-strategy.html"
+  status = 200
+
+[[redirects]]
+  from = "/risk-strategy"
+  to = "/risk-strategy.html"
+  status = 200
+
+[[redirects]]
+  from = "/diplomacy-strategy"
+  to = "/diplomacy-strategy.html"
+  status = 200

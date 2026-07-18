@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Diplomacy · Winning Strategy</title>
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    .strat-lead { font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.7; color: var(--ivory); font-style: italic; max-width: 760px; margin: 0 auto 8px; text-align: center; }
+    .strat-section { max-width: 820px; margin: 0 auto; padding: 30px 0; border-bottom: 1px solid var(--brass-border-lo); }
+    .strat-section:last-of-type { border-bottom: none; }
+    .strat-h { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.05em; color: var(--brass-bright); margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+    .strat-num { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--brass-deep); border: 1px solid var(--brass-border); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .strat-p { font-family: var(--font-body); font-size: 1rem; line-height: 1.8; color: var(--ivory-mid); margin: 10px 0; }
+    .strat-p strong { color: var(--ivory-bright); }
+    .strat-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: var(--font-body); }
+    .strat-table th, .strat-table td { padding: 9px 12px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--brass-border-lo); color: var(--ivory-mid); }
+    .strat-table th { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean-teal); }
+    .strat-table tr.top td { color: var(--ivory-bright); }
+    .callout-brass { background: rgba(212,165,46,0.10); border: 1px solid var(--brass-border); border-left: 4px solid var(--brass); padding: 16px 20px; margin: 18px 0; }
+    .callout-brass .strat-p { color: var(--ivory); margin: 4px 0; }
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 8px; }
+    .cheat-card { background: rgba(13,53,53,0.55); border: 1px solid var(--brass-border-lo); padding: 14px 16px; }
+    .cheat-card .ct { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+    .cheat-card .cd { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.65; color: var(--ivory-mid); }
+    .back-link { display: inline-block; margin-top: 30px; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); }
+    .disclaimer { font-family: var(--font-body); font-size: 0.8rem; color: var(--ivory-dim); font-style: italic; max-width: 820px; margin: 24px auto 0; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html" class="active"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · Strategy Guide</span>
+      <span data-lang="fr">Cabinet Ludo · Guide Stratégique</span>
+    </p>
+    <h1 class="page-title display">Diplomacy</h1>
+    <p class="page-subtitle">
+      <span data-lang="en">No dice. No luck. Only people — and the betrayal you time perfectly.</span>
+      <span data-lang="fr">Pas de dés. Pas de hasard. Seulement les gens — et la trahison que vous synchronisez à la perfection.</span>
+    </p>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <p class="strat-lead">
+      <span data-lang="en">Diplomacy is a negotiation game wearing a wargame's map. Every unit is equal; the board just executes the deals you make and break. Win through alliances, tempo, and one impeccably timed stab.</span>
+      <span data-lang="fr">Diplomacy est un jeu de négociation déguisé en jeu de guerre. Chaque unité est égale; le plateau ne fait qu'exécuter les accords que vous nouez et rompez. On gagne par les alliances, le tempo et une trahison parfaitement synchronisée.</span>
+    </p>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">1</span>
+        <span data-lang="en">Talk to everyone — the board is downstream of the conversation</span>
+        <span data-lang="fr">Parlez à tous — le plateau découle de la conversation</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">There is no luck to hide behind: results come entirely from negotiation and simultaneous orders. Use every minute of the talking phase, and speak with <strong>every</strong> power — including the ones you plan to move against, so they don't suspect it. Gather intentions, plant ideas, and never reveal your real orders to anyone who doesn't strictly need them. Silence toward a neighbour reads as hostility.</span>
+        <span data-lang="fr">Aucune chance derrière laquelle se cacher : tout vient de la négociation et des ordres simultanés. Exploitez chaque minute de la phase de discussion et parlez à <strong>chaque</strong> puissance — y compris celles que vous comptez attaquer, pour ne pas éveiller les soupçons. Recueillez les intentions, semez des idées, et ne révélez jamais vos vrais ordres à qui n'en a pas strictement besoin. Le silence envers un voisin passe pour de l'hostilité.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">2</span>
+        <span data-lang="en">Secure your home, then grab neutral centres</span>
+        <span data-lang="fr">Sécurisez votre foyer, puis prenez les centres neutres</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Victory is 18 of the 34 supply centres — a solo majority. In the first year, your only reliable growth comes from the unowned neutral centres near you, so plan your Spring and Fall openings to claim them without exposing your home. Every Fall you adjust your unit count to the centres you hold: more centres means more units, which is the whole engine. Falling behind on centres is falling behind on force.</span>
+        <span data-lang="fr">La victoire, c'est 18 des 34 centres de ravitaillement — une majorité en solo. La première année, votre seule croissance fiable vient des centres neutres proches; planifiez vos ouvertures de Printemps et d'Automne pour les prendre sans exposer votre foyer. Chaque Automne, vous ajustez vos unités aux centres détenus : plus de centres, plus d'unités — c'est tout le moteur. Prendre du retard en centres, c'est prendre du retard en puissance.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">3</span>
+        <span data-lang="en">Support orders win everything</span>
+        <span data-lang="fr">Les ordres de soutien gagnent tout</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">All units have equal strength, so a move only succeeds against a defended province if it is <strong>supported</strong> — two units beat one. This makes support the central currency of the game: most gains come from arranging for an ally's unit (or your own second unit) to support the attack. Convoys let fleets carry armies across seas for surprise landings. Learn to manufacture positions where an ally has no good option but to support you.</span>
+        <span data-lang="fr">Toutes les unités ont la même force; un mouvement ne réussit contre une province défendue que s'il est <strong>soutenu</strong> — deux unités battent une. Le soutien est donc la monnaie centrale du jeu : l'essentiel des gains vient d'organiser le soutien d'une unité alliée (ou de votre seconde unité) à l'attaque. Les convois permettent aux flottes de transporter des armées par mer pour des débarquements surprises. Apprenez à créer des situations où un allié n'a d'autre choix raisonnable que de vous soutenir.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">4</span>
+        <span data-lang="en">Find one reliable ally early</span>
+        <span data-lang="fr">Trouvez tôt un allié fiable</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Nobody wins alone from turn one. Pair with a neighbour whose growth direction points away from yours, so your interests don't collide immediately — then coordinate orders tightly, turn by turn, to carve up the powers between you. A working two-power alliance will roll over anyone playing solo. Keep a second, looser relationship warm as insurance in case your main ally turns.</span>
+        <span data-lang="fr">Personne ne gagne seul dès le premier tour. Associez-vous à un voisin dont l'axe de croissance s'éloigne du vôtre, pour que vos intérêts n'entrent pas tout de suite en collision — puis coordonnez étroitement vos ordres, tour après tour, pour vous partager les puissances. Une alliance à deux qui fonctionne écrase quiconque joue en solitaire. Gardez une seconde relation plus lâche au chaud, en assurance, si votre allié principal se retourne.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">5</span>
+        <span data-lang="en">The stab — timing is the whole art</span>
+        <span data-lang="fr">La trahison — tout l'art est dans le timing</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">You cannot reach 18 without eventually betraying your closest ally — the only question is when. Stab when the move actually captures centres you can <strong>hold</strong>, when you're positioned to survive the counter-attack, and ideally when your ally is committed elsewhere. A premature stab that nets one centre and a furious enemy is a losing move. When you do it, do it fully — a half-hearted betrayal leaves you with all of the enmity and none of the gain.</span>
+        <span data-lang="fr">Vous ne pouvez atteindre 18 sans finir par trahir votre plus proche allié — la seule question est quand. Trahissez quand le coup capture réellement des centres que vous pouvez <strong>garder</strong>, quand vous êtes en position de survivre à la contre-attaque, et idéalement quand votre allié est engagé ailleurs. Une trahison prématurée qui rapporte un centre et un ennemi furieux est un coup perdant. Et quand vous le faites, faites-le pleinement — une trahison timide vous laisse toute l'inimitié et aucun gain.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">6</span>
+        <span data-lang="en">Manage trust and the reputation you carry</span>
+        <span data-lang="fr">Gérez la confiance et la réputation</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Your word is your only weapon, so spend it carefully. Keep promises until the exact moment breaking one wins the game, and frame every betrayal as forced by circumstance rather than gleeful — the table remembers, and a reputation as a wild backstabber means nobody will ally with you next. Manage the metagame: talk rivals into fighting each other, and always give a coalition against you a reason to distrust its own members.</span>
+        <span data-lang="fr">Votre parole est votre seule arme; dépensez-la avec soin. Tenez vos promesses jusqu'à l'instant précis où en rompre une gagne la partie, et présentez chaque trahison comme dictée par les circonstances plutôt que jubilatoire — la table se souvient, et une réputation de traître impulsif fait que plus personne ne s'alliera à vous. Gérez le métajeu : poussez les rivaux à se combattre, et donnez toujours à une coalition dressée contre vous une raison de se méfier de ses propres membres.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">+</span>
+        <span data-lang="en">Sharp details</span>
+        <span data-lang="fr">Détails pointus</span>
+      </h2>
+      <div class="callout-brass">
+        <p class="strat-p"><span data-lang="en"><strong>Standoffs are a tool:</strong> ordering two equal moves into one province leaves it empty — use deliberate standoffs to deny a neighbour a centre without committing force.</span><span data-lang="fr"><strong>Les impasses sont un outil :</strong> deux mouvements égaux vers une même province la laissent vide — provoquez des impasses délibérées pour refuser un centre à un voisin sans engager de force.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Watch build/disband timing:</strong> a rival forced to disband on your border is more valuable than a centre grabbed far away.</span><span data-lang="fr"><strong>Surveillez les constructions/démantèlements :</strong> un rival forcé de démanteler à votre frontière vaut plus qu'un centre pris au loin.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Never write an order blind:</strong> game out how every neighbour could respond before committing your written orders.</span><span data-lang="fr"><strong>N'écrivez jamais un ordre à l'aveugle :</strong> anticipez chaque réponse possible des voisins avant de valider vos ordres écrits.</span></p>
+      </div>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h">
+        <span data-lang="en">Fast cheat sheet</span>
+        <span data-lang="fr">Aide-mémoire express</span>
+      </h2>
+      <div class="cheat-grid">
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Win line</span><span data-lang="fr">Objectif</span></div><div class="cd"><span data-lang="en">18 supply centres for a solo. Grow every Fall.</span><span data-lang="fr">18 centres pour le solo. Grandissez chaque Automne.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Talk</span><span data-lang="fr">Parlez</span></div><div class="cd"><span data-lang="en">To everyone, especially targets. Reveal nothing real.</span><span data-lang="fr">À tous, surtout aux cibles. Ne révélez rien de vrai.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Opening</span><span data-lang="fr">Ouverture</span></div><div class="cd"><span data-lang="en">Secure home, grab nearby neutrals, avoid two-front wars.</span><span data-lang="fr">Sécurisez le foyer, prenez les neutres, évitez deux fronts.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Tactics</span><span data-lang="fr">Tactique</span></div><div class="cd"><span data-lang="en">Support wins; 2 beats 1. Use convoys and standoffs.</span><span data-lang="fr">Le soutien gagne; 2 bat 1. Usez convois et impasses.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Ally</span><span data-lang="fr">Allié</span></div><div class="cd"><span data-lang="en">One firm ally growing away from you. Keep a backup warm.</span><span data-lang="fr">Un allié solide qui croît ailleurs. Gardez un plan B.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">The stab</span><span data-lang="fr">La trahison</span></div><div class="cd"><span data-lang="en">Late, decisive, holdable. Full commitment or not at all.</span><span data-lang="fr">Tard, décisive, tenable. Tout ou rien.</span></div></div>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      <span data-lang="en">Heuristics for standard 7-player Diplomacy (1901 Europe map). The Era of Empire and Golden Blade variants expand the map and adjust openings, but the negotiation, support, and stab principles carry over intact.</span>
+      <span data-lang="fr">Heuristiques pour le Diplomacy standard à 7 joueurs (carte Europe 1901). Les variantes Era of Empire et Golden Blade élargissent la carte et modifient les ouvertures, mais les principes de négociation, de soutien et de trahison restent intacts.</span>
+    </p>
+
+    <a class="back-link" href="collection.html">
+      <span data-lang="en">← Back to the Collection</span>
+      <span data-lang="fr">← Retour à la Collection</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="ludo.js"></script>
+</body>
+</html>

@@ -243,6 +243,28 @@ async function openGameModal(gameId) {
   modal.querySelector('.modal-description').innerHTML = `<p>${t(game, 'description')}</p>`;
   modal.querySelector('.quick-start-text').innerHTML = t(game, 'quickStart').replace(/\n/g, '<br>');
 
+  // Winning Strategy section
+  const strategyBlock = modal.querySelector('.modal-strategy-block');
+  const strategyText = modal.querySelector('.strategy-text');
+  const strategyLink = modal.querySelector('.strategy-deep-link');
+  const strat = t(game, 'winningStrategy');
+  if (strategyBlock) {
+    if (strat) {
+      strategyBlock.style.display = 'block';
+      if (strategyText) strategyText.innerHTML = strat.replace(/\n/g, '<br>');
+      if (strategyLink) {
+        if (game.strategyPage) {
+          strategyLink.href = game.strategyPage;
+          strategyLink.style.display = 'inline-block';
+        } else {
+          strategyLink.style.display = 'none';
+        }
+      }
+    } else {
+      strategyBlock.style.display = 'none';
+    }
+  }
+
   const artisanBlock = modal.querySelector('.modal-artisan-note');
   if (game.artisan && game.artisanNote) {
     artisanBlock.style.display = 'flex';

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Risk · Winning Strategy</title>
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    .strat-lead { font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.7; color: var(--ivory); font-style: italic; max-width: 760px; margin: 0 auto 8px; text-align: center; }
+    .strat-section { max-width: 820px; margin: 0 auto; padding: 30px 0; border-bottom: 1px solid var(--brass-border-lo); }
+    .strat-section:last-of-type { border-bottom: none; }
+    .strat-h { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.05em; color: var(--brass-bright); margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+    .strat-num { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--brass-deep); border: 1px solid var(--brass-border); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .strat-p { font-family: var(--font-body); font-size: 1rem; line-height: 1.8; color: var(--ivory-mid); margin: 10px 0; }
+    .strat-p strong { color: var(--ivory-bright); }
+    .strat-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: var(--font-body); }
+    .strat-table th, .strat-table td { padding: 9px 12px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--brass-border-lo); color: var(--ivory-mid); }
+    .strat-table th { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean-teal); }
+    .strat-table tr.top td { color: var(--ivory-bright); }
+    .callout-brass { background: rgba(212,165,46,0.10); border: 1px solid var(--brass-border); border-left: 4px solid var(--brass); padding: 16px 20px; margin: 18px 0; }
+    .callout-brass .strat-p { color: var(--ivory); margin: 4px 0; }
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 8px; }
+    .cheat-card { background: rgba(13,53,53,0.55); border: 1px solid var(--brass-border-lo); padding: 14px 16px; }
+    .cheat-card .ct { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+    .cheat-card .cd { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.65; color: var(--ivory-mid); }
+    .back-link { display: inline-block; margin-top: 30px; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); }
+    .disclaimer { font-family: var(--font-body); font-size: 0.8rem; color: var(--ivory-dim); font-style: italic; max-width: 820px; margin: 24px auto 0; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html" class="active"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · Strategy Guide</span>
+      <span data-lang="fr">Cabinet Ludo · Guide Stratégique</span>
+    </p>
+    <h1 class="page-title display">Risk</h1>
+    <p class="page-subtitle">
+      <span data-lang="en">Dice decide battles; patience, borders, and diplomacy decide the war.</span>
+      <span data-lang="fr">Les dés décident des batailles; la patience, les frontières et la diplomatie décident de la guerre.</span>
+    </p>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <p class="strat-lead">
+      <span data-lang="en">Risk looks like a dice game but is really about defensible territory, card economy, and never being the obvious leader too soon. Win the map, not every roll.</span>
+      <span data-lang="fr">Risk ressemble à un jeu de dés mais tient surtout au territoire défendable, à l'économie des cartes et à l'art de ne pas être le meneur évident trop tôt. Gagnez la carte, pas chaque lancer.</span>
+    </p>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">1</span>
+        <span data-lang="en">Hold a small, defensible continent</span>
+        <span data-lang="fr">Tenez un continent petit et défendable</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Continent bonuses are the only steady source of extra armies, so securing one early is the foundation of every winning game. The best are the ones with the fewest borders to defend. <strong>Australia</strong> is the classic: a +2 bonus behind a single choke point. <strong>South America</strong> (+2, two borders) is the next best. Avoid Asia early — its huge bonus is worthless when it has seven borders to hold.</span>
+        <span data-lang="fr">Les bonus de continent sont la seule source régulière d'armées supplémentaires; en sécuriser un tôt est le socle de toute partie gagnante. Les meilleurs ont le moins de frontières à défendre. <strong>L'Australie</strong> est le classique : un bonus de +2 derrière un unique goulet. <strong>L'Amérique du Sud</strong> (+2, deux frontières) vient ensuite. Évitez l'Asie tôt — son énorme bonus ne vaut rien avec sept frontières à tenir.</span>
+      </p>
+      <table class="strat-table">
+        <thead><tr>
+          <th><span data-lang="en">Continent</span><span data-lang="fr">Continent</span></th>
+          <th><span data-lang="en">Bonus</span><span data-lang="fr">Bonus</span></th>
+          <th><span data-lang="en">Borders</span><span data-lang="fr">Frontières</span></th>
+          <th><span data-lang="en">Verdict</span><span data-lang="fr">Verdict</span></th>
+        </tr></thead>
+        <tbody>
+          <tr class="top"><td>Australia</td><td>+2</td><td>1</td><td><span data-lang="en">Best — easiest to hold</span><span data-lang="fr">Meilleur — le plus facile</span></td></tr>
+          <tr class="top"><td><span data-lang="en">South America</span><span data-lang="fr">Amérique du Sud</span></td><td>+2</td><td>2</td><td><span data-lang="en">Excellent early base</span><span data-lang="fr">Excellente base initiale</span></td></tr>
+          <tr><td><span data-lang="en">Africa</span><span data-lang="fr">Afrique</span></td><td>+3</td><td>3</td><td><span data-lang="en">Good, more exposed</span><span data-lang="fr">Bon, plus exposé</span></td></tr>
+          <tr><td><span data-lang="en">N. America</span><span data-lang="fr">Amérique du Nord</span></td><td>+5</td><td>3</td><td><span data-lang="en">Strong but contested</span><span data-lang="fr">Fort mais disputé</span></td></tr>
+          <tr><td><span data-lang="en">Europe</span><span data-lang="fr">Europe</span></td><td>+5</td><td>4</td><td><span data-lang="en">Hard to defend</span><span data-lang="fr">Difficile à défendre</span></td></tr>
+          <tr><td><span data-lang="en">Asia</span><span data-lang="fr">Asie</span></td><td>+7</td><td>7 (approx.)</td><td><span data-lang="en">Avoid early</span><span data-lang="fr">À éviter tôt</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">2</span>
+        <span data-lang="en">Play the card economy</span>
+        <span data-lang="fr">Jouez l'économie des cartes</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">You earn one card per turn in which you conquer at least one territory, and turning in sets gives escalating armies — the sets only get bigger, so a well-timed cash-in can double your forces. Always take at least one territory each turn to earn a card. Eliminating a player hands you their entire hand, which can trigger a massive turn-in — but don't over-extend chasing a kill and leave yourself weak everywhere.</span>
+        <span data-lang="fr">Vous gagnez une carte par tour où vous conquérez au moins un territoire, et l'échange de séries donne des armées croissantes — les séries ne font que grossir, un échange bien placé peut doubler vos forces. Prenez toujours au moins un territoire par tour pour gagner une carte. Éliminer un joueur vous donne toute sa main, ce qui peut déclencher un échange massif — mais ne vous surexposez pas pour une mise à mort au point d'être faible partout.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">3</span>
+        <span data-lang="en">Respect the attack math</span>
+        <span data-lang="fr">Respectez les probabilités de combat</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">The attacker rolls up to three dice, the defender up to two, and <strong>the defender wins ties</strong>. That built-in edge means you should only press an attack with a clear numerical advantage — a rough rule is roughly 3-to-2 or better, and ideally a 2:1 army ratio for a deep push. Never grind down to equal stacks. Fortify your continent borders to the teeth and leave interior territories thin.</span>
+        <span data-lang="fr">L'attaquant lance jusqu'à trois dés, le défenseur jusqu'à deux, et <strong>le défenseur gagne les égalités</strong>. Cet avantage intégré impose de n'attaquer qu'avec un net avantage numérique — règle grossière : environ 3 contre 2 ou mieux, idéalement un rapport de 2:1 pour une percée profonde. N'usez jamais vos forces jusqu'à égalité. Fortifiez à outrance les frontières de votre continent et laissez l'intérieur dégarni.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">4</span>
+        <span data-lang="en">Don't be the leader — until you can win</span>
+        <span data-lang="fr">Ne soyez pas le meneur — jusqu'à pouvoir gagner</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Risk is a table of temporary alliances. The player who looks strongest gets ganged up on, so keep a low profile while quietly banking cards and armies. Broker verbal non-aggression pacts, point rivals at each other, and let two neighbours bleed themselves thin before you move. The winner is usually whoever times their expansion to arrive after everyone else is exhausted.</span>
+        <span data-lang="fr">Risk est une table d'alliances temporaires. Le joueur qui paraît le plus fort se fait liguer contre; restez discret tout en accumulant cartes et armées. Négociez des pactes de non-agression verbaux, dressez les rivaux les uns contre les autres, et laissez deux voisins s'épuiser avant d'agir. Gagne souvent celui qui synchronise son expansion pour arriver quand tous les autres sont exsangues.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">5</span>
+        <span data-lang="en">The endgame blitz</span>
+        <span data-lang="fr">Le blitz de fin de partie</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Wars are won in one explosive turn, not slowly. Stockpile armies on a border, hold a big card set in reserve, then cash in and strike along a single connected path — reinforcements can only move through territory you own. Plan the whole sweep before you roll: take the continent bonus that snowballs into next turn, and count whether you can eliminate a rival to seize their cards for a second wave.</span>
+        <span data-lang="fr">Les guerres se gagnent en un tour explosif, pas lentement. Massez des armées sur une frontière, gardez une grosse série de cartes en réserve, puis échangez-la et frappez le long d'un unique chemin connecté — les renforts ne circulent que par vos territoires. Planifiez toute l'offensive avant de lancer : prenez le bonus de continent qui fera boule de neige, et calculez si vous pouvez éliminer un rival pour saisir ses cartes et lancer une seconde vague.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">+</span>
+        <span data-lang="en">Sharp details</span>
+        <span data-lang="fr">Détails pointus</span>
+      </h2>
+      <div class="callout-brass">
+        <p class="strat-p"><span data-lang="en"><strong>Interior territories:</strong> keep them at one army. Every extra army inside your continent is an army not defending a border.</span><span data-lang="fr"><strong>Territoires intérieurs :</strong> laissez-les à une armée. Chaque armée en trop à l'intérieur est une armée qui ne défend pas une frontière.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Deny the last card:</strong> if a rival is about to earn a card, sometimes it's worth taking no territory yourself to keep the deck tight.</span><span data-lang="fr"><strong>Refusez la dernière carte :</strong> si un rival est sur le point d'obtenir une carte, il vaut parfois mieux ne conquérir aucun territoire pour garder le paquet serré.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Break a wall from two sides:</strong> attacking a fortified border from two territories at once splits the defender's stack.</span><span data-lang="fr"><strong>Brisez un mur des deux côtés :</strong> attaquer une frontière fortifiée depuis deux territoires à la fois divise la pile du défenseur.</span></p>
+      </div>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h">
+        <span data-lang="en">Fast cheat sheet</span>
+        <span data-lang="fr">Aide-mémoire express</span>
+      </h2>
+      <div class="cheat-grid">
+        <div class="cheat-card"><div class="ct"><span data-lang="en">First goal</span><span data-lang="fr">Premier but</span></div><div class="cd"><span data-lang="en">Lock Australia or South America for a safe bonus.</span><span data-lang="fr">Verrouillez l'Australie ou l'Amérique du Sud.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Every turn</span><span data-lang="fr">Chaque tour</span></div><div class="cd"><span data-lang="en">Take ≥1 territory for a card. Fortify borders.</span><span data-lang="fr">Prenez ≥1 territoire pour une carte. Fortifiez.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Attack when</span><span data-lang="fr">Attaquez si</span></div><div class="cd"><span data-lang="en">You have a clear edge (aim 2:1). Defender wins ties.</span><span data-lang="fr">Avantage net (visez 2:1). Le défenseur gagne l'égalité.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Profile</span><span data-lang="fr">Profil</span></div><div class="cd"><span data-lang="en">Stay quiet. Let neighbours fight. Broker pacts.</span><span data-lang="fr">Restez discret. Laissez les voisins se battre.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Cards</span><span data-lang="fr">Cartes</span></div><div class="cd"><span data-lang="en">Time your set turn-in; sets escalate. Kills grab hands.</span><span data-lang="fr">Chronométrez l'échange; les séries montent. Tuez pour rafler les mains.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Endgame</span><span data-lang="fr">Fin de partie</span></div><div class="cd"><span data-lang="en">Mass, cash in, blitz one connected path.</span><span data-lang="fr">Massez, échangez, blitz sur un chemin connecté.</span></div></div>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      <span data-lang="en">Heuristics for standard Risk (world-domination win condition). Continent bonuses and border counts follow the classic map; mission/objective variants shift priorities. Dice remain dice — the edge shows across games.</span>
+      <span data-lang="fr">Heuristiques pour le Risk standard (victoire par domination mondiale). Bonus de continent et frontières suivent la carte classique; les variantes à missions modifient les priorités. Les dés restent les dés — l'avantage se voit sur la durée.</span>
+    </p>
+
+    <a class="back-link" href="collection.html">
+      <span data-lang="en">← Back to the Collection</span>
+      <span data-lang="fr">← Retour à la Collection</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="ludo.js"></script>
+</body>
+</html>

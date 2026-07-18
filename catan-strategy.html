@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Ludo — Catan · Winning Strategy</title>
+  <link rel="stylesheet" href="css/ludo.css">
+  <style>
+    .strat-lead { font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.7; color: var(--ivory); font-style: italic; max-width: 760px; margin: 0 auto 8px; text-align: center; }
+    .strat-section { max-width: 820px; margin: 0 auto; padding: 30px 0; border-bottom: 1px solid var(--brass-border-lo); }
+    .strat-section:last-of-type { border-bottom: none; }
+    .strat-h { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.05em; color: var(--brass-bright); margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; }
+    .strat-num { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--brass-deep); border: 1px solid var(--brass-border); border-radius: 50%; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .strat-p { font-family: var(--font-body); font-size: 1rem; line-height: 1.8; color: var(--ivory-mid); margin: 10px 0; }
+    .strat-p strong { color: var(--ivory-bright); }
+    .strat-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: var(--font-body); }
+    .strat-table th, .strat-table td { padding: 9px 12px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid var(--brass-border-lo); color: var(--ivory-mid); }
+    .strat-table th { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean-teal); }
+    .strat-table tr.top td { color: var(--ivory-bright); }
+    .callout-brass { background: rgba(212,165,46,0.10); border: 1px solid var(--brass-border); border-left: 4px solid var(--brass); padding: 16px 20px; margin: 18px 0; }
+    .callout-brass .strat-p { color: var(--ivory); margin: 4px 0; }
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 8px; }
+    .cheat-card { background: rgba(13,53,53,0.55); border: 1px solid var(--brass-border-lo); padding: 14px 16px; }
+    .cheat-card .ct { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass); margin-bottom: 6px; }
+    .cheat-card .cd { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.65; color: var(--ivory-mid); }
+    .back-link { display: inline-block; margin-top: 30px; font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass); }
+    .disclaimer { font-family: var(--font-body); font-size: 0.8rem; color: var(--ivory-dim); font-style: italic; max-width: 820px; margin: 24px auto 0; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">✦ <span>CABINET LUDO</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span></a></li>
+      <li><a href="collection.html" class="active"><span data-lang="en">Collection</span><span data-lang="fr">Collection</span></a></li>
+      <li><a href="heritage.html"><span data-lang="en">Heritage</span><span data-lang="fr">Patrimoine</span></a></li>
+      <li><a href="editions.html"><span data-lang="en">Editions Atlas</span><span data-lang="fr">Atlas des Éditions</span></a></li>
+      <li><a href="scouting.html"><span data-lang="en">Scouting</span><span data-lang="fr">Reconnaissance</span></a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <p class="eyebrow">
+      <span data-lang="en">Cabinet Ludo · Strategy Guide</span>
+      <span data-lang="fr">Cabinet Ludo · Guide Stratégique</span>
+    </p>
+    <h1 class="page-title display">Catan</h1>
+    <p class="page-subtitle">
+      <span data-lang="en">The game is mostly won or lost in the first ninety seconds — placement.</span>
+      <span data-lang="fr">La partie se gagne ou se perd surtout dans les premières quatre-vingt-dix secondes : le placement.</span>
+    </p>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <p class="strat-lead">
+      <span data-lang="en">Catan rewards good production math, resource diversity, and table politics. Nail your opening settlements, build toward cities and development cards, and never trade the leader into a win.</span>
+      <span data-lang="fr">Catan récompense le bon calcul de production, la diversité des ressources et la politique de table. Réussissez vos colonies d'ouverture, visez villes et cartes développement, et n'offrez jamais la victoire au meneur par un échange.</span>
+    </p>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">1</span>
+        <span data-lang="en">Placement is 70% of the game — count the pips</span>
+        <span data-lang="fr">Le placement, c'est 70% de la partie — comptez les pastilles</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Each number token carries dots (pips) showing how often it rolls: <strong>6 and 8 have five pips, 5 and 9 have four, 2 and 12 have one</strong>. Add the pips of the three hexes around each settlement spot and place where the total is highest. Your two opening settlements should together touch all five resources if possible, and prioritise the high-pip numbers. A spot on 6-8-and-a-5 is worth more than a "pretty" spot on a single desirable resource.</span>
+        <span data-lang="fr">Chaque jeton numéro porte des points (pastilles) indiquant sa fréquence : <strong>le 6 et le 8 en ont cinq, le 5 et le 9 quatre, le 2 et le 12 un seul</strong>. Additionnez les pastilles des trois hexagones autour de chaque emplacement et placez-vous là où le total est le plus élevé. Vos deux colonies de départ devraient, ensemble, toucher les cinq ressources si possible, en privilégiant les gros numéros. Un emplacement sur 6-8-et-un-5 vaut mieux qu'un « joli » emplacement sur une seule ressource convoitée.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">2</span>
+        <span data-lang="en">Know what each resource is for</span>
+        <span data-lang="fr">Sachez à quoi sert chaque ressource</span>
+      </h2>
+      <table class="strat-table">
+        <thead>
+          <tr>
+            <th><span data-lang="en">Resource</span><span data-lang="fr">Ressource</span></th>
+            <th><span data-lang="en">Fuels</span><span data-lang="fr">Sert à</span></th>
+            <th><span data-lang="en">Phase</span><span data-lang="fr">Phase</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="top"><td><span data-lang="en">Grain / Wheat</span><span data-lang="fr">Blé</span></td><td><span data-lang="en">Cities, settlements, dev cards — the most valuable resource.</span><span data-lang="fr">Villes, colonies, cartes dév — la ressource la plus précieuse.</span></td><td><span data-lang="en">All game</span><span data-lang="fr">Toute la partie</span></td></tr>
+          <tr class="top"><td><span data-lang="en">Ore</span><span data-lang="fr">Minerai</span></td><td><span data-lang="en">Cities and dev cards — the engine of the mid-late game.</span><span data-lang="fr">Villes et cartes dév — le moteur de la mi/fin de partie.</span></td><td><span data-lang="en">Mid–late</span><span data-lang="fr">Mi–fin</span></td></tr>
+          <tr><td><span data-lang="en">Brick</span><span data-lang="fr">Brique</span></td><td><span data-lang="en">Roads and settlements — expansion.</span><span data-lang="fr">Routes et colonies — expansion.</span></td><td><span data-lang="en">Early</span><span data-lang="fr">Tôt</span></td></tr>
+          <tr><td><span data-lang="en">Wood / Lumber</span><span data-lang="fr">Bois</span></td><td><span data-lang="en">Roads and settlements — expansion.</span><span data-lang="fr">Routes et colonies — expansion.</span></td><td><span data-lang="en">Early</span><span data-lang="fr">Tôt</span></td></tr>
+          <tr><td><span data-lang="en">Sheep / Wool</span><span data-lang="fr">Laine</span></td><td><span data-lang="en">Settlements and dev cards; easy to over-supply.</span><span data-lang="fr">Colonies et cartes dév; facile d'en avoir trop.</span></td><td><span data-lang="en">All game</span><span data-lang="fr">Toute la partie</span></td></tr>
+        </tbody>
+      </table>
+      <p class="strat-p">
+        <span data-lang="en">Brick and wood win the opening race for roads and settlements; ore and wheat win the second half by upgrading to cities (double production) and buying development cards. A common winning shape is an "ore-wheat" engine that pumps out cities and dev cards.</span>
+        <span data-lang="fr">Brique et bois gagnent la course initiale aux routes et colonies; minerai et blé gagnent la seconde moitié en passant aux villes (production doublée) et en achetant des cartes développement. Une forme gagnante classique est un moteur « minerai-blé » qui enchaîne villes et cartes dév.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">3</span>
+        <span data-lang="en">Manage the 7 and the robber</span>
+        <span data-lang="fr">Gérez le 7 et le voleur</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">A roll of 7 is the most common result — and it forces anyone holding more than seven cards to discard half. Don't sit on a fat hand; spend down to seven or fewer before your opponents roll. When you move the robber, place it on the leader's best number (their 6 or 8) and steal from whoever is strongest, not whoever is nearest. Cities left exposed to the robber bleed you dry.</span>
+        <span data-lang="fr">Le 7 est le résultat le plus fréquent — et il force quiconque détient plus de sept cartes à en défausser la moitié. Ne restez pas sur une grosse main; dépensez jusqu'à sept cartes ou moins avant les lancers adverses. En déplaçant le voleur, posez-le sur le meilleur numéro du meneur (son 6 ou 8) et volez au plus fort, pas au plus proche. Une ville exposée au voleur vous saigne.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">4</span>
+        <span data-lang="en">Cities before sprawl; chase the two bonus VPs</span>
+        <span data-lang="fr">Les villes avant l'étalement; visez les deux PV bonus</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Upgrading a settlement to a city doubles its production for one ore and two grain — usually a better return than sprawling into weak new spots. Then contest the two big swing awards: <strong>Longest Road</strong> (2 VP) and <strong>Largest Army</strong> (2 VP, from playing three or more Knight cards). Development cards also hide victory-point cards, so the ore-wheat player often wins quietly by buying a stack near the end.</span>
+        <span data-lang="fr">Transformer une colonie en ville double sa production pour un minerai et deux blés — souvent plus rentable que de s'étaler vers de faibles emplacements. Disputez ensuite les deux récompenses décisives : <strong>Route la plus longue</strong> (2 PV) et <strong>Armée la plus grande</strong> (2 PV, en jouant trois cartes Chevalier ou plus). Les cartes développement cachent aussi des points de victoire; le joueur minerai-blé gagne souvent discrètement en achetant une pile vers la fin.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">5</span>
+        <span data-lang="en">Trade politics — never feed the leader</span>
+        <span data-lang="fr">La politique d'échange — ne nourrissez jamais le meneur</span>
+      </h2>
+      <p class="strat-p">
+        <span data-lang="en">Trade only when the deal helps you more than the other player, and when it lets you build <strong>this turn</strong>. Watch the scoreboard: once someone reaches 7–8 points, stop trading with them entirely and encourage others to do the same — a soft embargo can freeze a runaway leader. Offer generous trades to whoever is behind if it helps them slow the leader down.</span>
+        <span data-lang="fr">N'échangez que lorsque l'accord vous aide plus que l'autre, et qu'il vous permet de construire <strong>ce tour-ci</strong>. Surveillez le score : dès qu'un joueur atteint 7–8 points, cessez tout échange avec lui et incitez les autres à faire de même — un embargo tacite peut geler un meneur en fuite. Proposez des échanges généreux à celui qui est distancé s'il aide à ralentir le meneur.</span>
+      </p>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h"><span class="strat-num">+</span>
+        <span data-lang="en">Sharp details</span>
+        <span data-lang="fr">Détails pointus</span>
+      </h2>
+      <div class="callout-brass">
+        <p class="strat-p"><span data-lang="en"><strong>Ports:</strong> a 2:1 port is only worth building for if you reliably over-produce that resource; a 3:1 port helps a lopsided economy.</span><span data-lang="fr"><strong>Ports :</strong> un port 2:1 ne vaut la peine que si vous surproduisez cette ressource; un port 3:1 aide une économie déséquilibrée.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Don't announce your plan:</strong> buy dev cards quietly — a hidden Victory Point or a Knight for Largest Army can end the game before rivals react.</span><span data-lang="fr"><strong>Ne dévoilez pas votre plan :</strong> achetez les cartes dév discrètement — un Point de Victoire caché ou un Chevalier pour l'Armée la plus grande peut finir la partie avant toute réaction.</span></p>
+        <p class="strat-p"><span data-lang="en"><strong>Block, don't just build:</strong> a single road or settlement placed to cut an opponent's expansion is often worth more than your own growth.</span><span data-lang="fr"><strong>Bloquez, ne faites pas que bâtir :</strong> une route ou colonie placée pour couper l'expansion adverse vaut souvent plus que votre propre croissance.</span></p>
+      </div>
+    </section>
+
+    <section class="strat-section">
+      <h2 class="strat-h">
+        <span data-lang="en">Fast cheat sheet</span>
+        <span data-lang="fr">Aide-mémoire express</span>
+      </h2>
+      <div class="cheat-grid">
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Placement</span><span data-lang="fr">Placement</span></div><div class="cd"><span data-lang="en">Max pips (6,8,5,9); all 5 resources; a good 3rd spot.</span><span data-lang="fr">Max pastilles (6,8,5,9); les 5 ressources; un bon 3e spot.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Early</span><span data-lang="fr">Tôt</span></div><div class="cd"><span data-lang="en">Brick + wood to expand fast and claim spots.</span><span data-lang="fr">Brique + bois pour s'étendre vite et prendre les spots.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Mid–late</span><span data-lang="fr">Mi–fin</span></div><div class="cd"><span data-lang="en">Ore + wheat → cities and dev cards. That's the engine.</span><span data-lang="fr">Minerai + blé → villes et cartes dév. C'est le moteur.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">The 7</span><span data-lang="fr">Le 7</span></div><div class="cd"><span data-lang="en">Keep ≤7 cards. Rob the leader's best number.</span><span data-lang="fr">Gardez ≤7 cartes. Volez le meilleur numéro du meneur.</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Bonus VP</span><span data-lang="fr">PV bonus</span></div><div class="cd"><span data-lang="en">Contest Longest Road & Largest Army (2 VP each).</span><span data-lang="fr">Disputez Route la plus longue & Armée (2 PV chacun).</span></div></div>
+        <div class="cheat-card"><div class="ct"><span data-lang="en">Politics</span><span data-lang="fr">Politique</span></div><div class="cd"><span data-lang="en">Never trade the leader into a win. Embargo at 8 VP.</span><span data-lang="fr">N'offrez jamais la victoire par échange. Embargo à 8 PV.</span></div></div>
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      <span data-lang="en">Strategy heuristics for the base game (3–4 players). Cities & Knights and Seafarers shift priorities — see their own quick-start notes in the collection.</span>
+      <span data-lang="fr">Heuristiques pour le jeu de base (3–4 joueurs). Villes & Chevaliers et Navigateurs modifient les priorités — voir leurs notes de démarrage dans la collection.</span>
+    </p>
+
+    <a class="back-link" href="collection.html">
+      <span data-lang="en">← Back to the Collection</span>
+      <span data-lang="fr">← Retour à la Collection</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">✦ CABINET LUDO ✦</div>
+    <p class="footer-text">
+      <span data-lang="en">Your personal game master, scout, and archivist. Always at the table.</span>
+      <span data-lang="fr">Votre maître du jeu personnel, éclaireur et archiviste. Toujours à la table.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="ludo.js"></script>
+</body>
+</html>

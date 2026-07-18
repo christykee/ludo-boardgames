@@ -58,6 +58,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'skull', name: 'Skull', subtitle: null,
+    winningStrategy: 'Bidding is a weapon, not just a claim — sometimes bid low deliberately to force a rival into an over-bid they cannot make. Track who has already lost discs; a player down to one disc is desperate and readable. Your safest first flip is always your own stack, so watch how confidently opponents leave theirs.',
+    winningStrategyFr: 'L\'enchere est une arme, pas seulement une declaration — enchérissez parfois bas pour forcer un rival a surenchérir au-dela de ses moyens. Surveillez qui a déja perdu des disques; un joueur réduit a un seul disque est désespéré et prévisible. Le premier retournement le plus sur reste votre propre pile.',
     category: 'quick-social',
     publisher: 'Asmodee', designer: 'Hervé Marly', year: 2011,
     players: { min:3, max:6, ideal:5, display:'3–6' },
@@ -76,6 +78,8 @@ const GAMES = [
 
   {
     id: 'coup', name: 'Coup', subtitle: null,
+    winningStrategy: 'Claim the Duke early and often — free Tax income compounds fast and few dare challenge it. Keep a Contessa claim in reserve as an assassination bluff. A Coup (7 coins) can never be blocked or challenged, so bank toward it against a strong bluffer rather than risk a call.',
+    winningStrategyFr: 'Revendiquez le Duc tot et souvent — l\'Impot gratuit s\'accumule vite et peu osent le contester. Gardez la Comtesse en réserve comme bluff anti-assassinat. Le Coup (7 pieces) ne peut etre ni bloqué ni contesté — accumulez vers lui face a un bon bluffeur plutot que de risquer une contestation.',
     category: 'quick-social',
     publisher: 'Indie Boards & Cards', designer: 'Rikki Tahta', year: 2012,
     players: { min:2, max:6, ideal:5, display:'2–6' },
@@ -94,6 +98,8 @@ const GAMES = [
 
   {
     id: 'oracle', name: 'Oracle', subtitle: null,
+    winningStrategy: 'Win by being readable in ways that mislead — establish a pattern, then break it the turn a rival commits to predicting you. Weight your own predictions toward players who act emotionally rather than logically. Late game, the safest points come from opponents forced into predictable defensive plays.',
+    winningStrategyFr: 'Gagnez en paraissant lisible pour mieux tromper — établissez un schéma, puis brisez-le au moment ou un rival parie sur vous. Orientez vos prédictions vers les joueurs émotifs plutot que logiques. En fin de partie, les points surs viennent des adversaires contraints a des jeux défensifs prévisibles.',
     cover: 'covers/oracle.jpg',
     category: 'quick-social',
     publisher: 'Self-published · James Walden (AU)', designer: 'James Walden', year: 2019,
@@ -113,6 +119,8 @@ const GAMES = [
 
   {
     id: 'high-society', name: 'High Society', subtitle: null,
+    winningStrategy: 'Whoever spends the most is eliminated, so the real game is spending second-most while grabbing value. Hoard your high money cards for the luxury cards and the crucial doubling card; dump low cards to drive up rivals\' spending on things you don\'t want. Always know roughly how much cash each rival has left.',
+    winningStrategyFr: 'Le plus dépensier est éliminé: le vrai jeu est de dépenser en deuxieme position tout en raflant de la valeur. Gardez vos grosses coupures pour les objets de luxe et la carte qui double; lachez vos petites cartes pour faire monter les meses adverses sur ce que vous ne voulez pas. Sachez toujours combien il reste a chaque rival.',
     cover: 'covers/high-society.jpg',
     category: 'quick-social',
     publisher: 'Osprey Games', designer: 'Reiner Knizia', year: 1995,
@@ -132,6 +140,8 @@ const GAMES = [
 
   {
     id: 'anomia', name: 'Anomia', subtitle: null,
+    winningStrategy: 'This is reflex over knowledge — the winner is whoever stays calm when their symbol matches. Keep your eyes on the top of every pile, not just your own, so a face-off never surprises you. Pre-load easy category answers in your head during the lulls.',
+    winningStrategyFr: 'Ici le réflexe prime sur le savoir — gagne celui qui reste calme quand son symbole correspond. Gardez les yeux sur le sommet de toutes les piles, pas seulement la votre, pour n\'etre jamais surpris par un duel. Préparez des réponses faciles en tete pendant les temps morts.',
     cover: 'covers/anomia.jpg',
     category: 'quick-social',
     publisher: 'Anomia Press', designer: 'Andrew Innes', year: 2009,
@@ -151,6 +161,8 @@ const GAMES = [
 
   {
     id: 'complots', name: 'Complots', subtitle: null,
+    winningStrategy: 'As in Coup, controlling the coin-generating role is the engine — claim it aggressively while cash is scarce. Force showdowns when you genuinely hold the card so rivals learn to fear your challenges. Save your unblockable paid action to remove the table\'s most dangerous bluffer.',
+    winningStrategyFr: 'Comme dans Coup, controler le role qui génere des pieces est le moteur — revendiquez-le sans hésiter tant que l\'argent manque. Provoquez les confrontations quand vous détenez vraiment la carte, pour qu\'on craigne vos contestations. Gardez votre action payante imblocable pour éliminer le bluffeur le plus dangereux.',
     cover: 'covers/complots.jpg',
     category: 'quick-social',
     publisher: 'Games Factory', designer: 'Claude Lucchini', year: 2012,
@@ -170,6 +182,8 @@ const GAMES = [
 
   {
     id: 'blend-in', name: 'Blend In', subtitle: null,
+    winningStrategy: 'Read the room\'s average and aim to land just inside it — the goal is to match the crowd, not to be clever. Watch the boldest players; they over-commit and expose themselves. Consistency across rounds beats the occasional brilliant guess.',
+    winningStrategyFr: 'Jaugez la moyenne du groupe et placez-vous juste a l\'intérieur — le but est de se fondre, pas d\'etre malin. Surveillez les joueurs les plus audacieux; ils se surexposent. La régularité sur la durée l\'emporte sur le coup d\'éclat isolé.',
     cover: 'covers/blend-in.jpg',
     category: 'quick-social',
     publisher: '—', designer: '—', year: 2020,
@@ -189,6 +203,8 @@ const GAMES = [
 
   {
     id: 'tapple', name: 'Tapple', subtitle: null,
+    winningStrategy: 'Under time pressure, answer with the first valid word and slap the timer — speed beats the perfect answer. Scan the letter wheel in a fixed order so you\'re never hunting. Force the clock onto slower players by keeping your own turns instant.',
+    winningStrategyFr: 'Sous pression, donnez le premier mot valide et frappez le minuteur — la vitesse prime sur la perfection. Balayez la roue des lettres dans un ordre fixe pour ne jamais chercher. Imposez le chrono aux joueurs plus lents en gardant vos tours instantanés.',
     cover: 'covers/tapple.jpg',
     category: 'quick-social',
     publisher: '—', designer: '—', year: 2020,
@@ -208,6 +224,8 @@ const GAMES = [
 
   {
     id: 'love-letter', name: 'Love Letter', subtitle: 'Bridgerton Edition',
+    winningStrategy: 'Count cards — with only sixteen in the deck, tracking what\'s played tells you what opponents likely hold. Play the Guard once the discards have narrowed the odds in your favour. Late in a round, quietly holding a high card often beats forcing risky eliminations.',
+    winningStrategyFr: 'Comptez les cartes — avec seulement seize cartes, suivre ce qui est joué révele ce que tiennent les adversaires. Jouez le Garde quand la défausse a resserré les probabilités en votre faveur. En fin de manche, garder discretement une carte haute vaut souvent mieux que forcer des éliminations risquées.',
     cover: 'covers/love-letter-bridgerton.jpg',
     category: 'quick-social',
     publisher: 'Z-Man Games', designer: 'Seiji Kanai', year: 2012,
@@ -230,6 +248,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'backgammon', name: 'Backgammon', subtitle: null,
+    winningStrategy: 'Prioritise making your points — especially the 5-point and the bar-point — to build a prime your opponent cannot escape. Play a running game when ahead in the race and a holding game when behind. Master the doubling cube: double when you hold a clear edge, and drop bad doubles rather than bleeding equity.',
+    winningStrategyFr: 'Faites vos cases en priorité — surtout la case 5 et la case de la barre — pour former un blocus infranchissable. Jouez la course quand vous menez, un jeu d\'arriere quand vous etes distancé. Maitrisez le videau: doublez avec un avantage net et refusez les mauvais doublements plutot que de perdre de la valeur.',
     category: 'abstract',
     publisher: 'Traditional', designer: 'Ancient (5000+ years)', year: null,
     players: { min:2, max:2, ideal:2, display:'2' },
@@ -248,6 +268,8 @@ const GAMES = [
 
   {
     id: 'chess', name: 'Chess', subtitle: null,
+    winningStrategy: 'Control the centre, develop every piece before attacking, and castle early to shelter your king. Don\'t move the same piece twice in the opening or bring the queen out too soon. In the endgame, activate your king and push passed pawns — that is where most decisive games are truly won.',
+    winningStrategyFr: 'Controlez le centre, développez toutes vos pieces avant d\'attaquer et roquez tot pour abriter votre roi. Ne déplacez pas deux fois la meme piece dans l\'ouverture et ne sortez pas la dame trop tot. En finale, activez votre roi et poussez les pions passés — c\'est la que se gagnent la plupart des parties.',
     category: 'abstract',
     publisher: 'Traditional', designer: 'Traditional (Indian origins)', year: null,
     players: { min:2, max:2, ideal:2, display:'2' },
@@ -266,6 +288,8 @@ const GAMES = [
 
   {
     id: 'jass', name: 'Jass', subtitle: 'Swiss National Card Game',
+    winningStrategy: 'Track trumps relentlessly — knowing when the Buur and Nell have fallen decides the round. In team variants, read and signal through your partner\'s discards; a well-timed sluff beats a proud high card. Count the point-cards (Ace, Ten, and trump honours) that make up most of the score.',
+    winningStrategyFr: 'Suivez les atouts sans relache — savoir quand le Buur et le Nell sont tombés décide la manche. En équipe, lisez et signalez par les défausses de votre partenaire; une défausse bien placée vaut mieux qu\'une fiere carte haute. Comptez les cartes a points (As, Dix et honneurs d\'atout) qui font l\'essentiel du score.',
     cover: 'covers/jass.jpg',
     category: 'abstract',
     publisher: 'Traditional (Swiss)', designer: 'Traditional', year: null,
@@ -285,6 +309,8 @@ const GAMES = [
 
   {
     id: 'poker', name: 'Poker', subtitle: "Texas Hold'em",
+    winningStrategy: 'Play tight-aggressive: enter few hands, but bet strongly when you do. Position is power — play more hands in late position where you act with information. Fold discipline and reading betting patterns beat chasing draws; the money comes from opponents\' mistakes, not your miracles.',
+    winningStrategyFr: 'Jouez serré-agressif: peu de mains, mais misez fort quand vous entrez. La position est un pouvoir — jouez davantage en fin de parole, ou vous agissez avec de l\'information. La discipline au coucher et la lecture des mises battent la poursuite de tirages; l\'argent vient des erreurs adverses, pas de vos miracles.',
     cover: 'covers/poker.jpg',
     category: 'abstract',
     publisher: 'Traditional', designer: 'Traditional', year: null,
@@ -307,6 +333,9 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'catan', name: 'Catan', subtitle: 'Base Game',
+    strategyPage: 'catan-strategy.html',
+    winningStrategy: 'Settle for resource diversity and high-probability numbers (6, 8, 5, 9) — brick and wood early for roads and settlements, ore and grain later for cities and development cards. Never neglect a resource entirely; the ports and the robber will punish it. Trade only when the deal helps you more than your opponent.',
+    winningStrategyFr: 'Installez-vous pour la diversité des ressources et les numéros probables (6, 8, 5, 9) — brique et bois tot, minerai et blé ensuite pour villes et cartes développement. Ne négligez jamais une ressource; les ports et le voleur la puniront. N\'échangez que lorsque l\'accord vous aide plus que l\'adversaire.',
     category: 'family-strategy',
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1995,
     players: { min:3, max:4, ideal:4, display:'3–4 (5–6 with expansion)' },
@@ -326,6 +355,8 @@ const GAMES = [
 
   {
     id: 'catan-ck', name: 'Catan: Cities & Knights', subtitle: 'Expansion',
+    winningStrategy: 'Invest early in knights — you need them active to defend Catan from the barbarians, and a sacked city is devastating. Commit to one commodity track (Politics for cheap strong knights, or Science for the aqueduct and progress engine). Race a Metropolis to lock in 2 VP opponents can never take.',
+    winningStrategyFr: 'Investissez tot dans les chevaliers — actifs, ils défendent Catan des barbares, et voir la cité pillée est dévastateur. Engagez-vous sur une filiere (Politique pour des chevaliers puissants et bon marché, ou Science pour l\'aqueduc). Visez une Métropole pour verrouiller 2 PV imprenables.',
     cover: 'covers/catan-ck.jpg',
     category: 'euro-strategy',
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1998,
@@ -345,6 +376,8 @@ const GAMES = [
 
   {
     id: 'catan-seafarers', name: 'Catan: Seafarers', subtitle: 'Expansion',
+    winningStrategy: 'The bonus VPs for settling new islands often decide the game — plan a shipping route to an empty island early. Balance land expansion against the ship investment; over-committing to the sea can starve your resource base. Guard the gold-field hexes, they smooth out any resource gaps.',
+    winningStrategyFr: 'Les PV bonus pour coloniser de nouvelles iles décident souvent la partie — planifiez tot une route maritime vers une ile vide. Équilibrez l\'expansion terrestre et l\'investissement en navires; trop miser sur la mer affame votre base de ressources. Protégez les hexagones d\'or, ils comblent vos manques.',
     cover: 'covers/catan-seafarers.jpg',
     category: 'euro-strategy',
     publisher: 'CATAN Studio', designer: 'Klaus Teuber', year: 1997,
@@ -364,6 +397,9 @@ const GAMES = [
 
   {
     id: 'risk', name: 'Risk', subtitle: '40th Anniversary — Metal Edition',
+    strategyPage: 'risk-strategy.html',
+    winningStrategy: 'Hold a small, defensible continent early (Australia and South America are the classics) for steady bonus armies behind a short border. Don\'t over-attack in one turn — taking territory but ending weak invites elimination. Cash card sets at the right moment, and use diplomacy: let rivals bleed each other before you strike.',
+    winningStrategyFr: 'Tenez tot un continent petit et défendable (Australie, Amérique du Sud) pour des bonus réguliers derriere une frontiere courte. N\'attaquez pas trop en un seul tour — conquérir puis finir affaibli invite a l\'élimination. Échangez vos cartes au bon moment et usez de diplomatie: laissez les rivaux s\'épuiser avant de frapper.',
     category: 'family-strategy',
     publisher: 'Hasbro', designer: 'Albert Lamorisse', year: 1957,
     players: { min:2, max:6, ideal:5, display:'2–6' },
@@ -381,7 +417,31 @@ const GAMES = [
   },
 
   {
+    id: 'monopoly', name: 'Monopoly', subtitle: 'Classic Edition',
+    category: 'family-strategy',
+    publisher: 'Hasbro / Parker Brothers', designer: 'Charles Darrow \u00b7 Lizzie Magie', year: 1935,
+    players: { min:2, max:8, ideal:4, display:'2\u20138' },
+    duration: { min:60, max:180, display:'60\u2013180 min' },
+    bggWeight: 1.6, bggId: 1406,
+    description: 'The world\'s most famous board game — and far more strategic than its reputation suggests. Buy, rent, and bankrupt your way to a real-estate monopoly. Beneath the family-table chaos lies a game of probability, cash-flow discipline, and hard-nosed trading. Its true inventor was Lizzie Magie, whose 1904 Landlord\'s Game was designed to teach the dangers of monopoly.',
+    descriptionFr: 'Le jeu de plateau le plus célebre du monde — et bien plus stratégique que sa réputation ne le laisse croire. Achetez, louez et ruinez vos adversaires jusqu\'au monopole immobilier. Sous le chaos de la table familiale se cache un jeu de probabilité, de gestion de trésorerie et de négociation impitoyable. Sa véritable inventrice fut Lizzie Magie, dont le Landlord\'s Game de 1904 devait dénoncer les dangers du monopole.',
+    quickStart: 'Each player starts with $1,500. Roll and move; buy the unowned property you land on or it goes to auction. Collect $200 for passing GO. Own a full colour group to build houses (evenly) then hotels and raise rent. Pay rents, taxes, and Chance / Community Chest penalties; mortgage to raise cash. The last player not bankrupt wins. Full official rules — Classic, Speed Die and Short Game — in MONOPOLY.pdf.',
+    quickStartFr: 'Chaque joueur commence avec 1 500 $. Lancez et déplacez-vous; achetez la propriété libre ou vous tombez, sinon elle part aux encheres. Touchez 200 $ en passant par la case Départ. Un groupe de couleur complet permet de batir des maisons (régulierement) puis des hotels. Payez loyers, taxes et pénalités; hypothéquez pour du liquide. Le dernier joueur non ruiné gagne. Regles officielles completes dans MONOPOLY.pdf.',
+    winningStrategy: 'Buy aggressively early — idle cash wins nothing. The game is decided by trading for complete colour groups, so complete yours while never handing a rival theirs. Target the orange and red sets: they sit in the dice sweet-spot just past Jail and are cheap to develop. Build to three houses fast (the biggest rent jump), and starve opponents by holding houses rather than upgrading to hotels. Keep a cash buffer, and love Jail late in the game.',
+    winningStrategyFr: 'Achetez vite et tot — l\'argent qui dort ne gagne rien. La partie se décide par les échanges pour compléter des groupes de couleur: complétez le votre sans jamais offrir le sien a un rival. Visez l\'orange et le rouge: juste apres la Prison, dans la zone idéale des dés, et peu couteux a développer. Montez vite a trois maisons (le plus gros bond de loyer) et affamez les adversaires en gardant vos maisons plutot qu\'en passant aux hotels. Gardez une réserve de trésorerie et appréciez la Prison en fin de partie.',
+    strategyPage: 'monopoly-strategy.html',
+    setting: 'American real estate \u00b7 Atlantic City, 1930s',
+    pdfFile: 'MONOPOLY.pdf',
+    gradient: 'linear-gradient(135deg, #0A140A 0%, #123012 55%, #1E4A1E 100%)',
+    artisan: false, travel: false,
+    tags: ['classic','family','trading','real-estate','negotiation']
+  },
+
+
+  {
     id: 'ticket-to-ride', name: 'Ticket to Ride', subtitle: 'With handcrafted wooden wagons',
+    winningStrategy: 'Complete your destination tickets first — unfinished tickets are negative points that sink games. Claim contested bottleneck routes early, then fill longer safe routes later. Hoard cards quietly for a big multi-train route rather than tipping your plans, and draw extra tickets only when your network already covers them.',
+    winningStrategyFr: 'Terminez d\'abord vos billets de destination — les billets non remplis sont des points négatifs qui coulent une partie. Prenez tot les routes-goulots disputées, gardez les longues routes sures pour plus tard. Accumulez discretement pour une grande route et ne piochez de nouveaux billets que si votre réseau les couvre déja.',
     category: 'family-strategy',
     publisher: 'Days of Wonder', designer: 'Alan R. Moon', year: 2004,
     players: { min:2, max:5, ideal:4, display:'2–5' },
@@ -400,6 +460,8 @@ const GAMES = [
 
   {
     id: '7-wonders-duel', name: '7 Wonders Duel', subtitle: null,
+    winningStrategy: 'Threaten all three victory paths so your opponent can\'t defend them all — but truly commit to one. Deny key cards by taking them even when you can\'t use them, especially science symbols and the military cards that swing the conflict pawn. Plan which cards you\'ll free up for your opponent before you take yours.',
+    winningStrategyFr: 'Menacez les trois voies de victoire pour disperser la défense adverse — mais engagez-vous vraiment sur une. Privez l\'adversaire des cartes clés en les prenant meme inutiles, surtout les symboles science et les cartes militaires qui déplacent le pion de conflit. Anticipez quelles cartes vous libérez pour l\'adversaire avant de prendre les votres.',
     category: 'family-strategy',
     publisher: 'Repos Production', designer: 'Antoine Bauza & Bruno Cathala', year: 2015,
     players: { min:2, max:2, ideal:2, display:'2 players only' },
@@ -421,6 +483,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'avalon', name: 'The Resistance: Avalon', subtitle: 'Big Box Edition',
+    winningStrategy: 'As Good, share information carefully — loud logic only helps evil find Merlin. As Merlin, steer the group without revealing knowledge you shouldn\'t have. Evil\'s best weapon is a quiet failed mission blamed on someone else; Good\'s is tracking who sat on failed teams. The Assassin should watch for whoever guided the group a little too accurately.',
+    winningStrategyFr: 'Cote Bien, partagez l\'information avec prudence — trop de logique aide le mal a trouver Merlin. En Merlin, orientez le groupe sans trahir un savoir que vous ne devriez pas avoir. L\'arme du mal est un échec discret imputé a autrui; celle du Bien, suivre qui siégeait dans les missions ratées. L\'Assassin guette celui qui a guidé le groupe un peu trop juste.',
     category: 'social-deduction',
     publisher: 'Indie Boards & Cards', designer: 'Don Eskridge', year: 2012,
     players: { min:5, max:10, ideal:7, display:'5–10' },
@@ -439,6 +503,8 @@ const GAMES = [
 
   {
     id: 'chameleon', name: 'The Chameleon', subtitle: null,
+    winningStrategy: 'As an honest player, give a word specific enough to prove you know the topic but not so obvious it hands it to the Chameleon. As the Chameleon, echo the tone and category of earlier answers and speak mid-order so you have cues. When accusing, distrust the vaguest, most generic clue.',
+    winningStrategyFr: 'En joueur honnete, donnez un mot assez précis pour prouver votre savoir mais pas au point de le livrer au Caméléon. En Caméléon, imitez le ton et la catégorie des réponses précédentes et parlez en milieu d\'ordre pour avoir des indices. Pour accuser, méfiez-vous de l\'indice le plus vague et le plus générique.',
     category: 'social-deduction',
     publisher: 'Big Potato Games', designer: 'Rikki Tahta', year: 2017,
     players: { min:3, max:8, ideal:6, display:'3–8' },
@@ -457,6 +523,8 @@ const GAMES = [
 
   {
     id: 'secret-hitler', name: 'Secret Hitler', subtitle: null,
+    winningStrategy: 'Liberals win on information — track who enacted which policies and force players to commit publicly. As a Fascist, build trust by enacting Liberal policies early when the tiles allow. Hitler should play quiet and moderate; the fastest Liberal loss is electing a trustworthy Chancellor who turns out to be Hitler.',
+    winningStrategyFr: 'Les Libéraux gagnent par l\'information — suivez qui a fait passer quelles lois et forcez les engagements publics. En Fasciste, gagnez la confiance en votant des lois libérales tot quand les tuiles le permettent. Hitler doit rester discret et modéré; la défaite libérale la plus rapide, c\'est élire un Chancelier de confiance qui se révele etre Hitler.',
     category: 'social-deduction',
     publisher: 'Goat Wolf & Cabbage', designer: 'Max Temkin, Mike Boxleiter, Tommy Maranges', year: 2016,
     players: { min:5, max:10, ideal:7, display:'5–10' },
@@ -478,6 +546,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'everdell', name: 'Everdell', subtitle: 'with Evertree',
+    winningStrategy: 'Build a self-triggering engine — chain Constructions that let you play their matching Critters for free. Favour cards that generate resources or points on every visit over one-off bonuses. Plan the final season carefully: unspent workers and an incomplete city (short of fifteen cards) are wasted potential.',
+    winningStrategyFr: 'Construisez un moteur auto-déclenché — enchainez les Constructions qui offrent gratuitement leurs Créatures. Privilégiez les cartes qui produisent a chaque passage plutot que les bonus uniques. Anticipez la derniere saison: ouvriers inutilisés et ville incomplete (moins de quinze cartes) sont du potentiel gaché.',
     category: 'euro-strategy',
     publisher: 'Starling Games', designer: 'James A. Wilson', year: 2018,
     players: { min:1, max:4, ideal:3, display:'1–4' },
@@ -496,6 +566,8 @@ const GAMES = [
 
   {
     id: 'game-of-thrones', name: 'Game of Thrones', subtitle: 'The Board Game — 2nd Edition',
+    winningStrategy: 'Diplomacy wins this, not armies — secure non-aggression pacts, then break them at the decisive moment. Use support orders and hidden-order bluffs to win battles you\'d lose head-on. Control ports and supply to raise your army cap, and never let one player reach seven castles unopposed.',
+    winningStrategyFr: 'Ici la diplomatie gagne, pas les armées — nouez des pactes de non-agression, puis brisez-les au moment décisif. Usez des ordres de soutien et des bluffs d\'ordres cachés pour gagner des batailles perdues de front. Controlez ports et ravitaillement pour agrandir votre armée, et ne laissez jamais un joueur atteindre sept chateaux sans réaction.',
     category: 'historical-strategy',
     publisher: 'Fantasy Flight Games', designer: 'Christian T. Petersen', year: 2003,
     players: { min:3, max:6, ideal:6, display:'3–6' },
@@ -517,6 +589,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'pax-pamir', name: 'Pax Pamir', subtitle: '2nd Edition',
+    winningStrategy: 'Loyalty is a tool, not an identity — stay flexible and be loyal to whichever coalition is winning when a Dominance Check hits. Build your court for the actions and abilities you need, keeping spies and gifts ready to disrupt rivals. Read the table constantly; jumping coalitions one turn before a check can flip the entire score.',
+    winningStrategyFr: 'La loyauté est un outil, pas une identité — restez flexible et loyal a la coalition gagnante au moment d\'une Vérification de Domination. Batissez votre cour pour les actions utiles, en gardant espions et cadeaux prets a géner les rivaux. Lisez la table sans cesse; changer de coalition juste avant une vérification peut renverser tout le score.',
     category: 'historical-strategy',
     publisher: 'Wehrlegig Games', designer: 'Cole Wehrle', year: 2019,
     players: { min:1, max:5, ideal:4, display:'1–5' },
@@ -536,6 +610,8 @@ const GAMES = [
 
   {
     id: 'john-company', name: 'John Company', subtitle: '2nd Edition',
+    winningStrategy: 'Wealth flows through offices — angle your family into the posts that pay, then negotiate hard over who takes which Company action. Manage risk ruthlessly: over-ambitious wars and unbacked ventures can collapse the whole enterprise. Convert Company gains into lasting personal prestige before the inevitable decline — the richest family line wins, not the strongest Company.',
+    winningStrategyFr: 'La richesse passe par les charges — placez votre famille dans les postes lucratifs, puis négociez aprement les actions de la Compagnie. Gérez le risque sans pitié: guerres démesurées et aventures non couvertes peuvent tout faire s\'effondrer. Convertissez les gains en prestige personnel durable avant le déclin inévitable — c\'est la lignée la plus riche qui gagne, pas la Compagnie la plus forte.',
     category: 'historical-strategy',
     publisher: 'Wehrlegig Games', designer: 'Cole Wehrle', year: 2022,
     players: { min:1, max:6, ideal:4, display:'1–6' },
@@ -555,6 +631,9 @@ const GAMES = [
 
   {
     id: 'diplomacy', name: 'Diplomacy', subtitle: 'Standard + Era of Empire + Golden Blade',
+    strategyPage: 'diplomacy-strategy.html',
+    winningStrategy: 'Everything is negotiation — talk to everyone, including those you plan to betray, and never write an order you haven\'t gamed against every neighbour. Early on, secure your home region and one reliable ally; mid game, position for the stab before you need it. Support orders win battles, so manufacture situations where an ally must support you.',
+    winningStrategyFr: 'Tout est négociation — parlez a tous, y compris ceux que vous comptez trahir, et n\'écrivez jamais un ordre sans l\'avoir anticipé contre chaque voisin. Tot, sécurisez votre région et un allié fiable; a mi-partie, préparez la trahison avant d\'en avoir besoin. Les soutiens gagnent les batailles — provoquez les situations ou un allié doit vous soutenir.',
     category: 'historical-strategy',
     publisher: 'Avalon Hill / Gale Force Nine', designer: 'Allan B. Calhamer', year: 1959,
     players: { min:2, max:7, ideal:7, display:'2–7' },
@@ -576,6 +655,8 @@ const GAMES = [
   ───────────────────────────────────────────────────── */
   {
     id: 'pandemic', name: 'Pandemic', subtitle: null,
+    winningStrategy: 'Treat this as a team puzzle — plan turns aloud together and use all four actions every turn. Prioritise curing over treating; a cure stops the bleeding permanently. Cap at-risk cities early to prevent outbreak chains, use the Researcher and Dispatcher to move cards and people efficiently, and don\'t burn the draw deck — pace is the real enemy.',
+    winningStrategyFr: 'Traitez-le comme un casse-tete d\'équipe — planifiez les tours a voix haute et utilisez les quatre actions a chaque tour. Priorisez la guérison sur le traitement; un remede arrete l\'hémorragie définitivement. Plafonnez tot les villes a risque pour éviter les chaines d\'épidémies, déplacez cartes et personnes efficacement, et ne gaspillez pas la pioche — le tempo est le vrai ennemi.',
     category: 'cooperative',
     publisher: 'Z-Man Games', designer: 'Matt Leacock', year: 2008,
     players: { min:2, max:4, ideal:4, display:'2–4' },
@@ -594,6 +675,8 @@ const GAMES = [
 
   {
     id: 'arkham-horror', name: 'Arkham Horror', subtitle: '3rd Edition',
+    winningStrategy: 'Split objectives — send strong investigators after clues and combat while a support character manages sanity and healing. Don\'t fight every monster; evade what you can and spend actions advancing the scenario before the doom track fills. Gear up early with equipment and allies, because the finale escalates hard.',
+    winningStrategyFr: 'Répartissez les objectifs — envoyez les enqueteurs solides aux indices et au combat pendant qu\'un personnage de soutien gere la santé mentale et les soins. Ne combattez pas tout; esquivez ce que vous pouvez et faites avancer le scénario avant que le Destin se remplisse. Équipez-vous tot, car le final s\'intensifie brutalement.',
     category: 'cooperative',
     publisher: 'Fantasy Flight Games', designer: 'Nikki Valens et al.', year: 2018,
     players: { min:1, max:6, ideal:4, display:'1–6' },
@@ -612,6 +695,8 @@ const GAMES = [
 
   {
     id: 'sherlock-holmes', name: 'Sherlock Holmes', subtitle: 'Consulting Detective',
+    winningStrategy: 'Resist chasing every lead — you\'re scored against Holmes on efficiency, so follow only clues that logically advance the case. Take notes and build a timeline; the answer is usually reachable in a handful of the right visits. Read the newspaper and directory every case — they hide crucial free information.',
+    winningStrategyFr: 'Résistez a l\'envie de suivre chaque piste — vous etes noté sur l\'efficacité face a Holmes, alors ne suivez que les indices logiquement utiles. Prenez des notes et batissez une chronologie; la solution tient souvent en quelques bonnes visites. Lisez le journal et l\'annuaire a chaque affaire — ils cachent des informations gratuites cruciales.',
     category: 'cooperative',
     publisher: 'Space Cowboys', designer: 'Gary Grady, Suzanne Goldberg, Raymond Edwards', year: 1981,
     players: { min:1, max:8, ideal:4, display:'1–8' },
